@@ -1,4 +1,4 @@
-import { Container } from "@mui/material";
+import { Box } from "@mui/material";
 import { Header } from "@shared/ui/header";
 import { Outlet } from "react-router-dom";
 
@@ -6,9 +6,9 @@ export function DefaultLayout() {
   return (
     <div>
       <Header />
-      <Container maxWidth="xl">
+      <Box sx={{ width: "100%", display: "flex", justifyContent: "center" }}>
         <Outlet />
-      </Container>
+      </Box>
     </div>
   );
 }

@@ -1,38 +1,43 @@
 .header {
-    background-color: #fffdf9 !important;
-    transform: rotate(0deg) !important;
-    padding: 0 80px;
+  background-color: #fffdf9 !important;
+  padding: 0 50px;
+
+  @media (max-width: 960px) {
+    padding: 0 20px;
   }
-  
-  .logo {
-    font-weight: bold;
+}
+
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+
+  a {
     color: black;
-    
+    text-decoration: none;
+    font-weight: 400;
   }
-  
-  .navLinks {
-    display: flex;
-    align-items: center;
-    gap: 80px;
-  
-    a {
-      color: black;
-      text-decoration: none;
-      font-size: 16px;
-    }
+}
+
+.mobileActions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.smallSelect {
+  width: 80px;
+
+  .MuiSelect-select {
+    padding: 5px;
   }
-  
- 
-  
-  .applyButton {
-    border: 1px solid black;
+}
+
+.drawerContent {
+  a {
     color: black;
-    background-color: #fff;
-    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px 0;
   }
-  .applyButton:hover {
-    background-color: black;
-    color: white;
-    cursor: pointer;
-    transition: .5s;
-  }
+}

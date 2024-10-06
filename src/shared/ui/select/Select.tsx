@@ -1,6 +1,10 @@
-import { Select, MenuItem } from "@mui/material";
+import { Select, MenuItem, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 export const MySelect = ({ value, onChange, options }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Select
       disableUnderline
@@ -8,12 +12,17 @@ export const MySelect = ({ value, onChange, options }) => {
       onChange={onChange}
       variant="standard"
       sx={{
-        minWidth: 80,
+        width: 90,
         backgroundColor: value ? "black" : "white",
         color: value ? "white" : "black",
         border: "1px solid black",
         borderRadius: "4px",
-        padding: "4px 0", 
+        padding: "4px 0",
+        alignSelf: "center",
+        "&:hover": {
+          border: "1px solid black",
+          textDecoration: "none",
+        },
         "& .MuiMenuItem-root": {
           backgroundColor: "black",
           color: "white",
@@ -22,7 +31,7 @@ export const MySelect = ({ value, onChange, options }) => {
         "& .MuiSelect-select": {
           backgroundColor: "black",
           color: "white",
-          padding: "4px 24px",
+          padding: isMobile ? "4px 16px" : "4px 24px",
         },
       }}
       MenuProps={{
