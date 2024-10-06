@@ -1,0 +1,38 @@
+.header {
+    background-color: #fffdf9 !important;
+    transform: rotate(0deg) !important;
+    padding: 0 80px;
+  }
+  
+  .logo {
+    font-weight: bold;
+    color: black;
+    
+  }
+  
+  .navLinks {
+    display: flex;
+    align-items: center;
+    gap: 80px;
+  
+    a {
+      color: black;
+      text-decoration: none;
+      font-size: 16px;
+    }
+  }
+  
+ 
+  
+  .applyButton {
+    border: 1px solid black;
+    color: black;
+    background-color: #fff;
+    padding: 10px 20px;
+  }
+  .applyButton:hover {
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition: .5s;
+  }

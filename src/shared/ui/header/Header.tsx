@@ -1,3 +1,4 @@
+
 import {
   AppBar,
   Toolbar,
@@ -11,6 +12,7 @@ import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useState } from "react";
 import { MySelect } from "../select";
+import styles from './styles.module.scss';
 
 export const Header = () => {
   const theme = useTheme();
@@ -23,10 +25,7 @@ export const Header = () => {
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar
-        position="static"
-        sx={{ backgroundColor: "#fffdf9", boxShadow: "none" }}
-      >
+      <AppBar position="static" className={styles.header}>
         <Toolbar sx={{ justifyContent: "space-between" }}>
           {isMobile && (
             <IconButton
@@ -38,12 +37,12 @@ export const Header = () => {
               <MenuIcon />
             </IconButton>
           )}
-          <Typography variant="h6" sx={{ flexGrow: 1 }}>
+          <Typography variant="h6" className={styles.logo}>
             двасороксемь.
           </Typography>
 
           {!isMobile && (
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+            <Box className={styles.navLinks}>
               <Typography variant="body1" component="a" href="#cases">
                 Наши кейсы
               </Typography>
@@ -65,9 +64,11 @@ export const Header = () => {
                   { value: "ENG", label: "ENG" },
                 ]}
               />
-              <Button variant="contained" color="primary">
+              <div 
+                className={styles.applyButton}
+              >
                 Я хочу оставить заявку
-              </Button>
+              </div>
             </Box>
           )}
         </Toolbar>
