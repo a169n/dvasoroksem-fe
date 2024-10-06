@@ -85,7 +85,13 @@ export const HomeHeader = () => {
             <img
               src={landing_image}
               alt="Landing"
-              style={{ maxWidth: "100%", height: "auto" }}
+              draggable="false"
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                pointerEvents: "none",
+                userSelect: "none",
+              }}
             />
           </Box>
         </Box>
@@ -113,10 +119,13 @@ export const HomeHeader = () => {
                   <img
                     src={icon}
                     alt={`Icon${index + 1}`}
+                    draggable="false"
                     style={{
                       height: "40px",
                       filter: "brightness(0) invert(1)",
                       margin: "0 20px",
+                      pointerEvents: "none",
+                      userSelect: "none",
                     }}
                   />
                 </Box>

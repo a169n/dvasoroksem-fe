@@ -64,7 +64,12 @@ export const Header = () => {
           <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
             {isMobile ? (
               <>
-                <img src={logoSmall} alt="Logo" />
+                <img
+                  src={logoSmall}
+                  draggable="false"
+                  style={{ pointerEvents: "none", userSelect: "none" }}
+                  alt="Logo"
+                />
                 <MyButton sx={{ padding: "5px 14px", fontSize: "8px" }}>
                   Я хочу оставить заявку
                 </MyButton>
@@ -83,11 +88,14 @@ export const Header = () => {
                 <img
                   src={logo}
                   alt="Logo"
+                  draggable="false"
                   style={{
                     flexGrow: 1,
                     maxHeight: "11px",
                     maxWidth: "100%",
                     marginRight: "40%",
+                    pointerEvents: "none",
+                    userSelect: "none",
                   }}
                 />
                 <Box sx={{ display: "flex", alignItems: "center" }}>
