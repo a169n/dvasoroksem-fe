@@ -1,6 +1,8 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import Marquee from "react-marquee-slider";
 import landing_image from "@assets/landing_image.png";
+import landing_image_grey from "@assets/landing_image_grey.png";
 import icon1 from "@assets/icons/icon1.svg";
 import icon2 from "@assets/icons/icon2.svg";
 import icon3 from "@assets/icons/icon3.svg";
@@ -11,6 +13,9 @@ import icon7 from "@assets/icons/icon7.svg";
 import icon8 from "@assets/icons/icon8.svg";
 
 export const HomeHeader = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
   return (
     <Box
       sx={{
@@ -19,8 +24,16 @@ export const HomeHeader = () => {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        alignItems: "center",
         textAlign: "center",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        
+        ...(isMobile && {
+          backgroundImage: `url(${landing_image_grey})`,
+          alignItems: "space-between",
+          // justifyContent: "",
+          minHeight: "100vh",
+        }),
       }}
     >
       <Box
@@ -45,55 +58,47 @@ export const HomeHeader = () => {
               flex: 1,
               textAlign: { xs: "center", md: "left" },
               mb: { xs: 4, md: 0 },
+              padding: isMobile? "20%" : "0",
             }}
           >
             <Typography variant="h2" component="h1" fontWeight={500} mb={2}>
               Мы двасороксемь.
             </Typography>
-            <Typography sx={{ color: "#fff" }} textAlign={"left"} mb={2}>
+            <Typography sx={{ color: "#fff" }} textAlign="left" mb={2}>
               Ведущее маркетинговое агентство в Астане, предлагающее комплексные
               маркетинговые решения для бизнеса. Специализируемся на
               стратегическом планировании, digital маркетинге, SEO, SMM и
               брендинге.
             </Typography>
-            <Typography sx={{ color: "#fff" }} textAlign={"left"} mb={2}>
+            <Typography sx={{ color: "#fff" }} textAlign="left" mb={2}>
               Наша команда экспертов поможет вашему бизнесу расти и достигать
               новых высот!
             </Typography>
           </Box>
-          <Box
-            sx={{
-              flex: 1,
-              display: { xs: "none", md: "flex" },
-              justifyContent: "center",
-              alignItems: "center",
-              position: "relative",
-              "&:before": {
-                content: '""',
-                position: "absolute",
-                top: 0,
-                left: 0,
-                right: 0,
-                bottom: 0,
-                backgroundImage: `url(${landing_image})`,
-                backgroundSize: "cover",
-                filter: "brightness(0.5)",
-                zIndex: -1,
-              },
-            }}
-          >
-            <img
-              src={landing_image}
-              alt="Landing"
-              draggable="false"
-              style={{
-                maxWidth: "100%",
-                height: "auto",
-                pointerEvents: "none",
-                userSelect: "none",
+
+          {!isMobile && (
+            <Box
+              sx={{
+                flex: 1,
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                position: "relative",
               }}
-            />
-          </Box>
+            >
+              <img
+                src={landing_image}
+                alt="Landing"
+                draggable="false"
+                style={{
+                  maxWidth: "100%",
+                  height: "auto",
+                  pointerEvents: "none",
+                  userSelect: "none",
+                }}
+              />
+            </Box>
+          )}
         </Box>
 
         <Box
@@ -103,6 +108,7 @@ export const HomeHeader = () => {
             alignItems: "center",
             justifyContent: "center",
             overflow: "hidden",
+            mt: { xs: 4, md: 0 },
           }}
         >
           <Marquee
