@@ -1,7 +1,10 @@
 import logo from "@assets/icons/logo.svg";
 import logoSmall from "@assets/icons/logo_small.svg";
+import logoSmallWhite from "@assets/icons/logo_small_white.svg";
+
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
+import ArrowRightIcon from "@mui/icons-material/ArrowForward";
 import {
   AppBar,
   Box,
@@ -44,7 +47,7 @@ export const Header = () => {
           component="a"
           href={href}
           onClick={onClick}
-          sx={{ marginRight: 3 }}
+          sx={{ marginRight: 3, color: isMobile ? "#fff" : "#191919" }}
         >
           {text}
         </Typography>
@@ -58,80 +61,120 @@ export const Header = () => {
   );
 
   return (
-    <>
-      <AppBar position="static" className={styles.header}>
-        <Toolbar sx={{ justifyContent: "space-between", alignItems: "center" }}>
-          <Box sx={{ flexGrow: 1, display: "flex", alignItems: "center" }}>
-            {isMobile ? (
-              <>
-                <img
-                  src={logoSmall}
-                  draggable="false"
-                  style={{ pointerEvents: "none", userSelect: "none" }}
-                  alt="Logo"
-                />
-                <MyButton sx={{ padding: "5px 14px", fontSize: "8px" }}>
-                  Я хочу оставить заявку
-                </MyButton>
-                <IconButton
-                  edge="end"
-                  color="default"
-                  aria-label="menu"
-                  onClick={() => setMenuOpen(!menuOpen)}
-                  sx={{ ml: 1 }}
-                >
-                  {menuOpen ? <CloseIcon /> : <MenuIcon />}
-                </IconButton>
-              </>
-            ) : (
-              <>
-                <img
-                  src={logo}
-                  alt="Logo"
-                  draggable="false"
-                  style={{
-                    flexGrow: 1,
-                    maxHeight: "11px",
-                    maxWidth: "100%",
-                    marginRight: "40%",
-                    pointerEvents: "none",
-                    userSelect: "none",
-                  }}
-                />
-                <Box sx={{ display: "flex", alignItems: "center" }}>
-                  <NavigationItems onClick={() => {}} />
-                  <MyButton sx={{ padding: "10px 28px", marginLeft: 2 }}>
-                    Я хочу оставить заявку
-                  </MyButton>
-                </Box>
-              </>
-            )}
+    <AppBar position="static" className={styles.header}>
+      <Toolbar sx={{ justifyContent: "space-between", alignItems: "center" }}>
+        <img
+          src={isMobile ? logoSmall : logo}
+          alt="Logo"
+          draggable="false"
+          style={{
+            pointerEvents: "none",
+            userSelect: "none",
+            marginRight: "auto",
+          }}
+        />
+        {isMobile ? (
+          <IconButton
+            edge="end"
+            color="default"
+            aria-label="menu"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+          </IconButton>
+        ) : (
+          <Box
+            sx={{
+              width: "90vh",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <NavigationItems onClick={undefined} />
+            <MyButton sx={{ padding: "10px 28px", marginLeft: 2 }}>
+              Я хочу оставить заявку
+            </MyButton>
           </Box>
-        </Toolbar>
-        <Drawer
-          anchor="right"
-          open={menuOpen}
-          onClose={() => setMenuOpen(false)}
-          PaperProps={{
-            sx: {
-              width: isMobile ? "30%" : "400px",
-              padding: 2,
-            },
+        )}
+      </Toolbar>
+      <Drawer
+        anchor="right"
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        PaperProps={{
+          sx: {
+            width: "100%",
+            height: "100%",
+            backgroundColor: "black",
+            color: "white",
+            padding: 2,
+          },
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "flex-start",
+            paddingTop: "20px",
+            gap: "20px",
           }}
         >
           <Box
             sx={{
               display: "flex",
-              flexDirection: "column",
-              padding: "20px",
-              gap: "20px",
+              alignItems: "center",
+              justifyContent: "space-between",
+              width: "100%",
             }}
-            className={styles.drawerContent}
           >
-            <NavigationItems onClick={() => setMenuOpen(false)} />
+            <img
+              src={logoSmallWhite}
+              alt="Logo"
+              draggable="false"
+              style={{
+                pointerEvents: "none",
+                userSelect: "none",
+                marginRight: "auto",
+              }}
+            />
+            <IconButton
+              edge="start"
+              color="inherit"
+              onClick={() => setMenuOpen(false)}
+              sx={{ alignSelf: "flex-end" }}
+            >
+              <CloseIcon />
+            </IconButton>
           </Box>
-        </Drawer>
-      </AppBar>
-    </>
+          <Typography
+            component="a"
+            href="#"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "1.5rem",
+              color: "#fff",
+            }}
+          >
+            <ArrowRightIcon sx={{ mr: 1, color: "#fff" }} /> Главная
+          </Typography>
+          <NavigationItems onClick={() => setMenuOpen(false)} />
+          <Typography
+            component="a"
+            href="#"
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "1.5rem",
+              color: "#fff",
+            }}
+          >
+            Я хочу оставить заявку
+          </Typography>
+        </Box>
+      </Drawer>
+    </AppBar>
   );
 };
