@@ -12,7 +12,7 @@ export const MySelect = ({ value, onChange, options }) => {
       onChange={onChange}
       variant="standard"
       sx={{
-        width: 90,
+        width: isMobile ? "100%" : 90,
         backgroundColor: value ? "black" : "white",
         color: value ? "white" : "black",
         border: "1px solid black",
@@ -23,20 +23,22 @@ export const MySelect = ({ value, onChange, options }) => {
           border: "1px solid black",
           textDecoration: "none",
         },
-        "& .MuiMenuItem-root": {
-          backgroundColor: "black",
-          color: "white",
-          padding: "4px 8px",
-        },
         "& .MuiSelect-select": {
-          backgroundColor: "black",
-          color: "white",
           padding: isMobile ? "4px 16px" : "4px 24px",
+          backgroundColor: isMobile ? "white" : "black",
+          textAlign: "left",
+          borderRadius: isMobile ? "10px" : "4px",
+          color: isMobile ? "black" : "white",
         },
       }}
       MenuProps={{
         PaperProps: {
           sx: {
+            backgroundColor: isMobile ? "black" : "white",
+            "& .MuiMenuItem-root": {
+              color: isMobile ? "white" : "black",
+              padding: "8px 16px",
+            },
             "& .Mui-selected": {
               display: "none",
             },
