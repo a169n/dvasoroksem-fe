@@ -5,7 +5,7 @@ import { ButtonProps } from "@mui/material/Button";
 
 interface CustomButtonProps extends ButtonProps {
   children: React.ReactNode;
-  startIcon?: React.ReactNode; 
+  startIcon?: React.ReactNode;
   endIcon?: React.ReactNode;
 }
 
@@ -13,6 +13,9 @@ const CustomButton = styled(Button)<CustomButtonProps>(() => ({
   border: "1px solid black",
   color: "black",
   backgroundColor: "#fff",
+  padding: "4px 16px",
+  fontFamily: "Futura PT, sans-serif",
+  fontWeight: 400,
   "&:hover": {
     backgroundColor: "black",
     color: "white",

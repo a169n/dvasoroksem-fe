@@ -1,4 +1,4 @@
-import { ArrowForwardIos } from "@mui/icons-material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import {
   Box,
   CardContent,
@@ -116,7 +116,16 @@ export const MyCard: React.FC<CardProps> = ({
           {text}
         </Typography>
         <Box display="flex" justifyContent="flex-start">
-          <MyButton onClick={onButtonClick} endIcon={<ArrowForwardIos />}>
+          <MyButton
+            onClick={onButtonClick}
+            endIcon={<ArrowForwardIcon />}
+            sx={{
+              borderRadius: 0,
+              textTransform: "none",
+              fontSize: isMobile ? "14px" : "20px",
+              fonwWeight: 400,
+            }}
+          >
             {buttonText}
           </MyButton>
         </Box>
