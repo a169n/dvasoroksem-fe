@@ -27,11 +27,10 @@ export const HomeHeader = () => {
         textAlign: "center",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        
+
         ...(isMobile && {
           backgroundImage: `url(${landing_image_grey})`,
           alignItems: "space-between",
-          // justifyContent: "",
           minHeight: "100vh",
         }),
       }}
@@ -58,7 +57,7 @@ export const HomeHeader = () => {
               flex: 1,
               textAlign: { xs: "center", md: "left" },
               mb: { xs: 4, md: 0 },
-              padding: isMobile? "20%" : "0",
+              padding: isMobile ? "20%" : "0",
             }}
           >
             <Typography variant="h2" component="h1" fontWeight={500} mb={2}>
