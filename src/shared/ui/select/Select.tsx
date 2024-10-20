@@ -34,7 +34,7 @@ export const MySelect = ({ value, onChange, options }) => {
       MenuProps={{
         PaperProps: {
           sx: {
-            backgroundColor: isMobile ? "black" : "white",
+            backgroundColor: isMobile ?  "black" : "white",
             "& .MuiMenuItem-root": {
               color: isMobile ? "white" : "black",
               padding: "8px 16px",
