@@ -49,6 +49,10 @@ export const MyCard: React.FC<CardProps> = ({
         backgroundColor: "#f7f7f7",
         padding: 2,
         overflow: "visible",
+        transition: "box-shadow 0.3s ease-in-out",
+        "&:hover": {
+          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
+        },
         [theme.breakpoints.down("sm")]: {
           width: "100%",
           height: "auto",

@@ -70,7 +70,7 @@ export const WhyChooseUs = () => {
   };
 
   return (
-    <Box  sx={{ px: { xs: 2, sm: 4, md: 8 }, py: { xs: 2, sm: 4, md: 8 } }}>
+    <Box sx={{ px: { xs: 2, sm: 4, md: 8 }, py: { xs: 2, sm: 4, md: 8 } }}>
       <Typography
         variant="h2"
         component="h1"
@@ -86,7 +86,7 @@ export const WhyChooseUs = () => {
         Почему выбирают нас?
       </Typography>
 
-      <Box mt={2} sx={{ position: "relative", overflow: "hidden" }}>
+      <Box mt={2} py={2} sx={{ position: "relative", overflow: "hidden" }}>
         <Box
           sx={{
             display: "flex",
@@ -100,7 +100,6 @@ export const WhyChooseUs = () => {
               sx={{
                 flexShrink: 0,
                 width: `${100 / cardsToShow}%`,
-                padding: "0 8px",
               }}
             >
               <MyCard
@@ -116,11 +115,29 @@ export const WhyChooseUs = () => {
       </Box>
 
       <Box sx={{ display: "flex", justifyContent: "center", mt: 4 }}>
-        <IconButton onClick={handlePrev} color="primary">
-          <ArrowBackIos color="primary" />
+        <IconButton
+          onClick={handlePrev}
+          sx={{
+            color: theme.palette.primary.main,
+            "&:hover": {
+              backgroundColor: theme.palette.action.hover,
+            },
+          }}
+          disableRipple
+        >
+          <ArrowBackIos color="action" />
         </IconButton>
-        <IconButton onClick={handleNext} color="primary">
-          <ArrowForwardIos />
+        <IconButton
+          onClick={handleNext}
+          sx={{
+            color: theme.palette.primary.main,
+            "&:hover": {
+              backgroundColor: theme.palette.action.hover,
+            },
+          }}
+          disableRipple
+        >
+          <ArrowForwardIos color="action" />
         </IconButton>
       </Box>
     </Box>
