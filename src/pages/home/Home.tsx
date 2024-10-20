@@ -3,6 +3,7 @@ import { Services } from "./ui/serviceAccordions";
 import { WhyChooseUs } from "./ui/whyChooseUs";
 import { Cases } from "./ui/cases";
 import { Certificates } from "./ui/Certificates";
+import { Footer } from "../../shared/ui/footer/Footer";
 export const Home = () => {
   return (
     <div>
@@ -14,6 +15,7 @@ export const Home = () => {
       <WhyChooseUs />
       <Cases />
       <Certificates/>
+      <Footer />
     </div>
   );
 };
