@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Box, IconButton, Typography } from "@mui/material";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
 import { useTheme } from "@mui/material/styles";
@@ -51,11 +51,18 @@ const cards = [
 
 export const WhyChooseUs = () => {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   const cardsToShow = isMobile ? 1 : isTablet ? 2 : 3;
+
+  const handleNext = useCallback(() => {
+    setActiveIndex((prevIndex) =>
+      prevIndex === cards.length - cardsToShow ? 0 : prevIndex + 1
+    );
+  }, [cardsToShow]);
 
   const handlePrev = () => {
     setActiveIndex((prevIndex) =>
@@ -63,11 +70,18 @@ export const WhyChooseUs = () => {
     );
   };
 
-  const handleNext = () => {
-    setActiveIndex((prevIndex) =>
-      prevIndex === cards.length - cardsToShow ? 0 : prevIndex + 1
-    );
-  };
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (!isPaused) {
+      interval = setInterval(() => {
+        handleNext();
+      }, 7000);
+    }
+    return () => clearInterval(interval);
+  }, [isPaused, handleNext]);
+
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
 
   return (
     <Box sx={{ px: { xs: 2, sm: 4, md: 8 }, py: { xs: 2, sm: 4, md: 8 } }}>
@@ -86,7 +100,21 @@ export const WhyChooseUs = () => {
         Почему выбирают нас?
       </Typography>
 
-      <Box mt={2} py={2} sx={{ position: "relative", overflow: "hidden" }}>
+      <Box
+        mt={2}
+        py={2}
+        sx={{
+          position: "relative",
+          overflow: "hidden",
+          maxWidth: {
+            xs: "100%",
+            sm: cardsToShow === 2 ? "750px" : "1125px",
+          },
+          margin: "0 auto",
+        }}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <Box
           sx={{
             display: "flex",
@@ -100,6 +128,7 @@ export const WhyChooseUs = () => {
               sx={{
                 flexShrink: 0,
                 width: `${100 / cardsToShow}%`,
+                px: { xs: 1, sm: 2 },
               }}
             >
               <MyCard
@@ -108,6 +137,10 @@ export const WhyChooseUs = () => {
                 text={card.text}
                 buttonText={card.buttonText}
                 onButtonClick={() => (window.location.href = card.link)}
+                sx={{
+                  maxWidth: "375px",
+                  mx: "auto",
+                }}
               />
             </Box>
           ))}
