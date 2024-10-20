@@ -1,11 +1,12 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { MyButton } from "@shared/ui/button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import Case1 from "@assets/case1.png";
-import Case2 from "@assets/case2.png";
-import Case3 from "@assets/case3.png";
-import Case4 from "@assets/case4.png";
+import Case1 from "@assets/cases/case1.svg";
+import Case2 from "@assets/cases/case2.svg";
+import Case3 from "@assets/cases/case3.svg";
+import Case4 from "@assets/cases/case4.svg";
 import { Apply } from "./ui";
+
 const servicesData = [
   {
     imageURL: Case1,
@@ -32,11 +33,10 @@ const servicesData = [
 export const Cases = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
-  function onButtonClick(event: any): void {
-    throw new Error("Function not implemented.");
-  }
+  const onButtonClick = () => {
+    window.open("/cases", "_blank");
+  };
 
   return (
     <>
@@ -67,7 +67,7 @@ export const Cases = () => {
               borderRadius: 0,
               textTransform: "none",
               fontSize: isMobile ? "14px" : "20px",
-              fonwWeight: 400,
+              fontWeight: 400,
             }}
           >
             Смотреть все
@@ -95,6 +95,7 @@ export const Cases = () => {
                 src={service.imageURL}
                 alt={service.title}
                 style={{ width: "100%", height: "auto", marginBottom: "40px" }}
+                draggable="false"
               />
               <Typography
                 color="#000"

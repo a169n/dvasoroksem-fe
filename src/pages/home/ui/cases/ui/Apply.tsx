@@ -1,52 +1,50 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { MyButton } from "@shared/ui/button";
+
 export const Apply = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   return (
     <Box
       sx={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
         px: { xs: 2, sm: 4, md: 8 },
         py: { xs: 2, sm: 4, md: 8 },
         backgroundColor: "#000",
-        position: "relative",
       }}
     >
-      <Box>
+      <Box display={"flex"} justifyContent={"flex-start"} mt={10}>
         <Typography
-          textAlign={"left"}
           color="#fff"
           fontSize={{ xs: "24px", sm: "28px", md: "32px", lg: "64px" }}
-          fontFamily="Futura PT, sans-serif"
-          fontWeight={400}
           textTransform="uppercase"
+          sx={{
+            textAlign: "start",
+          }}
         >
-          — покажем всем
-        </Typography>
-        <Typography
-          marginTop={5}
-          color="#fff"
-          fontSize={{ xs: "24px", sm: "28px", md: "32px", lg: "64px" }}
-          fontFamily="Futura PT, sans-serif"
-          fontWeight={400}
-          textTransform="uppercase"
-        >
-          что ваш бизнес классный
+          ⎻ покажем всем
+          <Box mt={6} component="span" display="block">
+            что ваш бизнес классный
+          </Box>
         </Typography>
       </Box>
-      <Box sx={{}}>
+      <Box display={"flex"} justifyContent={"flex-end"} mt={10}>
         <MyButton
+          onClick={() => window.open("/request", "_blank")}
           sx={{
             borderRadius: 0,
             textTransform: "none",
             fontSize: isMobile ? "14px" : "20px",
-            fonwWeight: 400,
-            marginTop: 25,
+            padding: "4px 24px",
+            border: "1px solid #fff",
+            backgroundColor: "#000",
+            color: "#fff",
+            transition: "background-color 0.3s, border-color 0.3s, color 0.3s",
+            "&:hover": {
+              backgroundColor: "#333",
+              borderColor: "#fff",
+              color: "#fff",
+            },
           }}
         >
           Я хочу оставить заявку
