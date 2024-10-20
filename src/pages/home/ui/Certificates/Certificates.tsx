@@ -20,20 +20,23 @@ const certificates = [
     id: 1,
     title: "Honorary Diploma",
     image: certificate1,
+    description: "Сотрудничество в организации конкурса",
   },
   {
     id: 2,
     title: "Coffee BOOM Certificate",
     image: certificate2,
+    description: "Благодарственное письмо о плодотворном сотрудничестве",
   },
   {
     id: 3,
     title: "Gratitude Letter",
     image: certificate3,
+    description: "Помощь при съемке фильма 'Портрет Софи'",
   },
 ];
 
-const SLIDE_INTERVAL = 3000; // Auto-slide interval in milliseconds
+const SLIDE_INTERVAL = 3000;
 
 export const Certificates = () => {
   const theme = useTheme();
@@ -42,24 +45,27 @@ export const Certificates = () => {
     id: number;
     title: string;
     image: string;
+    description: string;
   } | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
 
   const handleNext = useCallback(() => {
+    setSlideDirection('right');
     setCurrentIndex((prevIndex) =>
       prevIndex === certificates.length - 1 ? 0 : prevIndex + 1
     );
   }, []);
 
   const handlePrevious = () => {
+    setSlideDirection('left');
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? certificates.length - 1 : prevIndex - 1
     );
   };
 
-  // Auto-slide functionality
   useEffect(() => {
     if (!isPaused) {
       const interval = setInterval(handleNext, SLIDE_INTERVAL);
@@ -76,14 +82,15 @@ export const Certificates = () => {
   };
 
   return (
-    <Box 
+    <Box
       sx={{
         width: "100vw",
         position: "relative",
         left: "50%",
         transform: "translateX(-50%)",
         overflow: "hidden",
-        px: { xs: 2, sm: 4, md: 8 }, py: { xs: 2, sm: 4, md: 8 }
+        px: { xs: 2, sm: 4, md: 8 },
+        py: { xs: 2, sm: 4, md: 8 },
       }}
     >
       <Typography
@@ -104,17 +111,17 @@ export const Certificates = () => {
       <Box
         sx={{
           position: "relative",
+          overflow: "visible",
           px: { xs: 2, md: 6 },
         }}
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        {/* Navigation Buttons */}
         <IconButton
           onClick={handlePrevious}
           sx={{
             position: "absolute",
-            left: { xs: 0, md: 20 },
+            left: 0,
             top: "50%",
             transform: "translateY(-50%)",
             zIndex: 2,
@@ -124,7 +131,7 @@ export const Certificates = () => {
               bgcolor: "background.paper",
               transform: "translateY(-50%) scale(1.1)",
             },
-            transition: "transform 0.3s ease",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
           <ChevronLeftIcon />
@@ -134,7 +141,7 @@ export const Certificates = () => {
           onClick={handleNext}
           sx={{
             position: "absolute",
-            right: { xs: 0, md: 20 },
+            right: 0,
             top: "50%",
             transform: "translateY(-50%)",
             zIndex: 2,
@@ -144,13 +151,12 @@ export const Certificates = () => {
               bgcolor: "background.paper",
               transform: "translateY(-50%) scale(1.1)",
             },
-            transition: "transform 0.3s ease",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
           <ChevronRightIcon />
         </IconButton>
 
-        {/* Certificates Container */}
         <Box
           sx={{
             display: "flex",
@@ -160,6 +166,8 @@ export const Certificates = () => {
             py: 4,
             mx: "auto",
             maxWidth: "100%",
+            overflowX: "hidden",
+            transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
           }}
         >
           {[-1, 0, 1].map((offset) => {
@@ -175,20 +183,25 @@ export const Certificates = () => {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
                 sx={{
-                  transition: "all 0.3s ease",
+                  transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                   cursor: offset === 0 ? "pointer" : "default",
-                  transform: offset === 0 ? "scale(1)" : "scale(0.8)",
+                  transform: `scale(${offset === 0 ? 1 : 0.7}) 
+                    translateX(${slideDirection === 'right' ? -offset * 10 : offset * 10}%)`,
                   opacity: offset === 0 ? 1 : 0.6,
                   bgcolor: "background.paper",
                   borderRadius: 2,
                   boxShadow: 3,
                   p: 2,
+                  position: "relative",
+                  zIndex: offset === 0 ? 2 : 1,
                   ...(offset === 0 && {
                     "&:hover": {
                       transform: "scale(1.05)",
                       boxShadow: 6,
                     },
                   }),
+                  width: offset === 0 ? "50%" : "40%",
+                  textAlign: "center",
                 }}
               >
                 <Box
@@ -198,67 +211,86 @@ export const Certificates = () => {
                   sx={{
                     width: { xs: 280, sm: 320, md: 400 },
                     height: { xs: 360, sm: 400, md: 500 },
-                    objectFit: "cover",
+                    objectFit: "contain",
                     borderRadius: 1,
+                    transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                   }}
                 />
+                <Typography 
+                  variant="body1" 
+                  sx={{ 
+                    mt: 2, 
+                    fontSize: { xs: "20px", sm: "22px", md: "24px" },
+                    fontStyle: "italic",
+                    fontWeight: 300,
+                    opacity: offset === 0 ? 1 : 0,
+                    transform: `translateY(${offset === 0 ? 0 : 20}px)`,
+                    transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                  }}
+                > 
+                  {certificate.description}
+                </Typography>
               </Box>
             );
           })}
         </Box>
       </Box>
 
-      {/* Full-width Dialog */}
       <Dialog
         open={!!selectedCertificate}
         onClose={handleClose}
         maxWidth={false}
         PaperProps={{
           sx: {
-            width: "95vw",
-            height: "95vh",
+            width: "fit-content",
+            height: "fit-content",
             maxWidth: "none",
             m: 0,
           },
         }}
       >
-        <DialogContent sx={{ position: "relative", p: 0 }}>
+        <DialogContent
+          sx={{
+            width: "90vw",
+            height: "90vh",
+            position: "relative",
+            p: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <IconButton
             onClick={handleClose}
             sx={{
               position: "absolute",
-              right: 8,
-              top: 8,
+              top: 16,
+              right: 16,
+              zIndex: 2,
               bgcolor: "background.paper",
+              boxShadow: 2,
               "&:hover": {
                 bgcolor: "background.paper",
                 transform: "scale(1.1)",
               },
-              transition: "transform 0.2s ease",
+              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
             }}
           >
             <CloseIcon />
           </IconButton>
           {selectedCertificate && (
             <Box
+              component="img"
+              src={selectedCertificate.image}
+              alt={selectedCertificate.title}
               sx={{
+                maxWidth: "100%",
+                maxHeight: "100%",
+                objectFit: "contain",
+                width: "100%",
                 height: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
               }}
-            >
-              <Box
-                component="img"
-                src={selectedCertificate.image}
-                alt={selectedCertificate.title}
-                sx={{
-                  maxWidth: "100%",
-                  maxHeight: "100%",
-                  objectFit: "contain",
-                }}
-              />
-            </Box>
+            />
           )}
         </DialogContent>
       </Dialog>
