@@ -5,6 +5,8 @@ import { ButtonProps } from "@mui/material/Button";
 
 interface CustomButtonProps extends ButtonProps {
   children: React.ReactNode;
+  startIcon?: React.ReactNode; 
+  endIcon?: React.ReactNode;
 }
 
 const CustomButton = styled(Button)<CustomButtonProps>(() => ({
@@ -21,11 +23,18 @@ const CustomButton = styled(Button)<CustomButtonProps>(() => ({
 
 export const MyButton: React.FC<CustomButtonProps> = ({
   children,
+  startIcon,
+  endIcon,
   sx,
   ...props
 }) => {
   return (
-    <CustomButton sx={sx} {...props}>
+    <CustomButton
+      sx={sx}
+      {...props}
+      startIcon={startIcon ? startIcon : undefined}
+      endIcon={endIcon ? endIcon : undefined}
+    >
       {children}
     </CustomButton>
   );

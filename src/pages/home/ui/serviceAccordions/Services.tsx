@@ -171,6 +171,7 @@ export const Services = () => {
             xs: "24px",
             sm: "28px",
             md: "32px",
+            lg: "64px",
           },
           mb: { xs: 2, sm: 3, md: 5 },
         }}
