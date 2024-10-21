@@ -33,90 +33,128 @@ const servicesData = [
 export const Cases = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   const onButtonClick = () => {
     window.open("/cases", "_blank");
   };
 
   return (
-    <>
-      <Box sx={{ px: { xs: 2, sm: 4, md: 8 }, py: { xs: 2, sm: 4, md: 8 } }}>
-        <Box
-          display={"flex"}
-          alignItems={"center"}
-          justifyContent={"space-between"}
-        >
-          <Typography
-            variant="h2"
-            component="h1"
-            sx={{
-              fontWeight: 400,
-              color: "#000",
-              textTransform: "uppercase",
-              fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
-              mb: { xs: 2, sm: 3, md: 5 },
-              textAlign: "start",
-            }}
-          >
-            НАШИ КЕЙСЫ
-          </Typography>
-          <MyButton
-            onClick={onButtonClick}
-            endIcon={<ArrowForwardIcon />}
-            sx={{
-              borderRadius: 0,
-              textTransform: "none",
-              fontSize: isMobile ? "14px" : "20px",
-              fontWeight: 400,
-            }}
-          >
-            Смотреть все
-          </MyButton>
-        </Box>
-        <Box
-          display={"grid"}
-          gridTemplateColumns={{
-            xs: "1fr",
-            sm: "1fr 1fr",
-            md: "1fr 1fr 1fr 1fr",
+    <Box
+      sx={{
+        px: isMobile ? 2 : isTablet ? 4 : 8,
+        py: isMobile ? 4 : isTablet ? 6 : 8,
+      }}
+    >
+      <Box
+        display="flex"
+        flexDirection={isMobile ? "column" : "row"}
+        alignItems={isMobile ? "flex-start" : "center"}
+        justifyContent="space-between"
+        mb={isMobile ? 3 : isTablet ? 5 : 7}
+      >
+        <Typography
+          variant="h2"
+          component="h1"
+          sx={{
+            fontWeight: 400,
+            color: "#000",
+            textTransform: "uppercase",
+            fontSize: isMobile
+              ? "28px"
+              : isTablet
+                ? "36px"
+                : isDesktop
+                  ? "48px"
+                  : "64px",
+            mb: isMobile ? 2 : 0,
           }}
-          gap={4}
         >
-          {servicesData.map((service, index) => (
+          НАШИ КЕЙСЫ
+        </Typography>
+        <MyButton
+          onClick={onButtonClick}
+          endIcon={<ArrowForwardIcon />}
+          sx={{
+            borderRadius: 0,
+            textTransform: "none",
+            fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
+            fontWeight: 400,
+            whiteSpace: "nowrap",
+            py: isMobile ? 1 : 1.5,
+            px: isMobile ? 2 : 3,
+          }}
+        >
+          Смотреть все
+        </MyButton>
+      </Box>
+      <Box
+        display="grid"
+        gridTemplateColumns={
+          isMobile ? "1fr" : isTablet ? "repeat(2, 1fr)" : "repeat(4, 1fr)"
+        }
+        gap={isMobile ? 3 : isTablet ? 4 : 5}
+      >
+        {servicesData.map((service, index) => (
+          <Box
+            key={index}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+            }}
+          >
             <Box
-              key={index}
+              component="img"
+              src={service.imageURL}
+              alt={service.title}
               sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "left",
+                width: "100%",
+                maxWidth: {
+                  xs: "100%",
+                  sm: "300px",
+                },
+                maxHeight: {
+                  xs: "200px",
+                  sm: "250px",
+                  md: "300px",
+                },
+                height: "auto",
+                mb: {
+                  xs: 2,
+                  sm: 3,
+                  md: 4,
+                },
+                objectFit: "cover",
+              }}
+              draggable="false"
+            />
+            <Typography
+              color="#000"
+              variant="h4"
+              sx={{
+                mt: 1,
+                fontWeight: 500,
+                fontSize: isMobile ? "20px" : isTablet ? "22px" : "24px",
               }}
             >
-              <img
-                src={service.imageURL}
-                alt={service.title}
-                style={{ width: "100%", height: "auto", marginBottom: "40px" }}
-                draggable="false"
-              />
-              <Typography
-                color="#000"
-                variant="h4"
-                sx={{ mt: 2, fontWeight: 500 }}
-              >
-                {service.title}
-              </Typography>
-              <Typography
-                color="#000"
-                fontSize={20}
-                variant="body2"
-                sx={{ mt: 1 }}
-              >
-                {service.description}
-              </Typography>
-            </Box>
-          ))}
-        </Box>
+              {service.title}
+            </Typography>
+            <Typography
+              color="#000"
+              sx={{
+                mt: 1,
+                fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
+                lineHeight: 1.4,
+              }}
+            >
+              {service.description}
+            </Typography>
+          </Box>
+        ))}
       </Box>
       <Apply />
-    </>
+    </Box>
   );
 };
