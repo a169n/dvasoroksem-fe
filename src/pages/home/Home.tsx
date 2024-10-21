@@ -4,6 +4,7 @@ import { WhyChooseUs } from "./ui/whyChooseUs";
 import { Cases } from "./ui/cases";
 import { Certificates } from "./ui/certificates";
 import { Videos } from "./ui/videos";
+import { Footer } from "../../shared/ui/footer";
 export const Home = () => {
   return (
     <div>
@@ -15,7 +16,8 @@ export const Home = () => {
       <WhyChooseUs />
       <Cases />
       <Videos />
-      <Certificates />
+      <Certificates/>
+      <Footer />
     </div>
   );
 };
