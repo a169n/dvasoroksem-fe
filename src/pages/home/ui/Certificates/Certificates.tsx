@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import {
   Box,
   IconButton,
   Dialog,
-  DialogContent,
-  useTheme,
-  useMediaQuery,
-  Typography,
+  DialogContent, Typography
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -39,8 +36,6 @@ const certificates = [
 const SLIDE_INTERVAL = 3000;
 
 export const Certificates = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [selectedCertificate, setSelectedCertificate] = useState<{
     id: number;
     title: string;
@@ -48,19 +43,20 @@ export const Certificates = () => {
     description: string;
   } | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
-  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
+  const [slideDirection, setSlideDirection] = useState<"left" | "right">(
+    "right"
+  );
 
   const handleNext = useCallback(() => {
-    setSlideDirection('right');
+    setSlideDirection("right");
     setCurrentIndex((prevIndex) =>
       prevIndex === certificates.length - 1 ? 0 : prevIndex + 1
     );
   }, []);
 
   const handlePrevious = () => {
-    setSlideDirection('left');
+    setSlideDirection("left");
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? certificates.length - 1 : prevIndex - 1
     );
@@ -180,13 +176,11 @@ export const Certificates = () => {
               <Box
                 key={certificate.id}
                 onClick={() => offset === 0 && handleClickOpen(certificate)}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
                 sx={{
                   transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                   cursor: offset === 0 ? "pointer" : "default",
                   transform: `scale(${offset === 0 ? 1 : 0.7}) 
-                    translateX(${slideDirection === 'right' ? -offset * 10 : offset * 10}%)`,
+                    translateX(${slideDirection === "right" ? -offset * 10 : offset * 10}%)`,
                   opacity: offset === 0 ? 1 : 0.6,
                   bgcolor: "background.paper",
                   borderRadius: 2,
@@ -216,18 +210,18 @@ export const Certificates = () => {
                     transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                   }}
                 />
-                <Typography 
-                  variant="body1" 
-                  sx={{ 
-                    mt: 2, 
+                <Typography
+                  sx={{
+                    mt: 2,
                     fontSize: { xs: "20px", sm: "22px", md: "24px" },
+                    fontFamily: "Georgia, serif",
                     fontStyle: "italic",
-                    fontWeight: 300,
+                    fontWeight: 400,
                     opacity: offset === 0 ? 1 : 0,
                     transform: `translateY(${offset === 0 ? 0 : 20}px)`,
                     transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
                   }}
-                > 
+                >
                   {certificate.description}
                 </Typography>
               </Box>

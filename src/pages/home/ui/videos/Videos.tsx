@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Typography } from "@mui/material";
 import ReactPlayer from "react-player";
 import { styled } from "@mui/material/styles";
