@@ -1,5 +1,17 @@
+import React, { useState } from "react";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { MyButton } from "@shared/ui/button";
+import case1 from "@assets/cases/case1.svg";
+import case2 from "@assets/cases/case2.svg";
+import case3 from "@assets/cases/case3.svg";
+import case4 from "@assets/cases/case4.svg";
+import case5 from "@assets/cases/case5.svg";
+import case6 from "@assets/cases/case6.svg";
+import case7 from "@assets/cases/case7.svg";
+import case8 from "@assets/cases/case8.svg";
+import case9 from "@assets/cases/case9.svg";
+import { Footer } from "@shared/ui/footer";
 
 export const Cases = () => {
   const theme = useTheme();
@@ -7,163 +19,244 @@ export const Cases = () => {
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
+  const [selectedCategory, setSelectedCategory] = useState("ВСЕ КЕЙСЫ");
+
+  const categories = ["ВСЕ КЕЙСЫ", "SMM", "PRODUCTION", "TIKTOK"];
+
   const casesData = [
     {
       title: "Bauer",
       category: "smm",
-      path: "/cases/bauer",
+      path: "/cases/1",
       description: "Everything for the game",
-      imageUrl: "https://via.placeholder.com/300",
+      imageUrl: case5,
     },
     {
       title: "QCS",
       category: "production",
-      path: "/cases/qcs",
-      description: "Find and build partnerships",
-      imageUrl: "https://via.placeholder.com/300",
+      path: "/cases/2",
+      description: "Лидер в стране в области бортового питания и кейтеринга",
+      imageUrl: case4,
     },
     {
       title: "Grandcar, 2022",
       category: "tiktok",
-      path: "/cases/grandcar-2022",
-      description: "Innovative race",
-      imageUrl: "https://via.placeholder.com/300",
+      path: "/cases/3",
+      description: "Имиджевый ролик",
+      imageUrl: case6,
     },
     {
       title: "Grandcar, 2023",
       category: "production",
-      path: "/cases/grandcar-2023",
-      description: "Dream team work",
-      imageUrl: "https://via.placeholder.com/300",
+      path: "/cases/4",
+      description: "Рекламный ролик в детективном стиле",
+      imageUrl: case9,
     },
     {
       title: "Everest",
       category: "smm",
-      path: "/cases/everest",
-      description: "Higher with us",
-      imageUrl: "https://via.placeholder.com/300",
+      path: "/cases/5",
+      description: "Выше с нами",
+      imageUrl: case7,
     },
     {
       title: "Помоги Другому",
       category: "tiktok",
-      path: "/cases/help-another",
-      description: "Do not miss the chance to do good",
-      imageUrl: "https://via.placeholder.com/300",
+      path: "/cases/6",
+      description: "Не упускайте случая делать добро",
+      imageUrl: case3,
     },
     {
       title: "Nomad",
       category: "production",
-      path: "/cases/nomad",
-      description: "Best start possible",
-      imageUrl: "https://via.placeholder.com/300",
+      path: "/cases/7",
+      description: "Лучшее начало твоего пути",
+      imageUrl: case8,
     },
     {
       title: "Soyle",
-      category: "smm",
-      path: "/cases/soyle",
-      description: "Caucasian for everyone",
-      imageUrl: "https://via.placeholder.com/300",
+      category: "production",
+      path: "/cases/8",
+      description: "Казахский для всех",
+      imageUrl: case2,
     },
     {
       title: "Coffee BOOM",
-      category: "tiktok",
-      path: "/cases/coffee-boom",
-      description: "Place where friends are made",
-      imageUrl: "https://via.placeholder.com/300",
+      category: "production",
+      path: "/cases/9",
+      description: "Место, где становятся друзьями",
+      imageUrl: case1,
     },
   ];
 
+  const filteredCases =
+    selectedCategory === "ВСЕ КЕЙСЫ"
+      ? casesData
+      : casesData.filter(
+          (caseItem) =>
+            caseItem.category.toLowerCase() === selectedCategory.toLowerCase()
+        );
+
   return (
-    <Box
-      sx={{
-        px: isMobile ? 2 : isTablet ? 4 : 8,
-        py: isMobile ? 4 : isTablet ? 6 : 8,
-      }}
-    >
+    <Box>
       <Box
         sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
+          px: isMobile ? 2 : isTablet ? 4 : 8,
+          py: isMobile ? 4 : isTablet ? 6 : 8,
           width: "100%",
-          flexWrap: "wrap",
         }}
       >
-        <Typography
-          variant="h2"
-          component="h1"
+        <Box
           sx={{
-            fontWeight: 400,
-            color: "#000",
-            textTransform: "uppercase",
-            fontSize: isMobile ? "28px" : isTablet ? "36px" : "48px",
-            mb: isMobile ? 2 : 0,
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "space-between",
+            width: "100%",
+            flexDirection: isMobile ? "column" : "row",
+            gap: isMobile ? 3 : 0,
           }}
         >
-          НАШИ КЕЙСЫ
-        </Typography>
-        <Box sx={{ display: "flex", gap: "16px" }}>
-          {["ВСЕ КЕЙСЫ", "SMM", "PRODUCTION", "TIKTOK"].map((category) => (
-            <MyButton
-              key={category}
-              sx={{
-                borderRadius: 0,
-                textTransform: "none",
-                fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
-                fontWeight: 400,
-                whiteSpace: "nowrap",
-                py: 1,
-                px: isMobile ? 2 : 5,
-                ...(category === "ВСЕ КЕЙСЫ" && {
-                  backgroundColor: "#000",
-                  color: "#fff",
-                }),
-              }}
-            >
-              {category}
-            </MyButton>
-          ))}
-        </Box>
-      </Box>
-
-      <Box sx={{ display: "flex", flexWrap: "wrap", gap: "16px", mt: 4 }}>
-        {casesData.map((caseItem, index) => (
-          <Box
-            key={index}
+          <Typography
+            variant="h2"
+            component="h1"
             sx={{
-              width: isMobile ? "100%" : "48%",
-              mb: 4,
-              alignItems: "center",
+              fontWeight: 400,
+              color: "#000",
+              textTransform: "uppercase",
+              fontSize: isMobile ? "32px" : isTablet ? "36px" : "92px",
+              mb: isMobile ? 2 : 0,
             }}
           >
-            <img
-              src={caseItem.imageUrl}
-              alt={caseItem.title}
-              style={{ width: "100%", height: "auto", marginBottom: "8px" }}
-            />
-            <Typography variant="h5" component="h2" sx={{ mb: 1 }}>
-              {caseItem.title}
-            </Typography>
-            <Typography sx={{ mb: 2 }}>{caseItem.description}</Typography>
-            <MyButton
-              sx={{
-                backgroundColor: "#000",
-                color: "#fff",
-                borderRadius: 0,
-                textTransform: "none",
-                fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
-                fontWeight: 400,
-                whiteSpace: "nowrap",
-                py: 1,
-                px: isMobile ? 2 : 5,
-              }}
-              href={caseItem.path}
-            >
-              Смотреть кейс
-            </MyButton>
+            НАШИ КЕЙСЫ
+          </Typography>
+          <Box
+            sx={{
+              display: "flex",
+              gap: isMobile ? "10px" : isTablet ? "20px" : "60px",
+              justifyContent: "flex-start",
+              flexWrap: isMobile ? "wrap" : "nowrap",
+              width: isMobile ? "100%" : "auto",
+            }}
+          >
+            {categories.map((category) => (
+              <MyButton
+                key={category}
+                onClick={() => setSelectedCategory(category)}
+                sx={{
+                  borderRadius: 0,
+                  textTransform: "none",
+                  fontSize: isMobile ? "14px" : isTablet ? "16px" : "20px",
+                  fontWeight: 400,
+                  whiteSpace: "nowrap",
+                  py: isMobile ? 0.5 : 1,
+                  px: isMobile ? 2 : isTablet ? 3 : 5,
+                  backgroundColor:
+                    selectedCategory === category ? "#000" : "#fff",
+                  color: selectedCategory === category ? "#fff" : "#000",
+                  flex: isMobile ? "1 1 calc(50% - 5px)" : "0 0 auto",
+                }}
+              >
+                {category}
+              </MyButton>
+            ))}
           </Box>
-        ))}
+        </Box>
+
+        <Box
+          sx={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
+            gap: isMobile ? "30px" : "50px",
+            mt: isMobile ? 3 : 4,
+            minHeight: 300,
+            width: "100%",
+          }}
+        >
+          {filteredCases.length > 0 ? (
+            filteredCases.map((caseItem, index) => (
+              <Box
+                key={index}
+                sx={{
+                  alignItems: "flex-start",
+                  display: "flex",
+                  flexDirection: isMobile ? "column" : "row",
+                  gap: isMobile ? "20px" : "30px",
+                  width: "100%",
+                }}
+              >
+                <img
+                  src={caseItem.imageUrl}
+                  alt={caseItem.title}
+                  style={{
+                    height: "auto",
+                    width: "100%",
+                    maxWidth: isMobile ? "100%" : "300px",
+                  }}
+                />
+                <Box
+                  sx={{
+                    py: isMobile ? "0" : "10px",
+                    minHeight: isMobile ? "auto" : "100%",
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "space-between",
+                    gap: isMobile ? "20px" : "30px",
+                  }}
+                >
+                  <Box
+                    sx={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: isMobile ? "15px" : "30px",
+                    }}
+                  >
+                    <Typography
+                      variant="h4"
+                      component="h2"
+                      sx={{
+                        color: "#000",
+                        fontWeight: "500",
+                        fontSize: isMobile ? "24px" : "inherit",
+                      }}
+                    >
+                      {caseItem.title}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        textAlign: "left",
+                        fontSize: isMobile ? "16px" : "22px",
+                        fontWeight: "200",
+                      }}
+                    >
+                      {caseItem.description}
+                    </Typography>
+                  </Box>
+                  <MyButton
+                    endIcon={<ArrowForwardIcon />}
+                    sx={{
+                      borderRadius: 0,
+                      textTransform: "none",
+                      fontSize: isMobile ? "14px" : isTablet ? "16px" : "20px",
+                      fontWeight: 400,
+                      whiteSpace: "nowrap",
+                      maxWidth: isMobile ? "150px" : "200px",
+                      py: isMobile ? 0.5 : 1,
+                      px: 2,
+                    }}
+                    href={caseItem.path}
+                  >
+                    Смотреть кейс
+                  </MyButton>
+                </Box>
+              </Box>
+            ))
+          ) : (
+            <Typography sx={{ mt: 2 }}>Нет кейсов для отображения</Typography>
+          )}
+        </Box>
       </Box>
+      <Footer />
     </Box>
   );
 };
