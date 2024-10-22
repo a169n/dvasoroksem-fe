@@ -2,8 +2,8 @@ import { HomeHeader } from "./ui/homeHeader";
 import { Services } from "./ui/serviceAccordions";
 import { WhyChooseUs } from "./ui/whyChooseUs";
 import { Cases } from "./ui/cases";
-import { Certificates } from "./ui/certificates";
 import { Videos } from "./ui/videos";
+import { Certificates } from "./ui/Certificates";
 import { Footer } from "../../shared/ui/footer";
 export const Home = () => {
   return (
