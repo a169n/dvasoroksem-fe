@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { MyButton } from "@shared/ui/button";
@@ -11,13 +11,11 @@ import case6 from "@assets/cases/case6.svg";
 import case7 from "@assets/cases/case7.svg";
 import case8 from "@assets/cases/case8.svg";
 import case9 from "@assets/cases/case9.svg";
-import { Footer } from "@shared/ui/footer";
 
 export const Cases = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   const [selectedCategory, setSelectedCategory] = useState("ВСЕ КЕЙСЫ");
 
@@ -98,7 +96,11 @@ export const Cases = () => {
         );
 
   return (
-    <Box>
+    <Box
+      sx={{
+        width: "100%",
+      }}
+    >
       <Box
         sx={{
           px: isMobile ? 2 : isTablet ? 4 : 8,
@@ -107,23 +109,19 @@ export const Cases = () => {
         }}
       >
         <Box
+          mb={isMobile ? 3 : isTablet ? 7 : 12}
           sx={{
             display: "flex",
-            alignItems: "flex-start",
+            alignItems: "center",
             justifyContent: "space-between",
-            width: "100%",
-            flexDirection: isMobile ? "column" : "row",
-            gap: isMobile ? 3 : 0,
           }}
         >
           <Typography
-            variant="h2"
-            component="h1"
             sx={{
               fontWeight: 400,
               color: "#000",
               textTransform: "uppercase",
-              fontSize: isMobile ? "32px" : isTablet ? "36px" : "92px",
+              fontSize: isMobile ? "32px" : isTablet ? "36px" : "72px",
               mb: isMobile ? 2 : 0,
             }}
           >
@@ -132,7 +130,7 @@ export const Cases = () => {
           <Box
             sx={{
               display: "flex",
-              gap: isMobile ? "10px" : isTablet ? "20px" : "60px",
+              gap: isMobile ? "10px" : isTablet ? "20px" : "20px",
               justifyContent: "flex-start",
               flexWrap: isMobile ? "wrap" : "nowrap",
               width: isMobile ? "100%" : "auto",
@@ -146,10 +144,9 @@ export const Cases = () => {
                   borderRadius: 0,
                   textTransform: "none",
                   fontSize: isMobile ? "14px" : isTablet ? "16px" : "20px",
-                  fontWeight: 400,
                   whiteSpace: "nowrap",
-                  py: isMobile ? 0.5 : 1,
-                  px: isMobile ? 2 : isTablet ? 3 : 5,
+                  py: isMobile ? 0 : 0.3,
+                  px: isMobile ? 1 : isTablet ? 2 : 4,
                   backgroundColor:
                     selectedCategory === category ? "#000" : "#fff",
                   color: selectedCategory === category ? "#fff" : "#000",
@@ -177,7 +174,6 @@ export const Cases = () => {
               <Box
                 key={index}
                 sx={{
-                  alignItems: "flex-start",
                   display: "flex",
                   flexDirection: isMobile ? "column" : "row",
                   gap: isMobile ? "20px" : "30px",
@@ -187,16 +183,17 @@ export const Cases = () => {
                 <img
                   src={caseItem.imageUrl}
                   alt={caseItem.title}
+                  draggable="false"
                   style={{
-                    height: "auto",
                     width: "100%",
-                    maxWidth: isMobile ? "100%" : "300px",
+                    height: "100%",
+                    maxWidth: "270px",
+                    maxHeight: "270px",
+                    objectFit: "cover",
                   }}
                 />
                 <Box
                   sx={{
-                    py: isMobile ? "0" : "10px",
-                    minHeight: isMobile ? "auto" : "100%",
                     width: "100%",
                     display: "flex",
                     flexDirection: "column",
@@ -216,8 +213,8 @@ export const Cases = () => {
                       component="h2"
                       sx={{
                         color: "#000",
-                        fontWeight: "500",
-                        fontSize: isMobile ? "24px" : "inherit",
+                        fontWeight: 500,
+                        fontSize: isMobile ? "16px" : "28px",
                       }}
                     >
                       {caseItem.title}
@@ -225,8 +222,8 @@ export const Cases = () => {
                     <Typography
                       sx={{
                         textAlign: "left",
-                        fontSize: isMobile ? "16px" : "22px",
-                        fontWeight: "200",
+                        fontSize: isMobile ? "14px" : "18px",
+                        fontWeight: 200,
                       }}
                     >
                       {caseItem.description}
@@ -238,11 +235,9 @@ export const Cases = () => {
                       borderRadius: 0,
                       textTransform: "none",
                       fontSize: isMobile ? "14px" : isTablet ? "16px" : "20px",
-                      fontWeight: 400,
-                      whiteSpace: "nowrap",
-                      maxWidth: isMobile ? "150px" : "200px",
-                      py: isMobile ? 0.5 : 1,
-                      px: 2,
+                      maxWidth: isMobile ? "150px" : "180px",
+                      py: isMobile ? 0 : 0.3,
+                      px: 0,
                     }}
                     href={caseItem.path}
                   >
@@ -256,7 +251,6 @@ export const Cases = () => {
           )}
         </Box>
       </Box>
-      <Footer />
     </Box>
   );
 };
