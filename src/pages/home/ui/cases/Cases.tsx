@@ -6,6 +6,7 @@ import Case2 from "@assets/cases/case2.svg";
 import Case3 from "@assets/cases/case3.svg";
 import Case4 from "@assets/cases/case4.svg";
 import { Apply } from "./ui";
+import { useNavigate } from "react-router-dom";
 
 const servicesData = [
   {
@@ -36,8 +37,10 @@ export const Cases = () => {
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
+  const navigate = useNavigate();
+
   const onButtonClick = () => {
-    window.open("/cases", "_blank");
+    navigate("/cases");
   };
 
   return (

@@ -3,7 +3,8 @@ import {
   Box,
   IconButton,
   Dialog,
-  DialogContent, Typography
+  DialogContent,
+  Typography,
 } from "@mui/material";
 import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
@@ -12,7 +13,14 @@ import certificate1 from "@assets/certificate1.svg";
 import certificate2 from "@assets/certificate2.svg";
 import certificate3 from "@assets/certificate3.svg";
 
-const certificates = [
+interface Certificate {
+  id: number;
+  title: string;
+  image: string;
+  description: string;
+}
+
+const certificates: Certificate[] = [
   {
     id: 1,
     title: "Honorary Diploma",
@@ -36,17 +44,11 @@ const certificates = [
 const SLIDE_INTERVAL = 3000;
 
 export const Certificates = () => {
-  const [selectedCertificate, setSelectedCertificate] = useState<{
-    id: number;
-    title: string;
-    image: string;
-    description: string;
-  } | null>(null);
+  const [selectedCertificate, setSelectedCertificate] =
+    useState<Certificate | null>(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const [slideDirection, setSlideDirection] = useState<"left" | "right">(
-    "right"
-  );
+  const [slideDirection, setSlideDirection] = useState("right");
 
   const handleNext = useCallback(() => {
     setSlideDirection("right");
@@ -69,12 +71,25 @@ export const Certificates = () => {
     }
   }, [isPaused, handleNext]);
 
-  const handleClickOpen = (certificate) => {
+  const handleClickOpen = (certificate: Certificate) => {
     setSelectedCertificate(certificate);
   };
 
   const handleClose = () => {
     setSelectedCertificate(null);
+  };
+
+  const handleButtonClick = (direction: string) => {
+    const button =
+      direction === "left"
+        ? document.getElementById("prev-button")
+        : document.getElementById("next-button");
+    if (button) {
+      button.style.transform = "scale(1.1)";
+      setTimeout(() => {
+        button.style.transform = "scale(1)";
+      }, 300); // Reset scale after 300ms
+    }
   };
 
   return (
@@ -114,7 +129,11 @@ export const Certificates = () => {
         onMouseLeave={() => setIsPaused(false)}
       >
         <IconButton
-          onClick={handlePrevious}
+          id="prev-button"
+          onClick={() => {
+            handlePrevious();
+            handleButtonClick("left");
+          }}
           sx={{
             position: "absolute",
             left: 0,
@@ -134,7 +153,11 @@ export const Certificates = () => {
         </IconButton>
 
         <IconButton
-          onClick={handleNext}
+          id="next-button"
+          onClick={() => {
+            handleNext();
+            handleButtonClick("right");
+          }}
           sx={{
             position: "absolute",
             right: 0,
@@ -217,12 +240,10 @@ export const Certificates = () => {
                     fontFamily: "Georgia, serif",
                     fontStyle: "italic",
                     fontWeight: 400,
-                    opacity: offset === 0 ? 1 : 0,
-                    transform: `translateY(${offset === 0 ? 0 : 20}px)`,
-                    transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
+                    opacity: offset === 0 ? 1 : 0.7,
                   }}
                 >
-                  {certificate.description}
+                  {certificate.title}
                 </Typography>
               </Box>
             );
@@ -231,27 +252,20 @@ export const Certificates = () => {
       </Box>
 
       <Dialog
-        open={!!selectedCertificate}
+        open={Boolean(selectedCertificate)}
         onClose={handleClose}
-        maxWidth={false}
-        PaperProps={{
-          sx: {
-            width: "fit-content",
-            height: "fit-content",
-            maxWidth: "none",
-            m: 0,
-          },
-        }}
+        maxWidth="lg"
+        fullWidth
       >
         <DialogContent
           sx={{
-            width: "90vw",
-            height: "90vh",
             position: "relative",
-            p: 0,
             display: "flex",
-            alignItems: "center",
             justifyContent: "center",
+            alignItems: "center",
+            bgcolor: "background.default",
+            height: "80vh",
+            maxHeight: "90vh",
           }}
         >
           <IconButton
@@ -260,14 +274,7 @@ export const Certificates = () => {
               position: "absolute",
               top: 16,
               right: 16,
-              zIndex: 2,
-              bgcolor: "background.paper",
-              boxShadow: 2,
-              "&:hover": {
-                bgcolor: "background.paper",
-                transform: "scale(1.1)",
-              },
-              transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+              zIndex: 100,
             }}
           >
             <CloseIcon />
@@ -281,8 +288,7 @@ export const Certificates = () => {
                 maxWidth: "100%",
                 maxHeight: "100%",
                 objectFit: "contain",
-                width: "100%",
-                height: "100%",
+                transition: "all 0.5s ease",
               }}
             />
           )}
@@ -291,5 +297,3 @@ export const Certificates = () => {
     </Box>
   );
 };
-
-export default Certificates;
