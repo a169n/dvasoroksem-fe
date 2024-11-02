@@ -3,8 +3,7 @@ import { Services } from "./ui/serviceAccordions";
 import { WhyChooseUs } from "./ui/whyChooseUs";
 import { Cases } from "./ui/cases";
 import { Videos } from "./ui/videos";
-import { Certificates } from "./ui/Certificates";
-import { Footer } from "../../shared/ui/footer";
+import { Certificates } from "./ui/certificatesSection";
 export const Home = () => {
   return (
     <div>
@@ -16,8 +15,9 @@ export const Home = () => {
       <WhyChooseUs />
       <Cases />
       <Videos />
-      <Certificates/>
-      <Footer />
+      <div style={{ marginBottom: "800px" }}>
+        <Certificates />
+      </div>
     </div>
   );
 };
