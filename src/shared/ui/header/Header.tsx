@@ -1,10 +1,12 @@
 import logo from "@assets/icons/logo.svg";
 import logoSmall from "@assets/icons/logo_small.svg";
 import logoSmallWhite from "@assets/icons/logo_small_white.svg";
+import { useLocation } from "react-router-dom";
 
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import ArrowRightIcon from "@mui/icons-material/ArrowForward";
+import { useHeaderContext } from "@shared/context/HeaderContext";
 import {
   AppBar,
   Box,
@@ -38,6 +40,7 @@ export const Header = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState("RU");
+  const { isCaseDetailPage } = useHeaderContext();
 
   const NavigationItems = ({ onClick }) => (
     <>
@@ -47,7 +50,10 @@ export const Header = () => {
           component="a"
           href={href}
           onClick={onClick}
-          sx={{ marginRight: 3, color: isMobile ? "#fff" : "#191919" }}
+          sx={{
+            marginRight: 3,
+            color: isMobile ? "#fff" : isCaseDetailPage ? "#fff" : "#000",
+          }}
         >
           {text}
         </Typography>
@@ -61,13 +67,21 @@ export const Header = () => {
   );
 
   return (
-    <AppBar position="static" className={styles.header}>
+    <AppBar
+      sx={{
+        position: isCaseDetailPage ? "fixed" : "static",
+        backgroundColor: isCaseDetailPage ? "transparent" : "white",
+        boxShadow: "none",
+        borderBottom: isCaseDetailPage ? 0 : "1px solid #ccc",
+      }}
+    >
       <Toolbar sx={{ justifyContent: "space-between", alignItems: "center" }}>
         <img
           src={isMobile ? logoSmall : logo}
           alt="Logo"
           draggable="false"
           style={{
+            filter: isCaseDetailPage ? "brightness(0) invert(1)" : "none",
             pointerEvents: "none",
             userSelect: "none",
             marginRight: "auto",
@@ -92,7 +106,15 @@ export const Header = () => {
             }}
           >
             <NavigationItems onClick={undefined} />
-            <MyButton sx={{ padding: "10px 28px", marginLeft: 2 }}>
+            <MyButton
+              sx={{
+                padding: "10px 28px",
+                marginLeft: 2,
+                backgroundColor: isCaseDetailPage ? "transparent" : "",
+                borderColor: isCaseDetailPage ? "#fff" : "",
+                color: isCaseDetailPage ? "#fff" : "",
+              }}
+            >
               Я хочу оставить заявку
             </MyButton>
           </Box>
@@ -155,7 +177,7 @@ export const Header = () => {
               display: "flex",
               alignItems: "center",
               fontSize: "1.5rem",
-              color: "#fff",
+              color: isCaseDetailPage ? "#000" : "#fff",
             }}
           >
             <ArrowRightIcon sx={{ mr: 1, color: "#fff" }} /> Главная
