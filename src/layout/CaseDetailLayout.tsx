@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Box } from "@mui/material";
 import { Footer } from "@shared/ui/footer";
@@ -7,22 +6,40 @@ import { Outlet, useLocation } from "react-router-dom";
 import { useHeaderContext } from "@shared/context/HeaderContext";
 
 export function CaseDetailDefaultLayout() {
-  const { setIsCaseDetailPage } = useHeaderContext();
+  const { setCaseDetailPageData } = useHeaderContext();
   const location = useLocation();
 
-  // Determine if we're on a case detail page
+  // Extract case ID from URL if we are on a case detail page
   const isCaseDetailPage = location.pathname.startsWith("/cases/");
+  const currentCaseId = isCaseDetailPage ? location.pathname.split("/")[2] : null;
 
   // Update context when on case detail page
   React.useEffect(() => {
-    setIsCaseDetailPage(isCaseDetailPage);
-  }, [isCaseDetailPage, setIsCaseDetailPage]);
+    setCaseDetailPageData(isCaseDetailPage, currentCaseId);
+    // Clean up function to reset state when component unmounts or when URL changes
+    return () => {
+      setCaseDetailPageData(false, null);
+    };
+  }, [isCaseDetailPage, currentCaseId, setCaseDetailPageData]);
 
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+      }}
+    >
+      <Header />
+
       <Box sx={{ width: "100%", minHeight: "100vh" }}>
-        <Header />
-        <Box sx={{ display: "flex", flexDirection: "column", justifyContent: "center" }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+          }}
+        >
           <Outlet />
         </Box>
       </Box>

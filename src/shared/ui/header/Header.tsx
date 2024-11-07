@@ -40,8 +40,10 @@ export const Header = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState("RU");
-  const { isCaseDetailPage } = useHeaderContext();
+  const { isCaseDetailPage, currentCaseId } = useHeaderContext();
 
+  const headerTextColor = (currentCaseId === "5" || currentCaseId === "6" || currentCaseId === "8") ? "#000" : "#fff";
+  const isLogoColorBlack = isCaseDetailPage && (currentCaseId === "5" || currentCaseId === "6" || currentCaseId === "8");
   const NavigationItems = ({ onClick }) => (
     <>
       {navItems.map(({ href, text }) => (
@@ -52,7 +54,7 @@ export const Header = () => {
           onClick={onClick}
           sx={{
             marginRight: 3,
-            color: isMobile ? "#fff" : isCaseDetailPage ? "#fff" : "#000",
+            color: isMobile ? "#fff" : isCaseDetailPage ? headerTextColor : "#000",
           }}
         >
           {text}
@@ -81,7 +83,7 @@ export const Header = () => {
           alt="Logo"
           draggable="false"
           style={{
-            filter: isCaseDetailPage ? "brightness(0) invert(1)" : "none",
+            filter:isCaseDetailPage ?  isLogoColorBlack ? "none" : "brightness(0) invert(1)" : "none" ,
             pointerEvents: "none",
             userSelect: "none",
             marginRight: "auto",
@@ -111,8 +113,8 @@ export const Header = () => {
                 padding: "10px 28px",
                 marginLeft: 2,
                 backgroundColor: isCaseDetailPage ? "transparent" : "",
-                borderColor: isCaseDetailPage ? "#fff" : "",
-                color: isCaseDetailPage ? "#fff" : "",
+                borderColor: isLogoColorBlack ? "#000" : "#fff",
+                color: isCaseDetailPage ? headerTextColor : "",
               }}
             >
               Я хочу оставить заявку
