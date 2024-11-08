@@ -15,6 +15,10 @@ export const router = createBrowserRouter([
         path: "cases",
         element: <CasesPage />,
       },
+      {
+        path: "request",
+        // element: <RequestPage />,
+      }
     ],
   },
 ]);
