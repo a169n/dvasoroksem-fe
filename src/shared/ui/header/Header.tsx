@@ -42,8 +42,8 @@ export const Header = () => {
   const [language, setLanguage] = useState("RU");
   const { isCaseDetailPage, currentCaseId } = useHeaderContext();
 
-  const headerTextColor = (currentCaseId === "5" || currentCaseId === "6" || currentCaseId === "8") ? "#000" : "#fff";
-  const isLogoColorBlack = isCaseDetailPage && (currentCaseId === "5" || currentCaseId === "6" || currentCaseId === "8");
+  const headerTextColor = (currentCaseId === "3" || currentCaseId === "5"  || currentCaseId === "6" || currentCaseId === "8") ? "#000" : "#fff";
+  const isLogoColorBlack = isCaseDetailPage && (currentCaseId === "3" || currentCaseId === "5" || currentCaseId === "6" || currentCaseId === "8");
   const NavigationItems = ({ onClick }) => (
     <>
       {navItems.map(({ href, text }) => (

@@ -8,7 +8,7 @@ export const MySelect = ({ value, onChange, options }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const { isCaseDetailPage, currentCaseId } = useHeaderContext();
 
-  const headerTextColor = (currentCaseId === "5" || currentCaseId === "6" || currentCaseId === "8") ? "#000" : "#fff";
+  const headerTextColor = (currentCaseId === "3" || currentCaseId === "5" || currentCaseId === "6" || currentCaseId === "8") ? "#000" : "#fff";
 
   return (
     <Select
