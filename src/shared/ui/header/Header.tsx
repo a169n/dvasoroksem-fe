@@ -133,7 +133,7 @@ export const Header = ({ mode = "default" }) => {
                 color: isDarkMode ? "#191919" : "#fff",
                 backgroundColor: isDarkMode ? "#fff" : "black",
               }}
-              onClick={() => navigate("/requests")}
+              onClick={() => navigate("/request")}
             >
               Я хочу оставить заявку
             </MyButton>
