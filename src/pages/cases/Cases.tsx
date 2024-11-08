@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { MyButton } from "@shared/ui/button";
@@ -11,6 +11,7 @@ import case6 from "@assets/cases/case6.svg";
 import case7 from "@assets/cases/case7.svg";
 import case8 from "@assets/cases/case8.svg";
 import case9 from "@assets/cases/case9.svg";
+import { Header } from "@shared/ui/header";
 
 export const Cases = () => {
   const theme = useTheme();
@@ -20,72 +21,75 @@ export const Cases = () => {
   const [selectedCategory, setSelectedCategory] = useState("ВСЕ КЕЙСЫ");
 
   const categories = ["ВСЕ КЕЙСЫ", "SMM", "PRODUCTION", "TIKTOK"];
-
   const casesData = [
     {
       title: "Bauer",
       category: "smm",
-      path: "/cases/1",
+      path: "/cases/bauer",
       description: "Everything for the game",
       imageUrl: case5,
     },
     {
       title: "QCS",
       category: "production",
-      path: "/cases/2",
+      path: "/cases/qcs",
       description: "Лидер в стране в области бортового питания и кейтеринга",
       imageUrl: case4,
     },
     {
       title: "Grandcar, 2022",
       category: "tiktok",
-      path: "/cases/3",
+      path: "/cases/grandcar/2022",
       description: "Имиджевый ролик",
       imageUrl: case6,
     },
     {
       title: "Grandcar, 2023",
       category: "production",
-      path: "/cases/4",
+      path: "/cases/grandcar/2023",
       description: "Рекламный ролик в детективном стиле",
       imageUrl: case9,
     },
     {
       title: "Everest",
       category: "smm",
-      path: "/cases/5",
+      path: "/cases/everest",
       description: "Выше с нами",
       imageUrl: case7,
     },
     {
       title: "Помоги Другому",
       category: "tiktok",
-      path: "/cases/6",
+      path: "/cases/help-others",
       description: "Не упускайте случая делать добро",
       imageUrl: case3,
     },
     {
       title: "Nomad",
       category: "production",
-      path: "/cases/7",
+      path: "/cases/nomad",
       description: "Лучшее начало твоего пути",
       imageUrl: case8,
     },
     {
       title: "Soyle",
       category: "production",
-      path: "/cases/8",
+      path: "/cases/soyle",
       description: "Казахский для всех",
       imageUrl: case2,
     },
     {
       title: "Coffee BOOM",
       category: "production",
-      path: "/cases/9",
+      path: "/cases/coffee-boom",
       description: "Место, где становятся друзьями",
       imageUrl: case1,
     },
   ];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const filteredCases =
     selectedCategory === "ВСЕ КЕЙСЫ"
@@ -96,11 +100,8 @@ export const Cases = () => {
         );
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-      }}
-    >
+    <>
+      <Header />
       <Box
         sx={{
           px: isMobile ? 2 : isTablet ? 4 : 8,
@@ -117,6 +118,7 @@ export const Cases = () => {
           }}
         >
           <Typography
+            textTransform={"uppercase"}
             sx={{
               fontWeight: 400,
               color: "#000",
@@ -125,13 +127,12 @@ export const Cases = () => {
               mb: isMobile ? 2 : 0,
             }}
           >
-            НАШИ КЕЙСЫ
+            Наши кейсы
           </Typography>
           <Box
             sx={{
               display: "flex",
-              gap: isMobile ? "10px" : isTablet ? "20px" : "20px",
-              justifyContent: "flex-start",
+              gap: isMobile ? "10px" : "20px",
               flexWrap: isMobile ? "wrap" : "nowrap",
               width: isMobile ? "100%" : "auto",
             }}
@@ -144,7 +145,6 @@ export const Cases = () => {
                   borderRadius: 0,
                   textTransform: "none",
                   fontSize: isMobile ? "14px" : isTablet ? "16px" : "20px",
-                  whiteSpace: "nowrap",
                   py: isMobile ? 0 : 0.3,
                   px: isMobile ? 1 : isTablet ? 2 : 4,
                   backgroundColor:
@@ -166,7 +166,6 @@ export const Cases = () => {
             gap: isMobile ? "30px" : "50px",
             mt: isMobile ? 3 : 4,
             minHeight: 300,
-            width: "100%",
           }}
         >
           {filteredCases.length > 0 ? (
@@ -180,37 +179,68 @@ export const Cases = () => {
                   width: "100%",
                 }}
               >
-                <img
-                  src={caseItem.imageUrl}
-                  alt={caseItem.title}
-                  draggable="false"
-                  style={{
+                <Box
+                  component="a"
+                  href={caseItem.path}
+                  sx={{
+                    position: "relative",
+                    display: "block",
                     width: "100%",
-                    height: "100%",
                     maxWidth: "270px",
                     maxHeight: "270px",
-                    objectFit: "cover",
+                    overflow: "hidden",
+                    "&:hover img": {
+                      filter: "brightness(0.7)",
+                    },
+                    "&:hover .iconOverlay": {
+                      opacity: 1,
+                    },
                   }}
-                />
+                >
+                  <img
+                    src={caseItem.imageUrl}
+                    alt={caseItem.title}
+                    draggable="false"
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                    }}
+                  />
+                  <ArrowForwardIcon
+                    className="iconOverlay"
+                    sx={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      fontSize: isMobile ? "50px" : "90px",
+                      color: "#fff",
+                      opacity: 0,
+                    }}
+                  />
+                </Box>
                 <Box
+                  width="100%"
+                  height="auto"
+                  maxHeight={isMobile ? "auto" : "270px"}
                   sx={{
-                    width: "100%",
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
-                    gap: isMobile ? "20px" : "30px",
                   }}
                 >
                   <Box
                     sx={{
                       display: "flex",
                       flexDirection: "column",
-                      gap: isMobile ? "15px" : "30px",
+                      gap: "20px",
                     }}
                   >
                     <Typography
                       variant="h4"
                       component="h2"
+                      textAlign={"left"}
                       sx={{
                         color: "#000",
                         fontWeight: 500,
@@ -220,8 +250,8 @@ export const Cases = () => {
                       {caseItem.title}
                     </Typography>
                     <Typography
+                      textAlign={"left"}
                       sx={{
-                        textAlign: "left",
                         fontSize: isMobile ? "14px" : "18px",
                         fontWeight: 200,
                       }}
@@ -251,6 +281,6 @@ export const Cases = () => {
           )}
         </Box>
       </Box>
-    </Box>
+    </>
   );
 };
