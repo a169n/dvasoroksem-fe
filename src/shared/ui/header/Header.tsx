@@ -100,7 +100,7 @@ export const Header = ({ mode = "default" }) => {
             alt="Logo"
             draggable="false"
             onClick={() => {
-              navigate("/");
+              window.location.href = "/";
             }}
             style={{
               pointerEvents: "none",
@@ -177,7 +177,7 @@ export const Header = ({ mode = "default" }) => {
               alt="Logo"
               draggable="false"
               onClick={() => {
-                navigate("/");
+                window.location.href = "/";
               }}
               style={{
                 pointerEvents: "none",
