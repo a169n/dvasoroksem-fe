@@ -5,6 +5,7 @@ import { Cases } from "./ui/cases";
 import { Videos } from "./ui/videos";
 import { Certificates } from "./ui/certificatesSection";
 import { Header } from "@shared/ui/header";
+
 export const Home = () => {
   return (
     <div>
