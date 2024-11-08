@@ -113,7 +113,7 @@ export const Header = () => {
                 padding: "10px 28px",
                 marginLeft: 2,
                 backgroundColor: isCaseDetailPage ? "transparent" : "",
-                borderColor: isLogoColorBlack ? "#000" : "#fff",
+                borderColor: isCaseDetailPage ? (isLogoColorBlack ? "#000" : "#fff") : "#000",
                 color: isCaseDetailPage ? headerTextColor : "",
               }}
             >
