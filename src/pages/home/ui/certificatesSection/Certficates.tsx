@@ -95,7 +95,6 @@ export const Certificates = () => {
   return (
     <Box
       sx={{
-        width: "100vw",
         position: "relative",
         left: "50%",
         transform: "translateX(-50%)",
