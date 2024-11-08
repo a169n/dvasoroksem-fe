@@ -4,7 +4,6 @@ import logoSmallWhite from "@assets/icons/logo_small_white.svg";
 
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
-import ArrowRightIcon from "@mui/icons-material/ArrowForward";
 import {
   AppBar,
   Box,
@@ -19,6 +18,7 @@ import { MyButton } from "@shared/ui/button";
 import { MySelect } from "@shared/ui/select";
 import { useState } from "react";
 import styles from "./styles.module.scss";
+import { useNavigate } from "react-router-dom";
 
 const navItems = [
   { href: "#cases", text: "Наши кейсы" },
@@ -33,21 +33,36 @@ const languageOptions = [
   { value: "ENG", label: "ENG" },
 ];
 
-export const Header = () => {
+export const Header = ({ mode = "default" }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState("RU");
 
+  const isDarkMode = mode === "dark";
+  const isLightMode = mode === "light";
+
   const NavigationItems = ({ onClick }) => (
-    <>
+    <Box
+      sx={{
+        display: "flex",
+        gap: 3,
+        flexGrow: 1,
+        justifyContent: "space-around",
+      }}
+    >
       {navItems.map(({ href, text }) => (
         <Typography
           key={href}
           component="a"
           href={href}
           onClick={onClick}
-          sx={{ marginRight: 3, color: isMobile ? "#fff" : "#191919" }}
+          sx={{
+            alignSelf: "center",
+            cursor: "pointer",
+            color: isDarkMode ? "#191919" : isLightMode ? "#fff" : "#191919",
+          }}
         >
           {text}
         </Typography>
@@ -57,22 +72,42 @@ export const Header = () => {
         onChange={(e) => setLanguage(e.target.value)}
         options={languageOptions}
       />
-    </>
+    </Box>
   );
 
   return (
-    <AppBar position="static" className={styles.header}>
+    <AppBar
+      position="static"
+      className={styles.header}
+      sx={{
+        backgroundColor: "transparent",
+        backgroundImage: isDarkMode
+          ? "linear-gradient(to bottom, rgba(0,0,0,0.7), transparent)"
+          : "none",
+      }}
+    >
       <Toolbar sx={{ justifyContent: "space-between", alignItems: "center" }}>
-        <img
-          src={isMobile ? logoSmall : logo}
-          alt="Logo"
-          draggable="false"
-          style={{
-            pointerEvents: "none",
-            userSelect: "none",
-            marginRight: "auto",
+        <Box
+          sx={{
+            cursor: "pointer",
+            width: isMobile ? "100%" : "40%",
+            display: "flex",
+            justifyContent: "flex-start",
           }}
-        />
+        >
+          <img
+            src={isMobile ? logoSmall : logo}
+            alt="Logo"
+            draggable="false"
+            onClick={() => {
+              navigate("/");
+            }}
+            style={{
+              pointerEvents: "none",
+              userSelect: "none",
+            }}
+          />
+        </Box>
         {isMobile ? (
           <IconButton
             edge="end"
@@ -85,14 +120,21 @@ export const Header = () => {
         ) : (
           <Box
             sx={{
-              width: "90vh",
+              width: "60%",
               display: "flex",
-              justifyContent: "space-between",
               alignItems: "center",
             }}
           >
-            <NavigationItems onClick={undefined} />
-            <MyButton sx={{ padding: "10px 28px", marginLeft: 2 }}>
+            <NavigationItems onClick={() => setMenuOpen(false)} />
+            <MyButton
+              sx={{
+                padding: "10px 28px",
+                marginLeft: 2,
+                color: isDarkMode ? "#191919" : "#fff",
+                backgroundColor: isDarkMode ? "#fff" : "black",
+              }}
+              onClick={() => navigate("/requests")}
+            >
               Я хочу оставить заявку
             </MyButton>
           </Box>
@@ -123,6 +165,7 @@ export const Header = () => {
         >
           <Box
             sx={{
+              cursor: "pointer",
               display: "flex",
               alignItems: "center",
               justifyContent: "space-between",
@@ -133,10 +176,12 @@ export const Header = () => {
               src={logoSmallWhite}
               alt="Logo"
               draggable="false"
+              onClick={() => {
+                navigate("/");
+              }}
               style={{
                 pointerEvents: "none",
                 userSelect: "none",
-                marginRight: "auto",
               }}
             />
             <IconButton
@@ -148,31 +193,7 @@ export const Header = () => {
               <CloseIcon />
             </IconButton>
           </Box>
-          <Typography
-            component="a"
-            href="#"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: "1.5rem",
-              color: "#fff",
-            }}
-          >
-            <ArrowRightIcon sx={{ mr: 1, color: "#fff" }} /> Главная
-          </Typography>
           <NavigationItems onClick={() => setMenuOpen(false)} />
-          <Typography
-            component="a"
-            href="#"
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: "1.5rem",
-              color: "#fff",
-            }}
-          >
-            Я хочу оставить заявку
-          </Typography>
         </Box>
       </Drawer>
     </AppBar>
