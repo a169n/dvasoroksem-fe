@@ -1,5 +1,6 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { MyButton } from "@shared/ui/button";
+import "./apply.module.css";
 
 export const Apply = () => {
   const theme = useTheme();
