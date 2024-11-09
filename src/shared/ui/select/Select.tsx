@@ -1,7 +1,7 @@
 import { Select, MenuItem, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-export const MySelect = ({ value, onChange, options }) => {
+export const MySelect = ({ value, onChange, options, sx }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -30,11 +30,12 @@ export const MySelect = ({ value, onChange, options }) => {
           borderRadius: isMobile ? "10px" : "4px",
           color: isMobile ? "black" : "white",
         },
+        ...sx,
       }}
       MenuProps={{
         PaperProps: {
           sx: {
-            backgroundColor: isMobile ?  "black" : "white",
+            backgroundColor: isMobile ? "black" : "white",
             "& .MuiMenuItem-root": {
               color: isMobile ? "white" : "black",
               padding: "8px 16px",
