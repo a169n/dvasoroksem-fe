@@ -6,7 +6,7 @@ export const Nomad = () => {
   return (
     <>
       <Header mode="light" />
-      <Box minHeight={1000}>
+      <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={NomadMainPage}
           alt="nomad main image"
