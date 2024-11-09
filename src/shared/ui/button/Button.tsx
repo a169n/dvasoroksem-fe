@@ -10,7 +10,7 @@ interface CustomButtonProps extends ButtonProps {
 }
 
 const CustomButton = styled(Button)<CustomButtonProps>(() => ({
-  border: "1px solid black",
+  border: "1px solid",
   color: "black",
   backgroundColor: "#fff",
   padding: "4px 16px",

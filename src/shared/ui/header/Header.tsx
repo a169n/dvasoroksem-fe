@@ -87,9 +87,9 @@ export const Header = ({ mode = "default" }) => {
         onChange={(e) => setLanguage(e.target.value)}
         options={languageOptions}
         sx={{
-          backgroundColor: isLightMode ? "#fff" : "transparent",
           color: isLightMode ? "#000" : "#fff",
         }}
+        mode={mode}
       />
     </Box>
   );
@@ -108,7 +108,7 @@ export const Header = ({ mode = "default" }) => {
         backgroundImage: isDarkMode
           ? "linear-gradient(to bottom, rgba(0,0,0,0.7), transparent)"
           : "none",
-        boxShadow: isDarkMode ? "0 2px 10px rgba(0, 0, 0, 0.1)" : "none",
+        boxShadow: "none",
         paddingTop: "16px",
         zIndex: 100,
       }}
@@ -130,6 +130,7 @@ export const Header = ({ mode = "default" }) => {
               navigate("/");
             }}
             style={{
+              filter: isLightMode ? "invert(1)" : "invert(0)",
               pointerEvents: "none",
               userSelect: "none",
             }}
@@ -157,15 +158,13 @@ export const Header = ({ mode = "default" }) => {
               sx={{
                 padding: "10px 28px",
                 marginLeft: 2,
-                color: isDarkMode
-                  ? "#191919"
+                color: isDarkMode ? "#191919" : isLightMode ? "#fff" : "#000",
+                backgroundColor:
+                  isDarkMode || isLightMode ? "transparent" : "white",
+                borderColor: isDarkMode
+                  ? "black"
                   : isLightMode
-                    ? "#191919"
-                    : "#fff",
-                backgroundColor: isDarkMode
-                  ? "#fff"
-                  : isLightMode
-                    ? "#000"
+                    ? "white"
                     : "black",
               }}
               onClick={() => navigate("/request")}
