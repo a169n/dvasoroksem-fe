@@ -5,6 +5,8 @@ import { Cases } from "./ui/cases";
 import { Videos } from "./ui/videos";
 import { Certificates } from "./ui/certificatesSection";
 import { Header } from "@shared/ui/header";
+import { Box } from "@mui/material";
+import { Apply } from "./ui/cases/ui";
 
 export const Home = () => {
   return (
@@ -16,6 +18,9 @@ export const Home = () => {
         <div className="bg-[#232323] w-full h-[5%]"></div>
         <WhyChooseUs />
         <Cases />
+        <Box mt={5}>
+          <Apply />
+        </Box>
         <Videos />
         <div>
           <Certificates />
