@@ -1,10 +1,12 @@
 import { Select, MenuItem, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-export const MySelect = ({ value, onChange, options, sx }) => {
+export const MySelect = ({ value, onChange, options, sx, mode }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
+  const isDarkMode = mode === "dark";
+  const isLightMode = mode === "light";
+  const isDefaultMode = mode === "default";
   return (
     <Select
       disableUnderline
@@ -13,22 +15,38 @@ export const MySelect = ({ value, onChange, options, sx }) => {
       variant="standard"
       sx={{
         width: isMobile ? "100%" : 90,
-        backgroundColor: value ? "black" : "white",
+        backgroundColor:
+          ((isDarkMode || isLightMode) && !isDefaultMode)
+            ? "transparent"
+            : value
+              ? "black"
+              : "white",
         color: value ? "white" : "black",
-        border: "1px solid black",
+        border: isDarkMode || isLightMode ? "" : "1px solid black",
         borderRadius: "4px",
         padding: "4px 0",
         alignSelf: "center",
         "&:hover": {
-          border: "1px solid black",
+          border: "1px solid black", // isDarkMode || isLightMode ? "" :
           textDecoration: "none",
         },
         "& .MuiSelect-select": {
           padding: isMobile ? "4px 16px" : "4px 24px",
-          backgroundColor: isMobile ? "white" : "black",
+          backgroundColor:
+            isDarkMode || isLightMode
+              ? "transparent"
+              : isMobile
+                ? "white"
+                : "black",
           textAlign: "left",
           borderRadius: isMobile ? "10px" : "4px",
-          color: isMobile ? "black" : "white",
+          color: isLightMode
+            ? "white"
+            : isDarkMode
+              ? "black"
+              : isMobile
+                ? "black"
+                : "white",
         },
         ...sx,
       }}
