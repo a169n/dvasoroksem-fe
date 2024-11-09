@@ -6,7 +6,7 @@ export const HelpOthers = () => {
   return (
     <>
       <Header mode="dark" />
-      <Box minHeight={1000}>
+      <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={HelpOtherMainImage}
           alt="help others main image"

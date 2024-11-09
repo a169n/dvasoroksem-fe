@@ -6,7 +6,7 @@ export const QCS = () => {
   return (
     <>
       <Header mode="light" />
-      <Box minHeight={1000}>
+      <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={QCSMainImage}
           alt="qcs main image"

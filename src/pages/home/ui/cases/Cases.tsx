@@ -35,12 +35,12 @@ const servicesData = [
   },
 ];
 
-export const Cases = () => {
+export const Cases = ({ mode = "default" }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-
+  const isCasePage = mode === "case-page";
   const navigate = useNavigate();
 
   return (
@@ -48,6 +48,7 @@ export const Cases = () => {
       sx={{
         px: isMobile ? 2 : isTablet ? 4 : 8,
         py: isMobile ? 4 : isTablet ? 6 : 8,
+        backgroundColor: isCasePage ? "#161616" : "#fff",
       }}
     >
       <Box
@@ -62,7 +63,7 @@ export const Cases = () => {
           component="h1"
           sx={{
             fontWeight: 400,
-            color: "#000",
+            color: isCasePage ? "#fff" : "#000",
             textTransform: "uppercase",
             fontSize: isMobile
               ? "28px"
@@ -89,6 +90,12 @@ export const Cases = () => {
             whiteSpace: "nowrap",
             py: isMobile ? 1 : 0.5,
             px: isMobile ? 2 : 2,
+            backgroundColor: isCasePage ? "#161616" : "#fff",
+            color: isCasePage ? "#fff" : "#000",
+            ":hover": {
+              backgroundColor: isCasePage ? "#fff" : "#161616",
+              color: isCasePage ? "#000" : "#fff",
+            }
           }}
         >
           Смотреть все
@@ -148,7 +155,7 @@ export const Cases = () => {
               </Box>
             </Box>
             <Typography
-              color="#000"
+              color={isCasePage ? "#fff" : "#000"}
               variant="h4"
               sx={{
                 mt: 1,
@@ -159,7 +166,7 @@ export const Cases = () => {
               {service.title}
             </Typography>
             <Typography
-              color="#000"
+              color={isCasePage ? "#fff" : "#000"}
               textAlign="left"
               sx={{
                 mt: 1,
@@ -172,9 +179,7 @@ export const Cases = () => {
           </Box>
         ))}
       </Box>
-      <Box mt={5}>
-        <Apply />
-      </Box>
+      
     </Box>
   );
 };
