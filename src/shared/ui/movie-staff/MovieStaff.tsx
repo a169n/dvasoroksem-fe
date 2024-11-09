@@ -85,6 +85,7 @@ export const MovieStaff = ({}) => {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: { xs: "flex-start", md: "flex-start" },
+                marginBottom: { xs: 2, md: 0 },
               }}
             >
               <ArrowForwardIosIcon
