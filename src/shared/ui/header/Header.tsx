@@ -105,11 +105,7 @@ export const Header = ({ mode = "default" }) => {
         transition: "transform 0.3s ease-in-out",
         transform: isHeaderVisible ? "translateY(0)" : "translateY(-100%)",
         backgroundColor: isLightMode ? "transparent" : "transparent",
-        backgroundImage: isDarkMode
-          ? "linear-gradient(to bottom, rgba(0,0,0,0.7), transparent)"
-          : "none",
         boxShadow: "none",
-        paddingTop: "16px",
         zIndex: 100,
       }}
     >
@@ -121,14 +117,14 @@ export const Header = ({ mode = "default" }) => {
             display: "flex",
             justifyContent: "flex-start",
           }}
+          onClick={() => {
+            navigate("/");
+          }}
         >
           <img
             src={isMobile ? logoSmall : logo}
             alt="Logo"
             draggable="false"
-            onClick={() => {
-              navigate("/");
-            }}
             style={{
               filter: isLightMode ? "invert(1)" : "invert(0)",
               pointerEvents: "none",
