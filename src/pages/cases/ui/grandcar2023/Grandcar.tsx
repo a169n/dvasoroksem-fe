@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { Header } from "@shared/ui/header/Header";
 import Grandcar2023MainImage from "@assets/casePages/grandcar2023.svg";
 import { Description } from "@shared/ui/description";
+import { MovieStaff } from "@shared/ui/movie-staff";
 export const Grandcar = () => {
   return (
     <>
@@ -21,6 +22,7 @@ export const Grandcar = () => {
 
 Партнер остался доволен, мы надеемся, что вы тоже!"
       />
+      <MovieStaff />
     </>
   );
 };
