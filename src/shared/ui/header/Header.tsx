@@ -1,23 +1,14 @@
+import { useEffect, useState } from "react";
+import { Box, Toolbar, IconButton, Typography, Drawer } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
+import useMediaQuery from "@mui/material/useMediaQuery";
+import CloseIcon from "@mui/icons-material/Close";
+import MenuIcon from "@mui/icons-material/Menu";
 import logo from "@assets/icons/logo.svg";
 import logoSmall from "@assets/icons/logo_small.svg";
 import logoSmallWhite from "@assets/icons/logo_small_white.svg";
-
-import CloseIcon from "@mui/icons-material/Close";
-import MenuIcon from "@mui/icons-material/Menu";
-import {
-  AppBar,
-  Box,
-  Drawer,
-  IconButton,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { MyButton } from "@shared/ui/button";
 import { MySelect } from "@shared/ui/select";
-import { useState } from "react";
-import styles from "./styles.module.scss";
+import { MyButton } from "@shared/ui/button";
 import { useNavigate } from "react-router-dom";
 
 const navItems = [
@@ -39,9 +30,33 @@ export const Header = ({ mode = "default" }) => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState("RU");
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
   const isDarkMode = mode === "dark";
   const isLightMode = mode === "light";
+  const isDefaultMode = mode === "default";
+
+  const handleScroll = () => {
+    if (window.scrollY > lastScrollY && window.scrollY > 100) {
+      setIsHeaderVisible(false);
+    } else {
+      setIsHeaderVisible(true);
+    }
+    setLastScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    if (mode !== "default") {
+      window.addEventListener("scroll", handleScroll);
+
+      return () => {
+        window.removeEventListener("scroll", handleScroll);
+      };
+    } else {
+      return;
+    }
+  }, [lastScrollY]);
 
   const NavigationItems = ({ onClick }) => (
     <Box
@@ -61,7 +76,7 @@ export const Header = ({ mode = "default" }) => {
           sx={{
             alignSelf: "center",
             cursor: "pointer",
-            color: isDarkMode ? "#191919" : isLightMode ? "#fff" : "#191919",
+            color: isLightMode ? "#fff" : isDarkMode ? "#191919" : "#191919",
           }}
         >
           {text}
@@ -71,19 +86,31 @@ export const Header = ({ mode = "default" }) => {
         value={language}
         onChange={(e) => setLanguage(e.target.value)}
         options={languageOptions}
+        sx={{
+          backgroundColor: isLightMode ? "#fff" : "transparent",
+          color: isLightMode ? "#000" : "#fff",
+        }}
       />
     </Box>
   );
 
   return (
-    <AppBar
-      position="static"
-      className={styles.header}
+    <Box
       sx={{
-        backgroundColor: "transparent",
+        width: "100%",
+        position: !isDefaultMode ? "fixed" : "block",
+        top: 0,
+        left: 0,
+        right: 0,
+        transition: "transform 0.3s ease-in-out",
+        transform: isHeaderVisible ? "translateY(0)" : "translateY(-100%)",
+        backgroundColor: isLightMode ? "transparent" : "transparent",
         backgroundImage: isDarkMode
           ? "linear-gradient(to bottom, rgba(0,0,0,0.7), transparent)"
           : "none",
+        boxShadow: isDarkMode ? "0 2px 10px rgba(0, 0, 0, 0.1)" : "none",
+        paddingTop: "16px",
+        zIndex: 100,
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between", alignItems: "center" }}>
@@ -100,7 +127,7 @@ export const Header = ({ mode = "default" }) => {
             alt="Logo"
             draggable="false"
             onClick={() => {
-              window.location.href = "/";
+              navigate("/");
             }}
             style={{
               pointerEvents: "none",
@@ -130,8 +157,16 @@ export const Header = ({ mode = "default" }) => {
               sx={{
                 padding: "10px 28px",
                 marginLeft: 2,
-                color: isDarkMode ? "#191919" : "#fff",
-                backgroundColor: isDarkMode ? "#fff" : "black",
+                color: isDarkMode
+                  ? "#191919"
+                  : isLightMode
+                    ? "#191919"
+                    : "#fff",
+                backgroundColor: isDarkMode
+                  ? "#fff"
+                  : isLightMode
+                    ? "#000"
+                    : "black",
               }}
               onClick={() => navigate("/request")}
             >
@@ -148,8 +183,8 @@ export const Header = ({ mode = "default" }) => {
           sx: {
             width: "100%",
             height: "100%",
-            backgroundColor: "black",
-            color: "white",
+            backgroundColor: isDarkMode ? "black" : "white",
+            color: isDarkMode ? "white" : "black",
             padding: 2,
           },
         }}
@@ -196,6 +231,6 @@ export const Header = ({ mode = "default" }) => {
           <NavigationItems onClick={() => setMenuOpen(false)} />
         </Box>
       </Drawer>
-    </AppBar>
+    </Box>
   );
 };
