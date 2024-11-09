@@ -7,7 +7,7 @@ export const Grandcar = () => {
   return (
     <>
       <Header mode="light" />
-      <Box minHeight={1000}>
+      <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={Grandcar2023MainImage}
           alt="grandcar 2023 main image"

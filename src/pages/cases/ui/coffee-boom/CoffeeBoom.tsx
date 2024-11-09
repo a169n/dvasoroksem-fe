@@ -6,11 +6,11 @@ export const CoffeeBoom = () => {
   return (
     <>
       <Header mode="light" />
-      <Box minHeight={1000}>
+      <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={CoffeeBoomMainImage}
           alt="coffee boom main image"
-          style={{ width: "100%", height: "auto" }}
+          style={{ width: "100%" }}
         />
       </Box>
       <Description
