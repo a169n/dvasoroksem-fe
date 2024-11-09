@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { Header } from "@shared/ui/header/Header";
 import Grandcar2022MainImage from "@assets/casePages/grandcar2022.svg";
 import { Description } from "@shared/ui/description";
+import { MovieStaff } from "@shared/ui/movie-staff";
 export const Grandcar = () => {
   return (
     <>
@@ -18,6 +19,7 @@ export const Grandcar = () => {
 2022"
         description="Презентационный ролик о компании, которая покупает автомобили на аукционах в США и доставляет их клиенту в любую точку мира. В этом видео мы постарались раскрыть их преимущества перед конкурентами и оставить приятное впечатление у клиентов."
       />
+      <MovieStaff />
     </>
   );
 };
