@@ -1,6 +1,8 @@
 import React, { useRef } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, EffectCube } from "swiper/modules";
+import { useMediaQuery } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -14,12 +16,19 @@ interface StoriesProps {
 }
 
 export const Stories = ({ stories }: StoriesProps) => {
-  // Refs for navigation elements
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
 
   return (
-    <Box sx={{ backgroundColor: "#161616", position: "relative" }}>
+    <Box
+      sx={{
+        backgroundColor: "#161616",
+        position: "relative",
+        paddingTop: "50px",
+      }}
+    >
       <Swiper
         modules={[Navigation, Pagination, EffectCube]}
         navigation={{
@@ -30,9 +39,9 @@ export const Stories = ({ stories }: StoriesProps) => {
         loop={true}
         effect="cube"
         centeredSlides
-        style={{ height: "900px", width: "500px" }}
+        style={{ height: "900px", width: isMobile ? "100%" : "500px" }}
         onBeforeInit={(swiper) => {
-          if (typeof swiper.params.navigation !== 'boolean') {
+          if (typeof swiper.params.navigation !== "boolean") {
             if (swiper.params.navigation) {
               swiper.params.navigation.prevEl = prevRef.current;
               swiper.params.navigation.nextEl = nextRef.current;
@@ -61,8 +70,8 @@ export const Stories = ({ stories }: StoriesProps) => {
           width: "100%",
           transform: "translateY(-50%)",
           zIndex: 1,
-          pointerEvents: "none", 
-          gap: "10px"
+          pointerEvents: "none",
+          gap: "10px",
         }}
       >
         <IconButton
@@ -72,7 +81,7 @@ export const Stories = ({ stories }: StoriesProps) => {
             border: "1px solid #fff",
             borderRadius: "0px",
             padding: "8px 12px",
-            pointerEvents: "all" 
+            pointerEvents: "all",
           }}
         >
           <ArrowLeftIcon sx={{ color: "#fff" }} />
@@ -84,7 +93,7 @@ export const Stories = ({ stories }: StoriesProps) => {
             border: "1px solid #fff",
             borderRadius: "0px",
             padding: "8px 12px",
-            pointerEvents: "all"  
+            pointerEvents: "all",
           }}
         >
           <ArrowRightIcon sx={{ color: "#fff" }} />
