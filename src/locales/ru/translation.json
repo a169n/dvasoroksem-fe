@@ -113,6 +113,12 @@
     "text2": "что ваш бизнес классный",
     "buttonText": "Я хочу оставить заявку"
   },
+  "certificates": {
+    "title": "Наши сертификаты",
+    "gratitudeLetter": "Благодарственное письмо",
+    "honoraryDiploma": "Почетная грамота",
+    "coffeeBoom": "Сертификат Coffee Boom"
+  },
   "application": {
     "leaveAnApplication": "Оставить заявку",
     "ceoDvaSorokSem": "CEO двасороксемь.",

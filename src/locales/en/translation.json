@@ -113,6 +113,12 @@
     "text2": "that your business is awesome",
     "buttonText": "I want to apply"
   },
+  "certificates": {
+    "title": "Certificates",
+    "gratitudeLetter": "Gratitude Letter",
+    "honoraryDiploma": "Honorary Diploma",
+    "coffeeBoom": "Coffee Boom Certificate"
+  },
   "application": {
     "leaveAnApplication": "Submit an Inquiry",
     "ceoDvaSorokSem": "CEO dvasoroksem.",
