@@ -15,7 +15,7 @@ export const Cases = ({ mode = "default" }) => {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const isCasePage = mode === "case-page";
   const navigate = useNavigate();
-  const { t } = useTranslation();
+  const { t } = useTranslation("OurCases");
 
   const servicesData = [
     {
@@ -76,7 +76,7 @@ export const Cases = ({ mode = "default" }) => {
             mb: isMobile ? 2 : 0,
           }}
         >
-          {t("ourCases.title")}
+          {t(isCasePage ? "ourCases.title2" : "ourCases.title1")}
         </Typography>
         <MyButton
           onClick={() => {
