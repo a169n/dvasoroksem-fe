@@ -6,33 +6,7 @@ import Case2 from "@assets/cases/case2.svg";
 import Case3 from "@assets/cases/case3.svg";
 import Case4 from "@assets/cases/case4.svg";
 import { useNavigate } from "react-router-dom";
-
-const servicesData = [
-  {
-    imageURL: Case1,
-    title: "Coffee BOOM",
-    description: "Место, где становятся друзьями",
-    path: "/cases/coffee-boom",
-  },
-  {
-    imageURL: Case2,
-    title: "Soyle",
-    description: "Казахский для всех",
-    path: "/cases/soyle",
-  },
-  {
-    imageURL: Case3,
-    title: "Помоги Другому",
-    description: "Не упускайте случая делать добро",
-    path: "/cases/help-others",
-  },
-  {
-    imageURL: Case4,
-    title: "QCS",
-    description: "Лидер в стране в области бортового питания и кейтеринга",
-    path: "/cases/qcs",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export const Cases = ({ mode = "default" }) => {
   const theme = useTheme();
@@ -41,6 +15,34 @@ export const Cases = ({ mode = "default" }) => {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const isCasePage = mode === "case-page";
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
+  const servicesData = [
+    {
+      imageURL: Case1,
+      title: t("ourCases.coffeeBoom.title"),
+      description: t("ourCases.coffeeBoom.description"),
+      path: "/cases/coffee-boom",
+    },
+    {
+      imageURL: Case2,
+      title: t("ourCases.soyle.title"),
+      description: t("ourCases.soyle.description"),
+      path: "/cases/soyle",
+    },
+    {
+      imageURL: Case3,
+      title: t("ourCases.helpOthers.title"),
+      description: t("ourCases.helpOthers.description"),
+      path: "/cases/help-others",
+    },
+    {
+      imageURL: Case4,
+      title: t("ourCases.qcs.title"),
+      description: t("ourCases.qcs.description"),
+      path: "/cases/qcs",
+    },
+  ];
 
   return (
     <Box
@@ -74,7 +76,7 @@ export const Cases = ({ mode = "default" }) => {
             mb: isMobile ? 2 : 0,
           }}
         >
-          НАШИ КЕЙСЫ
+          {t("ourCases.title")}
         </Typography>
         <MyButton
           onClick={() => {
@@ -97,7 +99,7 @@ export const Cases = ({ mode = "default" }) => {
             },
           }}
         >
-          Смотреть все
+          {t("ourCases.buttonText")}
         </MyButton>
       </Box>
       <Box

@@ -5,64 +5,7 @@ import Production_service from "@assets/Production_service.png";
 import Strategies_service from "@assets/Strategies_service.png";
 import IT_service from "@assets/IT_service.png";
 import { MyAccordion } from "@shared/ui/accordion";
-
-const servicesData = [
-  {
-    title: "SMM",
-    image: SMM_service,
-    items: [
-      "Ведение социальных сетей",
-      "Таргетированная реклама в Facebook",
-      "Таргетированная реклама в Instagram",
-      "Таргетированная реклама в TikTok",
-      "Цифровизация контента",
-    ],
-  },
-  {
-    title: "Маркетинг",
-    image: Marketing_service,
-    items: [
-      "Внедрение воронок продаж и CRM систем",
-      "Контекстная реклама в Google, Yandex",
-      "PR-кампании",
-      "Influence-кампании",
-      "Ведение карт Google/Yandex/2GIS",
-      "Оффлайн маркетинг",
-      "AI продажник",
-    ],
-  },
-  {
-    title: "Исследования и стратегии",
-    image: Strategies_service,
-    items: [
-      "Маркетинговые стратегии",
-      "SMM-стратегии",
-      "Исследования и аудит",
-      "Спецпроекты",
-    ],
-  },
-  {
-    title: "IT",
-    image: IT_service,
-    items: [
-      "Разработка сайтов",
-      "Чат-боты",
-      "Веб-сервисы",
-      "Веб-приложения",
-      "СЕО-оптимизация",
-    ],
-  },
-  {
-    title: "Production",
-    image: Production_service,
-    items: [
-      "Продюсирование съемок",
-      "Рекламные ролики, TVC, TLC",
-      "Имиджевые ролики",
-      "Фотопродакшн",
-    ],
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const ServiceImage = ({ src, alt, isMobile, isTablet }) => {
   const handleMouseMove = (e) => {
@@ -152,6 +95,65 @@ export const Services = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const { t } = useTranslation();
+
+  const servicesData = [
+    {
+      title: t("services.smm.title"),
+      image: SMM_service,
+      items: [
+        t("services.smm.socialMediaManagement"),
+        t("services.smm.facebookAds"),
+        t("services.smm.instagramAds"),
+        t("services.smm.tiktokAds"),
+        t("services.smm.contentDigitization"),
+      ],
+    },
+    {
+      title: t("services.marketing.title"),
+      image: Marketing_service,
+      items: [
+        t("services.marketing.salesFunnelsAndCrm"),
+        t("services.marketing.contextualAds"),
+        t("services.marketing.prCampaigns"),
+        t("services.marketing.influenceCampaigns"),
+        t("services.marketing.googleYandex2gisMaps"),
+        t("services.marketing.offlineMarketing"),
+        t("services.marketing.aiSalesperson"),
+      ],
+    },
+    {
+      title: t("services.researchAndStrategies.title"),
+      image: Strategies_service,
+      items: [
+        t("services.researchAndStrategies.marketingStrategies"),
+        t("services.researchAndStrategies.smmStrategies"),
+        t("services.researchAndStrategies.researchAndAudit"),
+        t("services.researchAndStrategies.specialProjects"),
+      ],
+    },
+    {
+      title: t("services.it.title"),
+      image: IT_service,
+      items: [
+        t("services.it.websiteDevelopment"),
+        t("services.it.chatbots"),
+        t("services.it.webServices"),
+        t("services.it.webApplications"),
+        t("services.it.seoOptimization"),
+      ],
+    },
+    {
+      title: t("services.production.title"),
+      image: Production_service,
+      items: [
+        t("services.production.shootingProduction"),
+        t("services.production.commercials"),
+        t("services.production.imageCommercials"),
+        t("services.production.photoProduction"),
+      ],
+    },
+  ];
 
   return (
     <Box
@@ -176,7 +178,7 @@ export const Services = () => {
           mb: { xs: 2, sm: 3, md: 5 },
         }}
       >
-        Наши услуги
+        {t("services.title")}
       </Typography>
       <Box
         sx={{
