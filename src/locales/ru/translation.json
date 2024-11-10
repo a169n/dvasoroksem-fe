@@ -119,6 +119,12 @@
     "honoraryDiploma": "Почетная грамота",
     "coffeeBoom": "Сертификат Coffee Boom"
   },
+  "footer": {
+    "contacts": "Контакты",
+    "ceoDvasoroksem": "CEO двасороксемь.",
+    "ceoName": "CEO имя",
+    "contactsUs": "Свяжитесь с нами"
+  },
   "application": {
     "leaveAnApplication": "Оставить заявку",
     "ceoDvaSorokSem": "CEO двасороксемь.",
