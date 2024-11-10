@@ -2,6 +2,7 @@ import { Header } from "@shared/ui/header";
 import BauerMainImage from "@assets/casePages/bauer.png";
 import { Box } from "@mui/material";
 import { Description } from "@shared/ui/description";
+import { Cases } from "@pages/home/ui/cases";
 
 export const Bauer = () => {
   return (
@@ -18,6 +19,7 @@ export const Bauer = () => {
         title="everything for the game"
         description="Для мирового бренда хоккейной экипировки Bauer в Казахстане мы ведём Instagram, создаём качественный контент, погружённый в хоккейный мир, разрабатываем печатную продукцию, баннеры и многое другое."
       />
+      <Cases mode="case-page" />
     </>
   );
 };
