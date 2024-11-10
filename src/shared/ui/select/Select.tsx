@@ -14,7 +14,7 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
       onChange={onChange}
       variant="standard"
       sx={{
-        width: isMobile ? "100%" : 90,
+        width: isMobile ? "90vw" : 90,
         backgroundColor:
           ((isDarkMode || isLightMode) && !isDefaultMode)
             ? "transparent"
