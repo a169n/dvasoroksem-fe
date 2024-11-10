@@ -2,7 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 import { Box, IconButton } from "@mui/material";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-
+import { useTheme } from "@mui/material/styles";
+import { useMediaQuery } from "@mui/material";
 interface DoubleCarouselProps {
   imagesLine1: string[];
   imagesLine2: string[];
@@ -12,7 +13,8 @@ const VISIBLE_IMAGES = 5;
 
 const DoubleCarousel = ({ imagesLine1, imagesLine2 }: DoubleCarouselProps) => {
   const [index, setIndex] = useState(0);
-
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const handleNext = useCallback(() => {
     setIndex((prevIndex) => (prevIndex + 1) % imagesLine1.length);
   }, [imagesLine1.length]);
@@ -78,7 +80,8 @@ const DoubleCarousel = ({ imagesLine1, imagesLine2 }: DoubleCarouselProps) => {
                 style={{
                   width: "100%",
                   height: "auto",
-                  objectFit: "contain",
+                  maxHeight: isMobile ? "120px" : "",
+                  objectFit: "cover",
                   transition: "transform 1s ease-in-out",
                 }}
               />
