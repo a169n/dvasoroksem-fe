@@ -24,7 +24,7 @@ const languageOptions = [
   { value: "ENG", label: "ENG" },
 ];
 
-export const Header = ({ mode = "default" }) => {
+export const Header = ({ mode = "default", refs }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
@@ -46,6 +46,22 @@ export const Header = ({ mode = "default" }) => {
     setLastScrollY(window.scrollY);
   };
 
+  const handleNavClick = (sectionRef, href) => {
+    const hash = href;
+
+    console.log("hash", hash);
+
+    navigate(`/${hash}`);
+
+    if (sectionRef?.current) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    } else if (hash === "#contacts") {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }
+
+    setMenuOpen(false);
+  };
+
   useEffect(() => {
     if (mode !== "default") {
       window.addEventListener("scroll", handleScroll);
@@ -58,7 +74,7 @@ export const Header = ({ mode = "default" }) => {
     }
   }, [lastScrollY]);
 
-  const NavigationItems = ({ onClick }) => (
+  const NavigationItems = () => (
     <Box
       sx={{
         display: "flex",
@@ -72,7 +88,7 @@ export const Header = ({ mode = "default" }) => {
           key={href}
           component="a"
           href={href}
-          onClick={onClick}
+          onClick={() => handleNavClick(refs[href.substring(1)], href)}
           sx={{
             alignSelf: "center",
             cursor: "pointer",
@@ -149,7 +165,7 @@ export const Header = ({ mode = "default" }) => {
               alignItems: "center",
             }}
           >
-            <NavigationItems onClick={() => setMenuOpen(false)} />
+            <NavigationItems />
             <MyButton
               sx={{
                 padding: "10px 28px",
@@ -223,7 +239,7 @@ export const Header = ({ mode = "default" }) => {
               <CloseIcon />
             </IconButton>
           </Box>
-          <NavigationItems onClick={() => setMenuOpen(false)} />
+          <NavigationItems />
         </Box>
       </Drawer>
     </Box>
