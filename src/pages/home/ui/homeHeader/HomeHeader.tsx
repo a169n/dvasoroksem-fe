@@ -2,7 +2,7 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Marquee from "react-marquee-slider";
 import landing_image from "@assets/landing_image.png";
-import landing_image_grey from "@assets/landing_image_grey.png";
+import landing_image_grey from "@assets/landing_image_grey.jpg";
 import icon1 from "@assets/icons/icon1.svg";
 import icon2 from "@assets/icons/icon2.svg";
 import icon3 from "@assets/icons/icon3.svg";
@@ -21,17 +21,18 @@ export const HomeHeader = () => {
       sx={{
         backgroundColor: "#000",
         color: "white",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
         textAlign: "center",
         backgroundSize: "cover",
         backgroundPosition: "center",
+        maxHeight: "100vh",
 
         ...(isMobile && {
           backgroundImage: `url(${landing_image_grey})`,
+          WebkitFilter: "grayscale(100%)",
+          filter: "grayscale(100%)",
           alignItems: "space-between",
-          minHeight: "100vh",
+          minHeight: "100%",
+          
         }),
       }}
     >
@@ -40,7 +41,10 @@ export const HomeHeader = () => {
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          justifyContent: "space-between",
           width: "100%",
+          height: "100%",
+          gap: 4,
         }}
       >
         <Box
@@ -49,18 +53,24 @@ export const HomeHeader = () => {
             justifyContent: "space-between",
             alignItems: "center",
             width: "100%",
-            px: { xs: 0, md: 8 },
+            px: { xs: 0, md: 0 },
           }}
         >
           <Box
             sx={{
               flex: 1,
-              textAlign: { xs: "center", md: "left" },
+              textAlign: { xs: "left", md: "left" },
               mb: { xs: 4, md: 0 },
-              padding: isMobile ? "20%" : "0",
+              mt: { xs: 4, md: 0 },
+              padding: isMobile ? "20px" : "0",
             }}
           >
-            <Typography variant="h2" component="h1" fontWeight={500} mb={2}>
+            <Typography
+              variant={isMobile ? "h3" : "h2"}
+              component="h1"
+              fontWeight={500}
+              mb={2}
+            >
               Мы двасороксемь.
             </Typography>
             <Typography sx={{ color: "#fff" }} textAlign="left" mb={2}>
@@ -120,7 +130,7 @@ export const HomeHeader = () => {
           >
             {[icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8].map(
               (icon, index) => (
-                <Box key={index} mx={2} py={4}>
+                <Box key={index} mx={2} py={isMobile ? 2 : 4}>
                   <img
                     src={icon}
                     alt={`Icon${index + 1}`}
