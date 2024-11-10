@@ -1,4 +1,128 @@
 {
-  "test": "test EN",
-  "weAreDvaSorokSem": "We are DVASOROSSEM"
+  "metadata": {
+    "language": "en",
+    "version": "1.0.0"
+  },
+  "navigation": {
+    "weAreDvaSorokSem": "We are dvasoroksem.",
+    "ourCases": "Our Cases",
+    "aboutUs": "About Us",
+    "contacts": "Contact Us",
+    "reviews": "Reviews",
+    "request": "I want to leave a request",
+    "main": "Main"
+  },
+  "hero": {
+    "leadingMarketingAgency": "We are dvasoroksem.",
+    "agencyDescription": "A leading marketing agency in Astana offering comprehensive marketing solutions for businesses. We specialize in strategic planning, digital marketing, SEO, SMM, and branding.",
+    "teamHelpBusinessGrow": "Our team of experts will help your business grow and reach new heights!"
+  },
+  "services": {
+    "title": "Our Services",
+    "smm": {
+      "title": "SMM",
+      "socialMediaManagement": "Social Media Management",
+      "facebookAds": "Targeted Advertising on Facebook",
+      "instagramAds": "Targeted Advertising on Instagram",
+      "tiktokAds": "Targeted Advertising on TikTok",
+      "contentDigitization": "Content Digitalization"
+    },
+    "marketing": {
+      "title": "Marketing",
+      "salesFunnelsAndCrm": "Implementation of Sales Funnels and CRM Systems",
+      "contextualAds": "Contextual Advertising on Google, Yandex",
+      "prCampaigns": "PR Campaigns",
+      "influenceCampaigns": "Influence Campaigns",
+      "googleYandex2gisMaps": "Google/Yandex/2GIS Map Management",
+      "offlineMarketing": "Offline Marketing",
+      "aiSalesperson": "AI Sales Assistant"
+    },
+    "researchAndStrategies": {
+      "title": "Research and Strategies",
+      "marketingStrategies": "Marketing Strategies",
+      "smmStrategies": "SMM Strategies",
+      "researchAndAudit": "Research and Auditing",
+      "specialProjects": "Special Projects"
+    },
+    "it": {
+      "title": "IT",
+      "websiteDevelopment": "Website Development",
+      "chatbots": "Chatbots",
+      "webServices": "Web Services",
+      "webApplications": "Web Applications",
+      "seoOptimization": "SEO Optimization"
+    },
+    "production": {
+      "title": "Production",
+      "shootingProduction": "Shoot Production",
+      "commercials": "Commercials, TVC, TLC",
+      "imageCommercials": "Image Videos",
+      "photoProduction": "Photo Production"
+    }
+  },
+  "whyChooseUs": {
+    "title": "Why Choose Us?",
+    "fourYears": {
+      "title": "4 Years in SMM",
+      "text": "This is an impressive time in the rapidly changing industry. We are not just experts in our field, but we constantly adapt and innovate to ensure our clients stay ahead.",
+      "buttonText": "Watch showreel"
+    },
+    "eightSpecialists": {
+      "title": "8 Specialists in One Package",
+      "text": "Project manager, content manager, targeting specialist, videographer, graphic designer, editor, storymaker, and copywriter — 8 experts working on your project.",
+      "buttonText": "See cases"
+    },
+    "socialResponsibility": {
+      "title": "Social Responsibility",
+      "text": "We have planted 50 trees and support a charity foundation. We believe our work helps not only businesses but also society.",
+      "buttonText": "Video reports here"
+    },
+    "millionaireBlogger": {
+      "title": "Grew a Million-Follower Blogger",
+      "text": "We helped create a blog with one million followers (3🍋). Thanks to our strategies and creative approach, the blogger became an opinion leader.",
+      "buttonText": "nurekensky on TikTok"
+    },
+    "adCampaigns": {
+      "title": "3000 Advertising Campaigns",
+      "text": "Every day we launch more than four targeted advertising campaigns, ensuring maximum effectiveness for your business.",
+      "buttonText": "See cases"
+    }
+  },
+  "ourCases": {
+    "title": "Our Cases",
+    "buttonText": "See all",
+    "coffeeBoom": {
+      "title": "Coffee BOOM",
+      "description": "A place where friendships are made"
+    },
+    "soyle": {
+      "title": "Soyle",
+      "description": "Kazakh for everyone"
+    },
+    "helpOthers": {
+      "title": "Help Others",
+      "description": "Don't miss the chance to do good"
+    },
+    "qcs": {
+      "title": "QCS",
+      "description": "A leader in the country in the field of onboard catering and catering services"
+    }
+  },
+  "apply": {
+    "text1": "⎻ we'll show everyone",
+    "text2": "that your business is awesome",
+    "buttonText": "I want to apply"
+  },
+  "certificates": {
+    "title": "Certificates",
+    "gratitudeLetter": "Gratitude Letter",
+    "honoraryDiploma": "Honorary Diploma",
+    "coffeeBoom": "Coffee Boom Certificate"
+  },
+  "footer": {
+    "contacts": "Contacts",
+    "ceoDvasoroksem": "CEO Dvasoroksem.",
+    "ceoName": "CEO Name",
+    "contactsUs": "Contact Us"
+  }
 }
