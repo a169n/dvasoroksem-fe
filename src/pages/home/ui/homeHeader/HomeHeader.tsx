@@ -125,7 +125,7 @@ export const HomeHeader = () => {
           >
             {[icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8].map(
               (icon, index) => (
-                <Box key={index} mx={2} py={isMobile ? 2 : 4}>
+                <Box key={index} mx={4} py={isMobile ? 2 : 4}>
                   <img
                     src={icon}
                     alt={`Icon${index + 1}`}
