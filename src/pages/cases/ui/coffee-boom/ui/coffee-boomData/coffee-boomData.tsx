@@ -1,4 +1,3 @@
-import { Help } from "@mui/icons-material";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import coffeeBoomDataImage1 from "@assets/casePages/coffee-boom/coffeboomDataImage1.png";
