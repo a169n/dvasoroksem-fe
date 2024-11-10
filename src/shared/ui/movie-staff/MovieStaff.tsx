@@ -4,7 +4,7 @@ import { MyButton } from "../button";
 import DirectorImage from "@assets/director.svg";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-export const MovieStaff = ({}) => {
+export const MovieStaff = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
