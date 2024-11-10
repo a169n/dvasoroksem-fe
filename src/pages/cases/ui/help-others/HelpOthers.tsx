@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { Header } from "@shared/ui/header";
 import HelpOtherMainImage from "@assets/casePages/help-others.svg";
 import { Description } from "@shared/ui/description";
+import { Cases } from "@pages/home/ui/cases";
 export const HelpOthers = () => {
   return (
     <>
@@ -18,6 +19,7 @@ export const HelpOthers = () => {
 делать добро"
         description="Помоги Другому — благотворительная организация. Мы с радостью поддерживаем общественный фонд финансово, помогаем вести их страницу в Instagram, наша команда каждые выходные выезжает в приюты и дома престарелых."
       />
+      <Cases mode="case-page" />
     </>
   );
 };

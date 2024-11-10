@@ -5,7 +5,6 @@ import Case1 from "@assets/cases/case1.svg";
 import Case2 from "@assets/cases/case2.svg";
 import Case3 from "@assets/cases/case3.svg";
 import Case4 from "@assets/cases/case4.svg";
-import { Apply } from "./ui";
 import { useNavigate } from "react-router-dom";
 
 const servicesData = [
