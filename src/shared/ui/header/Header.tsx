@@ -12,18 +12,7 @@ import { MyButton } from "@shared/ui/button";
 import { useNavigate } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import i18n from "@src/i18n";
-const navItems = [
-  { href: "#cases", text: "Наши кейсы" },
-  { href: "#about", text: "О нас" },
-  { href: "#contacts", text: "Контакты" },
-  { href: "#reviews", text: "Отзывы" },
-];
-
-const languageOptions = [
-  { value: "ru", label: "RU" },
-  { value: "kz", label: "KAZ" },
-  { value: "en", label: "ENG" },
-];
+import { useTranslation } from "react-i18next";
 
 export const Header = ({ mode = "default", refs }) => {
   const theme = useTheme();
@@ -33,10 +22,24 @@ export const Header = ({ mode = "default", refs }) => {
   const [language, setLanguage] = useState("ru");
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const { t } = useTranslation();
 
   const isDarkMode = mode === "dark";
   const isLightMode = mode === "light";
   const isDefaultMode = mode === "default";
+
+  const navItems = [
+    { href: "#cases", text: t("navigation.ourCases") },
+    { href: "#about", text: t("navigation.aboutUs") },
+    { href: "#contacts", text: t("navigation.contacts") },
+    { href: "#reviews", text: t("navigation.reviews") },
+  ];
+
+  const languageOptions = [
+    { value: "ru", label: "RU" },
+    { value: "kz", label: "KAZ" },
+    { value: "en", label: "ENG" },
+  ];
 
   const handleScroll = () => {
     if (window.scrollY > lastScrollY && window.scrollY > 100) {
@@ -49,8 +52,6 @@ export const Header = ({ mode = "default", refs }) => {
 
   const handleNavClick = (sectionRef, href) => {
     const hash = href;
-
-    console.log("hash", hash);
 
     navigate(`/${hash}`);
 
@@ -95,7 +96,7 @@ export const Header = ({ mode = "default", refs }) => {
         }}
       >
         <ArrowForwardIcon />
-        Главная
+        {t("navigation.main")}
       </Typography>
       {navItems.map(({ href, text }) => (
         <Typography
@@ -125,7 +126,6 @@ export const Header = ({ mode = "default", refs }) => {
           const newLanguage = e.target.value;
           setLanguage(newLanguage);
           i18n.changeLanguage(newLanguage.toLowerCase());
-          console.log("language", language);
         }}
         options={languageOptions}
         sx={{
@@ -207,7 +207,7 @@ export const Header = ({ mode = "default", refs }) => {
               }}
               onClick={() => navigate("/request")}
             >
-              Я хочу оставить заявку
+              {t("navigation.request")}
             </MyButton>
           </Box>
         )}
@@ -295,7 +295,7 @@ export const Header = ({ mode = "default", refs }) => {
             }}
             onClick={() => navigate("/request")}
           >
-            Я хочу оставить заявку
+            {t("navigation.request")}
           </MyButton>
         </Box>
       </Drawer>
