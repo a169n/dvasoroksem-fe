@@ -1,10 +1,12 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { MyButton } from "@shared/ui/button";
 import "./apply.module.css";
+import { useTranslation } from "react-i18next";
 
 export const Apply = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -23,9 +25,9 @@ export const Apply = () => {
             textAlign: "start",
           }}
         >
-          ⎻ покажем всем
+          {t("apply.text1")}
           <Box mt={6} component="span" display="block">
-            что ваш бизнес классный
+            {t("apply.text2")}
           </Box>
         </Typography>
       </Box>
@@ -48,7 +50,7 @@ export const Apply = () => {
             },
           }}
         >
-          Я хочу оставить заявку
+          {t("apply.buttonText")}
         </MyButton>
       </Box>
     </Box>
