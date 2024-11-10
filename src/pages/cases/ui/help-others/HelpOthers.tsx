@@ -12,6 +12,9 @@ import helpothers5 from "@assets/casePages/help-others/helpothers5.png";
 import helpothers6 from "@assets/casePages/help-others/helpothers6.png";
 import helpothers7 from "@assets/casePages/help-others/helpothers7.png";
 import HelpOthersData from "./ui/helpOthersData";
+import YouTubeIcon from "@mui/icons-material/YouTube";
+
+import { MyButton } from "@shared/ui/button";
 export const HelpOthers = () => {
   return (
     <>
@@ -28,6 +31,37 @@ export const HelpOthers = () => {
 делать добро"
         description="Помоги Другому — благотворительная организация. Мы с радостью поддерживаем общественный фонд финансово, помогаем вести их страницу в Instagram, наша команда каждые выходные выезжает в приюты и дома престарелых."
       />
+      <Box
+        sx={{
+          backgroundColor: "#161616",
+          height: "200px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "start",
+        }}
+      >
+        <MyButton
+          variant="contained"
+          sx={{
+            py: 1,
+            mt: 3,
+            height: "auto",
+            width: { xs: "100%", md: "20%" },
+            backgroundColor: "#161616",
+            color: "#fff",
+            border: "1px solid #fff",
+            gap: "10px",
+            "&:hover": {
+              backgroundColor: "#f0f0f0",
+              color: "#000",
+            },
+          }}
+        >
+          Смотреть видеоролик на YouTube
+          <YouTubeIcon />
+        </MyButton>
+      </Box>
+
       <DoubleCarousel
         imagesLine1={[
           helpothers1,
