@@ -11,10 +11,11 @@ import icon5 from "@assets/icons/icon5.svg";
 import icon6 from "@assets/icons/icon6.svg";
 import icon7 from "@assets/icons/icon7.svg";
 import icon8 from "@assets/icons/icon8.svg";
-
+import { useTranslation } from "react-i18next";
 export const HomeHeader = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const { t } = useTranslation();
 
   return (
     <Box
@@ -32,7 +33,6 @@ export const HomeHeader = () => {
           filter: "grayscale(100%)",
           alignItems: "space-between",
           minHeight: "100%",
-          
         }),
       }}
     >
@@ -44,7 +44,6 @@ export const HomeHeader = () => {
           justifyContent: "space-between",
           width: "100%",
           height: "100%",
-          gap: 4,
         }}
       >
         <Box
@@ -62,7 +61,7 @@ export const HomeHeader = () => {
               textAlign: { xs: "left", md: "left" },
               mb: { xs: 4, md: 0 },
               mt: { xs: 4, md: 0 },
-              padding: isMobile ? "20px" : "0",
+              paddingX: isMobile ? "20px" : "58px",
             }}
           >
             <Typography
@@ -71,7 +70,7 @@ export const HomeHeader = () => {
               fontWeight={500}
               mb={2}
             >
-              Мы двасороксемь.
+              {t("weAreDvaSorokSem")}
             </Typography>
             <Typography sx={{ color: "#fff" }} textAlign="left" mb={2}>
               Ведущее маркетинговое агентство в Астане, предлагающее комплексные

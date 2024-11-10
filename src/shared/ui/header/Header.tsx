@@ -11,6 +11,7 @@ import { MySelect } from "@shared/ui/select";
 import { MyButton } from "@shared/ui/button";
 import { useNavigate } from "react-router-dom";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import i18n from "@src/i18n";
 const navItems = [
   { href: "#cases", text: "Наши кейсы" },
   { href: "#about", text: "О нас" },
@@ -19,9 +20,9 @@ const navItems = [
 ];
 
 const languageOptions = [
-  { value: "RU", label: "RU" },
-  { value: "KAZ", label: "KAZ" },
-  { value: "ENG", label: "ENG" },
+  { value: "ru", label: "RU" },
+  { value: "kz", label: "KAZ" },
+  { value: "en", label: "ENG" },
 ];
 
 export const Header = ({ mode = "default", refs }) => {
@@ -29,7 +30,7 @@ export const Header = ({ mode = "default", refs }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [language, setLanguage] = useState("RU");
+  const [language, setLanguage] = useState("ru");
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
@@ -120,7 +121,12 @@ export const Header = ({ mode = "default", refs }) => {
       ))}
       <MySelect
         value={language}
-        onChange={(e) => setLanguage(e.target.value)}
+        onChange={(e) => {
+          const newLanguage = e.target.value;
+          setLanguage(newLanguage);
+          i18n.changeLanguage(newLanguage.toLowerCase());
+          console.log("language", language);
+        }}
         options={languageOptions}
         sx={{
           color: isLightMode ? "#000" : "#fff",
