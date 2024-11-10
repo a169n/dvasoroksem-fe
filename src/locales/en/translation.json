@@ -119,6 +119,12 @@
     "honoraryDiploma": "Honorary Diploma",
     "coffeeBoom": "Coffee Boom Certificate"
   },
+  "footer": {
+    "contacts": "Contacts",
+    "ceoDvasoroksem": "CEO Dvasoroksem.",
+    "ceoName": "CEO Name",
+    "contactsUs": "Contact Us"
+  },
   "application": {
     "leaveAnApplication": "Submit an Inquiry",
     "ceoDvaSorokSem": "CEO dvasoroksem.",
