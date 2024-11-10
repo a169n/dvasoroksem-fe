@@ -9,43 +9,20 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import CloseIcon from "@mui/icons-material/Close";
 import certificate1 from "@assets/certificate1.svg";
 import certificate2 from "@assets/certificate2.svg";
 import certificate3 from "@assets/certificate3.svg";
 import { ArrowLeftIcon, ArrowRightIcon } from "@mui/x-date-pickers";
+import { useTranslation } from "react-i18next";
 
 interface Certificate {
   id: number;
   title: string;
   image: string;
-  description: string;
 }
 
-const certificates: Certificate[] = [
-  {
-    id: 1,
-    title: "Honorary Diploma",
-    image: certificate1,
-    description: "Сотрудничество в организации конкурса",
-  },
-  {
-    id: 2,
-    title: "Coffee BOOM Certificate",
-    image: certificate2,
-    description: "Благодарственное письмо о плодотворном сотрудничестве",
-  },
-  {
-    id: 3,
-    title: "Gratitude Letter",
-    image: certificate3,
-    description: "Помощь при съемке фильма 'Портрет Софи'",
-  },
-];
-
-const SLIDE_INTERVAL = 5000; // Adjust interval for smoother transitions
+const SLIDE_INTERVAL = 7000;
 
 export const Certificates = () => {
   const theme = useTheme();
@@ -57,6 +34,26 @@ export const Certificates = () => {
   const [slideDirection, setSlideDirection] = useState<"left" | "right">(
     "right"
   );
+
+  const { t } = useTranslation();
+
+  const certificates: Certificate[] = [
+    {
+      id: 1,
+      title: t("certificates.gratitudeLetter"),
+      image: certificate1,
+    },
+    {
+      id: 2,
+      title: t("certificates.honoraryDiploma"),
+      image: certificate2,
+    },
+    {
+      id: 3,
+      title: t("certificates.coffeeBoom"),
+      image: certificate3,
+    },
+  ];
 
   const handleNext = useCallback(() => {
     setSlideDirection("right");
@@ -111,9 +108,9 @@ export const Certificates = () => {
           mb: { xs: 2, sm: 3, md: 5 },
         }}
       >
-        СЕРТИФИКАТЫ
+        {t("certificates.title")}
       </Typography>
-  
+
       <Box
         sx={{
           position: "relative",
@@ -137,11 +134,12 @@ export const Certificates = () => {
           {[-1, 0, 1].map((offset) => {
             // Display only the current item for mobile
             if (isMobile && offset !== 0) return null;
-            
+
             const index =
-              (currentIndex + offset + certificates.length) % certificates.length;
+              (currentIndex + offset + certificates.length) %
+              certificates.length;
             const certificate = certificates[index];
-  
+
             return (
               <Box
                 key={certificate.id}
@@ -223,7 +221,7 @@ export const Certificates = () => {
         <Box
           sx={{
             display: "flex",
-            marginTop: isMobile ? "20px" : "50px", 
+            marginTop: isMobile ? "20px" : "50px",
             justifyContent: "center",
             width: "100%",
             transform: "translateY(-50%)",
@@ -258,7 +256,7 @@ export const Certificates = () => {
           </IconButton>
         </Box>
       </Box>
-  
+
       <Dialog
         open={Boolean(selectedCertificate)}
         onClose={handleClose}
