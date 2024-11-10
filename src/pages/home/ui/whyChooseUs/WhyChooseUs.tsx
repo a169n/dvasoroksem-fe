@@ -10,44 +10,7 @@ import FourYearsIcon from "@assets/icons/choose/fourYears.svg";
 import SocialIcon from "@assets/icons/choose/social.svg";
 import ThreeThousandIcon from "@assets/icons/choose/threeThousand.svg";
 import { MyCard } from "@shared/ui/card";
-
-const cards = [
-  {
-    image: FourYearsIcon,
-    title: "4 года в SMM",
-    text: "— это внушительный срок в стремительно меняющейся индустрии. Мы не просто экспертны в своем деле, мы постоянно адаптируемся, внедряя инновации, чтобы наши клиенты всегда были на шаг впереди",
-    buttonText: "Смотреть showreel",
-    link: "/test",
-  },
-  {
-    image: EightSpeacialistsIcon,
-    title: "8 специалистов одном пакете",
-    text: "Над проектом будет работать 8+ специалистов: проектный менеджер, контент-менеджер, таргетолог, видеограф, графический дизайнер, монтажер, сторисмейкер, копирайтер",
-    buttonText: "Смотреть кейсы",
-    link: "/test",
-  },
-  {
-    image: SocialIcon,
-    title: "Социальная ответственность",
-    text: "Посадили 50 деревьев, помогаем благотворительному фонду",
-    buttonText: "Видеоотчеты тут",
-    link: "/test",
-  },
-  {
-    image: CupIcon,
-    title: "Вырастили блоггера миллионника (3🍋)",
-    text: "",
-    buttonText: "nurekensky on TikTok",
-    link: "/test",
-  },
-  {
-    image: ThreeThousandIcon,
-    title: "3000 рекламных кампаний",
-    text: "Каждый день запускаем более четырех таргетов",
-    buttonText: "Смотреть кейсы",
-    link: "/test",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 export const WhyChooseUs = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -55,6 +18,45 @@ export const WhyChooseUs = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const { t } = useTranslation();
+
+  const cards = [
+    {
+      image: FourYearsIcon,
+      title: t("whyChooseUs.fourYears.title"),
+      text: t("whyChooseUs.fourYears.text"),
+      buttonText: t("whyChooseUs.fourYears.buttonText"),
+      link: "/test",
+    },
+    {
+      image: EightSpeacialistsIcon,
+      title: t("whyChooseUs.eightSpecialists.title"),
+      text: t("whyChooseUs.eightSpecialists.text"),
+      buttonText: t("whyChooseUs.eightSpecialists.buttonText"),
+      link: "/test",
+    },
+    {
+      image: SocialIcon,
+      title: t("whyChooseUs.socialResponsibility.title"),
+      text: t("whyChooseUs.socialResponsibility.text"),
+      buttonText: t("whyChooseUs.socialResponsibility.buttonText"),
+      link: "/test",
+    },
+    {
+      image: CupIcon,
+      title: t("whyChooseUs.millionaireBlogger.title"),
+      text: t("whyChooseUs.millionaireBlogger.text"),
+      buttonText: t("whyChooseUs.millionaireBlogger.buttonText"),
+      link: "/test",
+    },
+    {
+      image: ThreeThousandIcon,
+      title: t("whyChooseUs.adCampaigns.title"),
+      text: t("whyChooseUs.adCampaigns.text"),
+      buttonText: t("whyChooseUs.adCampaigns.buttonText"),
+      link: "/test",
+    },
+  ];
 
   const cardsToShow = isMobile ? 1 : isTablet ? 2 : 3;
 
@@ -97,7 +99,7 @@ export const WhyChooseUs = () => {
           textAlign: "start",
         }}
       >
-        Почему выбирают нас?
+        {t("whyChooseUs.title")}
       </Typography>
 
       <Box

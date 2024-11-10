@@ -61,12 +61,32 @@
     }
   },
   "whyChooseUs": {
-    "fourYearsInSMM": "4 years in SMM — a significant time in a rapidly changing industry. We are not just experts in our field; we continuously adapt by implementing innovations to keep our clients ahead.",
-    "eightSpecialistsInOnePackage": "8 specialists in one package: project manager, content manager, targeting specialist, videographer, graphic designer, editor, stories maker, and copywriter",
-    "socialResponsibility": "Planted 50 trees and support a charitable foundation",
-    "grewABlogger": "Developed a blogger with a million followers (3M)",
-    "threeThousandAds": "3,000 advertising campaigns, we launch over four targets daily",
-    "showYourBusiness": "We will show everyone how awesome your business is!"
+    "title": "Why Choose Us?",
+    "fourYears": {
+      "title": "4 Years in SMM",
+      "text": "This is an impressive time in the rapidly changing industry. We are not just experts in our field, but we constantly adapt and innovate to ensure our clients stay ahead.",
+      "buttonText": "Watch showreel"
+    },
+    "eightSpecialists": {
+      "title": "8 Specialists in One Package",
+      "text": "Project manager, content manager, targeting specialist, videographer, graphic designer, editor, storymaker, and copywriter — 8 experts working on your project.",
+      "buttonText": "See cases"
+    },
+    "socialResponsibility": {
+      "title": "Social Responsibility",
+      "text": "We have planted 50 trees and support a charity foundation. We believe our work helps not only businesses but also society.",
+      "buttonText": "Video reports here"
+    },
+    "millionaireBlogger": {
+      "title": "Grew a Million-Follower Blogger",
+      "text": "We helped create a blog with one million followers (3🍋). Thanks to our strategies and creative approach, the blogger became an opinion leader.",
+      "buttonText": "nurekensky on TikTok"
+    },
+    "adCampaigns": {
+      "title": "3000 Advertising Campaigns",
+      "text": "Every day we launch more than four targeted advertising campaigns, ensuring maximum effectiveness for your business.",
+      "buttonText": "See cases"
+    }
   },
   "application": {
     "leaveAnApplication": "Submit an Inquiry",
