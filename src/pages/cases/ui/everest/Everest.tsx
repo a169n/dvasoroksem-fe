@@ -26,7 +26,7 @@ import { Stories } from "@shared/ui/stories";
 export const Everest = () => {
   return (
     <>
-      <Header mode="dark" />
+      <Header mode="dark" refs={undefined} />
       <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={EverestMainImage}

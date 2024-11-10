@@ -10,7 +10,7 @@ import logoSmallWhite from "@assets/icons/logo_small_white.svg";
 import { MySelect } from "@shared/ui/select";
 import { MyButton } from "@shared/ui/button";
 import { useNavigate } from "react-router-dom";
-
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 const navItems = [
   { href: "#cases", text: "Наши кейсы" },
   { href: "#about", text: "О нас" },
@@ -78,11 +78,24 @@ export const Header = ({ mode = "default", refs }) => {
     <Box
       sx={{
         display: "flex",
+        flexDirection: isMobile ? "column" : "row",
         gap: 3,
         flexGrow: 1,
         justifyContent: "space-around",
       }}
     >
+      <Typography
+        sx={{
+          display: isMobile ? "flex" : "none",
+          color: "#fff",
+          gap: "10px",
+          cursor: "pointer",
+          fontSize: "24px",
+        }}
+      >
+        <ArrowForwardIcon />
+        Главная
+      </Typography>
       {navItems.map(({ href, text }) => (
         <Typography
           key={href}
@@ -90,9 +103,16 @@ export const Header = ({ mode = "default", refs }) => {
           href={href}
           onClick={() => handleNavClick(refs[href.substring(1)], href)}
           sx={{
-            alignSelf: "center",
+            alignSelf: isMobile ? "start" : "center",
             cursor: "pointer",
-            color: isLightMode ? "#fff" : isDarkMode ? "#191919" : "#191919",
+            color: isLightMode
+              ? "#fff"
+              : isDarkMode
+                ? "#191919"
+                : isMobile
+                  ? "#fff"
+                  : "#000",
+            fontSize: isMobile ? "24px" : "20px",
           }}
         >
           {text}
@@ -194,14 +214,15 @@ export const Header = ({ mode = "default", refs }) => {
           sx: {
             width: "100%",
             height: "100%",
-            backgroundColor: isDarkMode ? "black" : "white",
-            color: isDarkMode ? "white" : "black",
+            backgroundColor: "black",
+            color: "white",
             padding: 2,
           },
         }}
       >
         <Box
           sx={{
+            width: "95%",
             display: "flex",
             flexDirection: "column",
             alignItems: "flex-start",
@@ -240,6 +261,36 @@ export const Header = ({ mode = "default", refs }) => {
             </IconButton>
           </Box>
           <NavigationItems />
+          <MyButton
+            sx={{
+              padding: isMobile ? "0px 0px" : "10px 28px",
+              fontSize: isMobile ? "24px" : "",
+              textTransform: isMobile ? "none" : "",
+              marginLeft: isMobile ? "" : 2,
+              textAlign: isMobile ? "start" : "",
+              color: isDarkMode
+                ? "#191919"
+                : isLightMode || isMobile
+                  ? "#fff"
+                  : "#000",
+              backgroundColor:
+                isDarkMode || isLightMode || isMobile ? "transparent" : "white",
+              borderColor: isDarkMode
+                ? "black"
+                : isLightMode
+                  ? "white"
+                  : isMobile
+                    ? "transparent"
+                    : "black",
+              "&:hover": {
+                backgroundColor: isMobile ? "white" : "",
+                color: isMobile ? "black" : "",
+              },
+            }}
+            onClick={() => navigate("/request")}
+          >
+            Я хочу оставить заявку
+          </MyButton>
         </Box>
       </Drawer>
     </Box>
