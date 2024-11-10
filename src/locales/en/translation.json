@@ -1,4 +1,104 @@
 {
-  "test": "test EN",
-  "weAreDvaSorokSem": "We are DVASOROSSEM"
+  "metadata": {
+    "language": "en",
+    "version": "1.0.0"
+  },
+  "navigation": {
+    "weAreDvaSorokSem": "We are dvasoroksem.",
+    "ourCases": "Our Cases",
+    "aboutUs": "About Us",
+    "contacts": "Contact Us",
+    "reviews": "Reviews"
+  },
+  "hero": {
+    "leadingMarketingAgency": "We are dvasoroksem.",
+    "agencyDescription": "A leading marketing agency in Astana offering comprehensive marketing solutions for businesses. We specialize in strategic planning, digital marketing, SEO, SMM, and branding.",
+    "teamHelpBusinessGrow": "Our team of experts will help your business grow and reach new heights!"
+  },
+  "services": {
+    "title": "Our Services",
+    "smm": {
+      "socialMediaManagement": "Social Media Management",
+      "facebookAds": "Targeted Advertising on Facebook",
+      "instagramAds": "Targeted Advertising on Instagram",
+      "tiktokAds": "Targeted Advertising on TikTok",
+      "contentDigitization": "Content Digitalization"
+    },
+    "marketing": {
+      "salesFunnelsAndCrm": "Implementation of Sales Funnels and CRM Systems",
+      "contextualAds": "Contextual Advertising on Google, Yandex",
+      "prCampaigns": "PR Campaigns",
+      "influenceCampaigns": "Influence Campaigns",
+      "googleYandex2gisMaps": "Google/Yandex/2GIS Map Management",
+      "offlineMarketing": "Offline Marketing",
+      "aiSalesperson": "AI Sales Assistant"
+    },
+    "researchAndStrategies": {
+      "marketingStrategies": "Marketing Strategies",
+      "smmStrategies": "SMM Strategies",
+      "researchAndAudit": "Research and Auditing",
+      "specialProjects": "Special Projects"
+    },
+    "it": {
+      "websiteDevelopment": "Website Development",
+      "chatbots": "Chatbots",
+      "webServices": "Web Services",
+      "webApplications": "Web Applications",
+      "seoOptimization": "SEO Optimization"
+    },
+    "production": {
+      "shootingProduction": "Shoot Production",
+      "commercials": "Commercials, TVC, TLC",
+      "imageCommercials": "Image Videos",
+      "photoProduction": "Photo Production"
+    }
+  },
+  "whyChooseUs": {
+    "fourYearsInSMM": "4 years in SMM — a significant time in a rapidly changing industry. We are not just experts in our field; we continuously adapt by implementing innovations to keep our clients ahead.",
+    "eightSpecialistsInOnePackage": "8 specialists in one package: project manager, content manager, targeting specialist, videographer, graphic designer, editor, stories maker, and copywriter",
+    "socialResponsibility": "Planted 50 trees and support a charitable foundation",
+    "grewABlogger": "Developed a blogger with a million followers (3M)",
+    "threeThousandAds": "3,000 advertising campaigns, we launch over four targets daily",
+    "showYourBusiness": "We will show everyone how awesome your business is!"
+  },
+  "application": {
+    "leaveAnApplication": "Submit an Inquiry",
+    "ceoDvaSorokSem": "CEO dvasoroksem.",
+    "contactUs": "Contact us",
+    "teamDescription": "We are more than just a team — we are a family! Our clients are not just partners — they are our friends! All our cases are a reason for pride!",
+    "loveOurWork": "We love our work, and maybe that's why we do it so well!"
+  },
+  "projects": {
+    "QCS": "QCS - The Country's Leader in In-flight Catering",
+    "Grandcar2022": "Grandcar, 2022 - Image Video",
+    "Grandcar2023": "Grandcar, 2023 - Detective-style Commercial",
+    "Everest": "Everest - Higher with Us",
+    "HelpOthers": "Help Another - Don't Miss the Chance to Do Good",
+    "Nomad": "Nomad - The Best Start of Your Journey",
+    "Soyle": "Soyle - Kazakh for Everyone",
+    "CoffeeBoom": "Coffee BOOM - The place to become friends"
+  },
+  "applicationForm": {
+    "address": "Kalybek Kuanyshbayev Street, 11B, Astana, Kazakhstan",
+    "name": "Name",
+    "phone": "Phone",
+    "direction": "Direction",
+    "budget": {
+      "upTo1Million": "Budget: up to 1 million ₸",
+      "from1Million": "from 1 million ₸",
+      "exclusive": "Exclusive"
+    }
+  },
+  "cases": {
+    "grandcar2022": "Grandcar 2022: A presentation video about a company that purchases cars at auctions in the USA and delivers them to customers anywhere in the world.",
+    "director": "Production Department Director",
+    "producer": "Producer - Galymzhan Aktaev",
+    "directorGrandcar2023": "Grandcar 2023: Detective-style commercial to attract customer attention.",
+    "soyle": "We created a series of videos for the Kazakh language online school SOYLE.",
+    "coffeeBoomTiktok": "Launched TikTok for Coffee BOOM with 50,000 followers.",
+    "nomadTiktok": "Launched TikTok for Nomad with 16,000 followers.",
+    "helpOthersCharity": "Help Another — supporting a charitable foundation and working with shelters.",
+    "everestInstagram": "Managing Instagram for Everest volleyball club, creating content for teens.",
+    "qcsInstagram": "Managing Instagram for QCS, improving brand and SEO optimization."
+  }
 }
