@@ -89,7 +89,8 @@
     }
   },
   "ourCases": {
-    "title": "Our Cases",
+    "title1": "Our Cases",
+    "title2": "Other Cases",
     "buttonText": "See all",
     "coffeeBoom": {
       "title": "Coffee BOOM",

@@ -89,7 +89,8 @@
     }
   },
   "ourCases": {
-    "title": "Біздің кейстеріміз",
+    "title1": "Біздің кейстеріміз",
+    "title2": "Өзге кейстер",
     "buttonText": "Барлығын көру",
     "coffeeBoom": {
       "title": "Coffee BOOM",
