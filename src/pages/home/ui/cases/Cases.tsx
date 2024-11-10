@@ -94,7 +94,7 @@ export const Cases = ({ mode = "default" }) => {
             ":hover": {
               backgroundColor: isCasePage ? "#fff" : "#161616",
               color: isCasePage ? "#000" : "#fff",
-            }
+            },
           }}
         >
           Смотреть все
@@ -178,7 +178,6 @@ export const Cases = ({ mode = "default" }) => {
           </Box>
         ))}
       </Box>
-      
     </Box>
   );
 };
