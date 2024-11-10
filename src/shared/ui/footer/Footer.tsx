@@ -2,8 +2,10 @@ import { Box, Typography } from "@mui/material";
 import footer2 from "@assets/footer2.svg";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { ContactLinks } from "./ui";
+import { useTranslation } from "react-i18next";
 
 export const Footer = () => {
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -40,7 +42,7 @@ export const Footer = () => {
               textAlign: "start",
             }}
           >
-            КОНТАКТЫ
+            {t("footer.contacts")}
           </Typography>
           <Typography
             sx={{
@@ -50,7 +52,7 @@ export const Footer = () => {
               fontSize: { xs: "16px", sm: "18px", md: "inherit" },
             }}
           >
-            CEO двасороксемь.
+            {t("footer.ceoDvasoroksem")}
           </Typography>
         </Box>
 
@@ -86,7 +88,7 @@ export const Footer = () => {
               justifyContent: { xs: "flex-start", md: "flex-end" },
             }}
           >
-            CEO name
+            {t("footer.ceoName")}
             <ArrowForwardIosIcon
               sx={{
                 width: { xs: "15px", md: "5%" },
@@ -145,7 +147,7 @@ export const Footer = () => {
                 mr: { xs: 1, md: 0 },
               }}
             />
-            свяжитесь с нами
+            {t("footer.contactsUs")}
           </Box>
         </Typography>
       </Box>

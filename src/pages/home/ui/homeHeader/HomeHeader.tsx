@@ -70,17 +70,13 @@ export const HomeHeader = () => {
               fontWeight={500}
               mb={2}
             >
-              {t("weAreDvaSorokSem")}
+              {t("hero.leadingMarketingAgency")}
             </Typography>
             <Typography sx={{ color: "#fff" }} textAlign="left" mb={2}>
-              Ведущее маркетинговое агентство в Астане, предлагающее комплексные
-              маркетинговые решения для бизнеса. Специализируемся на
-              стратегическом планировании, digital маркетинге, SEO, SMM и
-              брендинге.
+              {t("hero.agencyDescription")}
             </Typography>
             <Typography sx={{ color: "#fff" }} textAlign="left" mb={2}>
-              Наша команда экспертов поможет вашему бизнесу расти и достигать
-              новых высот!
+              {t("hero.teamHelpBusinessGrow")}
             </Typography>
           </Box>
 
