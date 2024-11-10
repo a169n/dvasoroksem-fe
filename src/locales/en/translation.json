@@ -88,6 +88,26 @@
       "buttonText": "See cases"
     }
   },
+  "ourCases": {
+    "title": "Our Cases",
+    "buttonText": "See all",
+    "coffeeBoom": {
+      "title": "Coffee BOOM",
+      "description": "A place where friendships are made"
+    },
+    "soyle": {
+      "title": "Soyle",
+      "description": "Kazakh for everyone"
+    },
+    "helpOthers": {
+      "title": "Help Others",
+      "description": "Don't miss the chance to do good"
+    },
+    "qcs": {
+      "title": "QCS",
+      "description": "A leader in the country in the field of onboard catering and catering services"
+    }
+  },
   "application": {
     "leaveAnApplication": "Submit an Inquiry",
     "ceoDvaSorokSem": "CEO dvasoroksem.",
