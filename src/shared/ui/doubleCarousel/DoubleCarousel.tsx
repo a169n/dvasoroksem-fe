@@ -8,34 +8,30 @@ interface DoubleCarouselProps {
   imagesLine2: string[];
 }
 
+const VISIBLE_IMAGES = 5;
+
 const DoubleCarousel = ({ imagesLine1, imagesLine2 }: DoubleCarouselProps) => {
-  const [line1Index, setLine1Index] = useState(0);
-  const [line2Index, setLine2Index] = useState(0);
+  const [index, setIndex] = useState(0);
 
   const handleNext = useCallback(() => {
-    setLine1Index((prevIndex) =>
-      prevIndex === imagesLine1.length - 1 ? 0 : prevIndex + 1
-    );
-    setLine2Index((prevIndex) =>
-      prevIndex === imagesLine2.length - 1 ? 0 : prevIndex + 1
-    );
-  }, [imagesLine1, imagesLine2]);
+    setIndex((prevIndex) => (prevIndex + 1) % imagesLine1.length);
+  }, [imagesLine1.length]);
 
   const handlePrev = () => {
-    setLine1Index((prevIndex) =>
-      prevIndex === 0 ? imagesLine1.length - 1 : prevIndex - 1
-    );
-    setLine2Index((prevIndex) =>
-      prevIndex === 0 ? imagesLine2.length - 1 : prevIndex - 1
+    setIndex(
+      (prevIndex) => (prevIndex - 1 + imagesLine1.length) % imagesLine1.length
     );
   };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      handleNext();
-    }, 7000);
+    const interval = setInterval(handleNext, 7000);
     return () => clearInterval(interval);
   }, [handleNext]);
+
+  const getVisibleImages = (images: string[], currentIndex: number) => {
+    const extendedImages = [...images, ...images];
+    return extendedImages.slice(currentIndex, currentIndex + VISIBLE_IMAGES);
+  };
 
   return (
     <Box
@@ -55,23 +51,21 @@ const DoubleCarousel = ({ imagesLine1, imagesLine2 }: DoubleCarouselProps) => {
           position: "relative",
           width: "100%",
           justifyContent: "center",
-          gap: "5px",
         }}
       >
         <Box
           sx={{
             display: "flex",
             transition: "transform 1s ease-in-out",
-            transform: `translateX(-${line1Index * (175 + 5)}px)`,
             width: "100%",
           }}
         >
-          {imagesLine1.map((image, index) => (
+          {getVisibleImages(imagesLine1, index).map((image, subIndex) => (
             <Box
-              key={index}
+              key={subIndex}
               sx={{
-                maxWidth: "301.58px",
-                maxHeight: "537.17px",
+                maxWidth: "500px",
+                maxHeight: "635px",
                 width: "100%",
                 height: "auto",
                 objectFit: "contain",
@@ -80,11 +74,12 @@ const DoubleCarousel = ({ imagesLine1, imagesLine2 }: DoubleCarouselProps) => {
             >
               <img
                 src={image}
-                alt={`Line 1 Image ${index}`}
+                alt={`Line 1 Image ${subIndex}`}
                 style={{
                   width: "100%",
                   height: "auto",
                   objectFit: "contain",
+                  transition: "transform 1s ease-in-out",
                 }}
               />
             </Box>
@@ -99,7 +94,6 @@ const DoubleCarousel = ({ imagesLine1, imagesLine2 }: DoubleCarouselProps) => {
           position: "relative",
           width: "100%",
           justifyContent: "center",
-          gap: "5px",
           marginTop: "20px",
         }}
       >
@@ -107,16 +101,15 @@ const DoubleCarousel = ({ imagesLine1, imagesLine2 }: DoubleCarouselProps) => {
           sx={{
             display: "flex",
             transition: "transform 1s ease-in-out",
-            transform: `translateX(${line2Index * (150 + 5)}px)`,
             width: "100%",
           }}
         >
-          {imagesLine2.map((image, index) => (
+          {getVisibleImages(imagesLine2, index).map((image, subIndex) => (
             <Box
-              key={index}
+              key={subIndex}
               sx={{
-                maxWidth: "301.58px",
-                maxHeight: "376.98px",
+                maxWidth: "500px",
+                maxHeight: "445px",
                 width: "100%",
                 height: "auto",
                 objectFit: "contain",
@@ -125,11 +118,12 @@ const DoubleCarousel = ({ imagesLine1, imagesLine2 }: DoubleCarouselProps) => {
             >
               <img
                 src={image}
-                alt={`Line 2 Image ${index}`}
+                alt={`Line 2 Image ${subIndex}`}
                 style={{
                   width: "100%",
                   height: "auto",
                   objectFit: "contain",
+                  transition: "transform 1s ease-in-out",
                 }}
               />
             </Box>

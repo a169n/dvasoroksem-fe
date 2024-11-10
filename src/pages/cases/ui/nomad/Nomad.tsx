@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { Header } from "@shared/ui/header";
 import NomadMainPage from "@assets/casePages/nomad.svg";
 import { Description } from "@shared/ui/description";
+import { Cases } from "@pages/home/ui/cases";
 export const Nomad = () => {
   return (
     <>
@@ -18,6 +19,7 @@ export const Nomad = () => {
 твоего пути"
         description="Запустили TikTok для компании Nomad, лидера на рынке автозаправочных станций в Казахстане, с нуля набрав 16 тысяч подписчиков. Мы нашли подход к этой специфической сфере, создавая вирусный контент для водителей, который активно обсуждался."
       />
+      <Cases mode="case-page" />
     </>
   );
 };

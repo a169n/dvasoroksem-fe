@@ -64,6 +64,7 @@ export const Footer = () => {
           gap: { xs: 3, md: 2 },
           maxWidth: { xs: "100%", md: "60%" },
           mt: { xs: 2, md: 0 },
+          justifyContent: "flex-end"
         }}
       >
         <Typography
@@ -102,6 +103,7 @@ export const Footer = () => {
             flexDirection: { xs: "column", md: "row" },
             gap: 2,
             order: { xs: 1, md: 2 },
+            justifyContent: { xs: "flex-start", md: "" },
           }}
         >
           <Box

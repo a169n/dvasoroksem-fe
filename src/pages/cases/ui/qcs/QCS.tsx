@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { Header } from "@shared/ui/header";
 import QCSMainImage from "@assets/casePages/qcs.svg";
 import { Description } from "@shared/ui/description";
+import { Cases } from "@pages/home/ui/cases";
 export const QCS = () => {
   return (
     <>
@@ -21,6 +22,7 @@ export const QCS = () => {
 2 миллионов пассажиров. Мы занялись SEO-оптимизацией и узнаваемостью бренда, ведём Instagram QCS, где благодаря нашему контенту
 люди хотят работать в компании."
       />
+      <Cases mode="case-page" />
     </>
   );
 };
