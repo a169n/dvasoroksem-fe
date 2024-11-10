@@ -36,11 +36,10 @@ export const Home = () => {
 
         <Apply />
 
+        <Videos />
         <div ref={reviewsRef}>
           <Certificates />
         </div>
-
-        <Videos />
       </div>
     </div>
   );
