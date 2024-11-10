@@ -27,7 +27,7 @@ import EverestData from "./ui/everestData";
 export const Everest = () => {
   return (
     <>
-      <Header mode="dark" refs={undefined} />
+      <Header mode="dark"  />
       <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={EverestMainImage}
