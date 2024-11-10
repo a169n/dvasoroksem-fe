@@ -88,6 +88,26 @@
       "buttonText": "Смотреть кейсы"
     }
   },
+  "ourCases": {
+    "title": "Наши кейсы",
+    "buttonText": "Смотреть все",
+    "coffeeBoom": {
+      "title": "Coffee BOOM",
+      "description": "Место, где становятся друзьями"
+    },
+    "soyle": {
+      "title": "Soyle",
+      "description": "Казахский для всех"
+    },
+    "helpOthers": {
+      "title": "Помоги Другому",
+      "description": "Не упускайте случая делать добро"
+    },
+    "qcs": {
+      "title": "QCS",
+      "description": "Лидер в стране в области бортового питания и кейтеринга"
+    }
+  },
   "application": {
     "leaveAnApplication": "Оставить заявку",
     "ceoDvaSorokSem": "CEO двасороксемь.",
