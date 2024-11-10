@@ -53,7 +53,6 @@ export const Stories = ({ stories }: StoriesProps) => {
         ))}
       </Swiper>
 
-      {/* Navigation buttons */}
       <Box
         sx={{
           display: "flex",
