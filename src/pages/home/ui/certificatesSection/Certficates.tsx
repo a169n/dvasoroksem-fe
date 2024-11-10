@@ -9,7 +9,6 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-
 import CloseIcon from "@mui/icons-material/Close";
 import certificate1 from "@assets/certificate1.svg";
 import certificate2 from "@assets/certificate2.svg";

@@ -14,7 +14,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import i18n from "@src/i18n";
 import { useTranslation } from "react-i18next";
 
-export const Header = ({ mode = "default", refs }) => {
+export const Header = ({ mode = "default" }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
@@ -50,19 +50,7 @@ export const Header = ({ mode = "default", refs }) => {
     setLastScrollY(window.scrollY);
   };
 
-  const handleNavClick = (sectionRef, href) => {
-    const hash = href;
-
-    navigate(`/${hash}`);
-
-    if (sectionRef?.current) {
-      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else if (hash === "#contacts") {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    }
-
-    setMenuOpen(false);
-  };
+  
 
   useEffect(() => {
     if (mode !== "default") {
@@ -103,7 +91,6 @@ export const Header = ({ mode = "default", refs }) => {
           key={href}
           component="a"
           href={href}
-          onClick={() => handleNavClick(refs[href.substring(1)], href)}
           sx={{
             alignSelf: isMobile ? "start" : "center",
             cursor: "pointer",
