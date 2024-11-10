@@ -28,7 +28,7 @@ export const Footer = () => {
           width: { xs: "100%", md: "auto" },
         }}
       >
-        <Box mb={{ xs: 4, md: 30 }}>
+        <Box mb={{ xs: 4 }}>
           <Typography
             variant="h2"
             component="h1"
@@ -64,7 +64,7 @@ export const Footer = () => {
           gap: { xs: 3, md: 2 },
           maxWidth: { xs: "100%", md: "60%" },
           mt: { xs: 2, md: 0 },
-          justifyContent: "flex-end"
+          justifyContent: "flex-end",
         }}
       >
         <Typography
