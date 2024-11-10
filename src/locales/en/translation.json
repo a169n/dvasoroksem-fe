@@ -20,6 +20,7 @@
   "services": {
     "title": "Our Services",
     "smm": {
+      "title": "SMM",
       "socialMediaManagement": "Social Media Management",
       "facebookAds": "Targeted Advertising on Facebook",
       "instagramAds": "Targeted Advertising on Instagram",
@@ -27,6 +28,7 @@
       "contentDigitization": "Content Digitalization"
     },
     "marketing": {
+      "title": "Marketing",
       "salesFunnelsAndCrm": "Implementation of Sales Funnels and CRM Systems",
       "contextualAds": "Contextual Advertising on Google, Yandex",
       "prCampaigns": "PR Campaigns",
@@ -36,12 +38,14 @@
       "aiSalesperson": "AI Sales Assistant"
     },
     "researchAndStrategies": {
+      "title": "Research and Strategies",
       "marketingStrategies": "Marketing Strategies",
       "smmStrategies": "SMM Strategies",
       "researchAndAudit": "Research and Auditing",
       "specialProjects": "Special Projects"
     },
     "it": {
+      "title": "IT",
       "websiteDevelopment": "Website Development",
       "chatbots": "Chatbots",
       "webServices": "Web Services",
@@ -49,6 +53,7 @@
       "seoOptimization": "SEO Optimization"
     },
     "production": {
+      "title": "Production",
       "shootingProduction": "Shoot Production",
       "commercials": "Commercials, TVC, TLC",
       "imageCommercials": "Image Videos",
