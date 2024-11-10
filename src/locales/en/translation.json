@@ -124,45 +124,5 @@
     "ceoDvasoroksem": "CEO Dvasoroksem.",
     "ceoName": "CEO Name",
     "contactsUs": "Contact Us"
-  },
-  "application": {
-    "leaveAnApplication": "Submit an Inquiry",
-    "ceoDvaSorokSem": "CEO dvasoroksem.",
-    "contactUs": "Contact us",
-    "teamDescription": "We are more than just a team — we are a family! Our clients are not just partners — they are our friends! All our cases are a reason for pride!",
-    "loveOurWork": "We love our work, and maybe that's why we do it so well!"
-  },
-  "projects": {
-    "QCS": "QCS - The Country's Leader in In-flight Catering",
-    "Grandcar2022": "Grandcar, 2022 - Image Video",
-    "Grandcar2023": "Grandcar, 2023 - Detective-style Commercial",
-    "Everest": "Everest - Higher with Us",
-    "HelpOthers": "Help Another - Don't Miss the Chance to Do Good",
-    "Nomad": "Nomad - The Best Start of Your Journey",
-    "Soyle": "Soyle - Kazakh for Everyone",
-    "CoffeeBoom": "Coffee BOOM - The place to become friends"
-  },
-  "applicationForm": {
-    "address": "Kalybek Kuanyshbayev Street, 11B, Astana, Kazakhstan",
-    "name": "Name",
-    "phone": "Phone",
-    "direction": "Direction",
-    "budget": {
-      "upTo1Million": "Budget: up to 1 million ₸",
-      "from1Million": "from 1 million ₸",
-      "exclusive": "Exclusive"
-    }
-  },
-  "cases": {
-    "grandcar2022": "Grandcar 2022: A presentation video about a company that purchases cars at auctions in the USA and delivers them to customers anywhere in the world.",
-    "director": "Production Department Director",
-    "producer": "Producer - Galymzhan Aktaev",
-    "directorGrandcar2023": "Grandcar 2023: Detective-style commercial to attract customer attention.",
-    "soyle": "We created a series of videos for the Kazakh language online school SOYLE.",
-    "coffeeBoomTiktok": "Launched TikTok for Coffee BOOM with 50,000 followers.",
-    "nomadTiktok": "Launched TikTok for Nomad with 16,000 followers.",
-    "helpOthersCharity": "Help Another — supporting a charitable foundation and working with shelters.",
-    "everestInstagram": "Managing Instagram for Everest volleyball club, creating content for teens.",
-    "qcsInstagram": "Managing Instagram for QCS, improving brand and SEO optimization."
   }
 }
