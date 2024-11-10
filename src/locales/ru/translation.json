@@ -20,6 +20,7 @@
   "services": {
     "title": "Наши услуги",
     "smm": {
+      "title": "СММ",
       "socialMediaManagement": "Ведение социальных сетей",
       "facebookAds": "Таргетированная реклама в Facebook",
       "instagramAds": "Таргетированная реклама в Instagram",
@@ -27,6 +28,7 @@
       "contentDigitization": "Цифровизация контента"
     },
     "marketing": {
+      "title": "Маркетинг",
       "salesFunnelsAndCrm": "Внедрение воронок продаж и CRM систем",
       "contextualAds": "Контекстная реклама в Google, Yandex",
       "prCampaigns": "PR-кампании",
@@ -36,12 +38,14 @@
       "aiSalesperson": "AI продажник"
     },
     "researchAndStrategies": {
+      "title": "Исследования и стратегии",
       "marketingStrategies": "Маркетинговые стратегии",
       "smmStrategies": "SMM-стратегии",
       "researchAndAudit": "Исследования и аудит",
       "specialProjects": "Спецпроекты"
     },
     "it": {
+      "title": "IT",
       "websiteDevelopment": "Разработка сайтов",
       "chatbots": "Чат-боты",
       "webServices": "Веб-сервисы",
@@ -49,6 +53,7 @@
       "seoOptimization": "СЕО-оптимизация"
     },
     "production": {
+      "title": "Продакшн",
       "shootingProduction": "Продюсирование съемок",
       "commercials": "Рекламные ролики, TVC, TLC",
       "imageCommercials": "Имиджевые ролики",
