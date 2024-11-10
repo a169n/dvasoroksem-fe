@@ -3,6 +3,7 @@ import { Header } from "@shared/ui/header";
 import CoffeeBoomMainImage from "@assets/casePages/coffee-boom.svg";
 import { Description } from "@shared/ui/description";
 import { Cases } from "@pages/home/ui/cases";
+import CoffeeBoomData from "./ui/coffee-boomData";
 export const CoffeeBoom = () => {
   return (
     <>
@@ -19,6 +20,7 @@ export const CoffeeBoom = () => {
 становятся друзьями"
         description="Мы запустили TikTok для сети кофеен Coffee BOOM. Благодаря продуманной и актуальной контент-стратегии с нуля набрали 50 тысяч подписчиков."
       />
+      <CoffeeBoomData />
       <Cases mode="case-page" />
     </>
   );
