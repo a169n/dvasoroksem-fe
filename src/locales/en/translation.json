@@ -108,6 +108,11 @@
       "description": "A leader in the country in the field of onboard catering and catering services"
     }
   },
+  "apply": {
+    "text1": "⎻ we'll show everyone",
+    "text2": "that your business is awesome",
+    "buttonText": "I want to apply"
+  },
   "application": {
     "leaveAnApplication": "Submit an Inquiry",
     "ceoDvaSorokSem": "CEO dvasoroksem.",
