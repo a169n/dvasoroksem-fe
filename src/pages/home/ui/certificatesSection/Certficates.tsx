@@ -9,8 +9,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+
 import CloseIcon from "@mui/icons-material/Close";
 import certificate1 from "@assets/certificate1.svg";
 import certificate2 from "@assets/certificate2.svg";
