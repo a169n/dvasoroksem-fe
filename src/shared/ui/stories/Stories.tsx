@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, EffectCube } from "swiper/modules";
 import { useMediaQuery } from "@mui/material";
@@ -20,6 +20,16 @@ export const Stories = ({ stories }: StoriesProps) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
+  const swiperRef = useRef<any>(null); 
+
+  useEffect(() => {
+    if (swiperRef.current && prevRef.current && nextRef.current) {
+      swiperRef.current.params.navigation.prevEl = prevRef.current;
+      swiperRef.current.params.navigation.nextEl = nextRef.current;
+      swiperRef.current.navigation.init(); 
+      swiperRef.current.navigation.update(); 
+    }
+  }, []);
 
   return (
     <Box
@@ -30,6 +40,7 @@ export const Stories = ({ stories }: StoriesProps) => {
       }}
     >
       <Swiper
+        ref={swiperRef}
         modules={[Navigation, Pagination, EffectCube]}
         navigation={{
           prevEl: prevRef.current,
@@ -41,12 +52,7 @@ export const Stories = ({ stories }: StoriesProps) => {
         centeredSlides
         style={{ height: "900px", width: isMobile ? "100%" : "500px" }}
         onBeforeInit={(swiper) => {
-          if (typeof swiper.params.navigation !== "boolean") {
-            if (swiper.params.navigation) {
-              swiper.params.navigation.prevEl = prevRef.current;
-              swiper.params.navigation.nextEl = nextRef.current;
-            }
-          }
+          swiperRef.current = swiper; // Set the swiper reference
         }}
       >
         {stories.map((story, index) => (
