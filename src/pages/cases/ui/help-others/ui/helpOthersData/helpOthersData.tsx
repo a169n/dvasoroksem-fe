@@ -1,5 +1,4 @@
-import { Help } from "@mui/icons-material";
-import { Box, Typography, useMediaQuery } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import HelpOthersDataImage1 from "@assets/casePages/help-others/helpotherDataImage1.png";
 import HelpOthersDataImage2 from "@assets/casePages/help-others/helpotherDataImage2.png";

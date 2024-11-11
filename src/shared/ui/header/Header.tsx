@@ -63,6 +63,7 @@ export const Header = ({ mode = "default" }) => {
       return;
     }
   }, [lastScrollY]);
+  
 
   const NavigationItems = () => (
     <Box

@@ -1,5 +1,5 @@
 
-import React, { useRef } from "react";
+import { useRef } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Box, IconButton, Stack } from "@mui/material";
