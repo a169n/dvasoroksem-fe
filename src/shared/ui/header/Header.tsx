@@ -9,15 +9,12 @@ import logoSmall from "@assets/icons/logo_small.svg";
 import logoSmallWhite from "@assets/icons/logo_small_white.svg";
 import { MySelect } from "@shared/ui/select";
 import { MyButton } from "@shared/ui/button";
-import { useNavigate } from "react-router-dom";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
-import i18n from "@src/i18n";
 import { useTranslation } from "react-i18next";
+import i18n from "@src/i18n";
 
-export const Header = ({ mode = "default" }) => {
+export const Header = ({ mode = "default", refs }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState("ru");
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
@@ -50,8 +47,6 @@ export const Header = ({ mode = "default" }) => {
     setLastScrollY(window.scrollY);
   };
 
-  
-
   useEffect(() => {
     if (mode !== "default") {
       window.addEventListener("scroll", handleScroll);
@@ -63,7 +58,41 @@ export const Header = ({ mode = "default" }) => {
       return;
     }
   }, [lastScrollY]);
-  
+
+  useEffect(() => {
+    if (mode === "default") {
+      const handleHashChange = () => {
+        const targetId = window.location.hash;
+        if (targetId && targetId !== "#") {
+          const targetRef =
+            mode === "default" ? refs[targetId.substring(1)] : "";
+          if (targetRef && targetRef.current) {
+            window.scrollTo({
+              top: targetRef.current.offsetTop,
+              behavior: "smooth",
+            });
+          }
+        }
+      };
+
+      handleHashChange();
+
+      window.addEventListener("hashchange", handleHashChange);
+
+      return () => {
+        window.removeEventListener("hashchange", handleHashChange);
+      };
+    }
+  }, [refs, mode]);
+
+  const handleNavClick = (ref) => {
+    if (ref.current) {
+      window.scrollTo({
+        top: ref.current.offsetTop,
+        behavior: "smooth",
+      });
+    }
+  };
 
   const NavigationItems = () => (
     <Box
@@ -75,39 +104,31 @@ export const Header = ({ mode = "default" }) => {
         justifyContent: "space-around",
       }}
     >
-      <Typography
-        sx={{
-          display: isMobile ? "flex" : "none",
-          color: "#fff",
-          gap: "10px",
-          cursor: "pointer",
-          fontSize: "24px",
-        }}
-      >
-        <ArrowForwardIcon />
-        {t("navigation.main")}
-      </Typography>
-      {navItems.map(({ href, text }) => (
-        <Typography
-          key={href}
-          component="a"
-          href={href}
-          sx={{
-            alignSelf: isMobile ? "start" : "center",
-            cursor: "pointer",
-            color: isLightMode
-              ? "#fff"
-              : isDarkMode
-                ? "#191919"
-                : isMobile
-                  ? "#fff"
-                  : "#000",
-            fontSize: isMobile ? "24px" : "20px",
-          }}
-        >
-          {text}
-        </Typography>
-      ))}
+      {navItems.map(({ href, text }) => {
+        const targetRef = mode === "default" ? refs[href.substring(1)] : "";
+
+        return (
+          <Typography
+            key={href}
+            component="a"
+            sx={{
+              alignSelf: isMobile ? "start" : "center",
+              cursor: "pointer",
+              color: isLightMode
+                ? "#fff"
+                : isDarkMode
+                  ? "#191919"
+                  : isMobile
+                    ? "#fff"
+                    : "#000",
+              fontSize: isMobile ? "24px" : "20px",
+            }}
+            onClick={() => handleNavClick(targetRef)}
+          >
+            {text}
+          </Typography>
+        );
+      })}
       <MySelect
         value={language}
         onChange={(e) => {
@@ -148,7 +169,24 @@ export const Header = ({ mode = "default" }) => {
             justifyContent: "flex-start",
           }}
           onClick={() => {
-            navigate("/");
+            if (mode !== "default") {
+              window.location.href = "/";
+              setTimeout(() => {
+                const targetId = window.location.hash;
+                const targetRef = refs[targetId ? targetId.substring(1) : ""];
+                if (targetRef && targetRef.current) {
+                  window.scrollTo({
+                    top: targetRef.current.offsetTop,
+                    behavior: "smooth",
+                  });
+                }
+              }, 100);
+            } else {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            }
           }}
         >
           <img
@@ -162,6 +200,7 @@ export const Header = ({ mode = "default" }) => {
             }}
           />
         </Box>
+
         {isMobile ? (
           <IconButton
             edge="end"
@@ -193,7 +232,12 @@ export const Header = ({ mode = "default" }) => {
                     ? "white"
                     : "black",
               }}
-              onClick={() => navigate("/request")}
+              onClick={() =>
+                window.scrollTo({
+                  top: document.body.scrollHeight,
+                  behavior: "smooth",
+                })
+              }
             >
               {t("navigation.request")}
             </MyButton>
@@ -238,7 +282,10 @@ export const Header = ({ mode = "default" }) => {
               alt="Logo"
               draggable="false"
               onClick={() => {
-                window.location.href = "/";
+                window.scrollTo({
+                  top: 0,
+                  behavior: "smooth",
+                });
               }}
               style={{
                 pointerEvents: "none",
@@ -268,20 +315,19 @@ export const Header = ({ mode = "default" }) => {
                   ? "#fff"
                   : "#000",
               backgroundColor:
-                isDarkMode || isLightMode || isMobile ? "transparent" : "white",
+                isDarkMode || isLightMode ? "transparent" : "white",
               borderColor: isDarkMode
                 ? "black"
                 : isLightMode
                   ? "white"
-                  : isMobile
-                    ? "transparent"
-                    : "black",
-              "&:hover": {
-                backgroundColor: isMobile ? "white" : "",
-                color: isMobile ? "black" : "",
-              },
+                  : "black",
             }}
-            onClick={() => navigate("/request")}
+            onClick={() =>
+              window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: "smooth",
+              })
+            }
           >
             {t("navigation.request")}
           </MyButton>

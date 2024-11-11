@@ -99,7 +99,7 @@ const VideoCard = ({ url, title, preview }) => {
           position: "absolute",
           top: 0,
           left: 0,
-          opacity: isPlaying ? 1 : 0,
+          opacity: isPlaying ? 1 : undefined,
           transition: "opacity 0.3s ease",
         }}
       />
