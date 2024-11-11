@@ -1,160 +1,102 @@
-import { useState, useEffect, useCallback } from "react";
-import { Box, IconButton } from "@mui/material";
+
+import React, { useRef } from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { Box, IconButton, Stack } from "@mui/material";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
-interface DoubleCarouselProps {
-  imagesLine1: string[];
-  imagesLine2: string[];
-}
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 5,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 3,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
 
-const VISIBLE_IMAGES = 5;
+const DoubleCarousel = ({ imagesLine1, imagesLine2 }) => {
+  const firstCarouselRef = useRef<Carousel>(null);
+  const secondCarouselRef = useRef<Carousel>(null);
 
-const DoubleCarousel = ({ imagesLine1, imagesLine2 }: DoubleCarouselProps) => {
-  const [index, setIndex] = useState(0);
-
-  const handleNext = useCallback(() => {
-    setIndex((prevIndex) => (prevIndex + 1) % imagesLine1.length);
-  }, [imagesLine1.length]);
-
-  const handlePrev = () => {
-    setIndex(
-      (prevIndex) => (prevIndex - 1 + imagesLine1.length) % imagesLine1.length
-    );
+  const handleLeftClick = () => {
+    if (firstCarouselRef.current) firstCarouselRef.current.previous(1);
+    if (secondCarouselRef.current) secondCarouselRef.current.next(1);
   };
 
-  useEffect(() => {
-    const interval = setInterval(handleNext, 7000);
-    return () => clearInterval(interval);
-  }, [handleNext]);
-
-  const getVisibleImages = (images: string[], currentIndex: number) => {
-    const extendedImages = [...images, ...images];
-    return extendedImages.slice(currentIndex, currentIndex + VISIBLE_IMAGES);
+  const handleRightClick = () => {
+    if (firstCarouselRef.current) firstCarouselRef.current.next(1);
+    if (secondCarouselRef.current) secondCarouselRef.current.previous(1);
   };
+
+  const renderCarousel = (images, ref) => (
+    <Carousel
+      responsive={responsive}
+      infinite
+      ref={ref}
+      autoPlay
+      autoPlaySpeed={3000}
+      keyBoardControl
+      containerClass="carousel-container"
+      itemClass="carousel-item-padding-40-px"
+      draggable={false}
+      centerMode
+      renderDotsOutside={false}
+      showDots={false}
+      arrows={false}
+    >
+      {images.map((src, index) => (
+        <Box key={index} sx={{ padding: "0 5px" }}>
+          <img
+            src={src}
+            alt={`Image ${index}`}
+            style={{
+              width: "100%",
+              height: "auto",
+              objectFit: "cover",
+              borderRadius: "10px",
+            }}
+          />
+        </Box>
+      ))}
+    </Carousel>
+  );
 
   return (
-    <Box
-      sx={{
-        backgroundColor: "#161616",
-        padding: 2,
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: 2,
-      }}
-    >
-      <Box
-        sx={{
-          display: "flex",
-          overflow: "hidden",
-          position: "relative",
-          width: "100%",
-          justifyContent: "center",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            transition: "transform 1s ease-in-out",
-            width: "100%",
-          }}
-        >
-          {getVisibleImages(imagesLine1, index).map((image, subIndex) => (
-            <Box
-              key={subIndex}
-              sx={{
-                maxWidth: "500px",
-                maxHeight: "635px",
-                width: "100%",
-                height: "auto",
-                objectFit: "contain",
-                mx: "5px",
-              }}
-            >
-              <img
-                src={image}
-                alt={`Line 1 Image ${subIndex}`}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  transition: "transform 1s ease-in-out",
-                }}
-              />
-            </Box>
-          ))}
-        </Box>
-      </Box>
-
-      <Box
-        sx={{
-          display: "flex",
-          overflow: "hidden",
-          position: "relative",
-          width: "100%",
-          justifyContent: "center",
-          marginTop: "20px",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            transition: "transform 1s ease-in-out",
-            width: "100%",
-          }}
-        >
-          {getVisibleImages(imagesLine2, index).map((image, subIndex) => (
-            <Box
-              key={subIndex}
-              sx={{
-                maxWidth: "500px",
-                maxHeight: "445px",
-                width: "100%",
-                height: "auto",
-                objectFit: "contain",
-                mx: "5px",
-              }}
-            >
-              <img
-                src={image}
-                alt={`Line 2 Image ${subIndex}`}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  objectFit: "contain",
-                  transition: "transform 1s ease-in-out",
-                }}
-              />
-            </Box>
-          ))}
-        </Box>
-      </Box>
-
-      <Box sx={{ display: "flex", gap: "10px", mt: 2 }}>
+    <Box sx={{ backgroundColor: "#161616", padding: 2, position: 'relative' }}>
+      {renderCarousel(imagesLine1, firstCarouselRef)}
+      {renderCarousel(imagesLine2, secondCarouselRef)}
+      
+      <Stack direction="row" justifyContent="center" spacing={2} sx={{ mt: 2 }}>
         <IconButton
-          onClick={handlePrev}
+          onClick={handleLeftClick}
           sx={{
             color: "#fff",
             border: "1px solid #fff",
-            borderRadius: "0px",
-            padding: "8px 12px",
+            padding: "8px",
+            borderRadius: '50%',
           }}
         >
-          <ArrowLeftIcon sx={{ color: "#fff" }} />
+          <ArrowLeftIcon />
         </IconButton>
         <IconButton
-          onClick={handleNext}
+          onClick={handleRightClick}
           sx={{
             color: "#fff",
             border: "1px solid #fff",
-            borderRadius: "0px",
-            padding: "8px 12px",
+            padding: "8px",
+            borderRadius: '50%',
           }}
         >
-          <ArrowRightIcon sx={{ color: "#fff" }} />
+          <ArrowRightIcon />
         </IconButton>
-      </Box>
+      </Stack>
     </Box>
   );
 };

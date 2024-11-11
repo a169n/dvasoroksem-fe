@@ -12,7 +12,8 @@ import case7 from "@assets/cases/case7.svg";
 import case8 from "@assets/cases/case8.svg";
 import case9 from "@assets/cases/case9.svg";
 import { Header } from "@shared/ui/header";
-
+import { Select, MenuItem } from "@mui/material";
+import { MySelect } from "@shared/ui/select";
 export const Cases = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
@@ -125,6 +126,8 @@ export const Cases = () => {
               textTransform: "uppercase",
               fontSize: isMobile ? "32px" : isTablet ? "36px" : "72px",
               mb: isMobile ? 2 : 0,
+              width: isMobile ? "100%" : "auto",
+              textAlign: "left",
             }}
           >
             Наши кейсы
@@ -137,25 +140,52 @@ export const Cases = () => {
               width: isMobile ? "100%" : "auto",
             }}
           >
-            {categories.map((category) => (
-              <MyButton
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                sx={{
-                  borderRadius: 0,
-                  textTransform: "none",
-                  fontSize: isMobile ? "14px" : isTablet ? "16px" : "20px",
-                  py: isMobile ? 0 : 0.3,
-                  px: isMobile ? 1 : isTablet ? 2 : 4,
-                  backgroundColor:
-                    selectedCategory === category ? "#000" : "#fff",
-                  color: selectedCategory === category ? "#fff" : "#000",
-                  flex: isMobile ? "1 1 calc(50% - 5px)" : "0 0 auto",
-                }}
-              >
-                {category}
-              </MyButton>
-            ))}
+            <Box
+              sx={{
+                display: "flex",
+                gap: isMobile ? "10px" : "20px",
+                flexWrap: isMobile ? "wrap" : "nowrap",
+                width: isMobile ? "100%" : "auto",
+              }}
+            >
+              {isMobile ? (
+                <MySelect
+                  value={selectedCategory}
+                  onChange={(event) => setSelectedCategory(event.target.value)}
+                  options={categories.map((category) => ({
+                    value: category,
+                    label: category,
+                  }))}
+                  mode="default"
+                  sx={{
+                    width: "100%",
+                    fontSize: "14px",
+                    height: "40px",
+                    backgroundColor: "#fff",
+                  }}
+                />
+              ) : (
+                categories.map((category) => (
+                  <MyButton
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    sx={{
+                      borderRadius: 0,
+                      textTransform: "none",
+                      fontSize: isTablet ? "16px" : "20px",
+                      py: 0.3,
+                      px: isTablet ? 2 : 4,
+                      backgroundColor:
+                        selectedCategory === category ? "#000" : "#fff",
+                      color: selectedCategory === category ? "#fff" : "#000",
+                      flex: "0 0 auto",
+                    }}
+                  >
+                    {category}
+                  </MyButton>
+                ))
+              )}
+            </Box>
           </Box>
         </Box>
 

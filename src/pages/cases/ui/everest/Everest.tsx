@@ -23,10 +23,11 @@ import everestStory1 from "@assets/casePages/everest/everestStory1.png";
 import everestStory2 from "@assets/casePages/everest/everestStory2.png";
 import everestStory3 from "@assets/casePages/everest/everestStory3.png";
 import { Stories } from "@shared/ui/stories";
+import EverestData from "./ui/everestData";
 export const Everest = () => {
   return (
     <>
-      <Header mode="dark" refs={undefined} />
+      <Header mode="dark"  />
       <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={EverestMainImage}
@@ -59,7 +60,7 @@ export const Everest = () => {
         ]}
       />
       <Stories stories={[everestStory1, everestStory2, everestStory3]} />
-
+      <EverestData />
       <Cases mode="case-page" />
     </>
   );
