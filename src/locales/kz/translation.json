@@ -92,6 +92,13 @@
     "title1": "Біздің кейстеріміз",
     "title2": "Өзге кейстер",
     "buttonText": "Барлығын көру",
+    "noCases": "Кейстар қалмады",
+    "categories": {
+      "all": "Барлық кейстер",
+      "smm": "SMM",
+      "production": "Продакшн",
+      "tiktok": "TikTok"
+    },
     "coffeeBoom": {
       "title": "Coffee BOOM",
       "description": "Достарға айналатын орын"
@@ -107,6 +114,26 @@
     "qcs": {
       "title": "QCS",
       "description": "Әуе тағамдары мен кейтеринг саласында елдегі көшбасшы"
+    },
+    "bauer": {
+      "title": "Bauer",
+      "description": "Everything for the game"
+    },
+    "grandcar2022": {
+      "title": "GrandCar 2022",
+      "description": "Имидждық бейне"
+    },
+    "grandcar2023": {
+      "title": "GrandCar 2023",
+      "description": "Детектив стиліндегі жарнамалық бейне"
+    },
+    "everest": {
+      "title": "Everest",
+      "description": "Бізбен биікке"
+    },
+    "nomad": {
+      "title": "Nomad",
+      "description": "Сіздің саяхатыңыздың ең жақсы бастамасы"
     }
   },
   "apply": {

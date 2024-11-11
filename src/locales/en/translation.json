@@ -92,6 +92,13 @@
     "title1": "Our Cases",
     "title2": "Other Cases",
     "buttonText": "See all",
+    "noCases": "No cases found",
+    "categories": {
+      "all": "All Cases",
+      "smm": "SMM",
+      "production": "Production",
+      "tiktok": "TikTok"
+    },
     "coffeeBoom": {
       "title": "Coffee BOOM",
       "description": "A place where friendships are made"
@@ -107,6 +114,26 @@
     "qcs": {
       "title": "QCS",
       "description": "A leader in the country in the field of onboard catering and catering services"
+    },
+    "bauer": {
+      "title": "Bauer",
+      "description": "Everything for the game"
+    },
+    "grandcar2022": {
+      "title": "GrandCar 2022",
+      "description": "Image video"
+    },
+    "grandcar2023": {
+      "title": "GrandCar 2022",
+      "description": "Advertising video in a detective style"
+    },
+    "everest": {
+      "title": "Everest",
+      "description": "Higher with us"
+    },
+    "nomad": {
+      "title": "Nomad",
+      "description": "The best start to your journey"
     }
   },
   "apply": {

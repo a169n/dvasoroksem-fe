@@ -13,76 +13,85 @@ import case8 from "@assets/cases/case8.svg";
 import case9 from "@assets/cases/case9.svg";
 import { Header } from "@shared/ui/header";
 import { MySelect } from "@shared/ui/select";
+import { useTranslation } from "react-i18next";
 export const Cases = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
+  const { t } = useTranslation();
+  const [selectedCategory, setSelectedCategory] = useState(
+    t("ourCases.categories.all")
+  );
 
-  const [selectedCategory, setSelectedCategory] = useState("ВСЕ КЕЙСЫ");
+  const categories = [
+    t("ourCases.categories.all"),
+    t("ourCases.categories.smm"),
+    t("ourCases.categories.production"),
+    t("ourCases.categories.tiktok"),
+  ];
 
-  const categories = ["ВСЕ КЕЙСЫ", "SMM", "PRODUCTION", "TIKTOK"];
   const casesData = [
     {
       title: "Bauer",
       category: "smm",
       path: "/cases/bauer",
-      description: "Everything for the game",
+      description: t("ourCases.bauer.description"),
       imageUrl: case5,
     },
     {
       title: "QCS",
       category: "production",
       path: "/cases/qcs",
-      description: "Лидер в стране в области бортового питания и кейтеринга",
+      description: t("ourCases.qcs.description"),
       imageUrl: case4,
     },
     {
       title: "Grandcar, 2022",
       category: "tiktok",
       path: "/cases/grandcar/2022",
-      description: "Имиджевый ролик",
+      description: t("ourCases.grandcar2022.description"),
       imageUrl: case6,
     },
     {
       title: "Grandcar, 2023",
       category: "production",
       path: "/cases/grandcar/2023",
-      description: "Рекламный ролик в детективном стиле",
+      description: t("ourCases.grandcar2023.description"),
       imageUrl: case9,
     },
     {
       title: "Everest",
       category: "smm",
       path: "/cases/everest",
-      description: "Выше с нами",
+      description: t("ourCases.everest.description"),
       imageUrl: case7,
     },
     {
       title: "Помоги Другому",
       category: "tiktok",
       path: "/cases/help-others",
-      description: "Не упускайте случая делать добро",
+      description: t("ourCases.helpOthers.description"),
       imageUrl: case3,
     },
     {
       title: "Nomad",
       category: "production",
       path: "/cases/nomad",
-      description: "Лучшее начало твоего пути",
+      description: t("ourCases.nomad.description"),
       imageUrl: case8,
     },
     {
       title: "Soyle",
       category: "production",
       path: "/cases/soyle",
-      description: "Казахский для всех",
+      description: t("ourCases.soyle.description"),
       imageUrl: case2,
     },
     {
       title: "Coffee BOOM",
       category: "production",
       path: "/cases/coffee-boom",
-      description: "Место, где становятся друзьями",
+      description: t("ourCases.coffeeBoom.description"),
       imageUrl: case1,
     },
   ];
@@ -91,8 +100,12 @@ export const Cases = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    setSelectedCategory(t("ourCases.categories.all"));
+  }, [t]);
+
   const filteredCases =
-    selectedCategory === "ВСЕ КЕЙСЫ"
+    selectedCategory === t("ourCases.categories.all")
       ? casesData
       : casesData.filter(
           (caseItem) =>
@@ -127,9 +140,10 @@ export const Cases = () => {
               mb: isMobile ? 2 : 0,
               width: isMobile ? "100%" : "auto",
               textAlign: "left",
+              lineHeight: 1,
             }}
           >
-            Наши кейсы
+            {t("ourCases.title1")}
           </Typography>
           <Box
             sx={{
@@ -180,7 +194,7 @@ export const Cases = () => {
                       flex: "0 0 auto",
                     }}
                   >
-                    {category}
+                    {category.toUpperCase()}
                   </MyButton>
                 ))
               )}
@@ -300,13 +314,13 @@ export const Cases = () => {
                     }}
                     href={caseItem.path}
                   >
-                    Смотреть кейс
+                    {t("ourCases.buttonText")}
                   </MyButton>
                 </Box>
               </Box>
             ))
           ) : (
-            <Typography sx={{ mt: 2 }}>Нет кейсов для отображения</Typography>
+            <Typography sx={{ mt: 2 }}>{t("ourCases.noCases")}</Typography>
           )}
         </Box>
       </Box>
