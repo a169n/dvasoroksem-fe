@@ -21,8 +21,10 @@ import bauerStory1 from "@assets/casePages/bauer/bauerStory1.png";
 import bauerStory2 from "@assets/casePages/bauer/bauerStory2.png";
 import bauerStory3 from "@assets/casePages/bauer/bauerStory3.png";
 import { Stories } from "@shared/ui/stories";
+import { useTranslation } from "react-i18next";
 
 export const Bauer = () => {
+  const { t } = useTranslation();
   return (
     <>
       <Header mode="light" />
@@ -34,8 +36,8 @@ export const Bauer = () => {
         />
       </Box>
       <Description
-        title="everything for the game"
-        description="Для мирового бренда хоккейной экипировки Bauer в Казахстане мы ведём Instagram, создаём качественный контент, погружённый в хоккейный мир, разрабатываем печатную продукцию, баннеры и многое другое."
+        title={t("ourCases.bauer.page.title")}
+        description={t("ourCases.bauer.page.description")}
       />
       <DoubleCarousel
         imagesLine1={[bauer1, bauer2, bauer3, bauer4, bauer5, bauer6]}

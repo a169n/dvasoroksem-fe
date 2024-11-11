@@ -92,6 +92,13 @@
     "title1": "Our Cases",
     "title2": "Other Cases",
     "buttonText": "See all",
+    "noCases": "No cases found",
+    "categories": {
+      "all": "All Cases",
+      "smm": "SMM",
+      "production": "Production",
+      "tiktok": "TikTok"
+    },
     "coffeeBoom": {
       "title": "Coffee BOOM",
       "description": "A place where friendships are made"
@@ -107,6 +114,38 @@
     "qcs": {
       "title": "QCS",
       "description": "A leader in the country in the field of onboard catering and catering services"
+    },
+    "bauer": {
+      "title": "Bauer",
+      "description": "Everything for the game",
+      "page": {
+        "title": "everything for the game",
+        "description": "For the global brand of hockey equipment Bauer in Kazakhstan, we manage Instagram, create high-quality content immersed in the hockey world, develop printed materials, banners and much more."
+      },
+      "data": {
+        "title1": "Continuous and high-quality content, immersed in",
+        "description1": "the world of hockey",
+        "title2": "Growing engagement",
+        "description2": "average ER — 25%",
+        "title3": "Branded sticker packs, coloring books, bags, signs",
+        "description3": "print design"
+      }
+    },
+    "grandcar2022": {
+      "title": "GrandCar 2022",
+      "description": "Image video"
+    },
+    "grandcar2023": {
+      "title": "GrandCar 2022",
+      "description": "Advertising video in a detective style"
+    },
+    "everest": {
+      "title": "Everest",
+      "description": "Higher with us"
+    },
+    "nomad": {
+      "title": "Nomad",
+      "description": "The best start to your journey"
     }
   },
   "apply": {

@@ -2,10 +2,12 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import bauerDataImage1 from "@assets/casePages/bauer/bauerDataImage1.png";
 import bauerDataImage2 from "@assets/casePages/bauer/bauerDataImage2.png";
+import { useTranslation } from "react-i18next";
 
 export const BauerData = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -35,7 +37,7 @@ export const BauerData = () => {
               textAlign: "start",
             }}
           >
-            Непрерывный и качественный контент, погруженный в
+            {t("ourCases.bauer.data.title1")}
           </Typography>
           <Typography
             sx={{
@@ -47,7 +49,7 @@ export const BauerData = () => {
               marginTop: isMobile ? "" : "10px",
             }}
           >
-            хоккейный мир
+            {t("ourCases.bauer.data.description1")}
           </Typography>
         </Box>
         <Box>
@@ -58,7 +60,7 @@ export const BauerData = () => {
               textAlign: "start",
             }}
           >
-            Растущая вовлеченность
+            {t("ourCases.bauer.data.title2")}
           </Typography>
           <Typography
             sx={{
@@ -71,7 +73,7 @@ export const BauerData = () => {
               lineHeight: " 76.95px",
             }}
           >
-            средний ER — 25%
+            {t("ourCases.bauer.data.description2")}
           </Typography>
         </Box>
         <Box>
@@ -84,7 +86,7 @@ export const BauerData = () => {
               lineHeight: " 76.95px",
             }}
           >
-            печатный дизайн
+            {t("ourCases.bauer.data.description3")}
           </Typography>
           <Typography
             sx={{
@@ -95,7 +97,7 @@ export const BauerData = () => {
               textAlign: "start",
             }}
           >
-            Брендовые стикерпаки, раскраски, пакеты, вывески
+            {t("ourCases.bauer.data.title3")}
           </Typography>
         </Box>
       </Box>
