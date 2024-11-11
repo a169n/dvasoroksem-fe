@@ -127,6 +127,7 @@ export const Cases = () => {
               fontSize: isMobile ? "32px" : isTablet ? "36px" : "72px",
               mb: isMobile ? 2 : 0,
               width: isMobile ? "100%" : "auto",
+              textAlign: "left",
             }}
           >
             Наши кейсы
