@@ -25,11 +25,17 @@ export const Apply = () => {
           textTransform="uppercase"
           sx={{
             textAlign: "start",
+            wordSpacing: "0.3em",
           }}
         >
-          <p style={{ wordSpacing: "0.3em" }}>{t("apply.text1")}</p>
-          <Box mt={6} component="span" display="block">
-            <p style={{ wordSpacing: "0.3em" }}>{t("apply.text2")}</p>
+          {t("apply.text1")}
+          <Box
+            mt={6}
+            component="span"
+            display="block"
+            sx={{ wordSpacing: "0.3em" }}
+          >
+            {t("apply.text2")}
           </Box>
         </Typography>
       </Box>
