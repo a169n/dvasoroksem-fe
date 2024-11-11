@@ -5,8 +5,12 @@ import { Description } from "@shared/ui/description";
 import { Cases } from "@pages/home/ui/cases";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { MyButton } from "@shared/ui/button";
+import { useEffect } from "react";
 
 export const Soyle = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Header mode="dark" />
@@ -18,10 +22,8 @@ export const Soyle = () => {
         />
       </Box>
       <Description
-        title="Казахский
-язык для всех"
-        description="Мы создали серию видеороликов для онлайн-школы казахского языка SOYLE. Нашей задачей было разработать качественный и интересный контент с продуманным сценарием и высоким уровнем продакшна. Видеоуроки на YouTube ориентированы на тех, кто хочет изучать
-казахский язык, сочетая обучение и развлечение"
+        title="Казахский язык для всех"
+        description="Мы создали серию видеороликов для онлайн-школы казахского языка SOYLE. Нашей задачей было разработать качественный и интересный контент с продуманным сценарием и высоким уровнем продакшна. Видеоуроки на YouTube ориентированы на тех, кто хочет изучать казахский язык, сочетая обучение и развлечение"
       />
       <Box
         sx={{

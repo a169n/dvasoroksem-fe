@@ -2,9 +2,13 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import everestDataImage1 from "@assets/casePages/everest/everestDataImage1.png";
 import everestDataImage2 from "@assets/casePages/everest/everestDataImage2.png";
+import { useEffect } from "react";
 export const EverestData = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <Box
       sx={{
