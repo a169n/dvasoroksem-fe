@@ -7,7 +7,6 @@ import DoubleCarousel from "@shared/ui/doubleCarousel/DoubleCarousel";
 import helpothers1 from "@assets/casePages/help-others/helpothers1.png";
 import helpothers2 from "@assets/casePages/help-others/helpothers2.png";
 import helpothers3 from "@assets/casePages/help-others/helpothers3.png";
-import helpothers4 from "@assets/casePages/help-others/helpothers4.png";
 import helpothers5 from "@assets/casePages/help-others/helpothers5.png";
 import helpothers6 from "@assets/casePages/help-others/helpothers6.png";
 import helpothers7 from "@assets/casePages/help-others/helpothers7.png";
@@ -67,7 +66,6 @@ export const HelpOthers = () => {
           helpothers1,
           helpothers2,
           helpothers3,
-          helpothers4,
           helpothers5,
           helpothers6,
           helpothers7,
