@@ -51,13 +51,16 @@ export const Header = ({ mode = "default", refs }) => {
   };
 
   const handleNavClick = (sectionRef, href) => {
-    const hash = href;
+    const isHomePage = window.location.pathname === "/";
 
-    navigate(`/${hash}`);
+    if (!isHomePage) {
+      window.location.href = "/";
+      return;
+    }
 
     if (sectionRef?.current) {
       sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else if (hash === "#contacts") {
+    } else if (href === "#contacts") {
       window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
     }
 
@@ -75,6 +78,7 @@ export const Header = ({ mode = "default", refs }) => {
       return;
     }
   }, [lastScrollY]);
+  
 
   const NavigationItems = () => (
     <Box
@@ -103,7 +107,14 @@ export const Header = ({ mode = "default", refs }) => {
           key={href}
           component="a"
           href={href}
-          onClick={() => handleNavClick(refs[href.substring(1)], href)}
+          onClick={() => {
+            const sectionRef = refs[href.substring(1)];
+            if (sectionRef) {
+              handleNavClick(sectionRef, href);
+            } else {
+              console.warn(`No reference found for section: ${href}`);
+            }
+          }}
           sx={{
             alignSelf: isMobile ? "start" : "center",
             cursor: "pointer",
