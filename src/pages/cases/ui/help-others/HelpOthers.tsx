@@ -12,9 +12,13 @@ import helpothers6 from "@assets/casePages/help-others/helpothers6.png";
 import helpothers7 from "@assets/casePages/help-others/helpothers7.png";
 import HelpOthersData from "./ui/helpOthersData";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-
 import { MyButton } from "@shared/ui/button";
+import { useEffect } from "react";
+
 export const HelpOthers = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Header mode="dark" />

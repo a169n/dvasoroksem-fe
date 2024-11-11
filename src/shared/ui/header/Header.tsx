@@ -13,7 +13,9 @@ import { useTranslation } from "react-i18next";
 import i18n from "@src/i18n";
 
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 type RefsType = Record<string, React.RefObject<any>> | null;
 
 export const Header = ({
@@ -26,7 +28,7 @@ export const Header = ({
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [menuOpen, setMenuOpen] = useState(false);
-  const [language, setLanguage] = useState("ru");
+  const [language, setLanguage] = useState(i18n.language || "ru");
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const { t } = useTranslation();
@@ -34,6 +36,8 @@ export const Header = ({
   const isDarkMode = mode === "dark";
   const isLightMode = mode === "light";
   const isDefaultMode = mode === "default";
+
+  const navigate = useNavigate();
 
   const navItems = [
     { href: "#cases", text: t("navigation.ourCases") },
@@ -180,22 +184,13 @@ export const Header = ({
             justifyContent: "flex-start",
           }}
           onClick={() => {
-            if (mode !== "default") {
-              window.location.href = "/";
-              setTimeout(() => {
-                const targetId = window.location.hash;
-                const targetRef =
-                  refs && refs[targetId ? targetId.substring(1) : ""];
-                if (targetRef && targetRef.current) {
-                  window.scrollTo({
-                    top: targetRef.current.offsetTop,
-                    behavior: "smooth",
-                  });
-                }
-              }, 100);
-            } else {
+            navigate("/");
+            const targetId = window.location.hash;
+            const targetRef =
+              refs && refs[targetId ? targetId.substring(1) : ""];
+            if (targetRef && targetRef.current) {
               window.scrollTo({
-                top: 0,
+                top: targetRef.current.offsetTop,
                 behavior: "smooth",
               });
             }
@@ -244,12 +239,7 @@ export const Header = ({
                     ? "white"
                     : "black",
               }}
-              onClick={() =>
-                window.scrollTo({
-                  top: document.body.scrollHeight,
-                  behavior: "smooth",
-                })
-              }
+              onClick={() => navigate("/request")}
             >
               {t("navigation.request")}
             </MyButton>
@@ -326,20 +316,18 @@ export const Header = ({
                 : isLightMode || isMobile
                   ? "#fff"
                   : "#000",
-              backgroundColor:
-                isDarkMode || isLightMode ? "transparent" : "white",
+              backgroundColor: "black",
               borderColor: isDarkMode
                 ? "black"
                 : isLightMode
                   ? "white"
                   : "black",
+              "&:hover": {
+                backgroundColor: "white",
+                color: "black",
+              },
             }}
-            onClick={() =>
-              window.scrollTo({
-                top: document.body.scrollHeight,
-                behavior: "smooth",
-              })
-            }
+            onClick={() => navigate("/request")}
           >
             {t("navigation.request")}
           </MyButton>
