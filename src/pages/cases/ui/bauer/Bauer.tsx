@@ -22,9 +22,15 @@ import bauerStory2 from "@assets/casePages/bauer/bauerStory2.png";
 import bauerStory3 from "@assets/casePages/bauer/bauerStory3.png";
 import { Stories } from "@shared/ui/stories";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
 
 export const Bauer = () => {
   const { t } = useTranslation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Header mode="light" />

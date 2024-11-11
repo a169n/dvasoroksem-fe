@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { MyButton } from "@shared/ui/button";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 import case1 from "@assets/cases/case1.svg";
 import case2 from "@assets/cases/case2.svg";
 import case3 from "@assets/cases/case3.svg";
@@ -14,11 +15,13 @@ import case9 from "@assets/cases/case9.svg";
 import { Header } from "@shared/ui/header";
 import { MySelect } from "@shared/ui/select";
 import { useTranslation } from "react-i18next";
+
 export const Cases = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const { t } = useTranslation();
+  const navigate = useNavigate(); // Initialize navigate
   const [selectedCategory, setSelectedCategory] = useState(
     t("ourCases.categories.all")
   );
@@ -223,8 +226,7 @@ export const Cases = () => {
                 }}
               >
                 <Box
-                  component="a"
-                  href={caseItem.path}
+                  onClick={() => navigate(caseItem.path)}
                   sx={{
                     position: "relative",
                     display: "block",
@@ -282,45 +284,65 @@ export const Cases = () => {
                   >
                     <Typography
                       variant="h4"
-                      component="h2"
-                      textAlign={"left"}
+                      component="p"
                       sx={{
                         color: "#000",
-                        fontWeight: 500,
-                        fontSize: isMobile ? "16px" : "28px",
+                        fontWeight: 700,
+                        fontSize: isMobile ? "16px" : "22px",
                       }}
                     >
                       {caseItem.title}
                     </Typography>
                     <Typography
+                      variant="body1"
+                      component="p"
                       textAlign={"left"}
-                      sx={{
-                        fontSize: isMobile ? "14px" : "18px",
-                        fontWeight: 200,
-                      }}
                     >
                       {caseItem.description}
                     </Typography>
                   </Box>
                   <MyButton
-                    endIcon={<ArrowForwardIcon />}
+                    variant="text"
                     sx={{
-                      borderRadius: 0,
-                      textTransform: "none",
-                      fontSize: isMobile ? "14px" : isTablet ? "16px" : "20px",
-                      maxWidth: isMobile ? "150px" : "180px",
-                      py: isMobile ? 0 : 0.3,
-                      px: 0,
+                      mt: 2,
+                      width: "50%",
+                      display: "flex",
+                      fontWeight: 400,
+                      p: 0,
+                      minWidth: 0,
+                      "&:hover": {
+                        backgroundColor: "transparent",
+                        color: "#000",
+                      },
+                      alignItems: "center",
+                      color: "#000",
+                      fontSize: isMobile ? "12px" : "16px",
+                      textAlign: "left",
                     }}
-                    href={caseItem.path}
+                    onClick={() => navigate(caseItem.path)}
                   >
                     {t("ourCases.buttonText")}
+                    <ArrowForwardIcon
+                      sx={{
+                        fontSize: isMobile ? "14px" : "18px",
+                        ml: isMobile ? "8px" : "14px",
+                      }}
+                    />
                   </MyButton>
                 </Box>
               </Box>
             ))
           ) : (
-            <Typography sx={{ mt: 2 }}>{t("ourCases.noCases")}</Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                color: "#000",
+                fontSize: isMobile ? "14px" : "18px",
+                fontWeight: 300,
+              }}
+            >
+              {t("ourCases.emptyCategoryMessage")}
+            </Typography>
           )}
         </Box>
       </Box>

@@ -21,7 +21,12 @@ import qcsStory1 from "@assets/casePages/qcs/qcsStory1.png";
 import qcsStory2 from "@assets/casePages/qcs/qcsStory2.png";
 import qcsStory3 from "@assets/casePages/qcs/qcsStory3.png";
 import QcsData from "./ui/qcsData";
+import { useEffect } from "react";
+
 export const QCS = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Header mode="light" />

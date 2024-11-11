@@ -4,7 +4,11 @@ import CoffeeBoomMainImage from "@assets/casePages/coffee-boom.svg";
 import { Description } from "@shared/ui/description";
 import { Cases } from "@pages/home/ui/cases";
 import CoffeeBoomData from "./ui/coffee-boomData";
+import { useEffect } from "react";
 export const CoffeeBoom = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Header mode="light" />
