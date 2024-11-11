@@ -5,7 +5,6 @@ import { Description } from "@shared/ui/description";
 import { Cases } from "@pages/home/ui/cases";
 import DoubleCarousel from "@shared/ui/doubleCarousel/DoubleCarousel";
 import { Stories } from "@shared/ui/stories";
-import BauerData from "../bauer/ui/bauerData";
 import qcs1 from "@assets/casePages/qcs/qcs1.png";
 import qcs2 from "@assets/casePages/qcs/qcs2.png";
 import qcs3 from "@assets/casePages/qcs/qcs3.png";
