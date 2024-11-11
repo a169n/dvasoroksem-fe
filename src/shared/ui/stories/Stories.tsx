@@ -50,9 +50,9 @@ export const Stories = ({ stories }: StoriesProps) => {
         loop={true}
         effect="cube"
         centeredSlides
-        style={{ height: "900px", width: isMobile ? "100%" : "500px" }}
+        style={{ height: "800px", width: isMobile ? "100%" : "500px" }}
         onBeforeInit={(swiper) => {
-          swiperRef.current = swiper; // Set the swiper reference
+          swiperRef.current = swiper; 
         }}
       >
         {stories.map((story, index) => (

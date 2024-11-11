@@ -23,13 +23,13 @@ export const HelpOthersData = () => {
         src={HelpOthersDataImage1}
         alt={"HelpOthersDataImage1"}
         sx={{
-          width: isMobile ? "80px" : "250px",
+          width: isMobile ? "120px" : "250px",
           height: "auto",
           draggable: "false",
           position: "absolute",
           top: isMobile ? "-180px" : "-250px",
           left: isMobile ? "" : "600px",
-          right: isMobile ? "50px" : "",
+          right: isMobile ? "70px" : "",
         }}
       />
 
@@ -39,12 +39,12 @@ export const HelpOthersData = () => {
         alt={"HelpOthersDataImage2"}
         sx={{
           position: "absolute",
-          width: isMobile ? "80px" : "300px",
-          height: isMobile ? "80px" : "250px",
+          width: isMobile ? "120px" : "300px",
+          height: isMobile ? "120px" : "250px",
           draggable: "false",
           top: isMobile ? "-180px" : "-250px",
           right: isMobile ? "" : "240px",
-          left: isMobile ? "50px" : "",
+          left: isMobile ? "90px" : "",
         }}
       />
     </Box>
