@@ -92,6 +92,13 @@
     "title1": "Наши кейсы",
     "title2": "Другие кейсы",
     "buttonText": "Смотреть все",
+    "noCases": "Нет кейсов для отображения",
+    "categories": {
+      "all": "Все кейсы",
+      "smm": "SMM",
+      "production": "Продакшн",
+      "tiktok": "TikTok"
+    },
     "coffeeBoom": {
       "title": "Coffee BOOM",
       "description": "Место, где становятся друзьями"
@@ -107,6 +114,38 @@
     "qcs": {
       "title": "QCS",
       "description": "Лидер в стране в области бортового питания и кейтеринга"
+    },
+    "bauer": {
+      "title": "Bauer",
+      "description": "Everything for the game",
+      "page": {
+        "title": "everything for the game",
+        "description": "Для мирового бренда хоккейной экипировки Bauer в Казахстане мы ведём Instagram, создаём качественный контент, погружённый в хоккейный мир, разрабатываем печатную продукцию, баннеры и многое другое."
+      },
+      "data": {
+        "title1": "Непрерывный и качественный контент, погруженный в",
+        "description1": "хоккейный мир",
+        "title2": "Растущая вовлеченность",
+        "description2": "средний ER — 25%",
+        "title3": "Брендовые стикерпаки, раскраски, пакеты, вывески",
+        "description3": "печатный дизайн"
+      }
+    },
+    "grandcar2022": {
+      "title": "GrandCar 2022",
+      "description": "Имиджевый ролик"
+    },
+    "grandcar2023": {
+      "title": "GrandCar 2022",
+      "description": "Рекламный ролик в детективном стиле"
+    },
+    "everest": {
+      "title": "Everest",
+      "description": "Выше с нами"
+    },
+    "nomad": {
+      "title": "Nomad",
+      "description": "Лучшее начало твоего пути"
     }
   },
   "apply": {
