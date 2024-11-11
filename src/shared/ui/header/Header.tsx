@@ -12,7 +12,17 @@ import { MyButton } from "@shared/ui/button";
 import { useTranslation } from "react-i18next";
 import i18n from "@src/i18n";
 
-export const Header = ({ mode = "default", refs }) => {
+import React from "react";
+
+type RefsType = Record<string, React.RefObject<any>> | null;
+
+export const Header = ({
+  mode = "default",
+  refs = null,
+}: {
+  mode?: string;
+  refs?: RefsType;
+}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [menuOpen, setMenuOpen] = useState(false);
@@ -65,7 +75,7 @@ export const Header = ({ mode = "default", refs }) => {
         const targetId = window.location.hash;
         if (targetId && targetId !== "#") {
           const targetRef =
-            mode === "default" ? refs[targetId.substring(1)] : "";
+            mode === "default" ? refs && refs[targetId.substring(1)] : "";
           if (targetRef && targetRef.current) {
             window.scrollTo({
               top: targetRef.current.offsetTop,
@@ -105,7 +115,8 @@ export const Header = ({ mode = "default", refs }) => {
       }}
     >
       {navItems.map(({ href, text }) => {
-        const targetRef = mode === "default" ? refs[href.substring(1)] : "";
+        const targetRef =
+          mode === "default" ? (refs && refs[href.substring(1)]) || "" : null;
 
         return (
           <Typography
@@ -173,7 +184,8 @@ export const Header = ({ mode = "default", refs }) => {
               window.location.href = "/";
               setTimeout(() => {
                 const targetId = window.location.hash;
-                const targetRef = refs[targetId ? targetId.substring(1) : ""];
+                const targetRef =
+                  refs && refs[targetId ? targetId.substring(1) : ""];
                 if (targetRef && targetRef.current) {
                   window.scrollTo({
                     top: targetRef.current.offsetTop,
