@@ -27,14 +27,14 @@ const AnimatedGraphics = () => {
           strokeDashoffset: [anime.setDashoffset, 0],
           easing: "easeInOutSine",
           duration: 1000,
-          delay: (el, i) => i * 250,
+          delay: (i) => i * 250,
         })
         .add({
           targets: ".arrow-path",
           strokeDashoffset: [anime.setDashoffset, 0],
           easing: "easeInOutSine",
           duration: 2000,
-          delay: (el, i) => i * 200,
+          delay: (i) => i * 200,
         })
         .add({
           targets: ".swirl-path, .arrow-path",
@@ -52,7 +52,7 @@ const AnimatedGraphics = () => {
           strokeDashoffset: [0, anime.setDashoffset], // Reverse the stroke
           easing: "easeInOutSine",
           duration: 1000,
-          delay: (el, i) => i * 250, // Restart the animation
+          delay: (i) => i * 250, // Restart the animation
         });
     };
 
