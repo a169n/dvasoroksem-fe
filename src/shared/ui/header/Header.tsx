@@ -14,7 +14,7 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import i18n from "@src/i18n";
 import { useTranslation } from "react-i18next";
 
-export const Header = ({ mode = "default", refs }) => {
+export const Header = ({ mode = "default" }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
@@ -50,6 +50,7 @@ export const Header = ({ mode = "default", refs }) => {
     setLastScrollY(window.scrollY);
   };
 
+<<<<<<< HEAD
   const handleNavClick = (sectionRef, href) => {
     const isHomePage = window.location.pathname === "/";
 
@@ -66,6 +67,9 @@ export const Header = ({ mode = "default", refs }) => {
 
     setMenuOpen(false);
   };
+=======
+  
+>>>>>>> 3cd744c3f38db704aa9715b48a1937cd1f47ab5f
 
   useEffect(() => {
     if (mode !== "default") {
@@ -107,6 +111,7 @@ export const Header = ({ mode = "default", refs }) => {
           key={href}
           component="a"
           href={href}
+<<<<<<< HEAD
           onClick={() => {
             const sectionRef = refs[href.substring(1)];
             if (sectionRef) {
@@ -115,6 +120,8 @@ export const Header = ({ mode = "default", refs }) => {
               console.warn(`No reference found for section: ${href}`);
             }
           }}
+=======
+>>>>>>> 3cd744c3f38db704aa9715b48a1937cd1f47ab5f
           sx={{
             alignSelf: isMobile ? "start" : "center",
             cursor: "pointer",
