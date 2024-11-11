@@ -27,9 +27,9 @@ export const Apply = () => {
             textAlign: "start",
           }}
         >
-          {t("apply.text1")}
+          <p style={{ wordSpacing: "0.3em" }}>{t("apply.text1")}</p>
           <Box mt={6} component="span" display="block">
-            {t("apply.text2")}
+            <p style={{ wordSpacing: "0.3em" }}>{t("apply.text2")}</p>
           </Box>
         </Typography>
       </Box>

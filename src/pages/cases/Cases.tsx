@@ -12,7 +12,6 @@ import case7 from "@assets/cases/case7.svg";
 import case8 from "@assets/cases/case8.svg";
 import case9 from "@assets/cases/case9.svg";
 import { Header } from "@shared/ui/header";
-import { Select, MenuItem } from "@mui/material";
 import { MySelect } from "@shared/ui/select";
 export const Cases = () => {
   const theme = useTheme();

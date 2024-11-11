@@ -50,26 +50,7 @@ export const Header = ({ mode = "default" }) => {
     setLastScrollY(window.scrollY);
   };
 
-<<<<<<< HEAD
-  const handleNavClick = (sectionRef, href) => {
-    const isHomePage = window.location.pathname === "/";
-
-    if (!isHomePage) {
-      window.location.href = "/";
-      return;
-    }
-
-    if (sectionRef?.current) {
-      sectionRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
-    } else if (href === "#contacts") {
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    }
-
-    setMenuOpen(false);
-  };
-=======
   
->>>>>>> 3cd744c3f38db704aa9715b48a1937cd1f47ab5f
 
   useEffect(() => {
     if (mode !== "default") {
@@ -111,17 +92,6 @@ export const Header = ({ mode = "default" }) => {
           key={href}
           component="a"
           href={href}
-<<<<<<< HEAD
-          onClick={() => {
-            const sectionRef = refs[href.substring(1)];
-            if (sectionRef) {
-              handleNavClick(sectionRef, href);
-            } else {
-              console.warn(`No reference found for section: ${href}`);
-            }
-          }}
-=======
->>>>>>> 3cd744c3f38db704aa9715b48a1937cd1f47ab5f
           sx={{
             alignSelf: isMobile ? "start" : "center",
             cursor: "pointer",

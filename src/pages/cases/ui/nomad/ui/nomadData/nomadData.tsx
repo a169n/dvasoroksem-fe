@@ -1,7 +1,5 @@
-import { Help } from "@mui/icons-material";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { Nomad } from "../../Nomad";
 import NomadDataImage1 from "@assets/casePages/nomad/nomadDataImage1.png";
 import NomadDataImage2 from "@assets/casePages/nomad/nomadDataImage2.png";
 
