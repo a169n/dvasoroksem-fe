@@ -16,11 +16,11 @@ export const Home = () => {
   return (
     <div>
       <Header
-        refs={{
-          about: aboutRef,
-          cases: casesRef,
-          reviews: reviewsRef,
-        }}
+        // refs={{
+        //   about: aboutRef,
+        //   cases: casesRef,
+        //   reviews: reviewsRef,
+        // }}
       />
       <div>
         <HomeHeader />
