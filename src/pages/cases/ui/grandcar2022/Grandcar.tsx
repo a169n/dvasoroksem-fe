@@ -4,7 +4,11 @@ import Grandcar2022MainImage from "@assets/casePages/grandcar2022.svg";
 import { Description } from "@shared/ui/description";
 import { MovieStaff } from "@shared/ui/movie-staff";
 import { Cases } from "@pages/home/ui/cases";
+import { useEffect } from "react";
 export const Grandcar = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Header mode="dark" />

@@ -4,7 +4,11 @@ import Grandcar2023MainImage from "@assets/casePages/grandcar2023.svg";
 import { Description } from "@shared/ui/description";
 import { MovieStaff } from "@shared/ui/movie-staff";
 import { Cases } from "@pages/home/ui/cases";
+import { useEffect } from "react";
 export const Grandcar = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Header mode="light" />
@@ -16,12 +20,8 @@ export const Grandcar = () => {
         />
       </Box>
       <Description
-        title="grandcar
- 2023"
-        description="Этот рекламный ролик был снят в детективном стиле, чтобы привлечь внимание клиентов и увлечь их атмосферой. Таким образом, мы хотели убить двух зайцев одним выстрелом: рассказать о преимуществах компании и увеличить глубину просмотра за счет
-необычной подачи. 
-
-Партнер остался доволен, мы надеемся, что вы тоже!"
+        title="grandcar 2023"
+        description="Этот рекламный ролик был снят в детективном стиле, чтобы привлечь внимание клиентов и увлечь их атмосферой. Таким образом, мы хотели убить двух зайцев одним выстрелом: рассказать о преимуществах компании и увеличить глубину просмотра за счет необычной подачи.  Партнер остался доволен, мы надеемся, что вы тоже!"
       />
       <MovieStaff />
       <Cases mode="case-page" />

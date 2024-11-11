@@ -4,7 +4,11 @@ import NomadMainPage from "@assets/casePages/nomad.svg";
 import { Description } from "@shared/ui/description";
 import { Cases } from "@pages/home/ui/cases";
 import NomadData from "./ui/nomadData";
+import { useEffect } from "react";
 export const Nomad = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Header mode="light" />
