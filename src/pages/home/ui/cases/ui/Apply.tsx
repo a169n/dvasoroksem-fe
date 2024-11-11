@@ -2,6 +2,7 @@ import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { MyButton } from "@shared/ui/button";
 import "./apply.module.css";
 import { useTranslation } from "react-i18next";
+import AnimatedGraphics from "./AnimatedGraphics";
 
 export const Apply = () => {
   const theme = useTheme();
@@ -17,6 +18,7 @@ export const Apply = () => {
       }}
     >
       <Box display={"flex"} justifyContent={"flex-start"} mt={10}>
+        <AnimatedGraphics />
         <Typography
           color="#fff"
           fontSize={{ xs: "24px", sm: "28px", md: "32px", lg: "64px" }}
