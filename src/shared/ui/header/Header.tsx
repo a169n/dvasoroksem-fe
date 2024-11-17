@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useCallback } from "react";
 import { Box, Toolbar, IconButton, Typography, Drawer } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -11,12 +11,28 @@ import { MySelect } from "@shared/ui/select";
 import { MyButton } from "@shared/ui/button";
 import { useTranslation } from "react-i18next";
 import i18n from "@src/i18n";
-
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type RefsType = Record<string, React.RefObject<any>> | null;
+
+// Throttle function to limit scroll event handling
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
+const throttle = (func: Function, limit: number) => {
+  let inThrottle: boolean;
+  let lastPos = window.pageYOffset;
+
+  return function () {
+    const currentPos = window.pageYOffset;
+    if (!inThrottle) {
+      func(currentPos > lastPos, currentPos);
+      lastPos = currentPos;
+      inThrottle = true;
+      setTimeout(() => (inThrottle = false), limit);
+    }
+  };
+};
 
 export const Header = ({
   mode = "default",
@@ -30,12 +46,10 @@ export const Header = ({
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState(i18n.language || "ru");
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const { t } = useTranslation();
 
   const isDarkMode = mode === "dark";
   const isLightMode = mode === "light";
-  const isDefaultMode = mode === "default";
 
   const navigate = useNavigate();
 
@@ -47,60 +61,32 @@ export const Header = ({
   ];
 
   const languageOptions = [
-    { value: "ru", label: "RU" },
+    { value: "ru", label: "RUS" },
     { value: "kz", label: "KAZ" },
     { value: "en", label: "ENG" },
   ];
 
-  const handleScroll = () => {
-    if (window.scrollY > lastScrollY && window.scrollY > 100) {
-      setIsHeaderVisible(false);
-    } else {
-      setIsHeaderVisible(true);
-    }
-    setLastScrollY(window.scrollY);
-  };
+  // Throttled scroll handler
+  const handleScroll = useCallback(
+    throttle((isScrollingDown: boolean, currentPos: number) => {
+      if (currentPos < 10 || !isScrollingDown) {
+        setIsHeaderVisible(true);
+      } else {
+        setIsHeaderVisible(false);
+      }
+    }, 150),
+    []
+  );
 
-  useEffect(() => {
-    if (mode !== "default") {
-      window.addEventListener("scroll", handleScroll);
+  // Attach scroll listener
+  React.useLayoutEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [handleScroll]);
 
-      return () => {
-        window.removeEventListener("scroll", handleScroll);
-      };
-    } else {
-      return;
-    }
-  }, [lastScrollY]);
-
-  useEffect(() => {
-    if (mode === "default") {
-      const handleHashChange = () => {
-        const targetId = window.location.hash;
-        if (targetId && targetId !== "#") {
-          const targetRef =
-            mode === "default" ? refs && refs[targetId.substring(1)] : "";
-          if (targetRef && targetRef.current) {
-            window.scrollTo({
-              top: targetRef.current.offsetTop,
-              behavior: "smooth",
-            });
-          }
-        }
-      };
-
-      handleHashChange();
-
-      window.addEventListener("hashchange", handleHashChange);
-
-      return () => {
-        window.removeEventListener("hashchange", handleHashChange);
-      };
-    }
-  }, [refs, mode]);
-
-  const handleNavClick = (ref) => {
-    if (ref.current) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleNavClick = (ref: any) => {
+    if (ref?.current) {
       window.scrollTo({
         top: ref.current.offsetTop,
         behavior: "smooth",
@@ -164,14 +150,20 @@ export const Header = ({
     <Box
       sx={{
         width: "100%",
-        position: !isDefaultMode ? "fixed" : "block",
+        position: "fixed",
         top: 0,
         left: 0,
         right: 0,
-        transition: "transform 0.3s ease-in-out",
+        transition:
+          "transform 0.3s ease-in-out, background-color 0.3s ease-in-out",
         transform: isHeaderVisible ? "translateY(0)" : "translateY(-100%)",
-        backgroundColor: isLightMode ? "transparent" : "transparent",
-        boxShadow: "none",
+        backgroundColor: isHeaderVisible
+          ? isLightMode
+            ? "rgba(255,255,255,0.1)"
+            : "rgba(255,255,255,0.95)"
+          : "transparent",
+        backdropFilter: isHeaderVisible ? "blur(8px)" : "none",
+        boxShadow: isHeaderVisible ? "0 2px 8px rgba(0,0,0,0.1)" : "none",
         zIndex: 100,
       }}
     >
