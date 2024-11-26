@@ -1,19 +1,24 @@
-import { useState, useEffect, useCallback } from "react";
+import { useRef, useState } from "react";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import {
   Box,
   IconButton,
-  Dialog,
-  DialogContent,
   Typography,
   useMediaQuery,
+  Dialog,
+  DialogContent,
+  Stack,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
 import CloseIcon from "@mui/icons-material/Close";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import certificate1 from "@assets/certificate1.svg";
 import certificate2 from "@assets/certificate2.svg";
 import certificate3 from "@assets/certificate3.svg";
-import { ArrowLeftIcon, ArrowRightIcon } from "@mui/x-date-pickers";
+import certificate4 from "@assets/certificate4.svg";
 import { useTranslation } from "react-i18next";
 
 interface Certificate {
@@ -22,18 +27,10 @@ interface Certificate {
   image: string;
 }
 
-const SLIDE_INTERVAL = 7000;
-
 export const Certificates = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [selectedCertificate, setSelectedCertificate] =
-    useState<Certificate | null>(null);
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [slideDirection, setSlideDirection] = useState<"left" | "right">(
-    "right"
-  );
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
 
   const { t } = useTranslation();
 
@@ -53,28 +50,22 @@ export const Certificates = () => {
       title: t("certificates.coffeeBoom"),
       image: certificate3,
     },
+    {
+      id: 4,
+      title: t("certificates.digitalManagement"),
+      image: certificate4,
+    },
   ];
 
-  const handleNext = useCallback(() => {
-    setSlideDirection("right");
-    setCurrentIndex((prevIndex) =>
-      prevIndex === certificates.length - 1 ? 0 : prevIndex + 1
-    );
-  }, []);
+  const carouselRef = useRef<Carousel>(null);
 
-  const handlePrevious = () => {
-    setSlideDirection("left");
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? certificates.length - 1 : prevIndex - 1
-    );
+  const handleLeftClick = () => {
+    if (carouselRef.current) carouselRef.current.previous(1);
   };
 
-  useEffect(() => {
-    if (!isPaused) {
-      const interval = setInterval(handleNext, SLIDE_INTERVAL);
-      return () => clearInterval(interval);
-    }
-  }, [isPaused, handleNext]);
+  const handleRightClick = () => {
+    if (carouselRef.current) carouselRef.current.next(1);
+  };
 
   const handleClickOpen = (certificate: Certificate) => {
     setSelectedCertificate(certificate);
@@ -89,10 +80,8 @@ export const Certificates = () => {
       sx={{
         position: "relative",
         width: "100%",
-        maxWidth: "100vw",
         margin: "0 auto",
         overflow: "hidden",
-        px: { xs: 2, sm: 4, md: 8 },
         py: { xs: 2, sm: 4, md: 8 },
         textAlign: "center",
       }}
@@ -111,151 +100,109 @@ export const Certificates = () => {
         {t("certificates.title")}
       </Typography>
 
-      <Box
-        sx={{
-          position: "relative",
-          px: { xs: 2, md: 6 },
+      <Carousel
+        infinite
+        ref={carouselRef}
+        autoPlay={!isMobile}
+        autoPlaySpeed={3000}
+        keyBoardControl
+        containerClass="carousel-container"
+        draggable
+        centerMode={true}
+        renderDotsOutside={false}
+        showDots={false}
+        arrows={false}
+        responsive={{
+          largeDesktop: {
+            breakpoint: { max: 3000, min: 1280 },
+            items: isMobile ? 1 : 1,
+          },
+          mediumDesktop: {
+            breakpoint: { max: 1280, min: 960 },
+            items: isMobile ? 1 : 2,
+          },
+          smallDevices: {
+            breakpoint: { max: 720, min: 0 },
+            items: 1,
+          },
         }}
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
       >
-        <Box
+        {certificates.map((certificate) => (
+          <Box
+            key={certificate.id}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              cursor: "pointer",
+              p: 1,
+              m: isMobile ? 2 : 8,
+              border: "1px solid #D9D9D9",
+              borderRadius: "10px",
+              transition: "transform 0.3s, box-shadow 0.3s",
+              "&:hover": {
+                transform: "scale(1.05)",
+                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
+              },
+              "&:hover .hover-title": {
+                opacity: 1,
+              },
+            }}
+            onClick={() => handleClickOpen(certificate)}
+          >
+            <Box
+              component="img"
+              src={certificate.image}
+              alt={certificate.title}
+              sx={{
+                width: "100%",
+                height: isMobile ? "100%" : "600px",
+                borderRadius: 1,
+              }}
+            />
+            <Typography
+              className="hover-title"
+              sx={{
+                mt: 2,
+                fontSize: { xs: "16px", sm: "18px", md: "20px" },
+                fontFamily: "Georgia, serif",
+                fontStyle: "italic",
+                fontWeight: 400,
+                opacity: 0,
+                transition: "opacity 0.3s",
+              }}
+            >
+              {certificate.title}
+            </Typography>
+          </Box>
+        ))}
+      </Carousel>
+
+      <Stack direction="row" justifyContent="center" spacing={2} sx={{ mt: 2 }}>
+        <IconButton
+          onClick={handleLeftClick}
           sx={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            gap: { xs: 2, md: 4 },
-            py: 4,
-            mx: "auto",
-            transition: "transform 0.5s ease",
-            flexDirection: isMobile ? "column" : "row", // For mobile stacking
+            color: "#000",
+            border: "1px solid #000",
+            borderRadius: "0px",
+            padding: "8px 12px",
           }}
         >
-          {[-1, 0, 1].map((offset) => {
-            // Display only the current item for mobile
-            if (isMobile && offset !== 0) return null;
-
-            const index =
-              (currentIndex + offset + certificates.length) %
-              certificates.length;
-            const certificate = certificates[index];
-
-            return (
-              <Box
-                key={certificate.id}
-                onClick={() => offset === 0 && handleClickOpen(certificate)}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  transition: "all 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                  cursor: offset === 0 ? "pointer" : "default",
-                  transform: `scale(${offset === 0 ? 1 : 0.8}) 
-                   translateX(${
-                     (offset === 0 ? 0 : offset === -1 ? -100 : 100) +
-                     (slideDirection === "right" ? offset * -20 : offset * -20)
-                   }%)`,
-                  opacity: offset === 0 ? 1 : 0.6,
-                  bgcolor: "background.paper",
-                  borderRadius: 2,
-                  boxShadow: 3,
-                  p: 2,
-                  position: "relative",
-                  width: { xs: "100%", md: offset === 0 ? "70%" : "40%" }, // Full width on mobile
-                  zIndex: offset === 0 ? 2 : 1,
-                  willChange: "transform, opacity, box-shadow",
-                  "&::before": {
-                    content: '""',
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    borderRadius: 2,
-                    transition: "opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1)",
-                    background: "rgba(0, 0, 0, 0.1)",
-                    opacity: 0,
-                  },
-                  ...(offset === 0 && {
-                    "&:hover": {
-                      transform: "scale(1.05)",
-                      boxShadow: 6,
-                      "&::before": {
-                        opacity: 1,
-                      },
-                    },
-                    "&:active": {
-                      transform: "scale(0.98)",
-                      transition: "transform 0.1s cubic-bezier(0.4, 0, 0.2, 1)",
-                    },
-                  }),
-                }}
-              >
-                <Box
-                  component="img"
-                  src={certificate.image}
-                  alt={certificate.title}
-                  sx={{
-                    width: "100%",
-                    height: isMobile ? "auto" : "700px", // Adjust height for mobile
-                    borderRadius: 1,
-                  }}
-                />
-                <Typography
-                  sx={{
-                    mt: 2,
-                    fontSize: { xs: "16px", sm: "18px", md: "20px" },
-                    fontFamily: "Georgia, serif",
-                    fontStyle: "italic",
-                    fontWeight: 400,
-                    opacity: offset === 0 ? 1 : 0.7,
-                  }}
-                >
-                  {certificate.title}
-                </Typography>
-              </Box>
-            );
-          })}
-        </Box>
-        <Box
+          <ArrowLeftIcon />
+        </IconButton>
+        <IconButton
+          onClick={handleRightClick}
           sx={{
-            display: "flex",
-            marginTop: isMobile ? "20px" : "50px",
-            justifyContent: "center",
-            width: "100%",
-            transform: "translateY(-50%)",
-            zIndex: 1,
-            pointerEvents: "none",
-            gap: "10px",
+            color: "#000",
+            border: "1px solid #000",
+            borderRadius: "0px",
+            padding: "8px 12px",
           }}
         >
-          <IconButton
-            onClick={handlePrevious}
-            sx={{
-              color: "#000",
-              border: "1px solid #000",
-              borderRadius: "0px",
-              padding: "8px 12px",
-              pointerEvents: "all",
-            }}
-          >
-            <ArrowLeftIcon sx={{ color: "#000" }} />
-          </IconButton>
-          <IconButton
-            onClick={handleNext}
-            sx={{
-              color: "#000",
-              border: "1px solid #000",
-              borderRadius: "0px",
-              padding: "8px 12px",
-              pointerEvents: "all",
-            }}
-          >
-            <ArrowRightIcon sx={{ color: "#000" }} />
-          </IconButton>
-        </Box>
-      </Box>
+          <ArrowRightIcon />
+        </IconButton>
+      </Stack>
 
       <Dialog
         open={Boolean(selectedCertificate)}
