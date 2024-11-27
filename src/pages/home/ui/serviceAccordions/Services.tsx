@@ -1,106 +1,14 @@
-import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
-import SMM_service from "@assets/SMM_service.png";
-import Marketing_service from "@assets/Marketing_service.png";
-import Production_service from "@assets/Production_service.png";
-import Strategies_service from "@assets/Strategies_service.png";
-import IT_service from "@assets/IT_service.png";
-import { MyAccordion } from "@shared/ui/accordion";
+import { Box, Typography, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
-
-const ServiceImage = ({ src, alt, isMobile, isTablet }) => {
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientX - rect.left) / rect.width) * 100;
-    const y = ((e.clientY - rect.top) / rect.height) * 100;
-
-    e.currentTarget.style.transformOrigin = `${x}% ${y}%`;
-  };
-
-  return (
-    <Box
-      sx={{
-        borderRadius: "24px",
-        width: {
-          xs: "100%",
-          sm: "100%",
-          md: "50%",
-        },
-        order: { xs: 1, md: 2 },
-        overflow: "hidden",
-        ...(!isMobile &&
-          !isTablet && {
-            "&:hover img": {
-              transform: "scale(1.4)",
-            },
-          }),
-      }}
-    >
-      <img
-        src={src}
-        alt={alt}
-        onMouseMove={!isMobile && !isTablet ? handleMouseMove : undefined}
-        style={{
-          width: "100%",
-          height: "auto",
-          maxWidth: isMobile ? "300px" : isTablet ? "400px" : "618.75px",
-          maxHeight: isMobile ? "154px" : isTablet ? "206px" : "318.08px",
-          display: "block",
-          margin: "0 auto",
-          transition: "transform 0.3s ease",
-        }}
-      />
-    </Box>
-  );
-};
-
-const ServiceContent = ({ items, isMobile }) => (
-  <Box
-    display="flex"
-    flexDirection="column"
-    gap={1}
-    sx={{
-      width: {
-        xs: "100%",
-        sm: "100%",
-        md: "50%",
-      },
-      order: { xs: 2, md: 1 },
-      mt: { xs: 2, md: 0 },
-    }}
-  >
-    {items.map((item, index) => (
-      <Typography
-        key={index}
-        align={isMobile ? "center" : "left"}
-        sx={{
-          fontSize: {
-            xs: "14px",
-            sm: "16px",
-            md: "18.33px",
-          },
-          lineHeight: {
-            xs: "16px",
-            sm: "18px",
-            md: "21.08px",
-          },
-        }}
-      >
-        {item}
-      </Typography>
-    ))}
-  </Box>
-);
+import { ServiceCard } from "./ServiceCard";
 
 export const Services = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const { t } = useTranslation();
 
   const servicesData = [
     {
       title: t("services.smm.title"),
-      image: SMM_service,
+      imageKey: "SMM_service",
       items: [
         t("services.smm.socialMediaManagement"),
         t("services.smm.facebookAds"),
@@ -108,10 +16,13 @@ export const Services = () => {
         t("services.smm.tiktokAds"),
         t("services.smm.contentDigitization"),
       ],
+      imageSize: { width: "283px", height: "250px" },
+      layout: "default",
+      objectPosition: "left",
     },
     {
       title: t("services.marketing.title"),
-      image: Marketing_service,
+      imageKey: "Marketing_service",
       items: [
         t("services.marketing.salesFunnelsAndCrm"),
         t("services.marketing.contextualAds"),
@@ -121,20 +32,26 @@ export const Services = () => {
         t("services.marketing.offlineMarketing"),
         t("services.marketing.aiSalesperson"),
       ],
+      imageSize: { width: "100%", height: "auto" },
+      layout: "vertical",
+      objectPosition: "center",
     },
     {
       title: t("services.researchAndStrategies.title"),
-      image: Strategies_service,
+      imageKey: "Strategies_service",
       items: [
         t("services.researchAndStrategies.marketingStrategies"),
         t("services.researchAndStrategies.smmStrategies"),
         t("services.researchAndStrategies.researchAndAudit"),
         t("services.researchAndStrategies.specialProjects"),
       ],
+      imageSize: { width: "190px", height: "204px" },
+      layout: "default",
+      objectPosition: "right",
     },
     {
       title: t("services.it.title"),
-      image: IT_service,
+      imageKey: "IT_service",
       items: [
         t("services.it.websiteDevelopment"),
         t("services.it.chatbots"),
@@ -142,26 +59,27 @@ export const Services = () => {
         t("services.it.webApplications"),
         t("services.it.seoOptimization"),
       ],
+      imageSize: { width: "283px", height: "240px" },
+      layout: "default",
+      objectPosition: "left",
     },
     {
       title: t("services.production.title"),
-      image: Production_service,
+      imageKey: "Production_service2",
       items: [
         t("services.production.shootingProduction"),
         t("services.production.commercials"),
         t("services.production.imageCommercials"),
         t("services.production.photoProduction"),
       ],
+      imageSize: { width: "283px", height: "204px" },
+      layout: "default",
+      objectPosition: "center",
     },
   ];
 
   return (
-    <Box
-      sx={{
-        px: { xs: 2, sm: 4, md: 8 },
-        py: { xs: 2, sm: 4, md: 8 },
-      }}
-    >
+    <Box sx={{ px: { xs: 2, sm: 4, md: 8 }, py: { xs: 2, sm: 4, md: 8 } }}>
       <Typography
         variant="h2"
         component="h1"
@@ -169,46 +87,54 @@ export const Services = () => {
           fontWeight: 400,
           color: "#000",
           textTransform: "uppercase",
-          fontSize: {
-            xs: "24px",
-            sm: "28px",
-            md: "32px",
-            lg: "64px",
-          },
+          fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
           mb: { xs: 2, sm: 3, md: 5 },
         }}
       >
         {t("services.title")}
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          gap: { xs: "12px", sm: "14px", md: "16px" },
-        }}
-      >
-        {servicesData.map(({ title, image, items }) => (
-          <MyAccordion key={title} title={title}>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: { xs: "column", md: "row" },
-                alignItems: "center",
-                justifyContent: "space-between",
-                gap: { xs: 2, md: 4 },
-              }}
-            >
-              <ServiceContent items={items} isMobile={isMobile} />
-              <ServiceImage
-                src={image}
-                alt={`${title} Service image`}
-                isMobile={isMobile}
-                isTablet={isTablet}
-              />
-            </Box>
-          </MyAccordion>
-        ))}
-      </Box>
+      <Grid container spacing={2} justifyContent="space-between">
+        <Grid item xs={12} md={6.5} container direction="column" spacing={2}>
+          {servicesData
+            .filter((service) =>
+              ["SMM_service", "IT_service", "Production_service2"].includes(
+                service.imageKey
+              )
+            )
+            .map((service) => (
+              <Grid item key={service.title}>
+                <ServiceCard
+                  title={service.title}
+                  imageKey={service.imageKey}
+                  items={service.items}
+                  imageSize={service.imageSize}
+                  layout={service.layout}
+                  objectPosition={service.objectPosition}
+                />
+              </Grid>
+            ))}
+        </Grid>
+        <Grid item xs={12} md={5.5} container direction="column" spacing={2}>
+          {servicesData
+            .filter((service) =>
+              ["Marketing_service", "Strategies_service"].includes(
+                service.imageKey
+              )
+            )
+            .map((service) => (
+              <Grid item key={service.title}>
+                <ServiceCard
+                  title={service.title}
+                  imageKey={service.imageKey}
+                  items={service.items}
+                  imageSize={service.imageSize}
+                  layout={service.layout}
+                  objectPosition={service.objectPosition}
+                />
+              </Grid>
+            ))}
+        </Grid>
+      </Grid>
     </Box>
   );
 };

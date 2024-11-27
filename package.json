@@ -30,6 +30,7 @@
     "react-dom": "^18.3.1",
     "react-draggable": "^4.4.6",
     "react-i18next": "^15.1.1",
+    "react-lazy-load-image-component": "^1.6.2",
     "react-marquee-slider": "^1.1.5",
     "react-multi-carousel": "^2.8.5",
     "react-player": "^2.16.0",
