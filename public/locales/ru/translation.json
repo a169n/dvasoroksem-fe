@@ -13,14 +13,15 @@
     "main": "Главная"
   },
   "hero": {
-    "leadingMarketingAgency": "Мы двасороксемь.",
+    "leadingMarketingAgency1": "Мы два-",
+    "leadingMarketingAgency2": "сороксемь.",
     "agencyDescription": "Ведущее маркетинговое агентство в Астане, предлагающее комплексные маркетинговые решения для бизнеса. Специализируемся на стратегическом планировании, digital маркетинге, SEO, SMM и брендировании.",
     "teamHelpBusinessGrow": "Наша команда экспертов поможет вашему бизнесу расти и достигать новых высот!"
   },
   "services": {
     "title": "Наши услуги",
     "smm": {
-      "title": "СММ",
+      "title": "SMM",
       "socialMediaManagement": "Ведение социальных сетей",
       "facebookAds": "Таргетированная реклама в Facebook",
       "instagramAds": "Таргетированная реклама в Instagram",
@@ -38,7 +39,7 @@
       "aiSalesperson": "AI продажник"
     },
     "researchAndStrategies": {
-      "title": "Исследования и стратегии",
+      "title": "Стратегии",
       "marketingStrategies": "Маркетинговые стратегии",
       "smmStrategies": "SMM-стратегии",
       "researchAndAudit": "Исследования и аудит",

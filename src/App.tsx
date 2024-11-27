@@ -22,7 +22,7 @@ export const App: React.FC = () => {
                 alignItems="center"
                 height="100vh"
               >
-                <CircularProgress size={40} />
+                <CircularProgress size={40} color="secondary" />
               </Box>
             }
           >

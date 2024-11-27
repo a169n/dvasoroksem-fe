@@ -13,7 +13,8 @@
     "main": "Main"
   },
   "hero": {
-    "leadingMarketingAgency": "We are dvasoroksem.",
+    "leadingMarketingAgency1": "We are dva-",
+    "leadingMarketingAgency2": "soroksem.",
     "agencyDescription": "A leading marketing agency in Astana offering comprehensive marketing solutions for businesses. We specialize in strategic planning, digital marketing, SEO, SMM, and branding.",
     "teamHelpBusinessGrow": "Our team of experts will help your business grow and reach new heights!"
   },
@@ -38,7 +39,7 @@
       "aiSalesperson": "AI Sales Assistant"
     },
     "researchAndStrategies": {
-      "title": "Research and Strategies",
+      "title": "Strategies",
       "marketingStrategies": "Marketing Strategies",
       "smmStrategies": "SMM Strategies",
       "researchAndAudit": "Research and Auditing",
@@ -159,7 +160,6 @@
     "honoraryDiploma": "Honorary Diploma",
     "coffeeBoom": "Coffee Boom Certificate",
     "digitalManagement": "Taking the course \"Operational Management in digital\""
-
   },
   "footer": {
     "contacts": "Contacts",
