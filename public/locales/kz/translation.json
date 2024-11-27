@@ -13,7 +13,8 @@
     "main": "Бастысы"
   },
   "hero": {
-    "leadingMarketingAgency": "Біз двасороксемь.",
+    "leadingMarketingAgency1": "Біз два-",
+    "leadingMarketingAgency2": "сороксемь.",
     "agencyDescription": "Астанадағы жетекші маркетингтік агенттік, бизнеске арналған кешенді маркетингтік шешімдер ұсынады. Стратегиялық жоспарлау, digital маркетинг, SEO, SMM және брендинг саласында маманданамыз.",
     "teamHelpBusinessGrow": "Біздің сарапшылар командасы сіздің бизнесіңіздің өсуі мен жаңа биіктерге жетуіне көмектеседі!"
   },
@@ -38,7 +39,7 @@
       "aiSalesperson": "AI сатушы"
     },
     "researchAndStrategies": {
-      "title": "Зерттеулер мен стратегиялар",
+      "title": "Стратегиялар",
       "marketingStrategies": "Маркетинг стратегиялары",
       "smmStrategies": "SMM-стратегиялары",
       "researchAndAudit": "Зерттеулер мен аудит",
