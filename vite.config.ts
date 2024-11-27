@@ -8,7 +8,7 @@ export default defineConfig({
   assetsInclude: ['**/*.MP4'],
   server: {
     open: "/",
-    port: 3000,
+    port: 3001,
     hmr: true,
   },
   resolve: {

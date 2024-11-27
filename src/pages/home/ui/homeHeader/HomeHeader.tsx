@@ -19,6 +19,7 @@ export const HomeHeader = () => {
 
   return (
     <Box
+      mt={8}
       sx={{
         backgroundColor: "#000",
         color: "white",
