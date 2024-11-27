@@ -3,10 +3,7 @@ import {
   Box,
   CardContent,
   CardMedia,
-  Card as MUICard,
-  SxProps,
-  Theme,
-  Typography,
+  Card as MUICard, Typography
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -19,7 +16,9 @@ interface CardProps {
   text: string;
   buttonText: string;
   onButtonClick: () => void;
-  sx?: SxProps<Theme>;
+  sx?: object;
+  header?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 export const MyCard: React.FC<CardProps> = ({
