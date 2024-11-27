@@ -1,4 +1,4 @@
-import { Box, Typography, Grid } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { ServiceCard } from "./ServiceCard";
 
@@ -80,19 +80,6 @@ export const Services = () => {
 
   return (
     <Box sx={{ px: { xs: 2, sm: 4, md: 8 }, py: { xs: 2, sm: 4, md: 8 } }}>
-      <Typography
-        variant="h2"
-        component="h1"
-        sx={{
-          fontWeight: 400,
-          color: "#000",
-          textTransform: "uppercase",
-          fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
-          mb: { xs: 2, sm: 3, md: 5 },
-        }}
-      >
-        {t("services.title")}
-      </Typography>
       <Grid container spacing={2} justifyContent="space-between">
         <Grid item xs={12} md={6.5} container direction="column" spacing={2}>
           {servicesData
