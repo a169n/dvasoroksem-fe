@@ -74,7 +74,6 @@ export const WhyChooseUs = () => {
   return (
     <Box
       sx={{
-        px: { xs: 2, sm: 4, md: 8 },
         minHeight: "600px",
         userSelect: "none",
       }}
@@ -83,18 +82,19 @@ export const WhyChooseUs = () => {
         variant="h2"
         component="h1"
         sx={{
-          fontWeight: 400,
+          fontWeight: 500,
           color: "#000",
           textTransform: "uppercase",
-          fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
+          fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "70px" },
           mb: { xs: 2, sm: 3, md: 5 },
           textAlign: "left",
+          px: { xs: 2, sm: 4, md: 8 },
         }}
       >
         {t("whyChooseUs.title")}
       </Typography>
 
-      <Box mt={2} sx={{ overflow: "auto" }}>
+      <Box mt={5}>
         <Carousel
           responsive={responsive}
           infinite
@@ -117,14 +117,14 @@ export const WhyChooseUs = () => {
                 position: "relative",
                 backgroundColor: "#f7f7f7",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                mx: { xs: 1, sm: 2 },
-                overflow: "visible",
+                mx: "auto",
                 transition: "height 0.2s ease-in-out",
+                maxWidth: "375px",
                 height: "auto",
                 "&:hover": {
                   height: "auto",
                   "& .content": {
-                    maxHeight: "300px",
+                    maxHeight: "400px",
                     opacity: 1,
                   },
                 },
