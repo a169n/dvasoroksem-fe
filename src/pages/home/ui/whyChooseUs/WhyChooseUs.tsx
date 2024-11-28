@@ -4,6 +4,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
+// Import images directly
 import CupIcon from "@assets/icons/choose/cup.svg";
 import EightSpecialistsIcon from "@assets/icons/choose/eightSpecialists.svg";
 import FourYearsIcon from "@assets/icons/choose/fourYears.svg";
@@ -20,7 +21,6 @@ export const WhyChooseUs = () => {
       text: t("whyChooseUs.fourYears.text"),
       buttonText: t("whyChooseUs.fourYears.buttonText"),
       link: "/test",
-      imageProps: { width: 200, height: "auto", top: "-150px" },
     },
     {
       image: EightSpecialistsIcon,
@@ -28,7 +28,6 @@ export const WhyChooseUs = () => {
       text: t("whyChooseUs.eightSpecialists.text"),
       buttonText: t("whyChooseUs.eightSpecialists.buttonText"),
       link: "/test",
-      imageProps: { width: 200, height: "auto", top: "-150px" },
     },
     {
       image: SocialIcon,
@@ -36,7 +35,6 @@ export const WhyChooseUs = () => {
       text: t("whyChooseUs.socialResponsibility.text"),
       buttonText: t("whyChooseUs.socialResponsibility.buttonText"),
       link: "/test",
-      imageProps: { width: 200, height: "auto", top: "-150px" },
     },
     {
       image: CupIcon,
@@ -44,7 +42,6 @@ export const WhyChooseUs = () => {
       text: t("whyChooseUs.millionaireBlogger.text"),
       buttonText: t("whyChooseUs.millionaireBlogger.buttonText"),
       link: "/test",
-      imageProps: { width: 200, height: "auto", top: "-150px" },
     },
     {
       image: ThreeThousandIcon,
@@ -52,7 +49,6 @@ export const WhyChooseUs = () => {
       text: t("whyChooseUs.adCampaigns.text"),
       buttonText: t("whyChooseUs.adCampaigns.buttonText"),
       link: "/test",
-      imageProps: { width: 200, height: "auto", top: "-150px" },
     },
   ];
 
@@ -63,7 +59,7 @@ export const WhyChooseUs = () => {
     },
     desktop: {
       breakpoint: { max: 1200, min: 900 },
-      items: 2,
+      items: 3,
     },
     tablet: {
       breakpoint: { max: 900, min: 600 },
@@ -76,7 +72,13 @@ export const WhyChooseUs = () => {
   };
 
   return (
-    <Box sx={{ px: { xs: 2, sm: 4, md: 8 }, py: { xs: 2, sm: 4, md: 8 } }}>
+    <Box
+      sx={{
+        px: { xs: 2, sm: 4, md: 8 },
+        minHeight: "600px",
+        userSelect: "none",
+      }}
+    >
       <Typography
         variant="h2"
         component="h1"
@@ -86,21 +88,22 @@ export const WhyChooseUs = () => {
           textTransform: "uppercase",
           fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
           mb: { xs: 2, sm: 3, md: 5 },
-          textAlign: "left", // Title aligned to left
+          textAlign: "left",
         }}
       >
         {t("whyChooseUs.title")}
       </Typography>
 
-      <Box mt={2} py={2}>
+      <Box mt={2} sx={{ overflow: "auto" }}>
         <Carousel
           responsive={responsive}
           infinite
           draggable
           swipeable
+          pauseOnHover
           keyBoardControl
-          autoPlay={true}
-          autoPlaySpeed={7000} // Auto-scroll every 7 seconds
+          autoPlay
+          autoPlaySpeed={7000}
           showDots={false}
           containerClass="carousel-container"
           itemClass="carousel-item-padding"
@@ -115,42 +118,53 @@ export const WhyChooseUs = () => {
                 backgroundColor: "#f7f7f7",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                 mx: { xs: 1, sm: 2 },
-                transition: "height 0.3s ease-in-out, opacity 0.3s ease-in-out",
                 overflow: "visible",
-                height: "auto", // Default height
+                transition: "height 0.2s ease-in-out",
+                height: "auto",
                 "&:hover": {
-                  height: "fit-content", // Expand on hover
+                  height: "auto",
+                  "& .content": {
+                    maxHeight: "300px",
+                    opacity: 1,
+                  },
                 },
               }}
             >
-              {/* Image */}
+              {/* Image - positioned to partially overflow the card */}
               <Box
-                component="img"
-                src={card.image}
-                alt={card.title}
                 sx={{
-                  position: "absolute",
-                  top: card.imageProps.top,
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  width: card.imageProps.width,
-                  height: card.imageProps.height,
-                  userSelect: "none",
-                  pointerEvents: "none",
+                  position: "relative",
+                  display: "flex",
+                  justifyContent: "center",
+                  overflow: "visible", // Make sure overflow is set to visible here as well
+                  top: "-100px", // Increased negative top to move image up more
+                  marginBottom: "-70px", // Negative margin to compensate for overflow
+                  zIndex: 1,
                 }}
-              />
+              >
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  style={{
+                    overflow: "visible",
+                    width: "200px",
+                    height: "auto",
+                    zIndex: 1,
+                  }}
+                  draggable={false}
+                />
+              </Box>
 
               {/* Title */}
               <Typography
                 variant="h6"
                 sx={{
-                  mt: "60px",
                   fontWeight: 400,
                   fontStyle: "italic",
                   fontFamily: "Georgia, serif",
                   fontSize: "32px",
                   color: "#000",
-                  textAlign: "left", // Title aligned to left
+                  textAlign: "left",
                   px: 2,
                 }}
               >
@@ -161,13 +175,14 @@ export const WhyChooseUs = () => {
               <Box
                 className="content"
                 sx={{
-                  mt: 4,
+                  mt: 2,
                   px: 2,
                   pb: 2,
-                  textAlign: "left",
+                  maxHeight: 0,
                   opacity: 0,
-                  transition: "opacity 0.3s ease-in-out",
-                  "&:hover": { opacity: 1 },
+                  overflow: "hidden",
+                  transition:
+                    "max-height 0.4s ease-in-out, opacity 0.7s ease-in-out",
                 }}
               >
                 <Typography
@@ -176,7 +191,7 @@ export const WhyChooseUs = () => {
                     mb: 2,
                     color: "#333",
                     fontSize: "18px",
-                    fontFamily: "Futura PT, sans-serif", // Custom font
+                    fontFamily: "Futura PT, sans-serif",
                     fontWeight: 300,
                   }}
                 >
@@ -200,7 +215,7 @@ export const WhyChooseUs = () => {
                     "&:hover": {
                       backgroundColor: "black",
                       color: "white",
-                      transition: "background-color 0.3s ease", // Button hover transition
+                      transition: "background-color 0.3s ease",
                     },
                   }}
                   endIcon={<ArrowForwardIcon />}
