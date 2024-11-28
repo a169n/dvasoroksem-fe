@@ -92,7 +92,7 @@
   "ourCases": {
     "title1": "Наши кейсы",
     "title2": "Другие кейсы",
-    "buttonText": "Смотреть кейс",
+    "buttonText": "Смотреть кейсы",
     "noCases": "Нет кейсов для отображения",
     "categories": {
       "all": "Все кейсы",
@@ -155,7 +155,7 @@
     "buttonText": "Я хочу оставить заявку"
   },
   "certificates": {
-    "title": "Наши сертификаты",
+    "title": "Сертификаты",
     "gratitudeLetter": "Благодарственное письмо",
     "honoraryDiploma": "Почетная грамота",
     "coffeeBoom": "Сертификат Coffee Boom",

@@ -14,7 +14,7 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
       onChange={onChange}
       variant="standard"
       sx={{
-        width: isMobile ? "90vw" : 90,
+        width: "fit-content",
         backgroundColor:
           ((isDarkMode || isLightMode) && !isDefaultMode)
             ? "transparent"
@@ -27,7 +27,7 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
         padding: "4px 0",
         alignSelf: "center",
         "&:hover": {
-          border: "1px solid black", // isDarkMode || isLightMode ? "" :
+          border: "1px solid black",
           textDecoration: "none",
         },
         "& .MuiSelect-select": {
@@ -39,7 +39,7 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
                 ? "white"
                 : "black",
           textAlign: "left",
-          borderRadius: isMobile ? "10px" : "4px",
+          borderRadius: "4px",
           color: isLightMode
             ? "white"
             : isDarkMode

@@ -139,6 +139,7 @@ export const Header = ({
         }}
         options={languageOptions}
         sx={{
+          alignSelf: "start",
           color: isLightMode ? "#000" : "#fff",
         }}
         mode={mode}
