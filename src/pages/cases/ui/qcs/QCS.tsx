@@ -26,7 +26,7 @@ import { useEffect } from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 import QCSReel1 from "@assets/videos/qcs/qcs_reels_1.mov";
-import QCSReel2 from "@assets/videos/qcs/qcs_reels_2.mov";
+import QCSReel2 from "@assets/videos/qcs/qcs_reels_2.mp4";
 import QCSReel3 from "@assets/videos/qcs/qcs_reels_3.mp4";
 import QCSStories1 from "@assets/videos/qcs/qcs_stories_1.mov";
 import QCSStories2 from "@assets/videos/qcs/qcs_stories_2.mov";
