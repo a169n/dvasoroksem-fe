@@ -1,226 +1,186 @@
-import { useRef } from "react";
-import Carousel from "react-multi-carousel";
-import "react-multi-carousel/lib/styles.css";
-import {
-  Box,
-  IconButton,
-  Typography,
-  useMediaQuery,
-  Stack,
-} from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-
-import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
-import value1 from "@assets/values/value1.svg";
-import value2 from "@assets/values/value2.svg";
-import value3 from "@assets/values/value3.svg";
-import value4 from "@assets/values/value4.svg";
-import value5 from "@assets/values/value5.svg"; 
-
+import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import Carousel from "react-multi-carousel";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-multi-carousel/lib/styles.css";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
-interface Value {
-  id: number;
-  title: string;
-  image: string;
-  description: string;
-}
+// Import values icons
+import disciplineIcon from "@assets/icons/values/discipline.svg";
+import effectIcon from "@assets/icons/values/effect.svg";
+import flexibilityIcon from "@assets/icons/values/flexibility.svg";
+import innovativeIcon from "@assets/icons/values/innovative.svg";
+import responsibilityIcon from "@assets/icons/values/responsibility.svg";
 
 export const Values = () => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
   const { t } = useTranslation();
 
-  const values: Value[] = [
+  const valueCards = [
     {
-      id: 1,
-      title: t("values.value1.title")     ,
-      image: value1,
-      description: t("values.value1.description") 
+      image: disciplineIcon,
+      title: t("values.discipline.title"),
+      text: t("values.discipline.text"),
     },
     {
-      id: 2,
-      title: t("values.value2.title")   ,
-      image: value2,
-      description: t("values.value2.description") 
+      image: effectIcon,
+      title: t("values.effect.title"),
+      text: t("values.effect.text"),
     },
     {
-      id: 3,
-      title: t("values.value3.title"),
-      image: value3,
-      description: t("values.value3.description") 
+      image: flexibilityIcon,
+      title: t("values.flexibility.title"),
+      text: t("values.flexibility.text"),
     },
     {
-      id: 4,
-      title: t("values.value4.title"),
-      image: value4,
-      description: t("values.value4.description")  
+      image: innovativeIcon,
+      title: t("values.innovative.title"),
+      text: t("values.innovative.text"),
     },
-    { id: 5,
-      title: t("values.value5.title"),
-      image: value5,
-      description: t("values.value5.description")  }
+    {
+      image: responsibilityIcon,
+      title: t("values.responsibility.title"),
+      text: t("values.responsibility.text"),
+    },
   ];
 
-  const carouselRef = useRef<Carousel>(null);
-
-  const handleLeftClick = () => {
-    if (carouselRef.current) carouselRef.current.previous(1);
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 1200 },
+      items: 3,
+    },
+    desktop: {
+      breakpoint: { max: 1200, min: 900 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 900, min: 600 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 600, min: 0 },
+      items: 1,
+    },
   };
-
-  const handleRightClick = () => {
-    if (carouselRef.current) carouselRef.current.next(1);
-  };
-
 
   return (
-    <Box
-      sx={{
-        position: "relative",
-        width: "100%",
-        margin: "0 auto",
-        overflow: "hidden",
-        py: { xs: 2, sm: 4, md: 8 },
-        textAlign: "center",
-      }}
-    >
+    <Box sx={{ minHeight: "600px", userSelect: "none" }}>
       <Typography
         variant="h2"
         component="h1"
         sx={{
-          fontWeight: 400,
+          fontWeight: 500,
           color: "#000",
           textTransform: "uppercase",
-          fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
+          fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "70px" },
           mb: { xs: 2, sm: 3, md: 5 },
+          textAlign: "left",
+          px: { xs: 2, sm: 4, md: 8 },
         }}
       >
         {t("values.title")}
       </Typography>
 
-      <Carousel
-        infinite
-        ref={carouselRef}
-        autoPlay={!isMobile}
-        autoPlaySpeed={3000}
-        keyBoardControl
-        containerClass="carousel-container"
-        draggable
-        centerMode={true}
-        renderDotsOutside={false}
-        showDots={false}
-        arrows={false}
-        responsive={{
-          largeDesktop: {
-            breakpoint: { max: 3000, min: 1280 },
-            items: isMobile ? 1 : 2,
-          },
-          mediumDesktop: {
-            breakpoint: { max: 1280, min: 960 },
-            items: isMobile ? 1 : 2,
-          },
-          smallDevices: {
-            breakpoint: { max: 720, min: 0 },
-            items: 1,
-          },
-        }}
-      >
-        {values.map((value) => (
-          <Box
-            key={value.id}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              cursor: "pointer",
-              p: 4,
-              m: isMobile ? 2 : 8,
-              border: "1px solid #D9D9D9",
-              borderRadius: "30px",
-              transition: "transform 0.3s, box-shadow 0.3s",
-              
-              "&:hover": {
-                transform: "scale(1.05)",
-                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
-              },
-              "&:hover .hover-title": {
-                display: "block",
-                opacity: 1,
-              },
-            }}
-          >
+      <Box mt={5}>
+        <Carousel
+          responsive={responsive}
+          infinite
+          draggable
+          swipeable
+          pauseOnHover
+          keyBoardControl
+          autoPlay
+          autoPlaySpeed={7000}
+          showDots={false}
+          containerClass="carousel-container"
+          itemClass="carousel-item-padding"
+          arrows={false}
+        >
+          {valueCards.map((card, index) => (
             <Box
-              component="img"
-              src={value.image}
-              alt={value.title}
+              my={2}
+              key={index}
               sx={{
-                height: isMobile? "100%" : "250px",
-                width: "100%",
-                borderRadius: 1,
-              }}
-            />
-             <Typography
-              sx={{
-                mt: 2,
-                fontSize: { xs: "16px", sm: "18px", md: "20px" },
-                fontFamily: "Georgia, serif",
-                fontStyle: "italic",
-                fontWeight: 400,
-                opacity: 1,
-                transition: "opacity 0.3s",
-              }}
-            >
-              {value.title}
-            </Typography>
-            <Typography
-              className="hover-title"
-              sx={{
-                mt: 2,
-                fontSize: { xs: "16px", sm: "18px", md: "20px" },
-                fontFamily: "Georgia, serif",
-                fontStyle: "italic",
-                fontWeight: 400,
-                opacity: 0,
-                transition: "opacity 0.3s",
-                display: "none",
-
+                position: "relative",
+                backgroundColor: "#f7f7f7",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                mx: "auto",
+                transition:
+                  "height 0.2s ease-in-out, box-shadow 0.3s ease-in-out",
+                maxWidth: "375px",
+                height: "auto",
+                borderRadius: "24px",
+                overflow: "hidden",
+                "&:hover": {
+                  "& .content": {
+                    maxHeight: "400px",
+                    opacity: 1,
+                  },
+                  boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+                },
               }}
             >
-              {value.description}
-            </Typography>
-          </Box>
-        ))}
-      </Carousel>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  p: 2,
+                }}
+              >
+                <LazyLoadImage
+                  src={card.image}
+                  alt={card.title}
+                  effect="blur"
+                  style={{
+                    width: "100%",
+                    height: "auto",
+                    borderRadius: "24px",
+                  }}
+                  draggable={false}
+                />
+              </Box>
 
-      <Stack direction="row" justifyContent="center" spacing={2} sx={{ mt: 2 }}>
-        <IconButton
-          onClick={handleLeftClick}
-          sx={{
-            color: "#000",
-            border: "1px solid #000",
-            borderRadius: "0px",
-            padding: "8px 12px",
-          }}
-        >
-          <ArrowLeftIcon />
-        </IconButton>
-        <IconButton
-          onClick={handleRightClick}
-          sx={{
-            color: "#000",
-            border: "1px solid #000",
-            borderRadius: "0px",
-            padding: "8px 12px",
-          }}
-        >
-          <ArrowRightIcon />
-        </IconButton>
-      </Stack>
+              <Box
+                className="content"
+                sx={{
+                  p: 2,
+                  maxHeight: 0,
+                  opacity: 0,
+                  overflow: "hidden",
+                  transition:
+                    "max-height 0.4s ease-in-out, opacity 0.7s ease-in-out",
+                }}
+              >
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontFamily: "Georgia, serif",
+                    fontStyle: "italic",
+                    fontSize: "24px",
+                    color: "#000",
+                    textAlign: "left",
+                    mb: 1,
+                  }}
+                >
+                  {card.title}
+                </Typography>
 
-      
+                <Typography
+                  variant="body2"
+                  sx={{
+                    color: "#333",
+                    fontSize: "16px",
+                    fontFamily: "Futura PT, sans-serif",
+                    fontWeight: 300,
+                    textAlign: "left",
+                  }}
+                >
+                  {card.text}
+                </Typography>
+              </Box>
+            </Box>
+          ))}
+        </Carousel>
+      </Box>
     </Box>
   );
 };

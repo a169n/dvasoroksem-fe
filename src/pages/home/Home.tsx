@@ -7,13 +7,12 @@ import { Cases } from "./ui/cases";
 import { Apply } from "./ui/cases/ui";
 import { Videos } from "./ui/videos";
 import { Certificates } from "./ui/certificatesSection";
-import {Values} from "./ui/values";
+import { Values } from "./ui/values";
+
 export const Home = () => {
   const aboutRef = useRef(null);
   const casesRef = useRef(null);
   const reviewsRef = useRef(null);
-  const valuesRef = useRef(null);
-
 
   return (
     <div>
@@ -42,9 +41,8 @@ export const Home = () => {
         <div ref={reviewsRef}>
           <Certificates />
         </div>
-        <div ref={valuesRef}>
-          <Values />
-        </div>
+
+        <Values />
       </div>
     </div>
   );
