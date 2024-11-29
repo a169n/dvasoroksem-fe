@@ -11,6 +11,11 @@ export const Soyle = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleButtonClick = () => {
+    window.open("https://www.youtube.com/watch?v=YxXS6N_gdO8", "_blank");
+  };
+
   return (
     <>
       <Header mode="dark" />
@@ -25,6 +30,16 @@ export const Soyle = () => {
         title="Казахский язык для всех"
         description="Мы создали серию видеороликов для онлайн-школы казахского языка SOYLE. Нашей задачей было разработать качественный и интересный контент с продуманным сценарием и высоким уровнем продакшна. Видеоуроки на YouTube ориентированы на тех, кто хочет изучать казахский язык, сочетая обучение и развлечение"
       />
+      <Box pb={3} backgroundColor={"#161616"}>
+        <iframe
+          width="100%"
+          height="600px"
+          src="https://www.youtube.com/embed/YxXS6N_gdO8"
+          title="YouTube video"
+          allowFullScreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        ></iframe>
+      </Box>
       <Box
         sx={{
           backgroundColor: "#161616",
@@ -37,24 +52,25 @@ export const Soyle = () => {
         <MyButton
           variant="contained"
           sx={{
-            py: 1,
-            mt: 3,
             height: "auto",
-            width: { xs: "100%", md: "20%" },
+            width: "fit-content",
             backgroundColor: "#161616",
             color: "#fff",
             border: "1px solid #fff",
+            borderRadius: 0,
             gap: "10px",
             "&:hover": {
               backgroundColor: "#f0f0f0",
               color: "#000",
             },
           }}
+          endIcon={<YouTubeIcon />}
+          onClick={handleButtonClick}
         >
           Смотреть видеоролик на YouTube
-          <YouTubeIcon />
         </MyButton>
       </Box>
+
       <Cases mode="case-page" />
     </>
   );

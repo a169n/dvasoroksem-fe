@@ -7,9 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/effect-cube";
-import { Box, IconButton } from "@mui/material";
-import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
+import { Box } from "@mui/material";
 
 interface StoriesProps {
   stories: string[];
@@ -20,14 +18,15 @@ export const Stories = ({ stories }: StoriesProps) => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const prevRef = useRef<HTMLButtonElement | null>(null);
   const nextRef = useRef<HTMLButtonElement | null>(null);
-  const swiperRef = useRef<any>(null); 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const swiperRef = useRef<any>(null);
 
   useEffect(() => {
     if (swiperRef.current && prevRef.current && nextRef.current) {
       swiperRef.current.params.navigation.prevEl = prevRef.current;
       swiperRef.current.params.navigation.nextEl = nextRef.current;
-      swiperRef.current.navigation.init(); 
-      swiperRef.current.navigation.update(); 
+      swiperRef.current.navigation.init();
+      swiperRef.current.navigation.update();
     }
   }, []);
 
@@ -50,9 +49,13 @@ export const Stories = ({ stories }: StoriesProps) => {
         loop={true}
         effect="cube"
         centeredSlides
-        style={{ height: "800px", width: isMobile ? "100%" : "500px" }}
+        style={{
+          width: isMobile ? "100%" : "350px",
+          height: isMobile ? "300px" : "600px",
+          objectFit: "cover",
+        }}
         onBeforeInit={(swiper) => {
-          swiperRef.current = swiper; 
+          swiperRef.current = swiper;
         }}
       >
         {stories.map((story, index) => (
@@ -67,44 +70,6 @@ export const Stories = ({ stories }: StoriesProps) => {
           />
         ))}
       </Swiper>
-
-      <Box
-        sx={{
-          display: "flex",
-          marginTop: "50px",
-          justifyContent: "center",
-          width: "100%",
-          transform: "translateY(-50%)",
-          zIndex: 1,
-          pointerEvents: "none",
-          gap: "10px",
-        }}
-      >
-        <IconButton
-          ref={prevRef}
-          sx={{
-            color: "#fff",
-            border: "1px solid #fff",
-            borderRadius: "0px",
-            padding: "8px 12px",
-            pointerEvents: "all",
-          }}
-        >
-          <ArrowLeftIcon sx={{ color: "#fff" }} />
-        </IconButton>
-        <IconButton
-          ref={nextRef}
-          sx={{
-            color: "#fff",
-            border: "1px solid #fff",
-            borderRadius: "0px",
-            padding: "8px 12px",
-            pointerEvents: "all",
-          }}
-        >
-          <ArrowRightIcon sx={{ color: "#fff" }} />
-        </IconButton>
-      </Box>
     </Box>
   );
 };

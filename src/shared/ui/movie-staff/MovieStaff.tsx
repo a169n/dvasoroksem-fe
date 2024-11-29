@@ -4,7 +4,7 @@ import { MyButton } from "../button";
 import DirectorImage from "@assets/director.svg";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-export const MovieStaff = () => {
+export const MovieStaff = ({ link }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
@@ -27,22 +27,22 @@ export const MovieStaff = () => {
         <MyButton
           variant="contained"
           sx={{
-            py: 1,
-            mt: 3,
             height: "auto",
-            width: isMobile ? "100%" : "20%",
+            width: "fit-content",
             backgroundColor: "#161616",
             color: "#fff",
             border: "1px solid #fff",
+            borderRadius: 0,
             gap: "10px",
             "&:hover": {
               backgroundColor: "#f0f0f0",
               color: "#000",
             },
           }}
+          onClick={() => window.open(link, "_blank")}
+          endIcon={<YouTubeIcon />}
         >
           Смотреть видеоролик на YouTube
-          <YouTubeIcon />
         </MyButton>
       </Box>
       <Box
