@@ -19,7 +19,7 @@ export const Soyle = () => {
   return (
     <>
       <Header mode="dark" />
-      <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
+      <Box component="div" sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={SoyleMainPage}
           alt="soyle main image"
