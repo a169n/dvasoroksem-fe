@@ -19,7 +19,7 @@ import case6 from "@assets/cases/case6.svg";
 import case7 from "@assets/cases/case7.svg";
 import case8 from "@assets/cases/case8.svg";
 import case9 from "@assets/cases/case9.svg";
-import case10 from "@assets/cases/case9.svg"; // New case image for Splat
+// import case10 from "@assets/cases/case9.svg";
 
 export const Cases = () => {
   const theme = useTheme();
@@ -55,13 +55,13 @@ export const Cases = () => {
       description: t("ourCases.bauer.description"),
       imageUrl: case5,
     },
-    {
-      title: "Splat",
-      category: t("ourCases.categories.marketing"),
-      path: "/cases/splat",
-      description: t("ourCases.splat.description"),
-      imageUrl: case10,
-    },
+    // {
+    //   title: "Splat",
+    //   category: t("ourCases.categories.marketing"),
+    //   path: "/cases/splat",
+    //   description: t("ourCases.splat.description"),
+    //   imageUrl: case10,
+    // },
     {
       title: "Everest",
       category: t("ourCases.categories.smm"),
@@ -150,7 +150,7 @@ export const Cases = () => {
               fontWeight: 400,
               color: "#000",
               textTransform: "uppercase",
-              fontSize: isMobile ? "32px" : isTablet ? "36px" : "72px",
+              fontSize: isMobile ? "32px" : isTablet ? "36px" : "70px",
               mb: isMobile ? 2 : 0,
               width: isMobile ? "100%" : "auto",
               textAlign: "left",

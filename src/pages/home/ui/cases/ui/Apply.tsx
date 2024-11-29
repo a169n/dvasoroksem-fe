@@ -17,8 +17,24 @@ export const Apply = () => {
         backgroundColor: "#000",
       }}
     >
-      <Box display={"flex"} justifyContent={"flex-start"} mt={10}>
+      <Box
+        display={"flex"}
+        flexDirection={"column"}
+        justifyContent={"flex-start"}
+      >
         <AnimatedGraphics />
+        <Typography
+          color="#fff"
+          fontSize={{ xs: "24px", sm: "28px", md: "32px", lg: "64px" }}
+          textTransform="uppercase"
+          sx={{
+            textAlign: "start",
+            wordSpacing: "0.3em",
+            marginBottom: 6,
+          }}
+        >
+          {t("apply.text1")}
+        </Typography>
         <Typography
           color="#fff"
           fontSize={{ xs: "24px", sm: "28px", md: "32px", lg: "64px" }}
@@ -28,18 +44,10 @@ export const Apply = () => {
             wordSpacing: "0.3em",
           }}
         >
-          {t("apply.text1")}
-          <Box
-            mt={6}
-            component="span"
-            display="block"
-            sx={{ wordSpacing: "0.3em" }}
-          >
-            {t("apply.text2")}
-          </Box>
+          {t("apply.text2")}
         </Typography>
       </Box>
-      <Box display={"flex"} justifyContent={"flex-end"} mt={10}>
+      <Box display={"flex"} justifyContent={"flex-end"}>
         <MyButton
           onClick={() => window.open("/request", "_blank")}
           sx={{

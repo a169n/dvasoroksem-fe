@@ -81,7 +81,7 @@ export const Footer = () => {
             fontSize: { xs: "20px", sm: "22px", md: "24px" },
             width: { xs: "100%", md: "50vw" },
             order: { xs: 2, md: 1 },
-            whiteSpace: "nowrap"  
+            whiteSpace: "nowrap",
           }}
         >
           <Box
@@ -90,20 +90,24 @@ export const Footer = () => {
               alignItems: "center",
               justifyContent: { xs: "flex-start", md: "flex-end" },
               width: "100%",
-              position: "relative"
-
+              position: "relative",
             }}
           >
-            <Box sx={{position: {xs: "absolute", md: "relative"}, top: {xs: "-40px", md: 0}, right:{xs: "40px", md: 0}}}>   
-                       {t("footer.ceoName")}
+            <Box
+              sx={{
+                position: { xs: "absolute", md: "relative" },
+                top: { xs: "-40px", md: 0 },
+                right: { xs: "40px", md: 0 },
+              }}
+            >
+              {t("footer.ceoName")}
             </Box>
             <ArrowForwardIosIcon
               sx={{
                 width: "15px",
                 height: "15px",
                 ml: 1,
-                display: {xs: "none", md: "block"}
-
+                display: { xs: "none", md: "block" },
               }}
             />
           </Box>
@@ -124,8 +128,8 @@ export const Footer = () => {
             alt="First Image"
             draggable={false}
             sx={{
-              width: {xs :"300px", md: "auto"},
-              height: {xs :"300px", md: "auto"},
+              width: { xs: "300px", md: "auto" },
+              height: { xs: "300px", md: "auto" },
               maxHeight: { xs: "500px", md: "none" },
               objectFit: "cover",
             }}
@@ -140,7 +144,7 @@ export const Footer = () => {
               height: "auto",
               maxHeight: { xs: "200px", md: "none" },
               objectFit: "cover",
-              display: {xs: "none", md: "block"}
+              display: { xs: "none", md: "block" },
             }}
           />
         </Box>
@@ -160,8 +164,7 @@ export const Footer = () => {
             sx={{
               alignItems: "center",
               justifyContent: { xs: "flex-start", md: "flex-start" },
-              display: {xs: "none", md: "flex"}
-
+              display: { xs: "none", md: "flex" },
             }}
           >
             <ArrowForwardIosIcon
@@ -170,7 +173,7 @@ export const Footer = () => {
                 width: "15px",
                 height: "15px",
                 mr: { xs: 1, md: 0 },
-                display: {xs: "none", md: "block"}
+                display: { xs: "none", md: "block" },
               }}
             />
             {t("footer.contactsUs")}

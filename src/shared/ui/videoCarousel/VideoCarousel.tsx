@@ -1,5 +1,5 @@
 import React, { useState, useRef } from "react";
-import { Box, IconButton } from "@mui/material";
+import { Box, CircularProgress, IconButton } from "@mui/material";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -11,6 +11,7 @@ interface VideoCarouselProps {
 const VideoCard = ({ src }: { src: string }) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handlePlayPause = () => {
     if (videoRef.current) {
@@ -21,6 +22,14 @@ const VideoCard = ({ src }: { src: string }) => {
       }
       setIsPlaying(!isPlaying);
     }
+  };
+
+  const handleCanPlay = () => {
+    setIsLoading(false);
+  };
+
+  const handleWaiting = () => {
+    setIsLoading(true);
   };
 
   return (
@@ -45,8 +54,24 @@ const VideoCard = ({ src }: { src: string }) => {
           cursor: "pointer",
         }}
         onClick={handlePlayPause}
+        onCanPlay={handleCanPlay}
+        onWaiting={handleWaiting}
       />
-      {!isPlaying && (
+
+      {isLoading && (
+        <CircularProgress
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            color: "white",
+            zIndex: 1,
+          }}
+        />
+      )}
+
+      {!isPlaying && !isLoading && (
         <IconButton
           onClick={handlePlayPause}
           sx={{

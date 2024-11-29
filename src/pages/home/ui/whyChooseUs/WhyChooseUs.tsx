@@ -1,10 +1,7 @@
-
-import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/navigation";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 // Import images directly
@@ -13,7 +10,6 @@ import EightSpecialistsIcon from "@assets/icons/choose/eightSpecialists.svg";
 import FourYearsIcon from "@assets/icons/choose/fourYears.svg";
 import SocialIcon from "@assets/icons/choose/social.svg";
 import ThreeThousandIcon from "@assets/icons/choose/threeThousand.svg";
-import { Navigation } from "swiper/modules";
 
 export const WhyChooseUs = () => {
   const { t } = useTranslation();
@@ -56,9 +52,29 @@ export const WhyChooseUs = () => {
     },
   ];
 
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 1200 },
+      items: 3,
+    },
+    desktop: {
+      breakpoint: { max: 1200, min: 900 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 900, min: 600 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 600, min: 0 },
+      items: 1,
+    },
+  };
+
   return (
     <Box
       sx={{
+        px: { xs: 2, sm: 4, md: 8 },
         minHeight: "600px",
         userSelect: "none",
       }}
@@ -67,152 +83,147 @@ export const WhyChooseUs = () => {
         variant="h2"
         component="h1"
         sx={{
-          fontWeight: 500,
+          fontWeight: 400,
           color: "#000",
           textTransform: "uppercase",
-          fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "70px" },
+          fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
           mb: { xs: 2, sm: 3, md: 5 },
           textAlign: "left",
-          px: { xs: 2, sm: 4, md: 8 },
         }}
       >
         {t("whyChooseUs.title")}
       </Typography>
 
-      <Box mt={5}>
-        <Swiper
-          modules={[Navigation]}
-          spaceBetween={0}
-          slidesPerView={1}
-          breakpoints={{
-            600: { slidesPerView: 2 },
-            900: { slidesPerView: 3 },
-            1200: { slidesPerView: 3 },
-          }}
-          navigation={false} // Disable navigation arrows
-          loop={true}
-          autoplay={{
-            delay: 7000,
-            disableOnInteraction: false,
-          }}
-          style={{ overflow: "visible" }} // Ensures images are not clipped
-
+      <Box mt={2} sx={{ overflow: "auto" }}>
+        <Carousel
+          responsive={responsive}
+          infinite
+          draggable
+          swipeable
+          pauseOnHover
+          keyBoardControl
+          autoPlay
+          autoPlaySpeed={7000}
+          showDots={false}
+          containerClass="carousel-container"
+          itemClass="carousel-item-padding"
+          removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
+          arrows={false}
         >
           {cardImages.map((card, index) => (
-            <SwiperSlide key={index}>
+            <Box
+              key={index}
+              sx={{
+                position: "relative",
+                backgroundColor: "#f7f7f7",
+                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                mx: { xs: 1, sm: 2 },
+                transition: "height 0.2s ease-in-out",
+                height: "auto",
+                "&:hover": {
+                  height: "auto",
+                  "& .content": {
+                    maxHeight: "300px",
+                    opacity: 1,
+                  },
+                },
+              }}
+            >
+              {/* Image - positioned to partially overflow the card */}
               <Box
                 sx={{
                   position: "relative",
-                  backgroundColor: "#f7f7f7",
-                  boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                  mx: "auto",
-                  transition: "height 0.2s ease-in-out",
-                  maxWidth: "500px",
-                  height: "auto",
-                  overflow: "visible", 
-                  "&:hover": {
-                    height: "auto",
-                    "& .content": {
-                      maxHeight: "400px",
-                      opacity: 1,
-                    },
-                  },
+                  display: "flex",
+                  justifyContent: "center",
+                  top: "-100px", // Increased negative top to move image up more
+                  marginBottom: "-70px", // Negative margin to compensate for overflow
+                  zIndex: 1,
                 }}
               >
-                <Box
-                  sx={{
-                    position: "relative",
-                    display: "flex",
-                    justifyContent: "center",
-                    overflow: "visible", 
-                    top: "-50px", 
-                    mb: "-50px", 
+                <img
+                  src={card.image}
+                  alt={card.title}
+                  style={{
+                    width: "200px",
+                    height: "auto",
                     zIndex: 1,
                   }}
-                >
-                  <img
-                    src={card.image}
-                    alt={card.title}
-                    style={{
-                      // position: "absolute", mb absolut 
-                      overflow: "visible",
-                      width: "200px",
-                      height: "200px",
-                      zIndex: 1,
-                    }}
-                    draggable={false}
-                  />
-                </Box>
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontWeight: 400,
-                    fontStyle: "italic",
-                    fontFamily: "Georgia, serif",
-                    fontSize: "32px",
-                    color: "#000",
-                    textAlign: "left",
-                    px: 2,
-                  }}
-                >
-                  {card.title}
-                </Typography>
-                <Box
-                  className="content"
-                  sx={{
-                    mt: 2,
-                    px: 2,
-                    pb: 2,
-                    maxHeight: 0,
-                    opacity: 0,
-                    overflow: "hidden",
-                    transition:
-                      "max-height 0.4s ease-in-out, opacity 0.7s ease-in-out",
-                  }}
-                >
-                  <Typography
-                    variant="body2"
-                    sx={{
-                      mb: 2,
-                      color: "#333",
-                      fontSize: "18px",
-                      fontFamily: "Futura PT, sans-serif",
-                      fontWeight: 300,
-                    }}
-                  >
-                    {card.text}
-                  </Typography>
-                  <Button
-                    sx={{
-                      mt: 1,
-                      py: 1,
-                      px: 2,
-                      border: "1px solid black",
-                      color: "black",
-                      textTransform: "uppercase",
-                      fontSize: "12px",
-                      width: "fit-content",
-                      backgroundColor: "transparent",
-                      borderRadius: 0,
-                      display: "flex",
-                      alignItems: "center",
-                      "&:hover": {
-                        backgroundColor: "black",
-                        color: "white",
-                        transition: "background-color 0.3s ease",
-                      },
-                    }}
-                    endIcon={<ArrowForwardIcon />}
-                    onClick={() => (window.location.href = card.link)}
-                  >
-                    {card.buttonText}
-                  </Button>
-                </Box>
+                  draggable={false}
+                />
               </Box>
-            </SwiperSlide>
+
+              {/* Title */}
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 400,
+                  fontStyle: "italic",
+                  fontFamily: "Georgia, serif",
+                  fontSize: "32px",
+                  color: "#000",
+                  textAlign: "left",
+                  px: 2,
+                }}
+              >
+                {card.title}
+              </Typography>
+
+              {/* Content */}
+              <Box
+                className="content"
+                sx={{
+                  mt: 2,
+                  px: 2,
+                  pb: 2,
+                  maxHeight: 0,
+                  opacity: 0,
+                  transition:
+                    "max-height 0.4s ease-in-out, opacity 0.7s ease-in-out",
+                }}
+              >
+                <Typography
+                  variant="body2"
+                  sx={{
+                    mb: 2,
+                    color: "#333",
+                    fontSize: "18px",
+                    fontFamily: "Futura PT, sans-serif",
+                    fontWeight: 300,
+                  }}
+                >
+                  {card.text}
+                </Typography>
+                <Button
+                  sx={{
+                    mt: 1,
+                    py: 1,
+                    px: 2,
+                    border: "1px solid black",
+                    color: "black",
+                    textTransform: "uppercase",
+                    fontSize: "12px",
+                    width: "fit-content",
+                    cursor: "pointer",
+                    backgroundColor: "transparent",
+                    borderRadius: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    "&:hover": {
+                      backgroundColor: "black",
+                      color: "white",
+                      transition: "background-color 0.3s ease",
+                    },
+                  }}
+                  endIcon={<ArrowForwardIcon />}
+                  onClick={() => (window.location.href = card.link)}
+                >
+                  {card.buttonText}
+                </Button>
+              </Box>
+            </Box>
           ))}
-        </Swiper>
+        </Carousel>
       </Box>
     </Box>
   );
-};  
+};

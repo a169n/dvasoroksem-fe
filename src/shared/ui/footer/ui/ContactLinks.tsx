@@ -12,8 +12,6 @@ export const ContactLinks = () => {
     color: "rgba(255, 255, 255, 0.8)",
     textShadow: "0 1px 0 rgba(255, 255, 255, 0.92)",
     width: "150px",
-    
-    
   };
 
   const linkStyle = {
