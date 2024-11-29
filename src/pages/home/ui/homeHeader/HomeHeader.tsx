@@ -210,46 +210,55 @@ export const HomeHeader = () => {
 
         {/* Marquee Section */}
         <Box
-          sx={{
-            backgroundColor: "#d9d9d9",
-            mx: { xs: 0, md: 4 },
-            py: 2,
-            width: "100%",
+  sx={{
+    backgroundColor: "#d9d9d9",
+    mx: { xs: 0, md: 4 },
+    py: 2,
+    width: "100%",
+  }}
+>
+  <Marquee
+    velocity={20}
+    direction="rtl"
+    scatterRandomly={false}
+    resetAfterTries={100}
+    onInit={() => {}}
+    onFinish={() => {}}
+  >
+    {[
+      { src: icon1, alt: "Icon1", size: { height: "50px", width: "160px" } },
+      { src: icon2, alt: "Icon2", size: { height: "50px", width: "160px" } },
+      { src: icon3, alt: "Icon3", size: { height: "50px", width: "160px" } },
+      { src: icon4, alt: "Icon4", size: { height: "50px", width: "160px" } },
+      { src: icon5, alt: "Icon5", size: { height: "50px", width: "160px" } },
+      { src: icon6, alt: "Icon6", size: { height: "50px", width: "160px" } },
+      { src: icon7, alt: "Icon7", size: { height: "50px", width: "160px" } },
+      { src: icon8, alt: "Icon8", size: { height: "50px", width: "160px" } },
+    ].map((icon, index) => (
+      <Box
+        key={index}
+        mx={4}
+        sx={{
+          ...sharedBoxStyles,
+        }}
+      >
+        <img
+          src={icon.src}
+          alt={icon.alt}
+          draggable="false"
+          style={{
+            height: icon.size.height,  
+            width: icon.size.width,   
+            filter: "brightness(0) invert(1)",
+            pointerEvents: "none",
+            userSelect: "none",
+            marginRight: "10px"
           }}
-        >
-          <Marquee
-            velocity={20}
-            direction="rtl"
-            scatterRandomly={false}
-            resetAfterTries={100}
-            onInit={() => {}}
-            onFinish={() => {}}
-          >
-            {[icon1, icon2, icon3, icon4, icon5, icon6, icon7, icon8].map(
-              (icon, index) => (
-                <Box
-                  key={index}
-                  mx={4}
-                  sx={{
-                    ...sharedBoxStyles,
-                  }}
-                >
-                  <img
-                    src={icon}
-                    alt={`Icon${index + 1}`}
-                    draggable="false"
-                    style={{
-                      height: "35px",
-                      filter: "brightness(0) invert(1)",
-                      pointerEvents: "none",
-                      userSelect: "none",
-                    }}
-                  />
-                </Box>
-              )
-            )}
-          </Marquee>
-        </Box>
+        />
+      </Box>
+    ))}
+  </Marquee>
+</Box>
 
         {/* Text Section */}
         <Box
