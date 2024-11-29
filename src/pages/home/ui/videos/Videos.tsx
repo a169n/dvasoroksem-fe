@@ -1,124 +1,149 @@
-import { useState } from "react";
-import { Box, Typography } from "@mui/material";
-import ReactPlayer from "react-player";
-import { styled } from "@mui/material/styles";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { useState, lazy, Suspense } from "react";
+import {
+  Box,
+  Typography,
+  Skeleton,
+  useTheme,
+  useMediaQuery,
+  Grid,
+} from "@mui/material";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
+const ReactPlayer = lazy(() => import("react-player"));
+
 import BauerVideo from "@assets/videos/Bauer.MP4";
-import BauerVideoPreview from "@assets/videos/BauerPreview.svg";
+import BauerVideoPreview from "@assets/videos/BauerPreview.webp";
 import QCSVideo from "@assets/videos/QCS.MP4";
-import QCSVideoPreview from "@assets/videos/QCSPreview.svg";
+import QCSVideoPreview from "@assets/videos/QCSPreview.webp";
+import NovaTravelVideo from "@assets/videos/NovaTravel.MP4";
+import NovaTravelPreview from "@assets/videos/NovaTravelPreview.webp";
+import ASGPreview from "@assets/videos/ASGPreview.webp";
 
-const VideoCardContainer = styled(Box)(() => ({
-  position: "relative",
-  overflow: "hidden",
-  borderRadius: "8px",
-  backgroundColor: "black",
-  width: "100%",
-  height: "100%",
-  transition: "transform 0.3s ease",
-  transform: "scale(1)",
-  cursor: "pointer",
-  "&.playing": {
-    transform: "scale(1.05)",
-  },
-}));
+const VideoPlaceholder = () => (
+  <Box
+    sx={{
+      width: "100%",
+      height: "420px",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor: "#f7f7f7",
+      borderRadius: "16px",
+      boxShadow: 2,
+    }}
+  >
+    <Skeleton variant="rectangular" width="100%" height="100%" />
+  </Box>
+);
 
-const VideoPreview = styled("img")({
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-  transition: "filter 0.3s ease",
-});
+const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
+  const handlePlayPause = () => onPlay(isPlaying ? null : index);
 
-const PlayButton = styled(Box)(() => ({
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%) scale(1)",
-  zIndex: 1,
-  backgroundColor: "rgba(255, 255, 255, 0.3)",
-  borderRadius: "50%",
-  width: "60px",
-  height: "60px",
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  transition: "transform 0.3s ease, background-color 0.3s ease",
-  "&:hover": {
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
-    transform: "translate(-50%, -50%) scale(1.1)",
-  },
-}));
-
-const VideoTitle = styled(Typography)(() => ({
-  position: "absolute",
-  bottom: "16px",
-  left: "16px",
-  right: "16px",
-  textAlign: "center",
-  color: "#fff",
-  fontFamily: "Georgia, serif",
-  fontSize: "24px",
-  fontStyle: "italic",
-  fontWeight: 400,
-  transition: "opacity 0.3s ease",
-  textShadow: "0 2px 4px rgba(0,0,0,0.5)",
-}));
-
-const VideoCard = ({ url, title, preview }) => {
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const handlePlayPause = () => setIsPlaying(!isPlaying);
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <VideoCardContainer
-      className={isPlaying ? "playing" : ""}
+    <Box
       onClick={handlePlayPause}
+      sx={{
+        width: isPlaying ? "auto" : "100%",
+        height: isMobile ? "100%" : "550px",
+        maxHeight: "550px",
+        padding: 2,
+        borderRadius: "24px",
+        maxWidth: "auto",
+        backgroundColor: "#f7f7f7",
+        boxShadow: 2,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        mx: "auto",
+        transition: "opacity 0.5s ease, box-shadow 0.3s ease",
+        zIndex: isPlaying ? 10 : 1,
+        cursor: "pointer",
+        "&:hover": {
+          boxShadow: 4,
+        },
+        userSelect: "none",
+      }}
     >
-      <VideoPreview
-        src={preview}
-        alt="Video Preview"
-        style={{
-          filter: isPlaying ? "brightness(0)" : "brightness(0.7)",
-          opacity: isPlaying ? 0 : 1,
-        }}
-      />
-      {!isPlaying && (
-        <PlayButton>
-          <PlayArrowIcon fontSize="large" style={{ color: "#fff" }} />
-        </PlayButton>
-      )}
-      <ReactPlayer
-        url={url}
-        width="100%"
-        height="100%"
-        playing={isPlaying}
-        onPause={() => setIsPlaying(false)}
-        onEnded={() => setIsPlaying(false)}
-        style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          opacity: isPlaying ? 1 : undefined,
-          transition: "opacity 0.3s ease",
-        }}
-      />
-
-      <VideoTitle
-        style={{
-          opacity: isPlaying ? 0 : 1,
-          fontWeight: 400,
-          fontFamily: "Georgia, serif",
-          fontStyle: "italic",
+      <Box
+        sx={{
+          width: isMobile ? "150px" : "100%",
+          height: isMobile ? "220px" : "100%",
+          position: "relative",
+          overflow: "hidden",
+          borderRadius: "24px",
         }}
       >
-        {title}
-      </VideoTitle>
-    </VideoCardContainer>
+        {!isPlaying ? (
+          <LazyLoadImage
+            alt="Video Preview"
+            effect="blur"
+            src={preview}
+            width="100%"
+            height="100%"
+            style={{
+              objectFit: "cover",
+              filter: "brightness(70%)",
+            }}
+          />
+        ) : (
+          <Suspense fallback={<VideoPlaceholder />}>
+            <ReactPlayer
+              url={url}
+              width="100%"
+              height="auto"
+              playing={isPlaying}
+              controls={false}
+              config={{
+                file: {
+                  attributes: {
+                    controlsList: "nodownload",
+                    disablepictureinpicture: true,
+                  },
+                },
+              }}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                pointerEvents: "none",
+                userSelect: "none",
+              }}
+            />
+          </Suspense>
+        )}
+      </Box>
+      {(!isPlaying || isMobile) && (
+        <Typography
+          my={2}
+          sx={{
+            fontFamily: "Georgia, serif",
+            fontSize: "20px",
+            fontStyle: "italic",
+            textAlign: "center",
+            userSelect: "none",
+          }}
+        >
+          {title}
+        </Typography>
+      )}
+    </Box>
   );
 };
 
 export const Videos = () => {
+  const theme = useTheme();
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
+
+  const [activeVideo, setActiveVideo] = useState(null);
+
   const videoData = [
     {
       url: BauerVideo,
@@ -130,42 +155,95 @@ export const Videos = () => {
       title: "Видеоотзыв от партнера QCS",
       preview: QCSVideoPreview,
     },
+    {
+      url: NovaTravelVideo,
+      title: "Видеоотзыв от партнера Nova",
+      preview: NovaTravelPreview,
+    },
+    {
+      url: QCSVideo,
+      title: "Видеоотзыв от партнера ASG",
+      preview: ASGPreview,
+    },
   ];
+
+  const responsive = {
+    tablet: {
+      breakpoint: { max: 1024, min: 600 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 600, min: 0 },
+      items: 1,
+    },
+  };
+
+  const handleVideoPlay = (index) => {
+    setActiveVideo(index);
+  };
 
   return (
     <Box
-      py={10}
+      py={6}
       mb={5}
-      sx={{ px: { xs: 2, sm: 4, md: 8 }, py: { xs: 2, sm: 4, md: 8 } }}
+      sx={{
+        position: "relative",
+        px: { xs: 2, sm: 4, md: 8 },
+      }}
     >
-      <Box
-        display="flex"
-        justifyContent="center"
-        gap={3}
-        sx={{ flexDirection: { xs: "column", sm: "row" } }}
-      >
-        {videoData.map((video, index) => (
-          <Box
-            key={index}
-            sx={{
-              width: "100%",
-              height: "auto",
-              maxWidth: "370px",
-              backgroundColor: "#f7f7f7",
-              borderRadius: "16px",
-              paddingX: 3,
-              paddingY: 4,
-              boxShadow: 2,
-            }}
-          >
-            <VideoCard
-              url={video.url}
-              title={video.title}
-              preview={video.preview}
-            />
-          </Box>
-        ))}
-      </Box>
+      {isDesktop ? (
+        <Grid container spacing={4}>
+          {videoData.map((video, index) => (
+            <Grid item xs={12} sm={6} md={3} key={index}>
+              <VideoCard
+                url={video.url}
+                title={video.title}
+                preview={video.preview}
+                isPlaying={activeVideo === index}
+                onPlay={handleVideoPlay}
+                index={index}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <Carousel
+          responsive={responsive}
+          infinite={false}
+          autoPlay={true}
+          autoPlaySpeed={7000}
+          draggable={true}
+          swipeable={true}
+          keyBoardControl={true}
+          showDots={false}
+          arrows={false}
+          containerClass="carousel-container"
+          centerMode={true}
+          itemClass="carousel-item-spacing"
+          sliderClass="carousel-slider-spacing"
+        >
+          {videoData.map((video, index) => (
+            <Box
+              key={index}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              sx={{
+                p: { xs: 2, sm: 3, md: 4 },
+              }}
+            >
+              <VideoCard
+                url={video.url}
+                title={video.title}
+                preview={video.preview}
+                isPlaying={activeVideo === index}
+                onPlay={handleVideoPlay}
+                index={index}
+              />
+            </Box>
+          ))}
+        </Carousel>
+      )}
     </Box>
   );
 };

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useCallback } from "react";
 import { Box, Toolbar, IconButton, Typography, Drawer } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
