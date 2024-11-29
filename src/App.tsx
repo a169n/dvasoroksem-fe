@@ -5,6 +5,7 @@ import { queryClient } from "@shared/api/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import React, { Suspense } from "react";
 import { RouterProvider } from "react-router-dom";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { router } from "./router";
 import theme from "./theme";
 import "./i18n";

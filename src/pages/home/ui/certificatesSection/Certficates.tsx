@@ -1,79 +1,71 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import {
-  Box,
-  IconButton,
-  Typography,
-  useMediaQuery,
-  Dialog,
-  DialogContent,
-  Stack,
-} from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { useTranslation } from "react-i18next";
 
-import CloseIcon from "@mui/icons-material/Close";
-import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 import certificate1 from "@assets/certificate1.svg";
 import certificate2 from "@assets/certificate2.svg";
 import certificate3 from "@assets/certificate3.svg";
 import certificate4 from "@assets/certificate4.svg";
-import { useTranslation } from "react-i18next";
 
 interface Certificate {
   id: number;
   title: string;
   image: string;
+  dimensions: {
+    maxWidth: string;
+    maxHeight: string;
+  };
 }
 
 export const Certificates = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [selectedCertificate, setSelectedCertificate] = useState<Certificate | null>(null);
-
   const { t } = useTranslation();
+  const carouselRef = useRef<Carousel>(null);
 
   const certificates: Certificate[] = [
     {
       id: 1,
       title: t("certificates.gratitudeLetter"),
       image: certificate1,
+      dimensions: {
+        maxWidth: "435px",
+        maxHeight: "303px",
+      },
     },
     {
       id: 2,
       title: t("certificates.honoraryDiploma"),
       image: certificate2,
+      dimensions: {
+        maxWidth: "307px",
+        maxHeight: "435px",
+      },
     },
     {
       id: 3,
       title: t("certificates.coffeeBoom"),
       image: certificate3,
+      dimensions: {
+        maxWidth: "432px",
+        maxHeight: "306px",
+      },
     },
     {
       id: 4,
       title: t("certificates.digitalManagement"),
       image: certificate4,
+      dimensions: {
+        maxWidth: "307px",
+        maxHeight: "435px",
+      },
     },
   ];
-
-  const carouselRef = useRef<Carousel>(null);
-
-  const handleLeftClick = () => {
-    if (carouselRef.current) carouselRef.current.previous(1);
-  };
-
-  const handleRightClick = () => {
-    if (carouselRef.current) carouselRef.current.next(1);
-  };
-
-  const handleClickOpen = (certificate: Certificate) => {
-    setSelectedCertificate(certificate);
-  };
-
-  const handleClose = () => {
-    setSelectedCertificate(null);
-  };
 
   return (
     <Box
@@ -83,7 +75,8 @@ export const Certificates = () => {
         margin: "0 auto",
         overflow: "hidden",
         py: { xs: 2, sm: 4, md: 8 },
-        textAlign: "center",
+        textAlign: "left",
+        userSelect: "none",
       }}
     >
       <Typography
@@ -95,6 +88,7 @@ export const Certificates = () => {
           textTransform: "uppercase",
           fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
           mb: { xs: 2, sm: 3, md: 5 },
+          px: { xs: 2, sm: 4, md: 8 },
         }}
       >
         {t("certificates.title")}
@@ -104,22 +98,22 @@ export const Certificates = () => {
         infinite
         ref={carouselRef}
         autoPlay={!isMobile}
-        autoPlaySpeed={3000}
+        autoPlaySpeed={7000}
         keyBoardControl
         containerClass="carousel-container"
         draggable
-        centerMode={true}
+        centerMode={false} // Disable center mode for even gaps
         renderDotsOutside={false}
         showDots={false}
         arrows={false}
         responsive={{
           largeDesktop: {
             breakpoint: { max: 3000, min: 1280 },
-            items: isMobile ? 1 : 1,
+            items: 2,
           },
           mediumDesktop: {
             breakpoint: { max: 1280, min: 960 },
-            items: isMobile ? 1 : 2,
+            items: 2,
           },
           smallDevices: {
             breakpoint: { max: 720, min: 0 },
@@ -135,120 +129,72 @@ export const Certificates = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
+              padding: isMobile ? 1 : 2,
+              margin: isMobile ? 1 : 1.5, 
+              backgroundColor: "#f7f7f7",
+              width: isMobile ? "90%" : certificate.dimensions.maxWidth, 
+              height: isMobile ? "auto" : certificate.dimensions.maxHeight,
+              borderRadius: "12px",
               cursor: "pointer",
-              p: 1,
-              m: isMobile ? 2 : 8,
               border: "1px solid #D9D9D9",
-              borderRadius: "10px",
               transition: "transform 0.3s, box-shadow 0.3s",
               "&:hover": {
-                transform: "scale(1.05)",
                 boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
               },
-              "&:hover .hover-title": {
-                opacity: 1,
-              },
+              "&:hover .hover-title": !isMobile
+                ? { opacity: 1 }
+                : undefined,
             }}
-            onClick={() => handleClickOpen(certificate)}
           >
             <Box
-              component="img"
-              src={certificate.image}
-              alt={certificate.title}
               sx={{
+                display: "flex",
+                justifyContent: "center", // Center horizontally
+                alignItems: "center", // Center vertically
                 width: "100%",
-                height: isMobile ? "100%" : "600px",
-                borderRadius: 1,
-              }}
-            />
-            <Typography
-              className="hover-title"
-              sx={{
-                mt: 2,
-                fontSize: { xs: "16px", sm: "18px", md: "20px" },
-                fontFamily: "Georgia, serif",
-                fontStyle: "italic",
-                fontWeight: 400,
-                opacity: 0,
-                transition: "opacity 0.3s",
+                height: "100%",
               }}
             >
-              {certificate.title}
-            </Typography>
+              <LazyLoadImage
+                alt={certificate.title}
+                effect="blur"
+                src={certificate.image}
+                style={{
+                  maxWidth: isMobile ? "90%" : certificate.dimensions.maxWidth, // Smaller images for mobile
+                  maxHeight: certificate.dimensions.maxHeight,
+                  objectFit: "contain", // Adjust image to fit properly
+                  borderRadius: "8px",
+                  pointerEvents: "none",
+                }}
+              />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                height: "100%",
+                mt: 2,
+              }}
+            >
+              <Typography
+                className="hover-title"
+                sx={{
+                  fontSize: { xs: "16px", sm: "18px", md: "20px" },
+                  fontFamily: "Georgia, serif",
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                  opacity: isMobile ? 1 : 0,
+                  transition: "opacity 0.3s",
+                  textAlign: "center",
+                }}
+              >
+                {certificate.title}
+              </Typography>
+            </Box>
           </Box>
         ))}
       </Carousel>
-
-      <Stack direction="row" justifyContent="center" spacing={2} sx={{ mt: 2 }}>
-        <IconButton
-          onClick={handleLeftClick}
-          sx={{
-            color: "#000",
-            border: "1px solid #000",
-            borderRadius: "0px",
-            padding: "8px 12px",
-          }}
-        >
-          <ArrowLeftIcon />
-        </IconButton>
-        <IconButton
-          onClick={handleRightClick}
-          sx={{
-            color: "#000",
-            border: "1px solid #000",
-            borderRadius: "0px",
-            padding: "8px 12px",
-          }}
-        >
-          <ArrowRightIcon />
-        </IconButton>
-      </Stack>
-
-      <Dialog
-        open={Boolean(selectedCertificate)}
-        onClose={handleClose}
-        maxWidth="lg"
-        fullWidth
-      >
-        <DialogContent
-          sx={{
-            position: "relative",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            bgcolor: "background.default",
-            width: "100%",
-            height: "80vh",
-            maxHeight: "90vh",
-            overflow: "hidden",
-          }}
-        >
-          <IconButton
-            onClick={handleClose}
-            sx={{
-              position: "absolute",
-              top: 16,
-              right: 16,
-              zIndex: 100,
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-          {selectedCertificate && (
-            <Box
-              component="img"
-              src={selectedCertificate.image}
-              alt={selectedCertificate.title}
-              sx={{
-                maxWidth: "100vw",
-                minHeight: "80vh",
-                objectFit: "contain",
-                transition: "all 0.5s ease",
-              }}
-            />
-          )}
-        </DialogContent>
-      </Dialog>
     </Box>
   );
 };

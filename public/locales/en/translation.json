@@ -162,26 +162,26 @@
     "digitalManagement": "Taking the course \"Operational Management in digital\""
   },
   "values": {
-    "title": "Our Values",
-    "value1": {
+    "title": "Values",
+    "discipline": {
       "title": "Discipline",
-      "description": "— we always deliver our work on time and keep our word to our partners and colleagues"
+      "text": "— we always deliver work on time and keep our word to partners and colleagues"
     },
-    "value2": {
-      "title": "Adaptability and flexibility",
-      "description": "— we are able to adapt to the requirements of the market, staying one step ahead of the competition"
+    "effect": {
+      "title": "Adaptability and Flexibility",
+      "text": "— we know how to adapt to market demands, staying one step ahead of competitors"
     },
-    "value3": {
-      "title": "Innovative thinking",
-      "description": "— we are not afraid to experiment and implement bold ideas that make our projects unique"
+    "flexibility": {
+      "title": "Innovative Thinking",
+      "text": "— we are not afraid to experiment and implement bold ideas that make our projects unique"
     },
-    "value4": {
-      "title": "Wow effect",
-      "description": "— our goal is not just to satisfy, but to delight the client, creating impressive results"
+    "innovativeIcon": {
+      "title": "Wow Effect",
+      "text": "— our goal is not just to satisfy but to impress clients by creating stunning results"
     },
-    "value5": {
-      "title": "Social responsibility",
-      "description": "— we believe in the importance of contributing to society and try to leave a positive mark on our work"
+    "responsibility": {
+      "title": "Social Responsibility",
+      "text": "— we believe in the importance of contributing to society and strive to leave a positive impact through our work"
     }
   },
   "footer": {
