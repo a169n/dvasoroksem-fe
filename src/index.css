@@ -46,3 +46,32 @@ html {
   padding: 0;
   box-sizing: border-box;
 }
+
+body,
+html {
+  margin: 0;
+  height: 100%;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background-color: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  transform: translate(-50%, -50%);
+  transition: background-color 0.2s ease;
+  z-index: 9999;
+}
+
+.target-element {
+  transition: background-color 0.2s ease;
+}
+
+.target-element.hover {
+  background-color: lightcoral;
+}
