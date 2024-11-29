@@ -11,6 +11,9 @@ export const ContactLinks = () => {
     fontFamily: "'Raleway', sans-serif",
     color: "rgba(255, 255, 255, 0.8)",
     textShadow: "0 1px 0 rgba(255, 255, 255, 0.92)",
+    width: "150px",
+    
+    
   };
 
   const linkStyle = {
@@ -21,7 +24,9 @@ export const ContactLinks = () => {
     position: "relative",
     padding: "0 0.2em",
     transition: "all 250ms",
+    fontSize: "16px",
     zIndex: 1000,
+    width: "100px",
     "&::before": {
       content: '""',
       zIndex: -1,
@@ -47,9 +52,9 @@ export const ContactLinks = () => {
     mb: 2,
     display: "flex",
     alignItems: "center",
-    fontSize: "1.15em",
-    fontWeight: 300,
-    lineHeight: 1.5,
+    fontSize: "10px",
+    fontWeight: 200,
+    lineHeight: 1,
   };
 
   return (
@@ -57,7 +62,7 @@ export const ContactLinks = () => {
       <Box sx={linkContainerStyle}>
         <PhoneIcon sx={{ mr: 1, color: "#FFFFFF" }} />
         <Typography component="a" href="tel:+77715357690" sx={linkStyle}>
-          +7 777 777 77 77
+          +77777777777
         </Typography>
       </Box>
 
