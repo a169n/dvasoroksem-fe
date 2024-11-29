@@ -20,7 +20,7 @@ export const WhyChooseUs = () => {
       text: t("whyChooseUs.fourYears.text"),
       buttonText: t("whyChooseUs.fourYears.buttonText"),
       link: "/test",
-      imageProps: { width: 200, height: "auto", top: "-150px" },
+      imageProps: { width: 200, height: "auto" },
     },
     {
       image: EightSpecialistsIcon,
@@ -28,7 +28,7 @@ export const WhyChooseUs = () => {
       text: t("whyChooseUs.eightSpecialists.text"),
       buttonText: t("whyChooseUs.eightSpecialists.buttonText"),
       link: "/test",
-      imageProps: { width: 200, height: "auto", top: "-150px" },
+      imageProps: { width: 200, height: "auto" },
     },
     {
       image: SocialIcon,
@@ -36,7 +36,7 @@ export const WhyChooseUs = () => {
       text: t("whyChooseUs.socialResponsibility.text"),
       buttonText: t("whyChooseUs.socialResponsibility.buttonText"),
       link: "/test",
-      imageProps: { width: 200, height: "auto", top: "-150px" },
+      imageProps: { width: 200, height: "auto" },
     },
     {
       image: CupIcon,
@@ -44,7 +44,7 @@ export const WhyChooseUs = () => {
       text: t("whyChooseUs.millionaireBlogger.text"),
       buttonText: t("whyChooseUs.millionaireBlogger.buttonText"),
       link: "/test",
-      imageProps: { width: 200, height: "auto", top: "-150px" },
+      imageProps: { width: 200, height: "auto" },
     },
     {
       image: ThreeThousandIcon,
@@ -52,7 +52,7 @@ export const WhyChooseUs = () => {
       text: t("whyChooseUs.adCampaigns.text"),
       buttonText: t("whyChooseUs.adCampaigns.buttonText"),
       link: "/test",
-      imageProps: { width: 200, height: "auto", top: "-150px" },
+      imageProps: { width: 200, height: "auto" },
     },
   ];
 
@@ -86,7 +86,7 @@ export const WhyChooseUs = () => {
           textTransform: "uppercase",
           fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
           mb: { xs: 2, sm: 3, md: 5 },
-          textAlign: "left", // Title aligned to left
+          textAlign: "left",
         }}
       >
         {t("whyChooseUs.title")}
@@ -100,7 +100,7 @@ export const WhyChooseUs = () => {
           swipeable
           keyBoardControl
           autoPlay={true}
-          autoPlaySpeed={7000} // Auto-scroll every 7 seconds
+          autoPlaySpeed={7000}
           showDots={false}
           containerClass="carousel-container"
           itemClass="carousel-item-padding"
@@ -115,42 +115,51 @@ export const WhyChooseUs = () => {
                 backgroundColor: "#f7f7f7",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                 mx: { xs: 1, sm: 2 },
-                transition: "height 0.3s ease-in-out, opacity 0.3s ease-in-out",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                pt: "100px", // Padding to accommodate image space
                 overflow: "visible",
-                height: "auto", // Default height
-                "&:hover": {
-                  height: "fit-content", // Expand on hover
+                "&:hover .content": {
+                  opacity: 1,
+                  display: "block",
                 },
               }}
             >
-              {/* Image */}
+              {/* Separate Image Container */}
               <Box
-                component="img"
-                src={card.image}
-                alt={card.title}
                 sx={{
                   position: "absolute",
-                  top: card.imageProps.top,
+                  top: "-150px", // Adjust to control image extension
                   left: "50%",
                   transform: "translateX(-50%)",
-                  width: card.imageProps.width,
-                  height: card.imageProps.height,
-                  userSelect: "none",
-                  pointerEvents: "none",
+                  zIndex: 2,
                 }}
-              />
+              >
+                <Box
+                  component="img"
+                  src={card.image}
+                  alt={card.title}
+                  sx={{
+                    width: card.imageProps.width,
+                    pointerEvents: "none",
+                    userSelect: "none",
+                    top: "-150px",
+                  }}
+                />
+              </Box>
 
               {/* Title */}
               <Typography
                 variant="h6"
                 sx={{
-                  mt: "60px",
+                  mt: 2,
                   fontWeight: 400,
                   fontStyle: "italic",
                   fontFamily: "Georgia, serif",
-                  fontSize: "32px",
+                  fontSize: "28px",
                   color: "#000",
-                  textAlign: "left", // Title aligned to left
+                  textAlign: "center",
                   px: 2,
                 }}
               >
@@ -161,22 +170,22 @@ export const WhyChooseUs = () => {
               <Box
                 className="content"
                 sx={{
-                  mt: 4,
+                  mt: 2,
                   px: 2,
                   pb: 2,
-                  textAlign: "left",
+                  textAlign: "center",
+                  display: "none",
                   opacity: 0,
                   transition: "opacity 0.3s ease-in-out",
-                  "&:hover": { opacity: 1 },
                 }}
               >
                 <Typography
                   variant="body2"
                   sx={{
-                    mb: 2,
+                    mb: 1,
                     color: "#333",
-                    fontSize: "18px",
-                    fontFamily: "Futura PT, sans-serif", // Custom font
+                    fontSize: "16px",
+                    fontFamily: "Futura PT, sans-serif",
                     fontWeight: 300,
                   }}
                 >
@@ -200,7 +209,7 @@ export const WhyChooseUs = () => {
                     "&:hover": {
                       backgroundColor: "black",
                       color: "white",
-                      transition: "background-color 0.3s ease", // Button hover transition
+                      transition: "background-color 0.3s ease",
                     },
                   }}
                   endIcon={<ArrowForwardIcon />}
