@@ -3,11 +3,14 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
+import { useTranslation } from "react-i18next";
+
 import certificate1 from "@assets/certificate1.svg";
 import certificate2 from "@assets/certificate2.svg";
 import certificate3 from "@assets/certificate3.svg";
 import certificate4 from "@assets/certificate4.svg";
-import { useTranslation } from "react-i18next";
 
 interface Certificate {
   id: number;
@@ -99,7 +102,7 @@ export const Certificates = () => {
         keyBoardControl
         containerClass="carousel-container"
         draggable
-        centerMode={true}
+        centerMode={false} // Disable center mode for even gaps
         renderDotsOutside={false}
         showDots={false}
         arrows={false}
@@ -126,9 +129,11 @@ export const Certificates = () => {
               flexDirection: "column",
               justifyContent: "center",
               alignItems: "center",
-              padding: 2, // Reduced padding
-              marginX: 3, // Reduced margin for smaller gaps
+              padding: isMobile ? 1 : 2,
+              margin: isMobile ? 1 : 1.5, 
               backgroundColor: "#f7f7f7",
+              width: isMobile ? "90%" : certificate.dimensions.maxWidth, 
+              height: isMobile ? "auto" : certificate.dimensions.maxHeight,
               borderRadius: "12px",
               cursor: "pointer",
               border: "1px solid #D9D9D9",
@@ -136,38 +141,57 @@ export const Certificates = () => {
               "&:hover": {
                 boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
               },
-              "&:hover .hover-title": {
-                opacity: 1,
-              },
+              "&:hover .hover-title": !isMobile
+                ? { opacity: 1 }
+                : undefined,
             }}
           >
             <Box
-              component="img"
-              src={certificate.image}
-              alt={certificate.title}
               sx={{
-                ...certificate.dimensions,
+                display: "flex",
+                justifyContent: "center", // Center horizontally
+                alignItems: "center", // Center vertically
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
-                borderRadius: "8px",
-              }}
-              draggable={false}
-            />
-            <Typography
-              className="hover-title"
-              sx={{
-                mt: 2,
-                fontSize: { xs: "16px", sm: "18px", md: "20px" },
-                fontFamily: "Georgia, serif",
-                fontStyle: "italic",
-                fontWeight: 400,
-                opacity: 0,
-                transition: "opacity 0.3s",
               }}
             >
-              {certificate.title}
-            </Typography>
+              <LazyLoadImage
+                alt={certificate.title}
+                effect="blur"
+                src={certificate.image}
+                style={{
+                  maxWidth: isMobile ? "90%" : certificate.dimensions.maxWidth, // Smaller images for mobile
+                  maxHeight: certificate.dimensions.maxHeight,
+                  objectFit: "contain", // Adjust image to fit properly
+                  borderRadius: "8px",
+                  pointerEvents: "none",
+                }}
+              />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "flex-end",
+                height: "100%",
+                mt: 2,
+              }}
+            >
+              <Typography
+                className="hover-title"
+                sx={{
+                  fontSize: { xs: "16px", sm: "18px", md: "20px" },
+                  fontFamily: "Georgia, serif",
+                  fontStyle: "italic",
+                  fontWeight: 400,
+                  opacity: isMobile ? 1 : 0,
+                  transition: "opacity 0.3s",
+                  textAlign: "center",
+                }}
+              >
+                {certificate.title}
+              </Typography>
+            </Box>
           </Box>
         ))}
       </Carousel>
