@@ -161,6 +161,29 @@
     "coffeeBoom": "Coffee Boom Certificate",
     "digitalManagement": "Taking the course \"Operational Management in digital\""
   },
+  "values": {
+    "title": "Our Values",
+    "value1": {
+      "title": "Discipline",
+      "description": "— we always deliver our work on time and keep our word to our partners and colleagues"
+    },
+    "value2": {
+      "title": "Adaptability and flexibility",
+      "description": "— we are able to adapt to the requirements of the market, staying one step ahead of the competition"
+    },
+    "value3": {
+      "title": "Innovative thinking",
+      "description": "— we are not afraid to experiment and implement bold ideas that make our projects unique"
+    },
+    "value4": {
+      "title": "Wow effect",
+      "description": "— our goal is not just to satisfy, but to delight the client, creating impressive results"
+    },
+    "value5": {
+      "title": "Social responsibility",
+      "description": "— we believe in the importance of contributing to society and try to leave a positive mark on our work"
+    }
+  },
   "footer": {
     "contacts": "Contacts",
     "ceoDvasoroksem": "CEO Dvasoroksem.",
