@@ -4,7 +4,6 @@ import { useTheme, useMediaQuery } from "@mui/material";
 
 const AnimatedGraphics = () => {
   const theme = useTheme();
-
   const isXsToSm = useMediaQuery(theme.breakpoints.between("xs", "sm"));
   const isSmToMd = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const isMdToLg = useMediaQuery(theme.breakpoints.between("md", "lg"));
@@ -13,65 +12,37 @@ const AnimatedGraphics = () => {
 
   const swirlRef = useRef(null);
   const arrowRef = useRef(null);
-  const hasAnimated = useRef(false);
 
   useEffect(() => {
     const animateGraphics = () => {
-      const timeline = anime.timeline({
-        loop: true, // Loop the animation indefinitely
-      });
-
-      timeline
+      anime
+        .timeline({ loop: true })
         .add({
           targets: ".swirl-path",
           strokeDashoffset: [anime.setDashoffset, 0],
           easing: "easeInOutSine",
           duration: 1000,
-          delay: (i) => i * 250,
+          delay: (el, i) => i * 250,
         })
         .add({
           targets: ".arrow-path",
           strokeDashoffset: [anime.setDashoffset, 0],
           easing: "easeInOutSine",
           duration: 2000,
-          delay: (i) => i * 200,
+          delay: (el, i) => i * 200,
         })
         .add({
           targets: ".swirl-path, .arrow-path",
-          opacity: 0, // Freeze effect - set opacity to 0
-          duration: 0,
-          delay: 1000, // Freeze for 3 seconds
-        })
-        .add({
-          targets: ".swirl-path, .arrow-path",
-          opacity: 1, // Reset opacity to 1
-          duration: 0,
-        })
-        .add({
-          targets: ".swirl-path, .arrow-path",
-          strokeDashoffset: [0, anime.setDashoffset], // Reverse the stroke
+          strokeDashoffset: [0, anime.setDashoffset],
           easing: "easeInOutSine",
           duration: 1000,
-          delay: (i) => i * 250, // Restart the animation
+          delay: (el, i) => i * 250,
         });
     };
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          animateGraphics();
-          hasAnimated.current = true;
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.5 }
-    );
-
-    if (swirlRef.current) {
-      observer.observe(swirlRef.current);
+    if (swirlRef.current || arrowRef.current) {
+      animateGraphics();
     }
-
-    return () => observer.disconnect();
   }, []);
 
   const getSwirlStyles = () => {
@@ -82,46 +53,42 @@ const AnimatedGraphics = () => {
         left: "clamp(1rem, 52vw, 40rem)",
         top: "clamp(5px, 1.5vw, 100px)",
       };
-    } else if (isSmToMd) {
+    }
+    if (isSmToMd) {
       return {
         width: "clamp(16rem, 35vw, 20rem)",
         height: "clamp(70px, 90%, 350px)",
         left: "clamp(1rem, 20vw, 45rem)",
         top: "clamp(5px, 5vw, 300px)",
       };
-    } else if (isMdToLg) {
+    }
+    if (isMdToLg) {
       return {
         width: "clamp(16rem, 33vw, 40rem)",
         height: "clamp(70px, 100%, 650px)",
         left: "clamp(1rem, 20vw, 55rem)",
         top: "clamp(5px, 3.5vw, 650px)",
       };
-    } else if (isLgToXl) {
+    }
+    if (isLgToXl) {
       return {
         width: "clamp(18rem, 30vw, 45rem)",
         height: "clamp(80px, 150%, 700px)",
-        left: "clamp(2rem, 34vw, 60rem)",
-        top: "clamp(5px, 1vw, 700px)",
+        left: "clamp(2rem, 24vw, 50rem)",
+        top: "clamp(-50px, -2vw, 700px)",
       };
     }
+    return {};
   };
 
   const getArrowStyles = () => {
-    if (isMdToLg) {
+    if (isMdToLg || isLgToXl) {
       return {
-        width: "min(40rem, 60vw)",
+        width: "min(20rem, 80vw)",
         height: "100%",
         top: "70px",
-        left: "clamp(1rem, 35vw, 60rem)",
-        transform: "rotate(20deg)",
-      };
-    } else if (isLgToXl) {
-      return {
-        width: "min(40rem, 60vw)",
-        height: "100%",
-        top: "70px",
-        left: "clamp(1rem, 52vw, 60rem)",
-        transform: "rotate(20deg)",
+        left: "clamp(1rem, 60vw, 200rem)",
+        transform: "rotate(10deg)",
       };
     }
     return {};
@@ -141,12 +108,8 @@ const AnimatedGraphics = () => {
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 200 50"
+            viewBox="0 0 250 90"
             preserveAspectRatio="xMidYMid meet"
-            style={{
-              width: "100%",
-              height: "100%",
-            }}
           >
             <g
               fill="none"
@@ -174,13 +137,9 @@ const AnimatedGraphics = () => {
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 120 40"
+          viewBox="0 0 200 150"
           className="w-full h-full"
           preserveAspectRatio="xMidYMid meet"
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
         >
           <g
             fill="none"

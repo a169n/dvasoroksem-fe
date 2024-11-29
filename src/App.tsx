@@ -3,7 +3,6 @@ import {
   Box,
   CircularProgress,
   ThemeProvider,
-  useTheme,
   useMediaQuery,
 } from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
@@ -14,9 +13,9 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { queryClient } from "@shared/api/queryClient";
 import { router } from "./router";
 import "./i18n";
+import theme from "./theme";
 
 export const App: React.FC = () => {
-  const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   useEffect(() => {
