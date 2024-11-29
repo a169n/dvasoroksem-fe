@@ -46,11 +46,11 @@ export const Values = () => {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1200 },
-      items: 3,
+      items: 4,
     },
     desktop: {
       breakpoint: { max: 1200, min: 900 },
-      items: 3,
+      items: 4,
     },
     tablet: {
       breakpoint: { max: 900, min: 600 },
@@ -103,10 +103,9 @@ export const Values = () => {
                 position: "relative",
                 backgroundColor: "#f7f7f7",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                mx: "auto",
+                mx: 2,
                 transition:
                   "height 0.2s ease-in-out, box-shadow 0.3s ease-in-out",
-                maxWidth: "375px",
                 height: "auto",
                 borderRadius: "24px",
                 overflow: "hidden",
@@ -122,8 +121,9 @@ export const Values = () => {
               <Box
                 sx={{
                   display: "flex",
+                  flexDirection: "column",
                   justifyContent: "center",
-                  p: 2,
+                  p: 3,
                 }}
               >
                 <LazyLoadImage
@@ -137,41 +137,43 @@ export const Values = () => {
                   }}
                   draggable={false}
                 />
+                <Typography
+                  variant="h6"
+                  sx={{
+                    fontFamily: "Georgia, serif",
+                    fontStyle: "italic",
+                    fontSize: { xs: "18px", sm: "20px", md: "24px" },
+                    fontWeight: 400,
+                    color: "#000",
+                    textAlign: "center",
+                    mt: 1,
+                    mb: -2,
+                  }}
+                >
+                  {card.title}
+                </Typography>
               </Box>
 
               <Box
                 className="content"
                 sx={{
-                  p: 2,
-                  maxHeight: 0,
-                  opacity: 0,
+                  maxHeight: { xs: "none", md: 0 }, // Always show content on mobile screens
+                  opacity: { xs: 1, md: 0 }, // Full opacity on mobile screens
                   overflow: "hidden",
                   transition:
                     "max-height 0.4s ease-in-out, opacity 0.7s ease-in-out",
                 }}
               >
                 <Typography
-                  variant="h6"
-                  sx={{
-                    fontFamily: "Georgia, serif",
-                    fontStyle: "italic",
-                    fontSize: "24px",
-                    color: "#000",
-                    textAlign: "left",
-                    mb: 1,
-                  }}
-                >
-                  {card.title}
-                </Typography>
-
-                <Typography
                   variant="body2"
                   sx={{
+                    px: 2,
+                    mb: 1,
                     color: "#333",
-                    fontSize: "16px",
+                    fontSize: { xs: "14px", sm: "16px", md: "18px" },
                     fontFamily: "Futura PT, sans-serif",
-                    fontWeight: 300,
-                    textAlign: "left",
+                    fontWeight: 400,
+                    textAlign: "center",
                   }}
                 >
                   {card.text}
