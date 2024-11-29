@@ -1,5 +1,11 @@
 import React, { useEffect, Suspense } from "react";
-import { Box, CircularProgress, ThemeProvider } from "@mui/material";
+import {
+  Box,
+  CircularProgress,
+  ThemeProvider,
+  useTheme,
+  useMediaQuery,
+} from "@mui/material";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { QueryClientProvider } from "@tanstack/react-query";
@@ -7,11 +13,15 @@ import { RouterProvider } from "react-router-dom";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { queryClient } from "@shared/api/queryClient";
 import { router } from "./router";
-import theme from "./theme";
 import "./i18n";
 
 export const App: React.FC = () => {
+  const theme = useTheme();
+  const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   useEffect(() => {
+    if (isSmallScreen) return;
+
     const cursor = document.createElement("div");
     cursor.classList.add("custom-cursor");
     document.body.appendChild(cursor);
@@ -62,7 +72,7 @@ export const App: React.FC = () => {
         targetElement.removeEventListener("mouseleave", () => {});
       });
     };
-  }, []);
+  }, [isSmallScreen]);
 
   return (
     <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale="ru">

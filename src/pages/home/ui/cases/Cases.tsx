@@ -63,7 +63,7 @@ export const Cases = ({ mode = "default" }) => {
           variant="h2"
           component="h1"
           sx={{
-            fontWeight: 400,
+            fontWeight: 500,
             color: isCasePage ? "#fff" : "#000",
             textTransform: "uppercase",
             fontSize: isMobile
@@ -72,7 +72,7 @@ export const Cases = ({ mode = "default" }) => {
                 ? "36px"
                 : isDesktop
                   ? "48px"
-                  : "64px",
+                  : "70px",
             mb: isMobile ? 2 : 0,
           }}
         >
