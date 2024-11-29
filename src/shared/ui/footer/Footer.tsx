@@ -1,4 +1,6 @@
+import React from "react";
 import { Box, Typography } from "@mui/material";
+import footer1 from "@assets/footer1.svg";
 import footer2 from "@assets/footer2.svg";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { ContactLinks } from "./ui";
@@ -11,10 +13,10 @@ export const Footer = () => {
       sx={{
         display: "flex",
         justifyContent: "space-between",
-        flexDirection: { xs: "column", md: "row" },
-        alignItems: { xs: "stretch", md: "start" },
+        flexDirection: { xs: "row", md: "row" },
+        alignItems: { xs: "center", md: "start" },
         px: { xs: 2, sm: 4, md: 8 },
-        py: { xs: 4, sm: 6, md: 8 },
+        py: { xs: 2, sm: 6, md: 8 },
         bgcolor: "#000",
         color: "#fff",
         gap: { xs: 4, md: 0 },
@@ -79,6 +81,7 @@ export const Footer = () => {
             fontSize: { xs: "20px", sm: "22px", md: "24px" },
             width: { xs: "100%", md: "50vw" },
             order: { xs: 2, md: 1 },
+            whiteSpace: "nowrap"  
           }}
         >
           <Box
@@ -86,14 +89,21 @@ export const Footer = () => {
               display: "flex",
               alignItems: "center",
               justifyContent: { xs: "flex-start", md: "flex-end" },
+              width: "100%",
+              position: "relative"
+
             }}
           >
-            {t("footer.ceoName")}
+            <Box sx={{position: {xs: "absolute", md: "relative"}, top: {xs: "-40px", md: 0}, right:{xs: "40px", md: 0}}}>   
+                       {t("footer.ceoName")}
+            </Box>
             <ArrowForwardIosIcon
               sx={{
-                width: { xs: "15px", md: "5%" },
-                height: { xs: "15px", md: "5%" },
+                width: "15px",
+                height: "15px",
                 ml: 1,
+                display: {xs: "none", md: "block"}
+
               }}
             />
           </Box>
@@ -110,6 +120,18 @@ export const Footer = () => {
         >
           <Box
             component="img"
+            src={footer1}
+            alt="First Image"
+            draggable={false}
+            sx={{
+              width: {xs :"300px", md: "auto"},
+              height: {xs :"300px", md: "auto"},
+              maxHeight: { xs: "500px", md: "none" },
+              objectFit: "cover",
+            }}
+          />
+          <Box
+            component="img"
             src={footer2}
             alt="Second Image"
             draggable={false}
@@ -118,6 +140,7 @@ export const Footer = () => {
               height: "auto",
               maxHeight: { xs: "200px", md: "none" },
               objectFit: "cover",
+              display: {xs: "none", md: "block"}
             }}
           />
         </Box>
@@ -135,17 +158,19 @@ export const Footer = () => {
         >
           <Box
             sx={{
-              display: "flex",
               alignItems: "center",
               justifyContent: { xs: "flex-start", md: "flex-start" },
+              display: {xs: "none", md: "flex"}
+
             }}
           >
             <ArrowForwardIosIcon
               sx={{
                 transform: { xs: "rotate(0deg)", md: "rotate(90deg)" },
-                width: { xs: "15px", md: "3%" },
-                height: { xs: "15px", md: "3%" },
+                width: "15px",
+                height: "15px",
                 mr: { xs: 1, md: 0 },
+                display: {xs: "none", md: "block"}
               }}
             />
             {t("footer.contactsUs")}
