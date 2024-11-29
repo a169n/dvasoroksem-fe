@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -316,20 +316,20 @@ export const Cases = () => {
                   <MyButton
                     variant="text"
                     sx={{
-                      mt: 2,
-                      width: "50%",
-                      display: "flex",
+                      width: "fit-content",
                       fontWeight: 400,
-                      p: 0,
-                      minWidth: 0,
-                      "&:hover": {
-                        backgroundColor: "transparent",
-                        color: "#000",
-                      },
+                      borderRadius: 0,
                       alignItems: "center",
                       color: "#000",
-                      fontSize: isMobile ? "12px" : "16px",
-                      textAlign: "left",
+                      fontSize: isMobile ? "14px" : "18px",
+                      textAlign: "center",
+                      textTransform: "none",
+                      transition: "all 0.3s ease",
+                      "&:hover": {
+                        backgroundColor: "#000",
+                        color: "#fff",
+                        borderColor: "#fff",
+                      },
                     }}
                     onClick={() => navigate(caseItem.path)}
                   >
