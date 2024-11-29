@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
 import footer1 from "@assets/footer1.svg";
 import footer2 from "@assets/footer2.svg";
