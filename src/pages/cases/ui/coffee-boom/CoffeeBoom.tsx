@@ -6,13 +6,29 @@ import CoffeeBoomMainImage from "@assets/casePages/coffee-boom.svg";
 import { Description } from "@shared/ui/description";
 import { Cases } from "@pages/home/ui/cases";
 import CoffeeBoomData from "./ui/coffee-boomData";
-import { CoffeeBoomVideos } from "./ui/coffeeBoomVideos";
 import "react-lazy-load-image-component/src/effects/blur.css";
+
+import coffeboomTikTok1 from "@assets/videos/coffeeBoom/coffeeboom_tiktok_1.mp4";
+import coffeboomTikTok2 from "@assets/videos/coffeeBoom/coffeeboom_tiktok_2.mp4";
+import coffeboomTikTok3 from "@assets/videos/coffeeBoom/coffeeboom_tiktok_3.mp4";
+import coffeboomTikTok4 from "@assets/videos/coffeeBoom/coffeeboom_tiktok_4.mp4";
+import coffeboomTikTok5 from "@assets/videos/coffeeBoom/coffeeboom_tiktok_5.mp4";
+import coffeboomTikTok6 from "@assets/videos/coffeeBoom/coffeeboom_tiktok_6.mp4";
+import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
 
 export const CoffeeBoom = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const videos = [
+    coffeboomTikTok1,
+    coffeboomTikTok2,
+    coffeboomTikTok3,
+    coffeboomTikTok4,
+    coffeboomTikTok5,
+    coffeboomTikTok6,
+  ];
 
   return (
     <Box sx={{ backgroundColor: "#161616" }}>
@@ -30,8 +46,11 @@ export const CoffeeBoom = () => {
         description="Мы запустили TikTok для сети кофеен Coffee BOOM. Благодаря продуманной и актуальной
         контент-стратегии с нуля набрали 50 тысяч подписчиков."
       />
+
+      <VideoCarousel videos={videos} />
+
       <CoffeeBoomData />
-      <CoffeeBoomVideos />
+
       <Cases mode="case-page" />
     </Box>
   );

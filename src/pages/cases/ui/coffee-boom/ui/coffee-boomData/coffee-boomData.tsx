@@ -8,7 +8,7 @@ export const CoffeeBoomData = () => {
     <Box
       sx={{
         px: { xs: 2, sm: 4, md: 12 },
-        py: { xs: 2, sm: 4, md: 12 },
+        pt: { xs: 2, sm: 4, md: 12 },
         backgroundColor: "#161616",
         display: "flex",
         flexDirection: "column",
@@ -36,7 +36,7 @@ export const CoffeeBoomData = () => {
             fontSize: isMobile ? "30px" : "90px",
             textAlign: isMobile ? "center" : "start",
             lineHeight: " 76.95px",
-            marginBottom: isMobile ? "50px" : "200px",
+            marginBottom: isMobile ? "20px" : "50px",
           }}
         >
           50к с нуля
