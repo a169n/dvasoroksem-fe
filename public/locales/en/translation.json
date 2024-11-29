@@ -95,10 +95,11 @@
     "buttonText": "See all",
     "noCases": "No cases found",
     "categories": {
-      "all": "All Cases",
+      "all": "All",
       "smm": "SMM",
       "production": "Production",
-      "tiktok": "TikTok"
+      "tiktok": "TikTok",
+      "marketing": "Marketing"
     },
     "coffeeBoom": {
       "title": "Coffee BOOM",

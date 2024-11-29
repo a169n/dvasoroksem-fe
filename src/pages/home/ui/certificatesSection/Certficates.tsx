@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import Carousel from "react-multi-carousel";
+import { useRef, useState } from "react";
 import "react-multi-carousel/lib/styles.css";
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
@@ -9,6 +8,7 @@ import certificate1 from "@assets/certificate1.svg";
 import certificate2 from "@assets/certificate2.svg";
 import certificate3 from "@assets/certificate3.svg";
 import certificate4 from "@assets/certificate4.svg";
+import Carousel from "react-multi-carousel";
 
 interface Certificate {
   id: number;
@@ -129,7 +129,7 @@ export const Certificates = () => {
               sx={{
                 display: "block",
                 margin: "0 auto",
-                height: isMobile ? "100%" : "600px"
+                height: isMobile ? "100%" : "600px",
               }}
             />
             <Box
