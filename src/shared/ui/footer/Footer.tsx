@@ -112,6 +112,7 @@ export const Footer = () => {
             component="img"
             src={footer2}
             alt="Second Image"
+            draggable={false}
             sx={{
               width: "100%",
               height: "auto",
