@@ -21,16 +21,17 @@ export const Cases = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const { t } = useTranslation();
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate();
   const [selectedCategory, setSelectedCategory] = useState(
     t("ourCases.categories.all")
   );
 
   const categories = [
-    t("ourCases.categories.all"),
-    t("ourCases.categories.smm"),
-    t("ourCases.categories.production"),
-    t("ourCases.categories.tiktok"),
+    "Маркетинг",
+    "SMM",
+    "Pdocution",
+    "TikTok",
+    "Все"
   ];
 
   const casesData = [
@@ -341,7 +342,7 @@ export const Cases = () => {
                 fontWeight: 300,
               }}
             >
-              {t("ourCases.emptyCategoryMessage")}
+              Пусто
             </Typography>
           )}
         </Box>
