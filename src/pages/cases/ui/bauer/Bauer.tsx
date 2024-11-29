@@ -27,12 +27,27 @@ import bauerStory1 from "@assets/casePages/bauer/bauerStory1.png";
 import bauerStory2 from "@assets/casePages/bauer/bauerStory2.png";
 import bauerStory3 from "@assets/casePages/bauer/bauerStory3.png";
 
+import bauerReels1 from "@assets/videos/bauer/bauer_reels_1.mov";
+import bauerReels2 from "@assets/videos/bauer/bauer_reels_2.mp4";
+import bauerReels3 from "@assets/videos/bauer/bauer_reels_3.mov";
+import bauerStories1 from "@assets/videos/bauer/bauer_stories_1.mov";
+import bauerStories2 from "@assets/videos/bauer/bauer_stories_2.mov";
+import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
+
 export const Bauer: React.FC = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const videos = [
+    bauerReels1,
+    bauerReels2,
+    bauerReels3,
+    bauerStories1,
+    bauerStories2,
+  ];
 
   return (
     <>
@@ -52,6 +67,8 @@ export const Bauer: React.FC = () => {
         title={t("ourCases.bauer.page.title")}
         description={t("ourCases.bauer.page.description")}
       />
+
+      <VideoCarousel videos={videos} />
 
       <DoubleCarousel
         imagesLine1={[bauer1, bauer2, bauer3, bauer4, bauer5, bauer6]}
