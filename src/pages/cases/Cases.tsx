@@ -1,8 +1,15 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import { MyButton } from "@shared/ui/button";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { MySelect } from "@shared/ui/select";
+import { Header } from "@shared/ui/header";
+
+// Import case images
 import case1 from "@assets/cases/case1.svg";
 import case2 from "@assets/cases/case2.svg";
 import case3 from "@assets/cases/case3.svg";
@@ -12,9 +19,7 @@ import case6 from "@assets/cases/case6.svg";
 import case7 from "@assets/cases/case7.svg";
 import case8 from "@assets/cases/case8.svg";
 import case9 from "@assets/cases/case9.svg";
-import { Header } from "@shared/ui/header";
-import { MySelect } from "@shared/ui/select";
-import { useTranslation } from "react-i18next";
+import case10 from "@assets/cases/case9.svg"; // New case image for Splat
 
 export const Cases = () => {
   const theme = useTheme();
@@ -22,78 +27,86 @@ export const Cases = () => {
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const { t } = useTranslation();
   const navigate = useNavigate();
+
   const [selectedCategory, setSelectedCategory] = useState(
     t("ourCases.categories.all")
   );
 
   const categories = [
-    "Маркетинг",
-    "SMM",
-    "Pdocution",
-    "TikTok",
-    "Все"
+    t("ourCases.categories.marketing"),
+    t("ourCases.categories.smm"),
+    t("ourCases.categories.production"),
+    t("ourCases.categories.tiktok"),
+    t("ourCases.categories.all"),
   ];
 
   const casesData = [
     {
-      title: "Bauer",
-      category: "smm",
-      path: "/cases/bauer",
-      description: t("ourCases.bauer.description"),
-      imageUrl: case5,
-    },
-    {
       title: "QCS",
-      category: "production",
+      category: t("ourCases.categories.marketing"),
       path: "/cases/qcs",
       description: t("ourCases.qcs.description"),
       imageUrl: case4,
     },
     {
-      title: "Grandcar, 2022",
-      category: "tiktok",
-      path: "/cases/grandcar/2022",
-      description: t("ourCases.grandcar2022.description"),
-      imageUrl: case6,
+      title: "Bauer",
+      category: t("ourCases.categories.marketing"),
+      path: "/cases/bauer",
+      description: t("ourCases.bauer.description"),
+      imageUrl: case5,
     },
     {
-      title: "Grandcar, 2023",
-      category: "production",
-      path: "/cases/grandcar/2023",
-      description: t("ourCases.grandcar2023.description"),
-      imageUrl: case9,
+      title: "Splat",
+      category: t("ourCases.categories.marketing"),
+      path: "/cases/splat",
+      description: t("ourCases.splat.description"),
+      imageUrl: case10,
     },
     {
       title: "Everest",
-      category: "smm",
+      category: t("ourCases.categories.smm"),
       path: "/cases/everest",
       description: t("ourCases.everest.description"),
       imageUrl: case7,
     },
     {
       title: "Помоги Другому",
-      category: "tiktok",
+      category: t("ourCases.categories.smm"),
       path: "/cases/help-others",
       description: t("ourCases.helpOthers.description"),
       imageUrl: case3,
     },
     {
-      title: "Nomad",
-      category: "production",
-      path: "/cases/nomad",
-      description: t("ourCases.nomad.description"),
-      imageUrl: case8,
+      title: "Grandcar, 2022",
+      category: t("ourCases.categories.production"),
+      path: "/cases/grandcar/2022",
+      description: t("ourCases.grandcar2022.description"),
+      imageUrl: case6,
+    },
+    {
+      title: "Grandcar, 2023",
+      category: t("ourCases.categories.production"),
+      path: "/cases/grandcar/2023",
+      description: t("ourCases.grandcar2023.description"),
+      imageUrl: case9,
     },
     {
       title: "Soyle",
-      category: "production",
+      category: t("ourCases.categories.production"),
       path: "/cases/soyle",
       description: t("ourCases.soyle.description"),
       imageUrl: case2,
     },
     {
+      title: "Nomad",
+      category: t("ourCases.categories.tiktok"),
+      path: "/cases/nomad",
+      description: t("ourCases.nomad.description"),
+      imageUrl: case8,
+    },
+    {
       title: "Coffee BOOM",
-      category: "production",
+      category: t("ourCases.categories.tiktok"),
       path: "/cases/coffee-boom",
       description: t("ourCases.coffeeBoom.description"),
       imageUrl: case1,
@@ -111,10 +124,7 @@ export const Cases = () => {
   const filteredCases =
     selectedCategory === t("ourCases.categories.all")
       ? casesData
-      : casesData.filter(
-          (caseItem) =>
-            caseItem.category.toLowerCase() === selectedCategory.toLowerCase()
-        );
+      : casesData.filter((caseItem) => caseItem.category === selectedCategory);
 
   return (
     <>
@@ -243,9 +253,10 @@ export const Cases = () => {
                     },
                   }}
                 >
-                  <img
+                  <LazyLoadImage
                     src={caseItem.imageUrl}
                     alt={caseItem.title}
+                    effect="blur"
                     draggable="false"
                     style={{
                       width: "100%",
@@ -342,7 +353,7 @@ export const Cases = () => {
                 fontWeight: 300,
               }}
             >
-              Пусто
+              {t("ourCases.empty")}
             </Typography>
           )}
         </Box>

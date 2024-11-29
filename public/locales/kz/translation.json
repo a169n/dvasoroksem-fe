@@ -95,10 +95,11 @@
     "buttonText": "Барлығын көру",
     "noCases": "Кейстар қалмады",
     "categories": {
-      "all": "Барлық кейстер",
+      "all": "Барлығы",
       "smm": "SMM",
-      "production": "Продакшн",
-      "tiktok": "TikTok"
+      "production": "Production",
+      "tiktok": "TikTok",
+      "marketing": "Маркетинг"
     },
     "coffeeBoom": {
       "title": "Coffee BOOM",
