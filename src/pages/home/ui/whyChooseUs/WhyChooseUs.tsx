@@ -1,8 +1,8 @@
-
 import React from "react";
 import { Box, Typography, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -13,9 +13,8 @@ import EightSpecialistsIcon from "@assets/icons/choose/eightSpecialists.svg";
 import FourYearsIcon from "@assets/icons/choose/fourYears.svg";
 import SocialIcon from "@assets/icons/choose/social.svg";
 import ThreeThousandIcon from "@assets/icons/choose/threeThousand.svg";
-import { Navigation } from "swiper/modules";
 
-export const WhyChooseUs = () => {
+export const WhyChooseUs: React.FC = () => {
   const { t } = useTranslation();
 
   const cardImages = [
@@ -57,12 +56,7 @@ export const WhyChooseUs = () => {
   ];
 
   return (
-    <Box
-      sx={{
-        minHeight: "600px",
-        userSelect: "none",
-      }}
-    >
+    <Box sx={{ minHeight: "600px", userSelect: "none", overflow: "hidden" }}>
       <Typography
         variant="h2"
         component="h1"
@@ -81,63 +75,46 @@ export const WhyChooseUs = () => {
 
       <Box mt={5}>
         <Swiper
-          modules={[Navigation]}
-          spaceBetween={0}
+          modules={[Navigation, Autoplay]}
+          spaceBetween={20}
           slidesPerView={1}
+          autoplay={{ delay: 7000, disableOnInteraction: false }}
+          loop={true}
           breakpoints={{
             600: { slidesPerView: 2 },
             900: { slidesPerView: 3 },
-            1200: { slidesPerView: 3 },
           }}
-          navigation={false} // Disable navigation arrows
-          loop={true}
-          autoplay={{
-            delay: 7000,
-            disableOnInteraction: false,
-          }}
-          style={{ overflow: "visible" }} // Ensures images are not clipped
-
+          style={{ padding: "0 10px" }}
         >
           {cardImages.map((card, index) => (
             <SwiperSlide key={index}>
               <Box
                 sx={{
-                  position: "relative",
                   backgroundColor: "#f7f7f7",
                   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                   mx: "auto",
-                  transition: "height 0.2s ease-in-out",
-                  maxWidth: "500px",
-                  height: "auto",
-                  overflow: "visible", 
-                  "&:hover": {
-                    height: "auto",
-                    "& .content": {
-                      maxHeight: "400px",
-                      opacity: 1,
-                    },
+                  maxWidth: "400px",
+                  transition: "transform 0.2s ease-in-out",
+                  "&:hover .content": {
+                    maxHeight: "400px",
+                    opacity: 1,
                   },
                 }}
               >
                 <Box
                   sx={{
-                    position: "relative",
                     display: "flex",
                     justifyContent: "center",
-                    overflow: "visible", 
-                    top: "-50px", 
-                    mb: "-50px", 
-                    zIndex: 1,
+                    overflow: "visible",
+                    mb: -4,
                   }}
                 >
                   <img
                     src={card.image}
                     alt={card.title}
                     style={{
-                      overflow: "visible",
                       width: "200px",
                       height: "200px",
-                      zIndex: 1,
                     }}
                     draggable={false}
                   />
@@ -147,10 +124,9 @@ export const WhyChooseUs = () => {
                   sx={{
                     fontWeight: 400,
                     fontStyle: "italic",
-                    fontFamily: "Georgia, serif",
                     fontSize: "32px",
                     color: "#000",
-                    textAlign: "left",
+                    textAlign: "center",
                     px: 2,
                   }}
                 >
@@ -175,7 +151,6 @@ export const WhyChooseUs = () => {
                       mb: 2,
                       color: "#333",
                       fontSize: "18px",
-                      fontFamily: "Futura PT, sans-serif",
                       fontWeight: 300,
                     }}
                   >
@@ -183,23 +158,18 @@ export const WhyChooseUs = () => {
                   </Typography>
                   <Button
                     sx={{
-                      mt: 1,
-                      py: 1,
-                      px: 2,
-                      border: "1px solid black",
                       color: "black",
                       textTransform: "uppercase",
                       fontSize: "12px",
-                      width: "fit-content",
                       backgroundColor: "transparent",
-                      borderRadius: 0,
-                      display: "flex",
-                      alignItems: "center",
+                      borderRadius: "0px",
                       "&:hover": {
                         backgroundColor: "black",
                         color: "white",
                         transition: "background-color 0.3s ease",
                       },
+                      display: "inline-flex",
+                      alignItems: "center",
                     }}
                     endIcon={<ArrowForwardIcon />}
                     onClick={() => (window.location.href = card.link)}
