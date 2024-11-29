@@ -129,6 +129,7 @@ export const Certificates = () => {
               sx={{
                 display: "block",
                 margin: "0 auto",
+                height: isMobile ? "100%" : "600px"
               }}
             />
             <Box
