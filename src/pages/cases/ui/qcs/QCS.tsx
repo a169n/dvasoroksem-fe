@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import { Header } from "@shared/ui/header";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import QCSMainImage from "@assets/casePages/qcs.svg";
 import { Description } from "@shared/ui/description";
 import { Cases } from "@pages/home/ui/cases";
@@ -22,30 +23,48 @@ import qcsStory2 from "@assets/casePages/qcs/qcsStory2.png";
 import qcsStory3 from "@assets/casePages/qcs/qcsStory3.png";
 import QcsData from "./ui/qcsData";
 import { useEffect } from "react";
+import "react-lazy-load-image-component/src/effects/blur.css";
+
+import QCSReel1 from "@assets/videos/qcs/qcs_reels_1.mov";
+import QCSReel2 from "@assets/videos/qcs/qcs_reels_2.mov";
+import QCSReel3 from "@assets/videos/qcs/qcs_reels_3.mp4";
+import QCSStories1 from "@assets/videos/qcs/qcs_stories_1.mov";
+import QCSStories2 from "@assets/videos/qcs/qcs_stories_2.mov";
+import QCSStories3 from "@assets/videos/qcs/qcs_stories_3.mov";
+import QCSStories4 from "@assets/videos/qcs/qcs_stories_4.mov";
+import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
 
 export const QCS = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const videos = [
+    QCSReel1,
+    QCSReel2,
+    QCSReel3,
+    QCSStories1,
+    QCSStories2,
+    QCSStories3,
+    QCSStories4,
+  ];
+
   return (
-    <>
+    <Box sx={{ backgroundColor: "#161616" }}>
       <Header mode="light" />
       <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
-        <img
+        <LazyLoadImage
           src={QCSMainImage}
           alt="qcs main image"
-          style={{ width: "100%", height: "auto" }}
+          width="100%"
+          effect="blur"
         />
       </Box>
       <Description
-        title="лидер в области
-бортового питания"
-        description="QCS обеспечивает высочайшее качество услуг
-в авиационной отрасли, ежегодно обслуживая более
-2 миллионов пассажиров. Мы занялись SEO-оптимизацией и узнаваемостью бренда, ведём Instagram QCS, где благодаря нашему контенту
-люди хотят работать в компании."
+        title="лидер в области бортового питания"
+        description="QCS обеспечивает высочайшее качество услуг в авиационной отрасли, ежегодно обслуживая более 2 миллионов пассажиров. Мы занялись SEO-оптимизацией и узнаваемостью бренда, ведём Instagram QCS, где благодаря нашему контенту люди хотят работать в компании."
       />
-
+      <VideoCarousel videos={videos} />
       <DoubleCarousel
         imagesLine1={[qcs1, qcs2, qcs3, qcs4, qcs5, qcs6]}
         imagesLine2={[
@@ -58,10 +77,8 @@ export const QCS = () => {
         ]}
       />
       <Stories stories={[qcsStory1, qcsStory2, qcsStory3]} />
-
       <QcsData />
-
       <Cases mode="case-page" />
-    </>
+    </Box>
   );
 };
