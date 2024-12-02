@@ -1,8 +1,7 @@
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 
 // Import images directly
 import CupIcon from "@assets/icons/choose/cup.svg";
@@ -10,6 +9,7 @@ import EightSpecialistsIcon from "@assets/icons/choose/eightSpecialists.svg";
 import FourYearsIcon from "@assets/icons/choose/fourYears.svg";
 import SocialIcon from "@assets/icons/choose/social.svg";
 import ThreeThousandIcon from "@assets/icons/choose/threeThousand.svg";
+import { MyCard } from "@shared/ui/card";
 
 export const WhyChooseUs = () => {
   const { t } = useTranslation();
@@ -83,7 +83,7 @@ export const WhyChooseUs = () => {
         variant="h2"
         component="h1"
         sx={{
-          fontWeight: 400,
+          fontWeight: 500,
           color: "#000",
           textTransform: "uppercase",
           fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
@@ -112,114 +112,21 @@ export const WhyChooseUs = () => {
         >
           {cardImages.map((card, index) => (
             <Box
-              key={index}
               sx={{
-                position: "relative",
-                backgroundColor: "#f7f7f7",
-                boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                mx: { xs: 1, sm: 2 },
-                transition: "height 0.2s ease-in-out",
-                height: "auto",
-                "&:hover": {
-                  height: "auto",
-                  "& .content": {
-                    maxHeight: "300px",
-                    opacity: 1,
-                  },
-                },
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                my: { xs: 4, sm: 6, md: 8 },
               }}
             >
-              {/* Image - positioned to partially overflow the card */}
-              <Box
-                sx={{
-                  position: "relative",
-                  display: "flex",
-                  justifyContent: "center",
-                  top: "-100px", // Increased negative top to move image up more
-                  marginBottom: "-70px", // Negative margin to compensate for overflow
-                  zIndex: 1,
-                }}
-              >
-                <img
-                  src={card.image}
-                  alt={card.title}
-                  style={{
-                    width: "200px",
-                    height: "auto",
-                    zIndex: 1,
-                  }}
-                  draggable={false}
-                />
-              </Box>
-
-              {/* Title */}
-              <Typography
-                variant="h6"
-                sx={{
-                  fontWeight: 400,
-                  fontStyle: "italic",
-                  fontFamily: "Georgia, serif",
-                  fontSize: "32px",
-                  color: "#000",
-                  textAlign: "left",
-                  px: 2,
-                }}
-              >
-                {card.title}
-              </Typography>
-
-              {/* Content */}
-              <Box
-                className="content"
-                sx={{
-                  mt: 2,
-                  px: 2,
-                  pb: 2,
-                  maxHeight: 0,
-                  opacity: 0,
-                  transition:
-                    "max-height 0.4s ease-in-out, opacity 0.7s ease-in-out",
-                }}
-              >
-                <Typography
-                  variant="body2"
-                  sx={{
-                    mb: 2,
-                    color: "#333",
-                    fontSize: "18px",
-                    fontFamily: "Futura PT, sans-serif",
-                    fontWeight: 300,
-                  }}
-                >
-                  {card.text}
-                </Typography>
-                <Button
-                  sx={{
-                    mt: 1,
-                    py: 1,
-                    px: 2,
-                    border: "1px solid black",
-                    color: "black",
-                    textTransform: "uppercase",
-                    fontSize: "12px",
-                    width: "fit-content",
-                    cursor: "pointer",
-                    backgroundColor: "transparent",
-                    borderRadius: 0,
-                    display: "flex",
-                    alignItems: "center",
-                    "&:hover": {
-                      backgroundColor: "black",
-                      color: "white",
-                      transition: "background-color 0.3s ease",
-                    },
-                  }}
-                  endIcon={<ArrowForwardIcon />}
-                  onClick={() => (window.location.href = card.link)}
-                >
-                  {card.buttonText}
-                </Button>
-              </Box>
+              <MyCard
+                key={index}
+                image={card.image}
+                title={card.title}
+                text={card.text}
+                buttonText={card.buttonText}
+                onButtonClick={() => (window.location.href = card.link)}
+              />
             </Box>
           ))}
         </Carousel>
