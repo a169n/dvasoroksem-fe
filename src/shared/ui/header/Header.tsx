@@ -118,9 +118,9 @@ export const Header = ({
               cursor: "pointer",
               color: isLightMode
                 ? "#fff"
-                : isDarkMode
+                : isDarkMode && !isMobile
                   ? "#191919"
-                  : isMobile
+                  : isDarkMode && isMobile
                     ? "#fff"
                     : "#000",
               fontSize: isMobile ? "24px" : "20px",
@@ -141,7 +141,7 @@ export const Header = ({
         options={languageOptions}
         sx={{
           alignSelf: "start",
-          color: isLightMode ? "#000" : "#fff",
+          color: isLightMode ? "#000" :  "#fff" ,
         }}
         mode={mode}
       />
@@ -205,9 +205,11 @@ export const Header = ({
         {isMobile ? (
           <IconButton
             edge="end"
-            color="default"
             aria-label="menu"
             onClick={() => setMenuOpen(!menuOpen)}
+            sx={{filter: isLightMode ? "invert(1)" : "invert(0)",
+              
+            }}
           >
             {menuOpen ? <CloseIcon /> : <MenuIcon />}
           </IconButton>
@@ -306,14 +308,14 @@ export const Header = ({
               marginLeft: isMobile ? "" : 2,
               textAlign: isMobile ? "start" : "",
               color: isDarkMode
-                ? "#191919"
-                : isLightMode || isMobile
+                ? "#fff"
+                : isLightMode
                   ? "#fff"
                   : "#000",
               backgroundColor: "black",
-              borderColor: isDarkMode
+              borderColor: isDarkMode && !isMobile
                 ? "black"
-                : isLightMode
+                : isLightMode && !isMobile
                   ? "white"
                   : "black",
               "&:hover": {
