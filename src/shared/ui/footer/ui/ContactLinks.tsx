@@ -60,7 +60,7 @@ export const ContactLinks = () => {
       <Box sx={linkContainerStyle}>
         <PhoneIcon sx={{ mr: 1, color: "#FFFFFF" }} />
         <Typography component="a" href="tel:+77715357690" sx={linkStyle}>
-          +77777777777
+          +77776660247
         </Typography>
       </Box>
 
