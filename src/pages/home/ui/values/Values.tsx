@@ -1,9 +1,10 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography,  useMediaQuery} from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Carousel from "react-multi-carousel";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-multi-carousel/lib/styles.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useTheme } from "@mui/material/styles";
 
 // Import values icons
 import disciplineIcon from "@assets/icons/values/discipline.svg";
@@ -14,6 +15,8 @@ import responsibilityIcon from "@assets/icons/values/responsibility.svg";
 
 export const Values = () => {
   const { t } = useTranslation();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const valueCards = [
     {
@@ -46,11 +49,11 @@ export const Values = () => {
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1200 },
-      items: 4,
+      items: 2,
     },
     desktop: {
       breakpoint: { max: 1200, min: 900 },
-      items: 4,
+      items: 2,
     },
     tablet: {
       breakpoint: { max: 900, min: 600 },
@@ -91,6 +94,7 @@ export const Values = () => {
           autoPlay
           autoPlaySpeed={7000}
           showDots={false}
+          centerMode={true}
           containerClass="carousel-container"
           itemClass="carousel-item-padding"
           arrows={false}
@@ -103,7 +107,7 @@ export const Values = () => {
                 position: "relative",
                 backgroundColor: "#f7f7f7",
                 boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                mx: 2,
+                mx: 4,
                 transition:
                   "height 0.2s ease-in-out, box-shadow 0.3s ease-in-out",
                 height: "auto",
@@ -132,7 +136,7 @@ export const Values = () => {
                   effect="blur"
                   style={{
                     width: "100%",
-                    height: "auto",
+                    height: isMobile? "100%" : "250px",
                     borderRadius: "24px",
                   }}
                   draggable={false}
@@ -157,8 +161,8 @@ export const Values = () => {
               <Box
                 className="content"
                 sx={{
-                  maxHeight: { xs: "none", md: 0 }, // Always show content on mobile screens
-                  opacity: { xs: 1, md: 0 }, // Full opacity on mobile screens
+                  maxHeight: { xs: "none", md: 0 }, 
+                  opacity: { xs: 1, md: 0 }, 
                   overflow: "hidden",
                   transition:
                     "max-height 0.4s ease-in-out, opacity 0.7s ease-in-out",

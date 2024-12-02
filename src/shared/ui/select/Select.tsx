@@ -31,20 +31,22 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
           textDecoration: "none",
         },
         "& .MuiSelect-select": {
+          overflow: "hidden",
+          width: isMobile ? "80vw" : "100%",
           padding: isMobile ? "4px 16px" : "4px 24px",
           backgroundColor:
-            isDarkMode || isLightMode
+            (isDarkMode || isLightMode) && !isMobile
               ? "transparent"
               : isMobile
                 ? "white"
                 : "black",
           textAlign: "left",
           borderRadius: "4px",
-          color: isLightMode
+          color: isLightMode && !isMobile
             ? "white"
-            : isDarkMode
+            : isDarkMode && !isMobile
               ? "black"
-              : isMobile
+              : isMobile  
                 ? "black"
                 : "white",
         },
