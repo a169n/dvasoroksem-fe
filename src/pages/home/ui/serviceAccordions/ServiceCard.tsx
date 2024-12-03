@@ -3,11 +3,11 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { ServiceContent } from "./ServiceContent";
 
 // Import images directly
-import SMM_service from "@assets/SMM_service.png";
-import Marketing_service from "@assets/Marketing_service.png";
-import Production_service2 from "@assets/Production_service2.png";
-import Strategies_service from "@assets/Strategies_service.png";
-import IT_service from "@assets/IT_service.png";
+import SMM_service from "@assets/serviceImages/main_SMM.webp";
+import Marketing_service from "@assets/serviceImages/main_marketing.webp";
+import Production_service2 from "@assets/serviceImages/main_production.webp";
+import Strategies_service from "@assets/serviceImages/main_strategy.webp";
+import IT_service from "@assets/serviceImages/main_IT.webp";
 
 // Mapping for images
 const imageMap = {
@@ -35,7 +35,7 @@ export const ServiceCard = ({
         borderRadius: "25px",
         backgroundColor: "#f7f7f7",
         border: "1px solid #ddd",
-        padding: 2,
+        padding: 1,
         ":hover": {
           boxShadow: 3,
         },
@@ -48,7 +48,14 @@ export const ServiceCard = ({
           isSmallScreen || layout === "vertical" ? "column" : "row"
         }
       >
-        <Grid item>
+        <Grid
+          item
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
           <LazyLoadImage
             src={imageMap[imageKey]}
             alt={`${title} Service image`}

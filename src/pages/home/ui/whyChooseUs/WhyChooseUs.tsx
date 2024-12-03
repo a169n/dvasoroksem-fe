@@ -140,7 +140,7 @@ export const WhyChooseUs = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-                my: { xs: 4, sm: 6, md: 12 },
+                my: 12,
               }}
             >
               <MyCard
