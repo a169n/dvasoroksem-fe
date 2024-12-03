@@ -3,15 +3,21 @@ import {
   Box,
   CardContent,
   CardMedia,
-  Card as MUICard, Typography
+  Card as MUICard,
+  Typography,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import React from "react";
+import React, { useState } from "react";
 import { MyButton } from "../button";
 
 interface CardProps {
   image: string;
+  imageMaxWidth: string;
+  imageMaxHeight: string;
+  rotateClockwise?: number;
+  top?: number;
+  marginTop?: number;
   title: string;
   text: string;
   buttonText: string;
@@ -23,20 +29,27 @@ interface CardProps {
 
 export const MyCard: React.FC<CardProps> = ({
   image,
+  imageMaxWidth,
+  imageMaxHeight,
+  rotateClockwise,
+  top,
+  marginTop,
   title,
   text,
   buttonText,
   onButtonClick,
-  sx,
 }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const [showBox, setShowBox] = useState(false);
 
   return (
     <MUICard
+      onMouseEnter={() => setShowBox(true)}
+      onMouseLeave={() => setShowBox(false)}
       sx={{
         display: "flex",
-        marginTop: 4,
+        marginTop: "16px",
         flexDirection: "column",
         justifyContent: "space-between",
         width: "100%",
@@ -44,17 +57,10 @@ export const MyCard: React.FC<CardProps> = ({
         borderRadius: "24px",
         boxShadow: "none",
         backgroundColor: "#f7f7f7",
-        padding: 2,
+        padding: "8px 8px 0 8px",
+        margin: "0 auto",
         overflow: "visible",
         transition: "box-shadow 0.3s ease-in-out",
-        "&:hover": {
-          boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
-        },
-        [theme.breakpoints.down("sm")]: {
-          width: "100%",
-          height: "auto",
-        },
-        ...sx,
       }}
     >
       <Box
@@ -63,32 +69,30 @@ export const MyCard: React.FC<CardProps> = ({
           justifyContent: "center",
           position: "relative",
           width: "100%",
-          height: "auto",
-          maxHeight: "160px",
-          marginBottom: "16px",
+          padding: 0,
+          margin: 0,
         }}
       >
         <CardMedia
           component="img"
           image={image}
           alt={title}
+          draggable={false}
           sx={{
             position: "relative",
-            top: -50,
+            top: top || -60,
             zIndex: 10,
-            width: "auto",
-            maxWidth: "200px",
-            maxHeight: "160px",
             objectFit: "cover",
+            maxWidth: imageMaxWidth,
+            maxHeight: imageMaxHeight,
+            transform: `rotate(${rotateClockwise}deg)`,
+            padding: 0,
           }}
         />
       </Box>
       <CardContent
         sx={{
-          flexGrow: 1,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
+          marginTop: marginTop,
         }}
       >
         <Typography
@@ -104,31 +108,40 @@ export const MyCard: React.FC<CardProps> = ({
         >
           {title}
         </Typography>
-        <Typography
-          variant="body2"
-          color="text.secondary"
+        <Box
           sx={{
-            color: "black",
-            mb: 2,
-            fontSize: isMobile ? "14px" : "18px",
-            textAlign: "start",
+            opacity: showBox || isMobile ? 1 : 0,
+            maxHeight: showBox || isMobile ? "200px" : "0px",
+            overflow: "hidden",
+            transition: "opacity 0.3s ease, max-height 0.3s ease",
           }}
         >
-          {text}
-        </Typography>
-        <Box display="flex" justifyContent="flex-start">
-          <MyButton
-            onClick={onButtonClick}
-            endIcon={<ArrowForwardIcon />}
+          <Typography
+            variant="body2"
+            color="text.secondary"
             sx={{
-              borderRadius: 0,
-              textTransform: "none",
-              fontSize: isMobile ? "14px" : "20px",
-              fonwWeight: 400,
+              color: "black",
+              marginBottom: "8px",
+              fontSize: isMobile ? "14px" : "18px",
+              textAlign: "start",
             }}
           >
-            {buttonText}
-          </MyButton>
+            {text}
+          </Typography>
+          <Box mt={2} style={{ display: "flex", justifyContent: "flex-start" }}>
+            <MyButton
+              onClick={onButtonClick}
+              endIcon={<ArrowForwardIcon />}
+              sx={{
+                borderRadius: 0,
+                textTransform: "none",
+                fontSize: isMobile ? "14px" : "20px",
+                fontWeight: 400,
+              }}
+            >
+              {buttonText}
+            </MyButton>
+          </Box>
         </Box>
       </CardContent>
     </MUICard>
