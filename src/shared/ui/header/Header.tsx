@@ -122,7 +122,7 @@ export const Header = ({
                   ? "#191919"
                   : isDarkMode && isMobile
                     ? "#fff"
-                    : "#000",
+                    : "#fff",
               fontSize: isMobile ? "24px" : "20px",
             }}
             onClick={() => handleNavClick(targetRef)}
@@ -311,7 +311,7 @@ export const Header = ({
                 ? "#fff"
                 : isLightMode
                   ? "#fff"
-                  : "#000",
+                  : "#fff",
               backgroundColor: "black",
               borderColor: isDarkMode && !isMobile
                 ? "black"
