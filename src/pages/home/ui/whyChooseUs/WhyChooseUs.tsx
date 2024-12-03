@@ -10,9 +10,11 @@ import FourYearsIcon from "@assets/icons/choose/main_4_years.webp";
 import SocialIcon from "@assets/icons/choose/main_eco.webp";
 import ThreeThousandIcon from "@assets/icons/choose/main_3000_ad.webp";
 import { MyCard } from "@shared/ui/card";
+import { useNavigate } from "react-router-dom";
 
 export const WhyChooseUs = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const cardImages = [
     {
@@ -24,7 +26,8 @@ export const WhyChooseUs = () => {
       maxHeight: "260px",
       top: -110,
       marginTop: -6.9,
-      link: "/test",
+      link: "/#",
+      action: () => window.scrollTo({ top: 0, behavior: "smooth" }),
     },
     {
       image: EightSpecialistsIcon,
@@ -36,7 +39,8 @@ export const WhyChooseUs = () => {
       top: -20,
       marginTop: 0.3,
       rotateClockwise: -11,
-      link: "/test",
+      link: "/cases",
+      action: () => navigate("/cases"),
     },
     {
       image: SocialIcon,
@@ -48,7 +52,8 @@ export const WhyChooseUs = () => {
       top: -50,
       marginTop: -3.3,
       rotateClockwise: -5,
-      link: "/test",
+      link: "/help-others",
+      action: () => navigate("/cases/help-others"),
     },
     {
       image: CupIcon,
@@ -60,7 +65,8 @@ export const WhyChooseUs = () => {
       top: -50,
       marginTop: -4,
       rotateClockwise: 11,
-      link: "/test",
+      link: "https://www.tiktok.com/@nurekensky",
+      action: () => window.open("https://www.tiktok.com/@nurekensky", "_blank"),
     },
     {
       image: ThreeThousandIcon,
@@ -72,7 +78,8 @@ export const WhyChooseUs = () => {
       top: -50,
       marginTop: 1.6,
       rotateClockwise: -6,
-      link: "/test",
+      link: "/qcs",
+      action: () => navigate("/cases/qcs"),
     },
   ];
 
@@ -136,6 +143,7 @@ export const WhyChooseUs = () => {
         >
           {cardImages.map((card, index) => (
             <Box
+              key={index}
               sx={{
                 display: "flex",
                 justifyContent: "center",
@@ -144,7 +152,6 @@ export const WhyChooseUs = () => {
               }}
             >
               <MyCard
-                key={index}
                 image={card.image}
                 imageMaxWidth={card.maxWidth}
                 imageMaxHeight={card.maxHeight}
@@ -154,7 +161,7 @@ export const WhyChooseUs = () => {
                 title={card.title}
                 text={card.text}
                 buttonText={card.buttonText}
-                onButtonClick={() => (window.location.href = card.link)}
+                onButtonClick={card.action} // Trigger the custom action
               />
             </Box>
           ))}
