@@ -7,11 +7,10 @@ import LanguageIcon from "@mui/icons-material/Language";
 export const ContactLinks = () => {
   const containerStyle = {
     padding: "1em",
-
     fontFamily: "'Raleway', sans-serif",
     color: "rgba(255, 255, 255, 0.8)",
     textShadow: "0 1px 0 rgba(255, 255, 255, 0.92)",
-    width: "150px",
+    width: "200px",
   };
 
   const linkStyle = {
@@ -24,7 +23,7 @@ export const ContactLinks = () => {
     transition: "all 250ms",
     fontSize: "16px",
     zIndex: 1000,
-    width: "100px",
+    width: "500px",
     "&::before": {
       content: '""',
       zIndex: -1,
@@ -59,8 +58,8 @@ export const ContactLinks = () => {
     <Box sx={containerStyle}>
       <Box sx={linkContainerStyle}>
         <PhoneIcon sx={{ mr: 1, color: "#FFFFFF" }} />
-        <Typography component="a" href="tel:+77715357690" sx={linkStyle}>
-          +77776660247
+        <Typography component="a" href="tel:+77776660247" sx={linkStyle}>
+          +7 777 666 02 47
         </Typography>
       </Box>
 

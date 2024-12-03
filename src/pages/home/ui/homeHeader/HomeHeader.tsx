@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useEffect, useRef, Suspense } from "react";
 import {
   Box,
@@ -68,14 +67,13 @@ export const HomeHeader = () => {
 
   return (
     <Box
-      mt={8}
+      mt={isMobile ? -5 : 8}
       sx={{
         backgroundColor: "#fff",
         color: "white",
         textAlign: "center",
         backgroundSize: "cover",
         backgroundPosition: "center",
-        filter: isMobile ? "grayscale(100%)" : "none",
       }}
     >
       <Box
@@ -86,7 +84,7 @@ export const HomeHeader = () => {
           width: "100%",
         }}
       >
-        {/* Video Section with Enhanced Background */}
+        {/* Video Section with Background */}
         <Box
           ref={videoRef}
           sx={{
@@ -96,65 +94,70 @@ export const HomeHeader = () => {
             overflow: "hidden",
           }}
         >
-          {/* Right Side Blurred Video */}
-          <Suspense fallback={<Box sx={{ display: "none" }} />}>
-            <ReactPlayer
-              url={main_showreel}
-              playing={isVisible}
-              muted={true}
-              loop
-              width="100%"
-              height={getHeightBasedOnScreen()}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: "-50%",
-                zIndex: 1,
-                objectFit: "cover",
-                filter: "blur(20px) brightness(70%)",
-                opacity: 0.8,
-              }}
-            />
-          </Suspense>
-          {/* Right Side Blurred Video */}
-          <Suspense fallback={<Box sx={{ display: "none" }} />}>
-            <ReactPlayer
-              url={main_showreel}
-              playing={isVisible}
-              muted={true}
-              loop
-              width="100%"
-              height={getHeightBasedOnScreen()}
-              style={{
-                position: "absolute",
-                top: 0,
-                right: "-50%",
-                zIndex: 1,
-                objectFit: "cover",
-                filter: "blur(20px) brightness(70%)",
-                opacity: 0.8,
-              }}
-            />
-          </Suspense>
+          {/* Conditionally render based on whether the device is mobile */}
+          {!isMobile && (
+            <>
+              {/* Right Side Blurred Video */}
+              <Suspense fallback={<Box sx={{ display: "none" }} />}>
+                <ReactPlayer
+                  url={main_showreel}
+                  playing={isVisible}
+                  muted={true}
+                  loop
+                  width="100%"
+                  height={getHeightBasedOnScreen()}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: "-50%",
+                    zIndex: 1,
+                    objectFit: "cover",
+                    filter: "blur(20px) brightness(70%)",
+                    opacity: 0.8,
+                  }}
+                />
+              </Suspense>
+              {/* Right Side Blurred Video */}
+              <Suspense fallback={<Box sx={{ display: "none" }} />}>
+                <ReactPlayer
+                  url={main_showreel}
+                  playing={isVisible}
+                  muted={true}
+                  loop
+                  width="100%"
+                  height={getHeightBasedOnScreen()}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    right: "-50%",
+                    zIndex: 1,
+                    objectFit: "cover",
+                    filter: "blur(20px) brightness(70%)",
+                    opacity: 0.8,
+                  }}
+                />
+              </Suspense>
 
-          {/* Main Video Background Blurred */}
-          <Box
-            sx={{
-              position: "absolute",
-              top: "-10%",
-              left: "-10%",
-              width: "120%",
-              height: "120%",
-              backgroundImage: `url(${main_showreel})`,
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "center",
-              filter: "blur(80px) brightness(40%) saturate(150%)",
-              transform: "scale(1.2)",
-              zIndex: 0,
-              opacity: 0.6,
-            }}
-          />
+              {/* Main Video Background Blurred */}
+              <Box
+                sx={{
+                  position: "absolute",
+                  top: "-10%",
+                  left: "-10%",
+                  width: "120%",
+                  height: "120%",
+                  backgroundImage: `url(${main_showreel})`,
+                  backgroundSize: "cover",
+                  backgroundRepeat: "no-repeat",
+                  backgroundPosition: "center",
+                  filter: "blur(80px) brightness(40%) saturate(150%)",
+                  transform: "scale(1.2)",
+                  zIndex: 0,
+                  opacity: 0.6,
+                }}
+              />
+            </>
+          )}
 
           {/* Main Video Player */}
           <Suspense
@@ -172,21 +175,23 @@ export const HomeHeader = () => {
               />
             }
           >
-            <ReactPlayer
-              url={main_showreel}
-              playing={isVisible}
-              muted={isMuted}
-              loop
-              width="100%"
-              height="100%"
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                zIndex: 2,
-                objectFit: "cover",
-              }}
-            />
+            <Box>
+              <ReactPlayer
+                url={main_showreel}
+                playing={isVisible}
+                muted={isMuted}
+                loop
+                width="100%"
+                height="100%"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  zIndex: 2,
+                  objectFit: "cover",
+                }}
+              />
+            </Box>
           </Suspense>
 
           {/* Mute/Unmute Button */}
@@ -210,55 +215,87 @@ export const HomeHeader = () => {
 
         {/* Marquee Section */}
         <Box
-  sx={{
-    backgroundColor: "#d9d9d9",
-    mx: { xs: 0, md: 4 },
-    py: 2,
-    width: "100%",
-  }}
->
-  <Marquee
-    velocity={20}
-    direction="rtl"
-    scatterRandomly={false}
-    resetAfterTries={100}
-    onInit={() => {}}
-    onFinish={() => {}}
-  >
-    {[
-      { src: icon1, alt: "Icon1", size: { height: "50px", width: "160px" } },
-      { src: icon2, alt: "Icon2", size: { height: "50px", width: "160px" } },
-      { src: icon3, alt: "Icon3", size: { height: "50px", width: "160px" } },
-      { src: icon4, alt: "Icon4", size: { height: "50px", width: "160px" } },
-      { src: icon5, alt: "Icon5", size: { height: "50px", width: "160px" } },
-      { src: icon6, alt: "Icon6", size: { height: "50px", width: "160px" } },
-      { src: icon7, alt: "Icon7", size: { height: "50px", width: "160px" } },
-      { src: icon8, alt: "Icon8", size: { height: "50px", width: "160px" } },
-    ].map((icon, index) => (
-      <Box
-        key={index}
-        mx={4}
-        sx={{
-          ...sharedBoxStyles,
-        }}
-      >
-        <img
-          src={icon.src}
-          alt={icon.alt}
-          draggable="false"
-          style={{
-            height: icon.size.height,  
-            width: icon.size.width,   
-            filter: "brightness(0) invert(1)",
-            pointerEvents: "none",
-            userSelect: "none",
-            marginRight: "10px"
+          sx={{
+            backgroundColor: "#d9d9d9",
+            mx: { xs: 0, md: 4 },
+            py: 2,
+            width: "100%",
           }}
-        />
-      </Box>
-    ))}
-  </Marquee>
-</Box>
+        >
+          <Marquee
+            velocity={20}
+            direction="rtl"
+            scatterRandomly={false}
+            resetAfterTries={100}
+            onInit={() => {}}
+            onFinish={() => {}}
+          >
+            {[
+              {
+                src: icon1,
+                alt: "Icon1",
+                size: { height: "50px", width: "160px" },
+              },
+              {
+                src: icon2,
+                alt: "Icon2",
+                size: { height: "50px", width: "160px" },
+              },
+              {
+                src: icon3,
+                alt: "Icon3",
+                size: { height: "50px", width: "160px" },
+              },
+              {
+                src: icon4,
+                alt: "Icon4",
+                size: { height: "50px", width: "160px" },
+              },
+              {
+                src: icon5,
+                alt: "Icon5",
+                size: { height: "50px", width: "160px" },
+              },
+              {
+                src: icon6,
+                alt: "Icon6",
+                size: { height: "50px", width: "160px" },
+              },
+              {
+                src: icon7,
+                alt: "Icon7",
+                size: { height: "50px", width: "160px" },
+              },
+              {
+                src: icon8,
+                alt: "Icon8",
+                size: { height: "50px", width: "160px" },
+              },
+            ].map((icon, index) => (
+              <Box
+                key={index}
+                mx={4}
+                sx={{
+                  ...sharedBoxStyles,
+                }}
+              >
+                <img
+                  src={icon.src}
+                  alt={icon.alt}
+                  draggable="false"
+                  style={{
+                    height: icon.size.height,
+                    width: icon.size.width,
+                    filter: "brightness(0) invert(1)",
+                    pointerEvents: "none",
+                    userSelect: "none",
+                    marginRight: "10px",
+                  }}
+                />
+              </Box>
+            ))}
+          </Marquee>
+        </Box>
 
         {/* Text Section */}
         <Box
