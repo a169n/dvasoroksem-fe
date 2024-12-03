@@ -9,6 +9,7 @@ interface CustomButtonProps extends ButtonProps {
   endIcon?: React.ReactNode;
 }
 
+// Styling for the button
 const CustomButton = styled(Button)<CustomButtonProps>(() => ({
   border: "1px solid",
   color: "black",
@@ -24,21 +25,21 @@ const CustomButton = styled(Button)<CustomButtonProps>(() => ({
   },
 }));
 
-export const MyButton: React.FC<CustomButtonProps> = ({
-  children,
-  startIcon,
-  endIcon,
-  sx,
-  ...props
-}) => {
-  return (
-    <CustomButton
-      sx={sx}
-      {...props}
-      startIcon={startIcon ? startIcon : undefined}
-      endIcon={endIcon ? endIcon : undefined}
-    >
-      {children}
-    </CustomButton>
-  );
-};
+// Forward the ref using React.forwardRef
+export const MyButton = React.forwardRef<HTMLButtonElement, CustomButtonProps>(
+  ({ children, startIcon, endIcon, sx, ...props }, ref) => {
+    return (
+      <CustomButton
+        sx={sx}
+        {...props}
+        startIcon={startIcon ? startIcon : undefined}
+        endIcon={endIcon ? endIcon : undefined}
+        ref={ref} // Pass ref here
+      >
+        {children}
+      </CustomButton>
+    );
+  }
+);
+
+MyButton.displayName = "MyButton";
