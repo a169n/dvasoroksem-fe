@@ -13,6 +13,11 @@ import { MyButton } from "../button";
 
 interface CardProps {
   image: string;
+  imageMaxWidth: string;
+  imageMaxHeight: string;
+  rotateClockwise?: number;
+  top?: number;
+  marginTop?: number;
   title: string;
   text: string;
   buttonText: string;
@@ -24,6 +29,11 @@ interface CardProps {
 
 export const MyCard: React.FC<CardProps> = ({
   image,
+  imageMaxWidth,
+  imageMaxHeight,
+  rotateClockwise,
+  top,
+  marginTop,
   title,
   text,
   buttonText,
@@ -47,7 +57,8 @@ export const MyCard: React.FC<CardProps> = ({
         borderRadius: "24px",
         boxShadow: "none",
         backgroundColor: "#f7f7f7",
-        padding: "16px",
+        padding: "8px 8px 0 8px",
+        margin: "0 auto",
         overflow: "visible",
         transition: "box-shadow 0.3s ease-in-out",
       }}
@@ -58,8 +69,8 @@ export const MyCard: React.FC<CardProps> = ({
           justifyContent: "center",
           position: "relative",
           width: "100%",
-          height: "auto",
-          marginBottom: "16px",
+          padding: 0,
+          margin: 0,
         }}
       >
         <CardMedia
@@ -69,19 +80,19 @@ export const MyCard: React.FC<CardProps> = ({
           draggable={false}
           sx={{
             position: "relative",
-            top: -50,
+            top: top || -60,
             zIndex: 10,
-            width: "auto",
             objectFit: "cover",
+            maxWidth: imageMaxWidth,
+            maxHeight: imageMaxHeight,
+            transform: `rotate(${rotateClockwise}deg)`,
+            padding: 0,
           }}
         />
       </Box>
       <CardContent
         sx={{
-          flexGrow: 1,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
+          marginTop: marginTop,
         }}
       >
         <Typography
@@ -117,7 +128,7 @@ export const MyCard: React.FC<CardProps> = ({
           >
             {text}
           </Typography>
-          <Box style={{ display: "flex", justifyContent: "flex-start" }}>
+          <Box mt={2} style={{ display: "flex", justifyContent: "flex-start" }}>
             <MyButton
               onClick={onButtonClick}
               endIcon={<ArrowForwardIcon />}
