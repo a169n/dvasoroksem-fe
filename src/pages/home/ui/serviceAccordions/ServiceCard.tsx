@@ -39,7 +39,7 @@ export const ServiceCard = ({
         ":hover": {
           boxShadow: 3,
         },
-      }}
+     }}
     >
       <Grid
         container
@@ -52,7 +52,7 @@ export const ServiceCard = ({
           item
           sx={{
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "flex-start",
             alignItems: "center",
           }}
         >
@@ -66,6 +66,7 @@ export const ServiceCard = ({
               objectFit: "cover",
               objectPosition: objectPosition,
               borderRadius: "24px",
+              maxWidth: "610px",
             }}
           />
         </Grid>
