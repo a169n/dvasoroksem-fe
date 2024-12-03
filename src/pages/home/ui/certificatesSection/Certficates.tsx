@@ -106,7 +106,7 @@ export const Certificates = () => {
             sx={{
               display: "flex",
               flexDirection: "column",
-              width: "fit-content",
+              width: "80%",
               mx: "auto",
               justifyContent: "center",
               alignItems: "center",
@@ -128,8 +128,8 @@ export const Certificates = () => {
               draggable={false}
               sx={{
                 display: "block",
-                margin: "0 auto",
-                height: isMobile ? "100%" : "600px",
+                width: "100%",
+                maxHeight: "500px",
               }}
             />
             <Box
