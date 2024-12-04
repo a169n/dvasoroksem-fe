@@ -25,17 +25,17 @@ export const Certificates = () => {
   const certificates: Certificate[] = [
     {
       id: 1,
-      title: t("certificates.gratitudeLetter"),
+      title: t("certificates.honoraryDiploma"),
       image: certificate1,
     },
     {
       id: 2,
-      title: t("certificates.honoraryDiploma"),
+      title: t("certificates.coffeeBoom"),
       image: certificate2,
     },
     {
       id: 3,
-      title: t("certificates.coffeeBoom"),
+      title: t("certificates.gratitudeLetter"),
       image: certificate3,
     },
     {
@@ -80,17 +80,17 @@ export const Certificates = () => {
         keyBoardControl
         containerClass="carousel-container"
         draggable
-        centerMode={true}
+        centerMode={!isMobile}
         showDots={false}
         arrows={false}
         responsive={{
           largeDesktop: {
             breakpoint: { max: 3000, min: 1280 },
-            items: isMobile ? 1 : 1,
+            items:   1,
           },
           mediumDesktop: {
             breakpoint: { max: 1280, min: 960 },
-            items: isMobile ? 1 : 2,
+            items: 2,
           },
           smallDevices: {
             breakpoint: { max: 720, min: 0 },
