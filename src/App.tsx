@@ -14,6 +14,7 @@ import { queryClient } from "@shared/api/queryClient";
 import { router } from "./router";
 import "./i18n";
 import theme from "./theme";
+import { LayoutProvider } from './context/LayoutContext';
 
 export const App: React.FC = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -77,20 +78,17 @@ export const App: React.FC = () => {
     <LocalizationProvider dateAdapter={AdapterMoment} adapterLocale="ru">
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
-          <Suspense
-            fallback={
-              <Box
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                height="100vh"
-              >
-                <CircularProgress size={40} color="secondary" />
-              </Box>
-            }
-          >
-            <RouterProvider router={router} />
-          </Suspense>
+          <LayoutProvider>
+            <Suspense
+              fallback={
+                <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+                  <CircularProgress size={40} color="secondary" />
+                </Box>
+              }
+            >
+              <RouterProvider router={router} />
+            </Suspense>
+          </LayoutProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </LocalizationProvider>

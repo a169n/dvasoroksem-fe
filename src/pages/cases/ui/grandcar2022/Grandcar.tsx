@@ -5,15 +5,19 @@ import { Description } from "@shared/ui/description";
 import { MovieStaff } from "@shared/ui/movie-staff";
 import { Cases } from "@pages/home/ui/cases";
 import { useEffect } from "react";
+import { useLayoutContext } from '@src/context/LayoutContext'; 
 
 export const Grandcar = () => {
+  const { setMode } = useLayoutContext();
+
   useEffect(() => {
+    setMode('dark');
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <>
-      <Header mode="dark" />
+      <Header/>
       <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={Grandcar2022MainImage}

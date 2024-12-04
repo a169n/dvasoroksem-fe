@@ -6,9 +6,11 @@ import { Cases } from "@pages/home/ui/cases";
 import YouTubeIcon from "@mui/icons-material/YouTube";
 import { MyButton } from "@shared/ui/button";
 import { useEffect } from "react";
-
+import {useLayoutContext} from '@src/context/LayoutContext';
 export const Soyle = () => {
+  const { setMode } = useLayoutContext();
   useEffect(() => {
+    setMode('dark');
     window.scrollTo(0, 0);
   }, []);
 
@@ -18,7 +20,7 @@ export const Soyle = () => {
 
   return (
     <>
-      <Header mode="dark" />
+      <Header />
       <Box component="div" sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={SoyleMainPage}

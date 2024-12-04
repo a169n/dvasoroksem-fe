@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Box } from "@mui/material";
-import { Header } from "@shared/ui/header";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import CoffeeBoomMainImage from "@assets/casePages/coffee-boom.svg";
 import { Description } from "@shared/ui/description";
@@ -15,9 +14,12 @@ import coffeboomTikTok4 from "@assets/videos/coffeeBoom/coffeeboom_tiktok_4.mp4"
 import coffeboomTikTok5 from "@assets/videos/coffeeBoom/coffeeboom_tiktok_5.mp4";
 import coffeboomTikTok6 from "@assets/videos/coffeeBoom/coffeeboom_tiktok_6.mp4";
 import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
-
+import { useLayoutContext } from '@src/context/LayoutContext';
+import { Header } from "@shared/ui/header";
 export const CoffeeBoom = () => {
+  const { setMode } = useLayoutContext();
   useEffect(() => {
+    setMode('light');
     window.scrollTo(0, 0);
   }, []);
 
@@ -32,7 +34,7 @@ export const CoffeeBoom = () => {
 
   return (
     <Box sx={{ backgroundColor: "#161616" }}>
-      <Header mode="light" />
+      <Header />
       <Box sx={{ minHeight: { xs: "200px", md: "600px" } }}>
         <LazyLoadImage
           src={CoffeeBoomMainImage}

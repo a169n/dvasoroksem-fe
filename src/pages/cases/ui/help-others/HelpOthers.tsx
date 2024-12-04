@@ -19,16 +19,18 @@ import helpOptherVideo1 from "@assets/videos/helpOthers/pomogy_drugomu_video_1.m
 import helpOptherVideo2 from "@assets/videos/helpOthers/pomogy_drugomu_video_2.mp4";
 import helpOptherVideo3 from "@assets/videos/helpOthers/pomogy_drugomu_video_3.mp4";
 import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
-
+import { useLayoutContext } from '@src/context/LayoutContext';
 export const HelpOthers = () => {
+  const { setMode } = useLayoutContext();
   useEffect(() => {
+    setMode('dark');
     window.scrollTo(0, 0);
   }, []);
 
   const videos = [helpOptherVideo1, helpOptherVideo2, helpOptherVideo3];
   return (
     <>
-      <Header mode="dark" />
+      <Header/>
       <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={HelpOtherMainImage}
