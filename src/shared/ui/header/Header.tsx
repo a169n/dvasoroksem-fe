@@ -140,9 +140,11 @@ export const Header = () => {
             alignSelf: isMobile ? "start" : "center",
             cursor: "pointer",
             color:
-              window.location.pathname === "/" && isMobile
+            ["/", "/request", "/cases"].includes(window.location.pathname)
+            && isMobile
                 ? "#fff"
-                : window.location.pathname === "/" && !isMobile
+                :           ["/", "/request", "/cases"].includes(window.location.pathname)
+                && !isMobile
                 ? "#000"
                 : isLightMode
                 ? "#fff"
@@ -213,11 +215,11 @@ export const Header = () => {
             draggable="false"
             style={{
               filter:
-                window.location.pathname === "/"
-                  ? "invert(0)"
-                  : isLightMode
-                  ? "invert(1)"
-                  : "invert(0)",
+          ["/", "/request", "/cases"].includes(window.location.pathname)
+            ? "invert(0)"
+            : isLightMode
+            ? "invert(1)"
+            : "invert(0)",
               pointerEvents: "none",
               userSelect: "none",
             }}
@@ -231,8 +233,8 @@ export const Header = () => {
             onClick={() => setMenuOpen(!menuOpen)}
             sx={{
               filter:
-                window.location.pathname === "/"
-                  ? "invert(0)"
+              ["/", "/request", "/cases"].includes(window.location.pathname)
+              ? "invert(0)"
                   : isLightMode
                   ? "invert(1)"
                   : "invert(0)",
@@ -254,22 +256,22 @@ export const Header = () => {
                 padding: "10px 28px",
                 marginLeft: 2,
                 color:
-                  window.location.pathname === "/"
-                    ? "#000"
+                ["/", "/request", "/cases"].includes(window.location.pathname)
+                ? "#000"
                     : isDarkMode
                     ? "#191919"
                     : isLightMode
                     ? "#fff"
                     : "#000",
                 backgroundColor:
-                  window.location.pathname === "/"
-                    ? "white"
+                ["/", "/request", "/cases"].includes(window.location.pathname)
+                ? "white"
                     : isDarkMode || isLightMode
                     ? "transparent"
                     : "white",
                 borderColor:
-                  window.location.pathname === "/"
-                    ? "#000"
+                ["/", "/request", "/cases"].includes(window.location.pathname)
+                ? "#000"
                     : isDarkMode
                     ? "black"
                     : isLightMode
