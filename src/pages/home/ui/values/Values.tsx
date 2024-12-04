@@ -1,10 +1,13 @@
-import { Box, Typography,  useMediaQuery} from "@mui/material";
+import React, { useRef } from "react";
+import { Box, Typography, IconButton, Stack, useMediaQuery } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Carousel from "react-multi-carousel";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-multi-carousel/lib/styles.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { useTheme } from "@mui/material/styles";
+import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
+import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 // Import values icons
 import disciplineIcon from "@assets/icons/values/discipline.svg";
@@ -45,6 +48,16 @@ export const Values = () => {
       text: t("values.responsibility.text"),
     },
   ];
+  
+  const carouselRef = useRef<Carousel>(null);
+
+  const handleLeftClick = () => {
+    if (carouselRef.current) carouselRef.current.previous(1);
+  };
+
+  const handleRightClick = () => {
+    if (carouselRef.current) carouselRef.current.next(1);
+  };
 
   const responsive = {
     superLargeDesktop: {
@@ -98,6 +111,7 @@ export const Values = () => {
           containerClass="carousel-container"
           itemClass="carousel-item-padding"
           arrows={false}
+          ref={carouselRef}
         >
           {valueCards.map((card, index) => (
             <Box
@@ -186,6 +200,14 @@ export const Values = () => {
             </Box>
           ))}
         </Carousel>
+        <Stack direction="row" justifyContent="center" spacing={2} sx={{ mt: 4, mb: 4 }}>
+          <IconButton onClick={handleLeftClick} sx={{ color: "#000", border: "1px solid #000", borderRadius: "0px", padding: "8px 12px" }}>
+            <ArrowLeftIcon />
+          </IconButton>
+          <IconButton onClick={handleRightClick} sx={{ color: "#000", border: "1px solid #000", borderRadius: "0px", padding: "8px 12px" }}>
+            <ArrowRightIcon />
+          </IconButton>
+        </Stack>
       </Box>
     </Box>
   );
