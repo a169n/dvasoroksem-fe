@@ -4,10 +4,12 @@ import "./apply.module.css";
 import { useTranslation } from "react-i18next";
 import { EllipseCirclingText } from "./EllipseCirclingText";
 import { CustomArrowSVG } from "./CustomArrowSVG";
+import { useNavigate } from "react-router-dom";
 
 export const Apply = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const text1Parts = t("apply.text1").split(" ");
@@ -65,7 +67,7 @@ export const Apply = () => {
       >
         <MyButton
           id="apply-button"
-          onClick={() => window.open("/request", "_blank")}
+          onClick={() => navigate("/request")}
           sx={{
             borderRadius: 0,
             textTransform: "none",
