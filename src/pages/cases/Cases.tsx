@@ -304,7 +304,7 @@ export const Cases = () => {
                         color: "#000",
                         fontWeight: 700,
                         fontSize: isMobile ? "16px" : "22px",
-                        cursor: "pointer"
+                        cursor: "pointer",
                       }}
                     >
                       {caseItem.title}
