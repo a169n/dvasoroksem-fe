@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useCallback } from "react";
+import  { useState, useCallback, useEffect } from "react";
 import { Box, Toolbar, IconButton, Typography, Drawer } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -12,14 +11,9 @@ import { MySelect } from "@shared/ui/select";
 import { MyButton } from "@shared/ui/button";
 import { useTranslation } from "react-i18next";
 import i18n from "@src/i18n";
-import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useLayoutContext } from "@src/context/LayoutContext"; // Correct import
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-type RefsType = Record<string, React.RefObject<any>> | null;
-
-// Throttle function to limit scroll event handling
-// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 const throttle = (func: Function, limit: number) => {
   let inThrottle: boolean;
   let lastPos = window.pageYOffset;
@@ -35,30 +29,24 @@ const throttle = (func: Function, limit: number) => {
   };
 };
 
-export const Header = ({
-  mode = "default",
-  refs = null,
-}: {
-  mode?: string;
-  refs?: RefsType;
-}) => {
+export const Header = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [menuOpen, setMenuOpen] = useState(false);
   const [language, setLanguage] = useState(i18n.language || "ru");
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const { t } = useTranslation();
+  const navigate = useNavigate();
+  const { mode, refs } = useLayoutContext(); // Use mode from context
 
   const isDarkMode = mode === "dark";
   const isLightMode = mode === "light";
 
-  const navigate = useNavigate();
-
   const navItems = [
-    { href: "#cases", text: t("navigation.ourCases") },
-    { href: "#about", text: t("navigation.aboutUs") },
-    { href: "#contacts", text: t("navigation.contacts") },
-    { href: "#reviews", text: t("navigation.reviews") },
+    { href: "cases", text: t("navigation.ourCases") },
+    { href: "about", text: t("navigation.aboutUs") },
+    { href: "contacts", text: t("navigation.contacts") },
+    { href: "reviews", text: t("navigation.reviews") },
   ];
 
   const languageOptions = [
@@ -67,7 +55,6 @@ export const Header = ({
     { value: "en", label: "ENG" },
   ];
 
-  // Throttled scroll handler
   const handleScroll = useCallback(
     throttle((isScrollingDown: boolean, currentPos: number) => {
       if (currentPos < 10 || !isScrollingDown) {
@@ -79,21 +66,62 @@ export const Header = ({
     []
   );
 
-  // Attach scroll listener
-  React.useLayoutEffect(() => {
+  useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleNavClick = (ref: any) => {
-    if (ref?.current) {
-      window.scrollTo({
-        top: ref.current.offsetTop,
-        behavior: "smooth",
+
+
+  const handleNavClick = (section: string) => {
+    const currentPath = window.location.pathname;
+    
+    if (section === "contacts") {
+          window.scrollTo({
+            top: document.documentElement.scrollHeight,
+            behavior: "smooth",
+          });
+         } else if (currentPath !== "/") {
+      navigate("/", { 
+        state: { 
+          scrollToSection: section 
+        } 
       });
+      setTimeout(() => {
+        const targetRef = refs[section];
+        if (targetRef?.current) {
+          window.scrollTo({
+        top: targetRef.current.offsetTop || 0,
+        behavior: "smooth",
+          });
+        }
+      }, 100);
+    } else {
+      const targetRef = refs[section];
+      if (targetRef?.current) {
+        window.scrollTo({
+          top: targetRef.current.offsetTop || 0,
+          behavior: "smooth",
+        });
+      }
     }
   };
+  useEffect(() => {
+    const { state } = window.history;
+    if (state && state.scrollToSection) {
+      const section = state.scrollToSection;
+      const targetRef = refs[section];
+      setTimeout(() => {
+        if (targetRef?.current) {
+          window.scrollTo({
+            top: targetRef.current.offsetTop || 0,
+            behavior: "smooth",
+          });
+        }
+        window.history.replaceState({}, document.title);
+      }, 100);
+    }
+  }, [refs]);
 
   const NavigationItems = () => (
     <Box
@@ -105,32 +133,31 @@ export const Header = ({
         justifyContent: "space-around",
       }}
     >
-      {navItems.map(({ href, text }) => {
-        const targetRef =
-          mode === "default" ? (refs && refs[href.substring(1)]) || "" : null;
-
-        return (
-          <Typography
-            key={href}
-            component="a"
-            sx={{
-              alignSelf: isMobile ? "start" : "center",
-              cursor: "pointer",
-              color: isLightMode
+      {navItems.map(({ href, text }) => (
+        <Typography
+          key={href}
+          sx={{
+            alignSelf: isMobile ? "start" : "center",
+            cursor: "pointer",
+            color:
+              window.location.pathname === "/" && isMobile
+                ? "#fff"
+                : window.location.pathname === "/" && !isMobile
+                ? "#000"
+                : isLightMode
                 ? "#fff"
                 : isDarkMode && !isMobile
-                  ? "#191919"
-                  : isDarkMode && isMobile
-                    ? "#fff"
-                    : !isMobile ? "#000" : "#fff",
-              fontSize: isMobile ? "24px" : "20px",
-            }}
-            onClick={() => handleNavClick(targetRef)}
-          >
-            {text}
-          </Typography>
-        );
-      })}
+                ? "#191919"
+                : isDarkMode && isMobile
+                ? "#fff"
+                : "#fff",
+            fontSize: isMobile ? "24px" : "20px",
+          }}
+          onClick={() => handleNavClick(href)}
+        >
+          {text}
+        </Typography>
+      ))}
       <MySelect
         value={language}
         onChange={(e) => {
@@ -141,7 +168,7 @@ export const Header = ({
         options={languageOptions}
         sx={{
           alignSelf: "start",
-          color: isLightMode ? "#000" :  "#fff" ,
+          color: isLightMode ? "#000" : "#fff",
         }}
         mode={mode}
       />
@@ -156,8 +183,7 @@ export const Header = ({
         top: 0,
         left: 0,
         right: 0,
-        transition:
-          "transform 0.3s ease-in-out, background-color 0.3s ease-in-out",
+        transition: "transform 0.3s ease-in-out, background-color 0.3s ease-in-out",
         transform: isHeaderVisible ? "translateY(0)" : "translateY(-100%)",
         backgroundColor: isHeaderVisible
           ? isLightMode
@@ -179,15 +205,6 @@ export const Header = ({
           }}
           onClick={() => {
             navigate("/");
-            const targetId = window.location.hash;
-            const targetRef =
-              refs && refs[targetId ? targetId.substring(1) : ""];
-            if (targetRef && targetRef.current) {
-              window.scrollTo({
-                top: targetRef.current.offsetTop,
-                behavior: "smooth",
-              });
-            }
           }}
         >
           <img
@@ -195,7 +212,12 @@ export const Header = ({
             alt="Logo"
             draggable="false"
             style={{
-              filter: isLightMode ? "invert(1)" : "invert(0)",
+              filter:
+                window.location.pathname === "/"
+                  ? "invert(0)"
+                  : isLightMode
+                  ? "invert(1)"
+                  : "invert(0)",
               pointerEvents: "none",
               userSelect: "none",
             }}
@@ -207,8 +229,13 @@ export const Header = ({
             edge="end"
             aria-label="menu"
             onClick={() => setMenuOpen(!menuOpen)}
-            sx={{filter: isLightMode ? "invert(1)" : "invert(0)",
-              
+            sx={{
+              filter:
+                window.location.pathname === "/"
+                  ? "invert(0)"
+                  : isLightMode
+                  ? "invert(1)"
+                  : "invert(0)",
             }}
           >
             {menuOpen ? <CloseIcon /> : <MenuIcon />}
@@ -226,12 +253,26 @@ export const Header = ({
               sx={{
                 padding: "10px 28px",
                 marginLeft: 2,
-                color: isDarkMode ? "#191919" : isLightMode ? "#fff" : "#000",
+                color:
+                  window.location.pathname === "/"
+                    ? "#000"
+                    : isDarkMode
+                    ? "#191919"
+                    : isLightMode
+                    ? "#fff"
+                    : "#000",
                 backgroundColor:
-                  isDarkMode || isLightMode ? "transparent" : "white",
-                borderColor: isDarkMode
-                  ? "black"
-                  : isLightMode
+                  window.location.pathname === "/"
+                    ? "white"
+                    : isDarkMode || isLightMode
+                    ? "transparent"
+                    : "white",
+                borderColor:
+                  window.location.pathname === "/"
+                    ? "#000"
+                    : isDarkMode
+                    ? "black"
+                    : isLightMode
                     ? "white"
                     : "black",
               }}
@@ -310,12 +351,13 @@ export const Header = ({
               color: isDarkMode
                 ? "#fff"
                 : isLightMode
-                  ? "#fff"
-                  : "#fff",
+                ? "#fff"
+                : "#fff",
               backgroundColor: "black",
-              borderColor: isDarkMode && !isMobile
-                ? "black"
-                : isLightMode && !isMobile
+              borderColor:
+                isDarkMode && !isMobile
+                  ? "black"
+                  : isLightMode && !isMobile
                   ? "white"
                   : "black",
               "&:hover": {

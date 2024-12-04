@@ -13,9 +13,11 @@ import nomadTiktok4 from "@assets/videos/nomad/nomad_tiktok_4.mp4";
 import nomadTiktok5 from "@assets/videos/nomad/nomad_tiktok_5.mp4";
 import nomadTiktok6 from "@assets/videos/nomad/nomad_tiktok_6.mp4";
 import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
-
+import { useLayoutContext } from '@src/context/LayoutContext'; 
 export const Nomad = () => {
+  const { setMode } = useLayoutContext();
   useEffect(() => {
+    setMode('light');
     window.scrollTo(0, 0);
   }, []);
 
@@ -30,7 +32,7 @@ export const Nomad = () => {
 
   return (
     <>
-      <Header mode="light" />
+      <Header/>
       <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={NomadMainPage}

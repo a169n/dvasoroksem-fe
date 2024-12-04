@@ -40,6 +40,7 @@ const VideoPlaceholder = () => (
   </Box>
 );
 
+
 const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
   const handlePlayPause = () => onPlay(isPlaying ? null : index);
 
@@ -141,7 +142,7 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
 export const Videos = () => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-
+const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [activeVideo, setActiveVideo] = useState(null);
 
   const videoData = [
@@ -218,7 +219,7 @@ export const Videos = () => {
           showDots={false}
           arrows={false}
           containerClass="carousel-container"
-          centerMode={true}
+          centerMode={!isMobile}
           itemClass="carousel-item-spacing"
           sliderClass="carousel-slider-spacing"
         >

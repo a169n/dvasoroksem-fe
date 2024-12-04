@@ -58,7 +58,7 @@ export const ContactLinks = () => {
     <Box sx={containerStyle}>
       <Box sx={linkContainerStyle}>
         <PhoneIcon sx={{ mr: 1, color: "#FFFFFF" }} />
-        <Typography component="a" href="tel:+77776660247" sx={linkStyle}>
+        <Typography component="a" textAlign={"left"} href="tel:+77776660247" sx={linkStyle}>
           +7 777 666 02 47
         </Typography>
       </Box>
@@ -66,6 +66,7 @@ export const ContactLinks = () => {
       <Box sx={linkContainerStyle}>
         <EmailIcon sx={{ mr: 1, color: "#FFFFFF" }} />
         <Typography
+        textAlign={"left"}
           component="a"
           href="mailto:dvasoroksem@gmail.com"
           sx={linkStyle}
@@ -77,6 +78,7 @@ export const ContactLinks = () => {
       <Box sx={linkContainerStyle}>
         <InstagramIcon sx={{ mr: 1, color: "#FFFFFF" }} />
         <Typography
+        textAlign={"left"}
           component="a"
           href="https://instagram.com/dvasoroksem"
           target="_blank"
@@ -90,6 +92,7 @@ export const ContactLinks = () => {
       <Box sx={linkContainerStyle}>
         <LanguageIcon sx={{ mr: 1, color: "#FFFFFF" }} />
         <Typography
+        textAlign={"left"}
           component="a"
           href="https://dvasoroksem.kz"
           target="_blank"

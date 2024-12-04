@@ -1,3 +1,4 @@
+
 import React, { useEffect } from "react";
 import { Header } from "@shared/ui/header";
 import { Box } from "@mui/material";
@@ -8,6 +9,7 @@ import DoubleCarousel from "@shared/ui/doubleCarousel/DoubleCarousel";
 import { Stories } from "@shared/ui/stories";
 import { useTranslation } from "react-i18next";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useLayoutContext } from '@src/context/LayoutContext'; // Import context
 
 // Import images
 import BauerMainImage from "@assets/casePages/bauer.png";
@@ -36,10 +38,14 @@ import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
 
 export const Bauer: React.FC = () => {
   const { t } = useTranslation();
+  const { setMode } = useLayoutContext(); // Use setMode from context
 
   useEffect(() => {
+    setMode('light'); // Set mode to "light" for this page
     window.scrollTo(0, 0);
-  }, []);
+    // Return a cleanup function to reset mode if needed when the component is unmounted
+    return () => setMode('default');
+  }, [setMode]);
 
   const videos = [
     bauerReels1,
@@ -51,7 +57,7 @@ export const Bauer: React.FC = () => {
 
   return (
     <Box sx={{ backgroundColor: "#161616" }}>
-      <Header mode="light" />
+      <Header /> {/* No need to pass mode explicitly here */}
 
       <Box sx={{ minHeight: { xs: "200px", md: "800px" } }}>
         <LazyLoadImage
