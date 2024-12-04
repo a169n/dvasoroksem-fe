@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Box,
   Typography,
@@ -24,8 +24,31 @@ export const Request = () => {
     setSelectedBudget(event.target.value);
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const textFieldStyles = {
+    mb: 2,
+    "& .MuiInputBase-input": { color: "#fff" },
+    "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#fff",
+    },
+    "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
+      borderColor: "#fff",
+    },
+  };
+
+  const controlLabelStyles = {
+    color: "#fff",
+    "& .MuiCheckbox-root, & .MuiRadio-root": {
+      color: "#fff",
+      "&.Mui-checked": { color: "#fff" },
+    },
+  };
+
   return (
-    <>
+    <div style={{ marginTop: isMobile ? "40px" : "20px" }}>
       <Header />
       <Box
         sx={{
@@ -36,35 +59,47 @@ export const Request = () => {
           flexDirection: isMobile ? "column" : "row",
         }}
       >
+        {/* Left Section */}
         <Box
           sx={{
             width: isMobile ? "100%" : "60%",
             display: "flex",
             flexDirection: "column",
             gap: "50px",
-            marginTop: "30px",
+            mt: 3,
           }}
         >
           <Typography
             sx={{
               textAlign: "start",
-              fontSize: "92px",
+              fontSize: { xs: "40px", sm: "72px", md: "92px" },
               textTransform: "uppercase",
-              lineHeight: "1",
+              lineHeight: 1,
             }}
           >
             Оставить заявку
           </Typography>
           <Typography
+            component="a"
+            href="https://go.2gis.com/lq8ukd"
+            target="_blank"
+            rel="noopener noreferrer"
             sx={{
               textAlign: "start",
-              textDecorationLine: "underline",
-              marginBottom: isMobile ? "20px" : "0",
+              textDecorationLine: "none",
+              mb: isMobile ? 2 : 0,
+              cursor: "pointer",
+              transition: "text-decoration 0.3s ease-in-out",
+              "&:hover": {
+                textDecorationLine: "underline",
+              },
             }}
           >
             ул. Калибек Куанышбаев, 11Б, Астана, Казахстан
           </Typography>
         </Box>
+
+        {/* Right Section */}
         <Box sx={{ width: isMobile ? "100%" : "40%" }}>
           <FormControl
             fullWidth
@@ -78,164 +113,58 @@ export const Request = () => {
             <Typography sx={{ color: "#fff", mb: 2, textAlign: "start" }}>
               Контакты
             </Typography>
-            <TextField
-              placeholder="Имя"
-              sx={{
-                mb: 2,
-                "& .MuiInputBase-input": { color: "#fff" },
-                "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#fff",
-                },
-                "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
-                  {
-                    borderColor: "#fff",
-                  },
-              }}
-            />
-            <TextField
-              placeholder="E-mail"
-              sx={{
-                mb: 2,
-                "& .MuiInputBase-input": { color: "#fff" },
-                "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#fff",
-                },
-                "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
-                  {
-                    borderColor: "#fff",
-                  },
-              }}
-            />
-            <TextField
-              placeholder="Телефон"
-              sx={{
-                mb: 2,
-                "& .MuiInputBase-input": { color: "#fff" },
-                "& .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline": {
-                  borderColor: "#fff",
-                },
-                "&:hover .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline":
-                  {
-                    borderColor: "#fff",
-                  },
-              }}
-            />
+
+            <TextField placeholder="Имя" sx={textFieldStyles} />
+            <TextField placeholder="E-mail" sx={textFieldStyles} />
+            <TextField placeholder="Телефон" sx={textFieldStyles} />
 
             <Typography sx={{ color: "#fff", mb: 2, textAlign: "start" }}>
               Направление
             </Typography>
 
             <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mb: 2 }}>
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    sx={{
-                      color: "#fff",
-                      "&.Mui-checked": {
-                        color: "#fff",
-                      },
-                    }}
-                  />
-                }
-                label={
-                  <Typography sx={{ color: "#fff" }}>Instagram</Typography>
-                }
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    sx={{
-                      color: "#fff",
-                      "&.Mui-checked": {
-                        color: "#fff",
-                      },
-                    }}
-                  />
-                }
-                label={<Typography sx={{ color: "#fff" }}>TikTok</Typography>}
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    sx={{
-                      color: "#fff",
-                      "&.Mui-checked": {
-                        color: "#fff",
-                      },
-                    }}
-                  />
-                }
-                label={
-                  <Typography sx={{ color: "#fff" }}>Production</Typography>
-                }
-              />
+              {["Instagram", "TikTok", "Production"].map((label) => (
+                <FormControlLabel
+                  key={label}
+                  control={<Checkbox sx={controlLabelStyles} />}
+                  label={
+                    <Typography sx={{ color: "#fff" }}>{label}</Typography>
+                  }
+                />
+              ))}
             </Box>
+
             <Typography sx={{ color: "#fff", mb: 2, textAlign: "start" }}>
               Бюджет
             </Typography>
 
             <RadioGroup value={selectedBudget} onChange={handleRadioChange}>
               <Box sx={{ display: "flex", gap: 2 }}>
-                <FormControlLabel
-                  value="below1M"
-                  control={
-                    <Radio
-                      sx={{
-                        color: "#fff",
-                        "&.Mui-checked": {
-                          color: "#fff",
-                        },
-                      }}
-                    />
-                  }
-                  label={
-                    <Typography sx={{ color: "#fff" }}>до 1 млн</Typography>
-                  }
-                  sx={{ color: "#fff" }}
-                />
-                <FormControlLabel
-                  value="above1M"
-                  control={
-                    <Radio
-                      sx={{
-                        color: "#fff",
-                        "&.Mui-checked": {
-                          color: "#fff",
-                        },
-                      }}
-                    />
-                  }
-                  label={
-                    <Typography sx={{ color: "#fff" }}>от 1 млн</Typography>
-                  }
-                  sx={{ color: "#fff" }}
-                />
-                <FormControlLabel
-                  value="exclusive"
-                  control={
-                    <Radio
-                      sx={{
-                        color: "#fff",
-                        "&.Mui-checked": {
-                          color: "#fff",
-                        },
-                      }}
-                    />
-                  }
-                  label={
-                    <Typography sx={{ color: "#fff" }}>Эксклюзив</Typography>
-                  }
-                  sx={{ color: "#fff" }}
-                />
+                {[
+                  { value: "below1M", label: "до 1 млн" },
+                  { value: "above1M", label: "от 1 млн" },
+                  { value: "exclusive", label: "Эксклюзив" },
+                ].map((option) => (
+                  <FormControlLabel
+                    key={option.value}
+                    value={option.value}
+                    control={<Radio sx={controlLabelStyles} />}
+                    label={
+                      <Typography sx={{ color: "#fff" }}>
+                        {option.label}
+                      </Typography>
+                    }
+                  />
+                ))}
               </Box>
             </RadioGroup>
 
             <MyButton
               variant="contained"
               sx={{
-                margin: "auto",
                 mt: 3,
                 width: "50%",
+                mx: "auto",
                 backgroundColor: "#000",
                 color: "#fff",
                 border: "1px solid #fff",
@@ -250,6 +179,6 @@ export const Request = () => {
           </FormControl>
         </Box>
       </Box>
-    </>
+    </div>
   );
 };
