@@ -13,7 +13,7 @@ export const Home = () => {
   const aboutRef = useRef(null);
   const casesRef = useRef(null);
   const reviewsRef = useRef(null);
-
+  const contactsRef = useRef(null);
   return (
     <div>
       <Header
@@ -21,6 +21,7 @@ export const Home = () => {
           about: aboutRef,
           cases: casesRef,
           reviews: reviewsRef,
+          contacts: contactsRef,
         }}
       />
       <div>
