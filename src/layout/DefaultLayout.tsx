@@ -1,13 +1,10 @@
-
-import { Container } from '@mui/material';
-import { Footer } from '@shared/ui/footer';
-import { Outlet } from 'react-router-dom';
-import { Header } from '@shared/ui/header';
+import { Container } from "@mui/material";
+import { Footer } from "@shared/ui/footer";
+import { Outlet } from "react-router-dom";
 
 export function DefaultLayout() {
   return (
-    <Container maxWidth={false} disableGutters sx={{ maxWidth: '1920px' }}>
-      <Header />
+    <Container maxWidth={false} disableGutters sx={{ maxWidth: "1920px" }}>
       <Outlet />
       <Footer />
     </Container>

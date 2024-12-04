@@ -1,4 +1,4 @@
-import  { useState, useCallback, useEffect } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { Box, Toolbar, IconButton, Typography, Drawer } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
@@ -71,28 +71,26 @@ export const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-
-
   const handleNavClick = (section: string) => {
     const currentPath = window.location.pathname;
-    
+
     if (section === "contacts") {
-          window.scrollTo({
-            top: document.documentElement.scrollHeight,
-            behavior: "smooth",
-          });
-         } else if (currentPath !== "/") {
-      navigate("/", { 
-        state: { 
-          scrollToSection: section 
-        } 
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: "smooth",
+      });
+    } else if (currentPath !== "/") {
+      navigate("/", {
+        state: {
+          scrollToSection: section,
+        },
       });
       setTimeout(() => {
         const targetRef = refs[section];
         if (targetRef?.current) {
           window.scrollTo({
-        top: targetRef.current.offsetTop || 0,
-        behavior: "smooth",
+            top: targetRef.current.offsetTop || 0,
+            behavior: "smooth",
           });
         }
       }, 100);
@@ -140,19 +138,20 @@ export const Header = () => {
             alignSelf: isMobile ? "start" : "center",
             cursor: "pointer",
             color:
-            ["/", "/request", "/cases"].includes(window.location.pathname)
-            && isMobile
+              ["/", "/request", "/cases"].includes(window.location.pathname) &&
+              isMobile
                 ? "#fff"
-                :           ["/", "/request", "/cases"].includes(window.location.pathname)
-                && !isMobile
-                ? "#000"
-                : isLightMode
-                ? "#fff"
-                : isDarkMode && !isMobile
-                ? "#191919"
-                : isDarkMode && isMobile
-                ? "#fff"
-                : "#fff",
+                : ["/", "/request", "/cases"].includes(
+                      window.location.pathname
+                    ) && !isMobile
+                  ? "#000"
+                  : isLightMode
+                    ? "#fff"
+                    : isDarkMode && !isMobile
+                      ? "#191919"
+                      : isDarkMode && isMobile
+                        ? "#fff"
+                        : "#fff",
             fontSize: isMobile ? "24px" : "20px",
           }}
           onClick={() => handleNavClick(href)}
@@ -185,14 +184,21 @@ export const Header = () => {
         top: 0,
         left: 0,
         right: 0,
-        transition: "transform 0.3s ease-in-out, background-color 0.3s ease-in-out",
+        transition:
+          "transform 0.3s ease-in-out, background-color 0.3s ease-in-out",
         transform: isHeaderVisible ? "translateY(0)" : "translateY(-100%)",
-        backgroundColor: isHeaderVisible
-          ? isLightMode
+        backgroundColor:
+          isHeaderVisible && !isMobile
             ? "rgba(255,255,255,0.1)"
-            : "rgba(255,255,255,0.95)"
-          : "transparent",
-        backdropFilter: isHeaderVisible ? "blur(8px)" : "none",
+            : isHeaderVisible && isMobile
+              ? "transparent"
+              : "transparent",
+        backdropFilter:
+          isHeaderVisible && !isMobile
+            ? "blur(8px)"
+            : isHeaderVisible && isMobile
+              ? "blur(0px)"
+              : "none",
         boxShadow: isHeaderVisible ? "0 2px 8px rgba(0,0,0,0.1)" : "none",
         zIndex: 100,
       }}
@@ -214,12 +220,13 @@ export const Header = () => {
             alt="Logo"
             draggable="false"
             style={{
-              filter:
-          ["/", "/request", "/cases"].includes(window.location.pathname)
-            ? "invert(0)"
-            : isLightMode
-            ? "invert(1)"
-            : "invert(0)",
+              filter: ["/", "/request", "/cases"].includes(
+                window.location.pathname
+              )
+                ? "invert(0)"
+                : isLightMode
+                  ? "invert(1)"
+                  : "invert(0)",
               pointerEvents: "none",
               userSelect: "none",
             }}
@@ -232,10 +239,11 @@ export const Header = () => {
             aria-label="menu"
             onClick={() => setMenuOpen(!menuOpen)}
             sx={{
-              filter:
-              ["/", "/request", "/cases"].includes(window.location.pathname)
-              ? "invert(0)"
-                  : isLightMode
+              filter: ["/", "/request", "/cases"].includes(
+                window.location.pathname
+              )
+                ? "invert(0)"
+                : isLightMode
                   ? "invert(1)"
                   : "invert(0)",
             }}
@@ -255,28 +263,31 @@ export const Header = () => {
               sx={{
                 padding: "10px 28px",
                 marginLeft: 2,
-                color:
-                ["/", "/request", "/cases"].includes(window.location.pathname)
-                ? "#000"
-                    : isDarkMode
+                color: ["/", "/request", "/cases"].includes(
+                  window.location.pathname
+                )
+                  ? "#000"
+                  : isDarkMode
                     ? "#191919"
                     : isLightMode
-                    ? "#fff"
-                    : "#000",
-                backgroundColor:
-                ["/", "/request", "/cases"].includes(window.location.pathname)
-                ? "white"
-                    : isDarkMode || isLightMode
+                      ? "#fff"
+                      : "#000",
+                backgroundColor: ["/", "/request", "/cases"].includes(
+                  window.location.pathname
+                )
+                  ? "white"
+                  : isDarkMode || isLightMode
                     ? "transparent"
                     : "white",
-                borderColor:
-                ["/", "/request", "/cases"].includes(window.location.pathname)
-                ? "#000"
-                    : isDarkMode
+                borderColor: ["/", "/request", "/cases"].includes(
+                  window.location.pathname
+                )
+                  ? "#000"
+                  : isDarkMode
                     ? "black"
                     : isLightMode
-                    ? "white"
-                    : "black",
+                      ? "white"
+                      : "black",
               }}
               onClick={() => navigate("/request")}
             >
@@ -350,18 +361,14 @@ export const Header = () => {
               textTransform: isMobile ? "none" : "",
               marginLeft: isMobile ? "" : 2,
               textAlign: isMobile ? "start" : "",
-              color: isDarkMode
-                ? "#fff"
-                : isLightMode
-                ? "#fff"
-                : "#fff",
+              color: isDarkMode ? "#fff" : isLightMode ? "#fff" : "#fff",
               backgroundColor: "black",
               borderColor:
                 isDarkMode && !isMobile
                   ? "black"
                   : isLightMode && !isMobile
-                  ? "white"
-                  : "black",
+                    ? "white"
+                    : "black",
               "&:hover": {
                 backgroundColor: "white",
                 color: "black",
