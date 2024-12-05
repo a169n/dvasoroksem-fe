@@ -16,31 +16,28 @@ export const ContactLinks = () => {
   const linkStyle = {
     color: "#FFFFFF",
     textDecoration: "none",
-    borderBottom: "1px solid rgba(255, 255, 255, 0.85)",
     display: "inline-block",
     position: "relative",
-    padding: "0 0.2em",
-    transition: "all 250ms",
     fontSize: "16px",
-    zIndex: 1000,
-    width: "500px",
+    transition: "color 250ms ease-in-out",
+    zIndex: 1,
     "&::before": {
       content: '""',
-      zIndex: -1,
-      width: "100%",
-      height: "0%",
-      backgroundColor: "rgba(255, 255, 255, 0.16)",
+      position: "absolute",
       bottom: 0,
       left: 0,
-      position: "absolute",
-      transition: "height 250ms",
+      width: "100%",
+      height: "2px",
+      backgroundColor: "rgba(255, 255, 255, 0.85)",
+      zIndex: -1,
+      transition:
+        "height 250ms ease-in-out, background-color 250ms ease-in-out",
     },
     "&:hover": {
       color: "#000",
-      borderColor: "transparent",
       "&::before": {
         height: "100%",
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "rgba(255, 255, 255, 1)",
       },
     },
   };
@@ -49,22 +46,24 @@ export const ContactLinks = () => {
     mb: 2,
     display: "flex",
     alignItems: "center",
-    fontSize: "10px",
-    fontWeight: 200,
-    lineHeight: 1,
+  };
+
+  const iconStyle = {
+    mr: 1,
+    color: "#FFFFFF",
   };
 
   return (
     <Box sx={containerStyle}>
       <Box sx={linkContainerStyle}>
-        <PhoneIcon sx={{ mr: 1, color: "#FFFFFF" }} />
+        <PhoneIcon sx={iconStyle} />
         <Typography component="a" href="tel:+77776660247" sx={linkStyle}>
           +7 777 666 02 47
         </Typography>
       </Box>
 
       <Box sx={linkContainerStyle}>
-        <EmailIcon sx={{ mr: 1, color: "#FFFFFF" }} />
+        <EmailIcon sx={iconStyle} />
         <Typography
           component="a"
           href="mailto:dvasoroksem@gmail.com"
@@ -75,7 +74,7 @@ export const ContactLinks = () => {
       </Box>
 
       <Box sx={linkContainerStyle}>
-        <InstagramIcon sx={{ mr: 1, color: "#FFFFFF" }} />
+        <InstagramIcon sx={iconStyle} />
         <Typography
           component="a"
           href="https://instagram.com/dvasoroksem"
@@ -88,7 +87,7 @@ export const ContactLinks = () => {
       </Box>
 
       <Box sx={linkContainerStyle}>
-        <LanguageIcon sx={{ mr: 1, color: "#FFFFFF" }} />
+        <LanguageIcon sx={iconStyle} />
         <Typography
           component="a"
           href="https://dvasoroksem.kz"

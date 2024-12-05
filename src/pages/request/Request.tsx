@@ -48,7 +48,7 @@ export const Request = () => {
   };
 
   return (
-    <div style={{ marginTop: isMobile ? "40px" : "20px" }}>
+    <div style={{ marginTop: isMobile ? "40px" : "30px" }}>
       <Header />
       <Box
         sx={{
@@ -85,6 +85,7 @@ export const Request = () => {
             target="_blank"
             rel="noopener noreferrer"
             sx={{
+              width: "fit-content",
               textAlign: "start",
               textDecorationLine: "none",
               mb: isMobile ? 2 : 0,
