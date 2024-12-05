@@ -107,7 +107,7 @@ export const Values = () => {
           autoPlay
           autoPlaySpeed={7000}
           showDots={false}
-          centerMode={true}
+          centerMode={!isMobile}
           containerClass="carousel-container"
           itemClass="carousel-item-padding"
           arrows={false}

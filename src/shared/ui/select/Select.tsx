@@ -16,7 +16,9 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
       sx={{
         width: "fit-content",
         backgroundColor:
-          ((isDarkMode || isLightMode) && !isDefaultMode)
+          (isDarkMode || isLightMode) &&
+          !isDefaultMode &&
+          !["/", "/request", "/cases"].includes(window.location.pathname)
             ? "transparent"
             : value
               ? "black"
@@ -42,13 +44,21 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
                 : "black",
           textAlign: "left",
           borderRadius: "4px",
-          color: isLightMode && !isMobile
-            ? "white"
-            : isDarkMode && !isMobile
-              ? "black"
-              : isMobile  
+          color:
+            ["/", "/request", "/cases"].includes(window.location.pathname) &&
+            !isMobile
+              ? "white"
+              : ["/", "/request", "/cases"].includes(
+                    window.location.pathname
+                  ) && isMobile
                 ? "black"
-                : "white",
+                : isLightMode && !isMobile
+                  ? "white"
+                  : isDarkMode && !isMobile
+                    ? "black"
+                    : isMobile
+                      ? "black"
+                      : "white",
         },
         ...sx,
       }}

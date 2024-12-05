@@ -37,9 +37,11 @@ import everestStories1 from "@assets/videos/everest/everest_stories_1.mov";
 import everestStories2 from "@assets/videos/everest/everest_stories_2.mov";
 import everestStories3 from "@assets/videos/everest/everest_stories_3.mov";
 import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
-
+import { useLayoutContext } from '@src/context/LayoutContext'; 
 export const Everest = () => {
+  const { setMode } = useLayoutContext();
   useEffect(() => {
+    setMode('dark');
     window.scrollTo(0, 0);
   }, []);
 
@@ -54,7 +56,7 @@ export const Everest = () => {
 
   return (
     <>
-      <Header mode="dark" />
+      <Header/>
       <Box sx={{ minHeight: { xs: "200px", md: "600px" } }}>
         <LazyLoadImage
           src={EverestMainImage}

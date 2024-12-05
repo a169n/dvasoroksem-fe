@@ -133,13 +133,15 @@ export const Cases = () => {
         sx={{
           px: isMobile ? 2 : isTablet ? 4 : 8,
           py: isMobile ? 4 : isTablet ? 6 : 8,
-          width: "100%",
         }}
       >
         <Box
           mb={isMobile ? 3 : isTablet ? 7 : 12}
           sx={{
+            width: "70%",
+            marginTop: isMobile ? 4 : 0,
             display: "flex",
+            gap: isMobile ? "40px" : "30px",
             alignItems: "center",
             justifyContent: "space-between",
           }}
@@ -185,7 +187,7 @@ export const Cases = () => {
                   }))}
                   mode="default"
                   sx={{
-                    width: "100%",
+                    width: "70%",
                     fontSize: "14px",
                     height: "40px",
                     backgroundColor: "#fff",
@@ -295,12 +297,14 @@ export const Cases = () => {
                     }}
                   >
                     <Typography
+                      onClick={() => navigate(caseItem.path)}
                       variant="h4"
                       component="p"
                       sx={{
                         color: "#000",
                         fontWeight: 700,
                         fontSize: isMobile ? "16px" : "22px",
+                        cursor: "pointer",
                       }}
                     >
                       {caseItem.title}
@@ -309,6 +313,8 @@ export const Cases = () => {
                       variant="body1"
                       component="p"
                       textAlign={"left"}
+                      sx={{ cursor: "pointer" }}
+                      onClick={() => navigate(caseItem.path)}
                     >
                       {caseItem.description}
                     </Typography>
@@ -317,6 +323,7 @@ export const Cases = () => {
                     variant="text"
                     sx={{
                       width: "fit-content",
+                      marginTop: isMobile ? 3 : 0,
                       fontWeight: 400,
                       borderRadius: 0,
                       alignItems: "center",
@@ -333,7 +340,7 @@ export const Cases = () => {
                     }}
                     onClick={() => navigate(caseItem.path)}
                   >
-                    {t("ourCases.buttonText")}
+                    {t("ourCases.buttonText2")}
                     <ArrowForwardIcon
                       sx={{
                         fontSize: isMobile ? "14px" : "18px",
