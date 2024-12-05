@@ -12,8 +12,9 @@ import { MyButton } from "@shared/ui/button";
 import { useTranslation } from "react-i18next";
 import i18n from "@src/i18n";
 import { useNavigate } from "react-router-dom";
-import { useLayoutContext } from "@src/context/LayoutContext"; // Correct import
+import { useLayoutContext } from "@src/context/LayoutContext";
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 const throttle = (func: Function, limit: number) => {
   let inThrottle: boolean;
   let lastPos = window.pageYOffset;
@@ -55,6 +56,7 @@ export const Header = () => {
     { value: "en", label: "ENG" },
   ];
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const handleScroll = useCallback(
     throttle((isScrollingDown: boolean, currentPos: number) => {
       if (currentPos < 10 || !isScrollingDown) {
@@ -154,7 +156,10 @@ export const Header = () => {
                         : "#fff",
             fontSize: isMobile ? "24px" : "20px",
           }}
-          onClick={() => handleNavClick(href)}
+          onClick={() => {
+            handleNavClick(href);
+            if (isMobile) setMenuOpen(false);
+          }}
         >
           {text}
         </Typography>
@@ -170,6 +175,7 @@ export const Header = () => {
         sx={{
           alignSelf: "start",
           color: isLightMode ? "#000" : "#fff",
+          width: isMobile ? "25%" : "fit-content",
         }}
         mode={mode}
       />
