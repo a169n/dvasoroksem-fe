@@ -40,7 +40,6 @@ const VideoPlaceholder = () => (
   </Box>
 );
 
-
 const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
   const handlePlayPause = () => onPlay(isPlaying ? null : index);
 
@@ -51,12 +50,11 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
     <Box
       onClick={handlePlayPause}
       sx={{
-        width: isPlaying ? "auto" : "100%",
-        height: isMobile ? "100%" : "550px",
+        width: isPlaying ? "100%" : "100%", // Ensure full width when playing
+        height: isMobile ? "550px" : "550px", // Allow flexible height when playing on mobile
         maxHeight: "550px",
         padding: 2,
         borderRadius: "24px",
-        maxWidth: "auto",
         backgroundColor: "#f7f7f7",
         boxShadow: 2,
         display: "flex",
@@ -75,8 +73,8 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
     >
       <Box
         sx={{
-          width: isMobile ? "150px" : "100%",
-          height: isMobile ? "220px" : "100%",
+          width: "100%",
+          height: isMobile ? "auto" : "100%", // Allow auto height on mobile
           position: "relative",
           overflow: "hidden",
           borderRadius: "24px",
@@ -110,13 +108,6 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
                   },
                 },
               }}
-              style={{
-                position: "absolute",
-                top: 0,
-                left: 0,
-                pointerEvents: "none",
-                userSelect: "none",
-              }}
             />
           </Suspense>
         )}
@@ -142,7 +133,7 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
 export const Videos = () => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [activeVideo, setActiveVideo] = useState(null);
 
   const videoData = [
@@ -216,7 +207,7 @@ const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
           draggable={true}
           swipeable={true}
           keyBoardControl={true}
-          showDots={false}
+          showDots={isMobile ? true : false}
           arrows={false}
           containerClass="carousel-container"
           centerMode={!isMobile}
@@ -231,6 +222,7 @@ const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
               alignItems="center"
               sx={{
                 p: { xs: 2, sm: 3, md: 4 },
+                mb: isMobile ? 3 : 0,
               }}
             >
               <VideoCard
