@@ -67,7 +67,7 @@ export const HomeHeader = () => {
 
   return (
     <Box
-      mt={isMobile ? -5 : 8}
+      mt={isMobile ? 0 : 8}
       sx={{
         backgroundColor: "#fff",
         color: "white",
