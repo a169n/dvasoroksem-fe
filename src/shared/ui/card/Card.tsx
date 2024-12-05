@@ -6,8 +6,6 @@ import {
   Card as MUICard,
   Typography,
 } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
-import useMediaQuery from "@mui/material/useMediaQuery";
 import React, { useState } from "react";
 import { MyButton } from "../button";
 
@@ -25,6 +23,7 @@ interface CardProps {
   sx?: object;
   header?: React.ReactNode;
   children?: React.ReactNode;
+  isMobile?: boolean;
 }
 
 export const MyCard: React.FC<CardProps> = ({
@@ -38,9 +37,8 @@ export const MyCard: React.FC<CardProps> = ({
   text,
   buttonText,
   onButtonClick,
+  isMobile,
 }) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const [showBox, setShowBox] = useState(false);
 
   return (
