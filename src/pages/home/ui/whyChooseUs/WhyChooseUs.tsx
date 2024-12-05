@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -15,6 +15,8 @@ import { useNavigate } from "react-router-dom";
 export const WhyChooseUs = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
 
   const cardImages = [
     {
@@ -24,7 +26,7 @@ export const WhyChooseUs = () => {
       buttonText: t("whyChooseUs.fourYears.buttonText"),
       maxWidth: "148px",
       maxHeight: "260px",
-      top: -110,
+      top: -80,
       marginTop: -6.9,
       link: "/#",
       action: () => window.scrollTo({ top: 0, behavior: "smooth" }),
@@ -161,7 +163,8 @@ export const WhyChooseUs = () => {
                 title={card.title}
                 text={card.text}
                 buttonText={card.buttonText}
-                onButtonClick={card.action} // Trigger the custom action
+                onButtonClick={card.action}
+                isMobile={isMobile}
               />
             </Box>
           ))}
