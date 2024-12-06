@@ -1,5 +1,11 @@
 import { useRef } from "react";
-import { Box, Typography, IconButton, Stack, useMediaQuery } from "@mui/material";
+import {
+  Box,
+  Typography,
+  IconButton,
+  Stack,
+  useMediaQuery,
+} from "@mui/material";
 import { useTranslation } from "react-i18next";
 import Carousel from "react-multi-carousel";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -48,7 +54,7 @@ export const Values = () => {
       text: t("values.responsibility.text"),
     },
   ];
-  
+
   const carouselRef = useRef<Carousel>(null);
 
   const handleLeftClick = () => {
@@ -79,7 +85,7 @@ export const Values = () => {
   };
 
   return (
-    <Box sx={{ minHeight: "600px", userSelect: "none" }}>
+    <Box sx={{ minHeight: "200px", userSelect: "none" }}>
       <Typography
         variant="h2"
         component="h1"
@@ -150,7 +156,7 @@ export const Values = () => {
                   effect="blur"
                   style={{
                     width: "100%",
-                    height: isMobile? "100%" : "250px",
+                    height: isMobile ? "100%" : "250px",
                     borderRadius: "24px",
                   }}
                   draggable={false}
@@ -175,8 +181,8 @@ export const Values = () => {
               <Box
                 className="content"
                 sx={{
-                  maxHeight: { xs: "none", md: 0 }, 
-                  opacity: { xs: 1, md: 0 }, 
+                  maxHeight: { xs: "none", md: 0 },
+                  opacity: { xs: 1, md: 0 },
                   overflow: "hidden",
                   transition:
                     "max-height 0.4s ease-in-out, opacity 0.7s ease-in-out",
@@ -200,11 +206,32 @@ export const Values = () => {
             </Box>
           ))}
         </Carousel>
-        <Stack direction="row" justifyContent="center" spacing={2} sx={{ mt: 4, mb: 4 }}>
-          <IconButton onClick={handleLeftClick} sx={{ color: "#000", border: "1px solid #000", borderRadius: "0px", padding: "8px 12px" }}>
+        <Stack
+          direction="row"
+          justifyContent="center"
+          spacing={2}
+          sx={{ mt: 4, mb: 4 }}
+        >
+          <IconButton
+            onClick={handleLeftClick}
+            sx={{
+              color: "#000",
+              border: "1px solid #000",
+              borderRadius: "0px",
+              padding: "8px 12px",
+            }}
+          >
             <ArrowLeftIcon />
           </IconButton>
-          <IconButton onClick={handleRightClick} sx={{ color: "#000", border: "1px solid #000", borderRadius: "0px", padding: "8px 12px" }}>
+          <IconButton
+            onClick={handleRightClick}
+            sx={{
+              color: "#000",
+              border: "1px solid #000",
+              borderRadius: "0px",
+              padding: "8px 12px",
+            }}
+          >
             <ArrowRightIcon />
           </IconButton>
         </Stack>
