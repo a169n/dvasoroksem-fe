@@ -189,7 +189,6 @@ export const Header = () => {
         position: "fixed",
         top: 0,
         left: 0,
-        right: 0,
         transition:
           "transform 0.3s ease-in-out, background-color 0.3s ease-in-out",
         transform: isHeaderVisible ? "translateY(0)" : "translateY(-100%)",
@@ -207,6 +206,7 @@ export const Header = () => {
               : "none",
         boxShadow: isHeaderVisible ? "0 2px 8px rgba(0,0,0,0.1)" : "none",
         zIndex: 100,
+        px: 4,
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between", alignItems: "center" }}>

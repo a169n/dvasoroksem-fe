@@ -86,7 +86,7 @@ export const Certificates = () => {
         responsive={{
           largeDesktop: {
             breakpoint: { max: 3000, min: 1280 },
-            items:   1,
+            items: 1,
           },
           mediumDesktop: {
             breakpoint: { max: 1280, min: 960 },
@@ -100,65 +100,72 @@ export const Certificates = () => {
       >
         {certificates.map((certificate) => (
           <Box
-            key={certificate.id}
-            onMouseEnter={() => !isMobile && setHoveredCard(certificate.id)}
-            onMouseLeave={() => !isMobile && setHoveredCard(null)}
             sx={{
               display: "flex",
               flexDirection: "column",
-              width: "80%",
-              mx: "auto",
               justifyContent: "center",
               alignItems: "center",
-              cursor: "pointer",
-              padding: { xs: 0.5, sm: 1, md: 2 },
-              border: "1px solid #D9D9D9",
-              borderRadius: "10px",
-              transition: "all 0.3s ease",
-              position: "relative",
-              "&:hover": {
-                boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
-              },
+              width: "90%",
+              minHeight: isMobile ? "60vh" : "initial",
+              mx: "auto",
             }}
           >
             <Box
-              component="img"
-              src={certificate.image}
-              alt={certificate.title}
-              draggable={false}
+              key={certificate.id}
+              onMouseEnter={() => !isMobile && setHoveredCard(certificate.id)}
+              onMouseLeave={() => !isMobile && setHoveredCard(null)}
               sx={{
-                display: "block",
-                width: "100%",
-                maxHeight: "500px",
-              }}
-            />
-            <Box
-              sx={{
-                width: "100%",
-                maxWidth: "350px",
-                height: isMobile || hoveredCard === certificate.id ? "auto" : 0,
-                opacity: isMobile || hoveredCard === certificate.id ? 1 : 0,
-                overflow: "hidden",
+                cursor: "pointer",
+                padding: { xs: 0.5, sm: 1, md: 2 },
+                border: "1px solid #D9D9D9",
+                borderRadius: "10px",
                 transition: "all 0.3s ease",
-                textAlign: "center",
-                py:
-                  isMobile || hoveredCard === certificate.id
-                    ? { xs: 0.5, sm: 1, md: 1.5 }
-                    : 0,
+                position: "relative",
+                "&:hover": {
+                  boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
+                },
               }}
             >
-              <Typography
+              <Box
+                component="img"
+                src={certificate.image}
+                alt={certificate.title}
+                draggable={false}
                 sx={{
-                  fontSize: { xs: "14px", sm: "16px", md: "18px" },
-                  fontFamily: "Georgia, serif",
-                  fontStyle: "italic",
-                  fontWeight: 400,
-                  transition: "opacity 0.3s ease",
-                  opacity: isMobile || hoveredCard === certificate.id ? 1 : 0,
+                  display: "block",
+                  width: "100%",
+                  maxHeight: "500px",
+                }}
+              />
+              <Box
+                sx={{
+                  width: "100%",
+                  maxWidth: "350px",
+                  height:
+                    hoveredCard === certificate.id || isMobile ? "auto" : 0,
+                  opacity: hoveredCard === certificate.id || isMobile ? 1 : 0,
+                  overflow: "hidden",
+                  transition: "all 0.3s ease",
+                  textAlign: "center",
+                  py:
+                    hoveredCard === certificate.id || isMobile
+                      ? { xs: 0.5, sm: 1, md: 2 }
+                      : 0,
                 }}
               >
-                {certificate.title}
-              </Typography>
+                <Typography
+                  sx={{
+                    fontSize: { xs: "14px", sm: "16px", md: "18px" },
+                    fontFamily: "Georgia, serif",
+                    fontStyle: "italic",
+                    fontWeight: 400,
+                    transition: "opacity 0.3s ease",
+                    opacity: hoveredCard === certificate.id || isMobile ? 1 : 0,
+                  }}
+                >
+                  {certificate.title}
+                </Typography>
+              </Box>
             </Box>
           </Box>
         ))}

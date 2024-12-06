@@ -79,10 +79,14 @@ export const HomeHeader = () => {
     };
   }, []);
 
-  const getHeightBasedOnScreen = () => {
-    if (isMobile) return "100vh";
-    if (isTablet) return "120vh";
-    return "146vh";
+  const getAspectRatio = () => {
+    return isMobile ? "56.25%" : "calc((9/16) * 67%)";
+  };
+
+  const getIconDimensions = () => {
+    if (isMobile) return { width: "80px", height: "25px" };
+    if (isTablet) return { width: "120px", height: "35px" };
+    return { width: "160px", height: "50px" };
   };
 
   // Shared styles
@@ -92,9 +96,11 @@ export const HomeHeader = () => {
     justifyContent: "center",
   };
 
+  const iconSize = getIconDimensions();
+
   return (
     <Box
-      mt={isMobile ? 0 : 8}
+      mt={isMobile ? 7 : 8}
       sx={{
         backgroundColor: "#fff",
         color: "white",
@@ -107,7 +113,6 @@ export const HomeHeader = () => {
         sx={{
           ...sharedBoxStyles,
           flexDirection: "column",
-          height: getHeightBasedOnScreen(),
           width: "100%",
         }}
       >
@@ -117,7 +122,7 @@ export const HomeHeader = () => {
           sx={{
             position: "relative",
             width: "100%",
-            height: getHeightBasedOnScreen(),
+            paddingTop: getAspectRatio(), 
             overflow: "hidden",
           }}
         >
@@ -179,12 +184,12 @@ export const HomeHeader = () => {
           sx={{
             backgroundColor: "#d9d9d9",
             mx: { xs: 0, md: 4 },
-            py: 2,
+            py: isMobile ? 0 : 2,
             width: "100%",
           }}
         >
           <Marquee
-            velocity={20}
+            velocity={isMobile ? 10 : 20}
             direction="rtl"
             resetAfterTries={100}
             scatterRandomly={false}
@@ -192,14 +197,13 @@ export const HomeHeader = () => {
             onFinish={() => {}}
           >
             {ICONS.map((icon, index) => (
-              <Box key={index} mx={4} sx={{ ...sharedBoxStyles }}>
+              <Box key={index} mx={isMobile ? 2 : 4} sx={{ ...sharedBoxStyles }}>
                 <img
                   src={icon.src}
                   alt={icon.alt}
                   draggable="false"
                   style={{
-                    height: "50px",
-                    width: "160px",
+                    ...iconSize,
                     filter: "brightness(0) invert(1)",
                     pointerEvents: "none",
                     userSelect: "none",
