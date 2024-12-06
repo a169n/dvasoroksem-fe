@@ -5,7 +5,7 @@ import svgr from "vite-plugin-svgr";
 
 export default defineConfig({
   plugins: [react(), svgr()],
-  assetsInclude: ['**/*.MP4'],
+  assetsInclude: ["**/*.MP4", "**/*.jpg", "**/*.png", "**/*.gif"],
   server: {
     open: "/",
     port: 3001,
@@ -18,5 +18,18 @@ export default defineConfig({
       "@assets": path.resolve(__dirname, "./src/assets"),
       "@src": path.resolve(__dirname, "./src"),
     },
+  },
+  build: {
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+      },
+    },
+    assetsDir: "assets",
+    outDir: "dist",
+    minify: true,
+  },
+  optimizeDeps: {
+    include: ["react", "react-dom"],
   },
 });

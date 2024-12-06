@@ -10,18 +10,31 @@ import { useTheme } from "@mui/material/styles";
 import Marquee from "react-marquee-slider";
 import MuteIcon from "@mui/icons-material/VolumeOff";
 import UnmuteIcon from "@mui/icons-material/VolumeUp";
-import main_showreel from "@assets/videos/main_showreel.mp4";
-import icon1 from "@assets/icons/icon1.svg";
-import icon2 from "@assets/icons/icon2.svg";
-import icon3 from "@assets/icons/icon3.svg";
-import icon4 from "@assets/icons/icon4.svg";
-import icon5 from "@assets/icons/icon5.svg";
-import icon6 from "@assets/icons/icon6.svg";
-import icon7 from "@assets/icons/icon7.svg";
-import icon8 from "@assets/icons/icon8.svg";
 import { useTranslation } from "react-i18next";
 
 const ReactPlayer = React.lazy(() => import("react-player/lazy"));
+
+// Lazy load the video asset once and store it in memory
+let showreelSrc: string | null = null;
+
+const loadShowreel = async () => {
+  if (!showreelSrc) {
+    const videoModule = await import("@assets/videos/main_showreel.mp4");
+    showreelSrc = videoModule.default;
+  }
+  return showreelSrc;
+};
+
+const ICONS = [
+  { src: "src/assets/icons/icon1.svg", alt: "Icon1" },
+  { src: "src/assets/icons/icon2.svg", alt: "Icon2" },
+  { src: "src/assets/icons/icon3.svg", alt: "Icon3" },
+  { src: "src/assets/icons/icon4.svg", alt: "Icon4" },
+  { src: "src/assets/icons/icon5.svg", alt: "Icon5" },
+  { src: "src/assets/icons/icon6.svg", alt: "Icon6" },
+  { src: "src/assets/icons/icon7.svg", alt: "Icon7" },
+  { src: "src/assets/icons/icon8.svg", alt: "Icon8" },
+];
 
 export const HomeHeader = () => {
   const theme = useTheme();
@@ -31,8 +44,14 @@ export const HomeHeader = () => {
 
   const [isMuted, setIsMuted] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
+  const [showreel, setShowreel] = useState<string | null>("");
 
   const videoRef = useRef();
+
+  // Load video asset only once
+  useEffect(() => {
+    loadShowreel().then(setShowreel);
+  }, []);
 
   // Monitor video visibility with Intersection Observer
   useEffect(() => {
@@ -48,7 +67,7 @@ export const HomeHeader = () => {
     }
 
     return () => {
-      if (videoRef.current) observer.unobserve(videoRef.current);
+      observer.disconnect();
     };
   }, []);
 
@@ -84,7 +103,7 @@ export const HomeHeader = () => {
           width: "100%",
         }}
       >
-        {/* Video Section with Background */}
+        {/* Video Section */}
         <Box
           ref={videoRef}
           sx={{
@@ -94,72 +113,6 @@ export const HomeHeader = () => {
             overflow: "hidden",
           }}
         >
-          {/* Conditionally render based on whether the device is mobile */}
-          {!isMobile && (
-            <>
-              {/* Right Side Blurred Video */}
-              <Suspense fallback={<Box sx={{ display: "none" }} />}>
-                <ReactPlayer
-                  url={main_showreel}
-                  playing={isVisible}
-                  muted={true}
-                  loop
-                  width="100%"
-                  height={getHeightBasedOnScreen()}
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    left: "-50%",
-                    zIndex: 1,
-                    objectFit: "cover",
-                    filter: "blur(20px) brightness(70%)",
-                    opacity: 0.8,
-                  }}
-                />
-              </Suspense>
-              {/* Right Side Blurred Video */}
-              <Suspense fallback={<Box sx={{ display: "none" }} />}>
-                <ReactPlayer
-                  url={main_showreel}
-                  playing={isVisible}
-                  muted={true}
-                  loop
-                  width="100%"
-                  height={getHeightBasedOnScreen()}
-                  style={{
-                    position: "absolute",
-                    top: 0,
-                    right: "-50%",
-                    zIndex: 1,
-                    objectFit: "cover",
-                    filter: "blur(20px) brightness(70%)",
-                    opacity: 0.8,
-                  }}
-                />
-              </Suspense>
-
-              {/* Main Video Background Blurred */}
-              <Box
-                sx={{
-                  position: "absolute",
-                  top: "-10%",
-                  left: "-10%",
-                  width: "120%",
-                  height: "120%",
-                  backgroundImage: `url(${main_showreel})`,
-                  backgroundSize: "cover",
-                  backgroundRepeat: "no-repeat",
-                  backgroundPosition: "center",
-                  filter: "blur(80px) brightness(40%) saturate(150%)",
-                  transform: "scale(1.2)",
-                  zIndex: 0,
-                  opacity: 0.6,
-                }}
-              />
-            </>
-          )}
-
-          {/* Main Video Player */}
           <Suspense
             fallback={
               <CircularProgress
@@ -175,9 +128,9 @@ export const HomeHeader = () => {
               />
             }
           >
-            <Box>
+            {showreel && (
               <ReactPlayer
-                url={main_showreel}
+                url={showreel}
                 playing={isVisible}
                 muted={isMuted}
                 loop
@@ -187,11 +140,11 @@ export const HomeHeader = () => {
                   position: "absolute",
                   top: 0,
                   left: 0,
-                  zIndex: 2,
+                  zIndex: 1,
                   objectFit: "cover",
                 }}
               />
-            </Box>
+            )}
           </Suspense>
 
           {/* Mute/Unmute Button */}
@@ -225,71 +178,23 @@ export const HomeHeader = () => {
           <Marquee
             velocity={20}
             direction="rtl"
-            scatterRandomly={false}
             resetAfterTries={100}
+            scatterRandomly={false}
             onInit={() => {}}
             onFinish={() => {}}
           >
-            {[
-              {
-                src: icon1,
-                alt: "Icon1",
-                size: { height: "50px", width: "160px" },
-              },
-              {
-                src: icon2,
-                alt: "Icon2",
-                size: { height: "50px", width: "160px" },
-              },
-              {
-                src: icon3,
-                alt: "Icon3",
-                size: { height: "50px", width: "160px" },
-              },
-              {
-                src: icon4,
-                alt: "Icon4",
-                size: { height: "50px", width: "160px" },
-              },
-              {
-                src: icon5,
-                alt: "Icon5",
-                size: { height: "50px", width: "160px" },
-              },
-              {
-                src: icon6,
-                alt: "Icon6",
-                size: { height: "50px", width: "160px" },
-              },
-              {
-                src: icon7,
-                alt: "Icon7",
-                size: { height: "50px", width: "160px" },
-              },
-              {
-                src: icon8,
-                alt: "Icon8",
-                size: { height: "50px", width: "160px" },
-              },
-            ].map((icon, index) => (
-              <Box
-                key={index}
-                mx={4}
-                sx={{
-                  ...sharedBoxStyles,
-                }}
-              >
+            {ICONS.map((icon, index) => (
+              <Box key={index} mx={4} sx={{ ...sharedBoxStyles }}>
                 <img
                   src={icon.src}
                   alt={icon.alt}
                   draggable="false"
                   style={{
-                    height: icon.size.height,
-                    width: icon.size.width,
+                    height: "50px",
+                    width: "160px",
                     filter: "brightness(0) invert(1)",
                     pointerEvents: "none",
                     userSelect: "none",
-                    marginRight: "10px",
                   }}
                 />
               </Box>
@@ -302,7 +207,7 @@ export const HomeHeader = () => {
           sx={{
             color: "#000",
             display: "flex",
-            flexDirection: { xs: "column", md: "row", lg: "row" },
+            flexDirection: { xs: "column", md: "row" },
             alignItems: "center",
             justifyContent: "center",
             textAlign: "left",
