@@ -33,11 +33,11 @@ import QCSStories2 from "@assets/videos/qcs/qcs_stories_2.mov";
 import QCSStories3 from "@assets/videos/qcs/qcs_stories_3.mov";
 import QCSStories4 from "@assets/videos/qcs/qcs_stories_4.mov";
 import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
-import { useLayoutContext } from '@src/context/LayoutContext';
+import { useLayoutContext } from "@src/context/LayoutContext";
 export const QCS = () => {
   const { setMode } = useLayoutContext();
   useEffect(() => {
-    setMode('light');
+    setMode("light");
     window.scrollTo(0, 0);
   }, []);
 
@@ -53,7 +53,7 @@ export const QCS = () => {
 
   return (
     <Box sx={{ backgroundColor: "#161616" }}>
-      <Header/>
+      <Header />
       <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <LazyLoadImage
           src={QCSMainImage}

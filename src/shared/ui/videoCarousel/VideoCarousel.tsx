@@ -1,5 +1,11 @@
 import React, { useState, useRef } from "react";
-import { Box, CircularProgress, IconButton } from "@mui/material";
+import {
+  Box,
+  Button,
+  CircularProgress,
+  IconButton,
+  useMediaQuery,
+} from "@mui/material";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -40,6 +46,7 @@ const VideoCard = ({ src }: { src: string }) => {
         padding: "10px",
         boxSizing: "border-box",
         position: "relative",
+        marginBottom: "25px",
       }}
     >
       <video
@@ -89,7 +96,28 @@ const VideoCard = ({ src }: { src: string }) => {
   );
 };
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const CustomDot = ({ onClick, ...rest }: any) => {
+  const { active } = rest;
+  return (
+    <Button
+      onClick={() => onClick()}
+      sx={{
+        backgroundColor: active ? "white" : "gray",
+        borderRadius: "50%",
+        width: "10px",
+        height: "10px",
+        minWidth: "10px",
+        margin: "0 5px",
+        padding: "0",
+      }}
+    />
+  );
+};
+
 export const VideoCarousel: React.FC<VideoCarouselProps> = ({ videos }) => {
+  const isSmallScreen = useMediaQuery("(max-width: 768px)");
+
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 1024 },
@@ -117,9 +145,10 @@ export const VideoCarousel: React.FC<VideoCarouselProps> = ({ videos }) => {
       }}
     >
       <Carousel
-        swipeable={false}
+        swipeable={true}
         draggable={true}
-        showDots={false}
+        showDots={isSmallScreen}
+        customDot={<CustomDot />}
         responsive={responsive}
         ssr={true}
         infinite={true}
