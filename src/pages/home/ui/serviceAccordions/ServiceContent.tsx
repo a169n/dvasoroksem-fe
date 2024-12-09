@@ -25,8 +25,9 @@ export const ServiceContent = ({ title, items, titleColor }) => (
         sx={{
           fontSize: { xs: "14px", sm: "16px", md: "18px" },
           lineHeight: { xs: "16px", sm: "18px", md: "18px" },
-          marginBottom: 2,
+          marginBottom: { xs: 0.5, sm: 0.5, md: 2 },
           textAlign: "left",
+          fontWeight:  { xs: 500, sm: 500, md: 400 },
         }}
       >
         {item}
