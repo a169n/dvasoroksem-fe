@@ -138,8 +138,8 @@ export const Cases = () => {
         <Box
           mb={isMobile ? 3 : isTablet ? 7 : 12}
           sx={{
-            width: "70%",
-            marginTop: isMobile ? 4 : 0,
+            maxWidth: "100%",
+            marginTop: isMobile ? 6 : 4,
             display: "flex",
             gap: isMobile ? "40px" : "30px",
             alignItems: "center",
@@ -149,7 +149,7 @@ export const Cases = () => {
           <Typography
             textTransform={"uppercase"}
             sx={{
-              fontWeight: 400,
+              fontWeight: 500,
               color: "#000",
               textTransform: "uppercase",
               fontSize: isMobile ? "32px" : isTablet ? "36px" : "70px",
@@ -157,6 +157,7 @@ export const Cases = () => {
               width: isMobile ? "100%" : "auto",
               textAlign: "left",
               lineHeight: 1,
+              
             }}
           >
             {t("ourCases.title1")}
@@ -166,62 +167,53 @@ export const Cases = () => {
               display: "flex",
               gap: isMobile ? "10px" : "20px",
               flexWrap: isMobile ? "wrap" : "nowrap",
-              width: isMobile ? "100%" : "auto",
+              width: isMobile ? "50%" : "auto",
             }}
           >
-            <Box
-              sx={{
-                display: "flex",
-                gap: isMobile ? "10px" : "20px",
-                flexWrap: isMobile ? "wrap" : "nowrap",
-                width: isMobile ? "100%" : "auto",
-              }}
-            >
-              {isMobile ? (
-                <MySelect
-                  value={selectedCategory}
-                  onChange={(event) => setSelectedCategory(event.target.value)}
-                  options={categories.map((category) => ({
-                    value: category,
-                    label: category,
-                  }))}
-                  mode="default"
+            {isMobile ? (
+              <MySelect
+                value={selectedCategory}
+                onChange={(event) => setSelectedCategory(event.target.value)}
+                options={categories.map((category) => ({
+                  value: category,
+                  label: category,
+                }))}
+                mode="default"
+                sx={{
+                  width: "130px",
+                  fontSize: "14px",
+                  height: "40px",
+                  backgroundColor: "#fff",
+                }}
+              />
+            ) : (
+              categories.map((category) => (
+                <MyButton
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
                   sx={{
-                    width: "70%",
-                    fontSize: "14px",
-                    height: "40px",
-                    backgroundColor: "#fff",
+                    borderRadius: 0,
+                    textTransform: "none",
+                    fontSize: isTablet ? "16px" : "20px",
+                    py: 0.3,
+                    px: isTablet ? 2 : 4,
+                    backgroundColor:
+                      selectedCategory === category ? "#000" : "#fff",
+                    color: selectedCategory === category ? "#fff" : "#000",
+                    flex: "0 0 auto",
                   }}
-                />
-              ) : (
-                categories.map((category) => (
-                  <MyButton
-                    key={category}
-                    onClick={() => setSelectedCategory(category)}
-                    sx={{
-                      borderRadius: 0,
-                      textTransform: "none",
-                      fontSize: isTablet ? "16px" : "20px",
-                      py: 0.3,
-                      px: isTablet ? 2 : 4,
-                      backgroundColor:
-                        selectedCategory === category ? "#000" : "#fff",
-                      color: selectedCategory === category ? "#fff" : "#000",
-                      flex: "0 0 auto",
-                    }}
-                  >
-                    {category.toUpperCase()}
-                  </MyButton>
-                ))
-              )}
-            </Box>
+                >
+                  {category.toUpperCase()}
+                </MyButton>
+              ))
+            )}
           </Box>
         </Box>
 
         <Box
           sx={{
             display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
+            gridTemplateColumns: "repeat(2, 1fr)",
             gap: isMobile ? "30px" : "50px",
             mt: isMobile ? 3 : 4,
             minHeight: 300,
@@ -322,6 +314,7 @@ export const Cases = () => {
                   <MyButton
                     variant="text"
                     sx={{
+                      display: isMobile ? "none " : "block",
                       width: "fit-content",
                       marginTop: isMobile ? 3 : 0,
                       fontWeight: 400,

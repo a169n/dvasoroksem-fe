@@ -84,7 +84,7 @@ export const HomeHeader = () => {
   };
 
   const getIconDimensions = () => {
-    if (isMobile) return { width: "80px", height: "25px" };
+    if (isMobile) return { width: "70px", height: "20px" };
     if (isTablet) return { width: "120px", height: "35px" };
     return { width: "160px", height: "50px" };
   };
@@ -197,7 +197,7 @@ export const HomeHeader = () => {
             onFinish={() => {}}
           >
             {ICONS.map((icon, index) => (
-              <Box key={index} mx={isMobile ? 2 : 4} sx={{ ...sharedBoxStyles }}>
+              <Box key={index}mt={isMobile ? 1 : 0} mx={isMobile ? 2 : 4} sx={{ ...sharedBoxStyles}}>
                 <img
                   src={icon.src}
                   alt={icon.alt}
