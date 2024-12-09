@@ -134,13 +134,12 @@ export const Certificates = () => {
                 sx={{
                   display: "block",
                   width: "100%",
-                  maxHeight: "500px",
+                  height: "500px",
                 }}
               />
               <Box
                 sx={{
                   width: "100%",
-                  maxWidth: "350px",
                   height:
                     hoveredCard === certificate.id || isMobile ? "auto" : 0,
                   opacity: hoveredCard === certificate.id || isMobile ? 1 : 0,
@@ -160,6 +159,7 @@ export const Certificates = () => {
                     fontStyle: "italic",
                     fontWeight: 400,
                     transition: "opacity 0.3s ease",
+                    textAlign: "center",
                     opacity: hoveredCard === certificate.id || isMobile ? 1 : 0,
                   }}
                 >

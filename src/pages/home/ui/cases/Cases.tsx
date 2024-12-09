@@ -195,7 +195,7 @@ export const Cases = ({ mode = "default" }) => {
                     display: "flex",
                     flexDirection: "column",
                     alignItems: "flex-start",
-                    margin: 1,
+                    margin: 0.6,
                     overflow: "hidden",
                   }}
                 >
