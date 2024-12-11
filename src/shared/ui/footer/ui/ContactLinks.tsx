@@ -6,7 +6,7 @@ import LanguageIcon from "@mui/icons-material/Language";
 
 export const ContactLinks = () => {
   const containerStyle = {
-    padding: "1em",
+    // padding: "1em",
     fontFamily: "'Raleway', sans-serif",
     color: "rgba(255, 255, 255, 0.8)",
     textShadow: "0 1px 0 rgba(255, 255, 255, 0.92)",
