@@ -206,7 +206,7 @@ export const Header = () => {
               : "none",
         boxShadow: isHeaderVisible ? "0 2px 8px rgba(0,0,0,0.1)" : "none",
         zIndex: 100,
-        px: isMobile ? 0 : 4,
+        px: { xs: 0, sm: 0, md: 4, lg: 4, xl: "300px" },
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between", alignItems: "center" }}>

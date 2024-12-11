@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 
 export function DefaultLayout() {
   return (
-    <Container maxWidth={false} disableGutters sx={{ maxWidth: "1920px" }}>
+    <Container maxWidth={false} disableGutters >
       <Outlet />
       <Footer />
     </Container>

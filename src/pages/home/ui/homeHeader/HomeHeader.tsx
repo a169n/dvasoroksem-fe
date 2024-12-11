@@ -24,6 +24,7 @@ import icon5 from "@assets/icons/icon5.svg";
 import icon6 from "@assets/icons/icon6.svg";
 import icon7 from "@assets/icons/icon7.svg";
 import icon8 from "@assets/icons/icon8.svg";
+import { CustomContainer } from "@shared/ui/container";
 
 const loadShowreel = async () => {
   if (!showreelSrc) {
@@ -122,7 +123,7 @@ export const HomeHeader = () => {
           sx={{
             position: "relative",
             width: "100%",
-            paddingTop: getAspectRatio(), 
+            paddingTop: getAspectRatio(),
             overflow: "hidden",
           }}
         >
@@ -197,7 +198,12 @@ export const HomeHeader = () => {
             onFinish={() => {}}
           >
             {ICONS.map((icon, index) => (
-              <Box key={index}mt={isMobile ? 1 : 0} mx={isMobile ? 2 : 4} sx={{ ...sharedBoxStyles}}>
+              <Box
+                key={index}
+                mt={isMobile ? 1 : 0}
+                mx={isMobile ? 2 : 4}
+                sx={{ ...sharedBoxStyles }}
+              >
                 <img
                   src={icon.src}
                   alt={icon.alt}
@@ -215,51 +221,53 @@ export const HomeHeader = () => {
         </Box>
 
         {/* Text Section */}
-        <Box
-          sx={{
-            color: "#000",
-            display: "flex",
-            flexDirection: { xs: "column", md: "row" },
-            alignItems: "center",
-            justifyContent: "center",
-            textAlign: "left",
-            mb: { xs: 4, md: 0 },
-            mt: { xs: 4, md: 8 },
-            py: { xs: 4, md: 8 },
-            px: { xs: 2, sm: 4, md: 8 },
-          }}
-        >
-          <Box sx={{ width: { xs: "100%", md: "50%" } }}>
-            <Typography
-              variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
-              component="h1"
-              fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
-              fontWeight={500}
-              mb={2}
-              sx={{ textTransform: "uppercase" }}
-            >
-              {t("hero.leadingMarketingAgency1")}
-            </Typography>
-            <Typography
-              variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
-              component="h1"
-              fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
-              fontWeight={500}
-              mb={2}
-              sx={{ textTransform: "uppercase" }}
-            >
-              {t("hero.leadingMarketingAgency2")}
-            </Typography>
+        <CustomContainer>
+          <Box
+            sx={{
+              color: "#000",
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "left",
+              mb: { xs: 4, md: 0 },
+              mt: { xs: 4, md: 8 },
+              py: { xs: 4, md: 8 },
+              px: { xs: 2, sm: 4, md: 8 },
+            }}
+          >
+            <Box sx={{ width: { xs: "100%", md: "50%" } }}>
+              <Typography
+                variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
+                component="h1"
+                fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
+                fontWeight={500}
+                mb={2}
+                sx={{ textTransform: "uppercase" }}
+              >
+                {t("hero.leadingMarketingAgency1")}
+              </Typography>
+              <Typography
+                variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
+                component="h1"
+                fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
+                fontWeight={500}
+                mb={2}
+                sx={{ textTransform: "uppercase" }}
+              >
+                {t("hero.leadingMarketingAgency2")}
+              </Typography>
+            </Box>
+            <Box sx={{ width: { xs: "100%", md: "50%" } }}>
+              <Typography textAlign={"left"} mb={2}>
+                {t("hero.agencyDescription")}
+              </Typography>
+              <Typography textAlign={"left"} mb={2}>
+                {t("hero.teamHelpBusinessGrow")}
+              </Typography>
+            </Box>
           </Box>
-          <Box sx={{ width: { xs: "100%", md: "50%" } }}>
-            <Typography textAlign={"left"} mb={2}>
-              {t("hero.agencyDescription")}
-            </Typography>
-            <Typography textAlign={"left"} mb={2}>
-              {t("hero.teamHelpBusinessGrow")}
-            </Typography>
-          </Box>
-        </Box>
+        </CustomContainer>
       </Box>
     </Box>
   );

@@ -1,6 +1,7 @@
 import { Box, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { ServiceCard } from "./ServiceCard";
+import { CustomContainer } from "@shared/ui/container";
 
 export const Services = () => {
   const { t } = useTranslation();
@@ -79,49 +80,51 @@ export const Services = () => {
   ];
 
   return (
-    <Box sx={{ px: { xs: 2, sm: 4, md: 8 }, py: { xs: 2, sm: 4, md: 8 } }}>
-      <Grid container spacing={2} justifyContent="space-between">
-        <Grid item xs={12} md={6.5} container direction="column" spacing={2}>
-          {servicesData
-            .filter((service) =>
-              ["SMM_service", "IT_service", "Production_service2"].includes(
-                service.imageKey
+    <CustomContainer>
+      <Box sx={{ py: { xs: 2, sm: 4, md: 8 } }}>
+        <Grid container spacing={2} justifyContent="space-between">
+          <Grid item xs={12} md={6.5} container direction="column" spacing={2}>
+            {servicesData
+              .filter((service) =>
+                ["SMM_service", "IT_service", "Production_service2"].includes(
+                  service.imageKey
+                )
               )
-            )
-            .map((service) => (
-              <Grid item key={service.title}>
-                <ServiceCard
-                  title={service.title}
-                  imageKey={service.imageKey}
-                  items={service.items}
-                  imageSize={service.imageSize}
-                  layout={service.layout}
-                  objectPosition={service.objectPosition}
-                />
-              </Grid>
-            ))}
-        </Grid>
-        <Grid item xs={12} md={5.5} container direction="column" spacing={2}>
-          {servicesData
-            .filter((service) =>
-              ["Marketing_service", "Strategies_service"].includes(
-                service.imageKey
+              .map((service) => (
+                <Grid item key={service.title}>
+                  <ServiceCard
+                    title={service.title}
+                    imageKey={service.imageKey}
+                    items={service.items}
+                    imageSize={service.imageSize}
+                    layout={service.layout}
+                    objectPosition={service.objectPosition}
+                  />
+                </Grid>
+              ))}
+          </Grid>
+          <Grid item xs={12} md={5.5} container direction="column" spacing={2}>
+            {servicesData
+              .filter((service) =>
+                ["Marketing_service", "Strategies_service"].includes(
+                  service.imageKey
+                )
               )
-            )
-            .map((service) => (
-              <Grid item key={service.title}>
-                <ServiceCard
-                  title={service.title}
-                  imageKey={service.imageKey}
-                  items={service.items}
-                  imageSize={service.imageSize}
-                  layout={service.layout}
-                  objectPosition={service.objectPosition}
-                />
-              </Grid>
-            ))}
+              .map((service) => (
+                <Grid item key={service.title}>
+                  <ServiceCard
+                    title={service.title}
+                    imageKey={service.imageKey}
+                    items={service.items}
+                    imageSize={service.imageSize}
+                    layout={service.layout}
+                    objectPosition={service.objectPosition}
+                  />
+                </Grid>
+              ))}
+          </Grid>
         </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </CustomContainer>
   );
 };
