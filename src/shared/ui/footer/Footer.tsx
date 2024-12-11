@@ -18,6 +18,7 @@ export const Footer = () => {
         py: { xs: 2, sm: 6, md: 8 },
         bgcolor: "#000",
         color: "#fff",
+        width: "100%",
         gap: { xs: 4, md: 0 },
       }}
     >
@@ -74,8 +75,8 @@ export const Footer = () => {
             sx={{
               display: "flex",
               flexDirection: { xs: "column", md: "row" },
-              gap: { xs: 3, md: 2 },
-              maxWidth: { xs: "100%", md: "60%" },
+              width: "100%",
+              height: "100%",
               justifyContent: "flex-end",
             }}
           >

@@ -18,7 +18,7 @@ export const ContactLinks = () => {
     textDecoration: "none",
     display: "inline-block",
     position: "relative",
-    fontSize: "16px",
+    fontSize: {xs: "12px", sm: "16px"},
     transition: "color 250ms ease-in-out",
     zIndex: 1,
     "&::before": {
@@ -46,6 +46,7 @@ export const ContactLinks = () => {
     mb: 2,
     display: "flex",
     alignItems: "center",
+
   };
 
   const iconStyle = {
