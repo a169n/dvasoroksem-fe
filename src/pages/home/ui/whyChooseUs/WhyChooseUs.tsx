@@ -11,6 +11,7 @@ import SocialIcon from "@assets/icons/choose/main_eco.webp";
 import ThreeThousandIcon from "@assets/icons/choose/main_3000_ad.webp";
 import { MyCard } from "@shared/ui/card";
 import { useNavigate } from "react-router-dom";
+import { CustomContainer } from "@shared/ui/container";
 
 export const WhyChooseUs = () => {
   const { t } = useTranslation();
@@ -105,71 +106,72 @@ export const WhyChooseUs = () => {
   };
 
   return (
-    <Box
-      sx={{
-        px: { xs: 2, sm: 4, md: 8 },
-        minHeight: "600px",
-        userSelect: "none",
-      }}
-    >
-      <Typography
-        variant="h2"
-        component="h1"
+    <CustomContainer>
+      <Box
         sx={{
-          fontWeight: 500,
-          color: "#000",
-          textTransform: "uppercase",
-          fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
-          mb: { xs: 2, sm: 3, md: 5 },
-          textAlign: "left",
+          minHeight: "600px",
+          userSelect: "none",
         }}
       >
-        {t("whyChooseUs.title")}
-      </Typography>
-
-      <Box mt={2} sx={{ overflow: "auto" }}>
-        <Carousel
-          responsive={responsive}
-          infinite
-          draggable
-          swipeable
-          pauseOnHover
-          keyBoardControl
-          autoPlay
-          autoPlaySpeed={7000}
-          showDots={false}
-          containerClass="carousel-container"
-          itemClass="carousel-item-padding"
-          removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
-          arrows={false}
+        <Typography
+          variant="h2"
+          component="h1"
+          sx={{
+            fontWeight: 500,
+            color: "#000",
+            textTransform: "uppercase",
+            fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
+            mb: { xs: 2, sm: 3, md: 5 },
+            textAlign: "left",
+          }}
         >
-          {cardImages.map((card, index) => (
-            <Box
-              key={index}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                my: 12,
-              }}
-            >
-              <MyCard
-                image={card.image}
-                imageMaxWidth={card.maxWidth}
-                imageMaxHeight={card.maxHeight}
-                rotateClockwise={card.rotateClockwise}
-                top={card.top}
-                marginTop={card.marginTop}
-                title={card.title}
-                text={card.text}
-                buttonText={card.buttonText}
-                onButtonClick={card.action}
-                isMobile={isMobile}
-              />
-            </Box>
-          ))}
-        </Carousel>
+          {t("whyChooseUs.title")}
+        </Typography>
+  
+        <Box mt={2} sx={{ overflow: "auto" }}>
+          <Carousel
+            responsive={responsive}
+            infinite
+            draggable
+            swipeable
+            pauseOnHover
+            keyBoardControl
+            autoPlay
+            autoPlaySpeed={7000}
+            showDots={false}
+            containerClass="carousel-container"
+            itemClass="carousel-item-padding"
+            removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
+            arrows={false}
+          >
+            {cardImages.map((card, index) => (
+              <Box
+                key={index}
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  my: 12,
+                }}
+              >
+                <MyCard
+                  image={card.image}
+                  imageMaxWidth={card.maxWidth}
+                  imageMaxHeight={card.maxHeight}
+                  rotateClockwise={card.rotateClockwise}
+                  top={card.top}
+                  marginTop={card.marginTop}
+                  title={card.title}
+                  text={card.text}
+                  buttonText={card.buttonText}
+                  onButtonClick={card.action}
+                  isMobile={isMobile}
+                />
+              </Box>
+            ))}
+          </Carousel>
+        </Box>
       </Box>
-    </Box>
+    </CustomContainer>
   );
 };
