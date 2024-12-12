@@ -47,7 +47,6 @@ export const MyCard: React.FC<CardProps> = ({
       onMouseLeave={() => setShowBox(false)}
       sx={{
         display: "flex",
-        marginTop: "16px",
         flexDirection: "column",
         justifyContent: "space-between",
         width: "100%",
@@ -55,10 +54,11 @@ export const MyCard: React.FC<CardProps> = ({
         borderRadius: "24px",
         boxShadow: "none",
         backgroundColor: "#f7f7f7",
-        padding: "8px 8px 0 8px",
+        minHeight: "300px",
         margin: "0 auto",
         overflow: "visible",
         transition: "box-shadow 0.3s ease-in-out",
+        height: !showBox ? { xl: "250px" } : "auto",
       }}
     >
       <Box
@@ -98,7 +98,7 @@ export const MyCard: React.FC<CardProps> = ({
           component="div"
           gutterBottom
           sx={{
-            fontSize: isMobile ? "24px" : "32px",
+            fontSize: { sm: "24px", md: "32px", xl: "24px" },
             textAlign: "start",
             fontFamily: "Georgia, serif",
             fontStyle: "italic",
@@ -109,7 +109,7 @@ export const MyCard: React.FC<CardProps> = ({
         <Box
           sx={{
             opacity: showBox || isMobile ? 1 : 0,
-            maxHeight: showBox || isMobile ? "200px" : "0px",
+            maxHeight: showBox || isMobile ? "250px" : "0px",
             overflow: "hidden",
             transition: "opacity 0.3s ease, max-height 0.3s ease",
           }}
