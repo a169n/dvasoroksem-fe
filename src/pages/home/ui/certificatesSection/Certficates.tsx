@@ -78,12 +78,12 @@ export const Certificates = () => {
           <Box
             className="parent"
             sx={{
+              gridTemplateColumns: "repeat(2, 1fr)",
               width: "1000px",
+              height: "863px",
               margin: " 0 auto",
               display: "grid",
-              gridTemplateColumns: "repeat(2, 1fr)",
-              gridTemplateRows: "repeat(2, 1fr)",
-              gap: "8px",
+              gap: "23px",
             }}
           >
             <Box
@@ -96,7 +96,9 @@ export const Certificates = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                padding: 2,
+                padding: "21.5px 83.5px",
+                height: "480px",
+                width: "474px",
               }}
             >
               <Box
@@ -104,11 +106,8 @@ export const Certificates = () => {
                 src={certificates[0].image}
                 alt={certificates[0].title}
                 draggable={false}
-                sx={{ width: "100%", height: "auto" }}
+                sx={{ width: "100%", height: "100%" }}
               />
-              <Typography sx={{ mt: 1, textAlign: "center" }}>
-                {certificates[0].title}
-              </Typography>
             </Box>
 
             <Box
@@ -120,7 +119,10 @@ export const Certificates = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                padding: 2,
+                padding: "24px 36px",
+                height: "358px",
+                width: "504px",
+                marginLeft: "-30px",
               }}
             >
               <Box
@@ -128,11 +130,8 @@ export const Certificates = () => {
                 src={certificates[1].image}
                 alt={certificates[1].title}
                 draggable={false}
-                sx={{ width: "100%", height: "auto" }}
+                sx={{ width: "100%", height: "100%" }}
               />
-              <Typography sx={{ mt: 1, textAlign: "center" }}>
-                {certificates[1].title}
-              </Typography>
             </Box>
 
             <Box
@@ -146,7 +145,9 @@ export const Certificates = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                padding: 2,
+                padding: "21px 83.5px",
+                width: "474px",
+                height: "480px",
               }}
             >
               <Box
@@ -154,11 +155,8 @@ export const Certificates = () => {
                 src={certificates[2].image}
                 alt={certificates[2].title}
                 draggable={false}
-                sx={{ width: "100%", height: "auto" }}
+                sx={{ width: "100%", height: "100%" }}
               />
-              <Typography sx={{ mt: 1, textAlign: "center" }}>
-                {certificates[2].title}
-              </Typography>
             </Box>
 
             <Box
@@ -171,7 +169,9 @@ export const Certificates = () => {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                padding: 2,
+                height: "358px",
+                width: "504px",
+                padding: "24px 36px",
               }}
             >
               <Box
@@ -179,11 +179,8 @@ export const Certificates = () => {
                 src={certificates[3].image}
                 alt={certificates[3].title}
                 draggable={false}
-                sx={{ width: "100%", height: "auto" }}
+                sx={{ width: "100%", height: "100%" }}
               />
-              <Typography sx={{ mt: 1, textAlign: "center" }}>
-                {certificates[3].title}
-              </Typography>
             </Box>
           </Box>
         ) : (
