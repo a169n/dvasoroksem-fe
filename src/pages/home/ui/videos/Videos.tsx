@@ -26,7 +26,7 @@ const VideoPlaceholder = () => (
   <Box
     sx={{
       width: "100%",
-      height: "420px",
+      height: "720px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -45,14 +45,15 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
 
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const isXL = useMediaQuery(theme.breakpoints.up("xl"));
 
   return (
     <Box
       onClick={handlePlayPause}
       sx={{
-        width: isPlaying ? "100%" : "100%", // Ensure full width when playing
-        height: isMobile ? "550px" : "550px", // Allow flexible height when playing on mobile
-        maxHeight: "550px",
+        width: "100%", // Ensure full width when playing
+        height: isMobile ? "550px" : isXL ? "760px" : "665px", // Allow flexible height when playing on mobile
+        maxHeight: "760px",
         padding: 2,
         borderRadius: "24px",
         backgroundColor: "#f7f7f7",
@@ -74,7 +75,7 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
       <Box
         sx={{
           width: "100%",
-          height: isMobile ? "auto" : "100%", // Allow auto height on mobile
+          height: "auto", // Allow auto height on mobile
           position: "relative",
           overflow: "hidden",
           borderRadius: "24px",
@@ -86,7 +87,6 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
             effect="blur"
             src={preview}
             width="100%"
-            height="100%"
             style={{
               objectFit: "cover",
               filter: "brightness(70%)",
@@ -117,10 +117,12 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
           my={2}
           sx={{
             fontFamily: "Georgia, serif",
-            fontSize: "20px",
+            fontSize: { xs: "20px", sm: "20px", md: "35px", xl: "40px" },
             fontStyle: "italic",
             textAlign: "center",
             userSelect: "none",
+            lineHeight: "115%",
+            fontWeight: "400",
           }}
         >
           {title}
@@ -133,7 +135,7 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
 export const Videos = () => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [activeVideo, setActiveVideo] = useState(null);
 
   const videoData = [

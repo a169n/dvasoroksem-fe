@@ -51,7 +51,6 @@ export const Certificates = () => {
   const carouselRef = useRef<Carousel>(null);
 
   return (
-    <CustomContainer>
       <Box
         sx={{
           py: { xs: 2, sm: 4, md: 8 },
@@ -59,20 +58,22 @@ export const Certificates = () => {
           mb: { xs: 4, sm: 6, md: 10 },
         }}
       >
-        <Typography
-          variant="h2"
-          component="h1"
-          sx={{
-            fontWeight: 500,
-            color: "#000",
-            textTransform: "uppercase",
-            textAlign: "left",
-            fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
-            mb: { xs: 2, sm: 3, md: 5 },
-          }}
-        >
-          {t("certificates.title")}
-        </Typography>
+       <CustomContainer>
+          <Typography
+            variant="h2"
+            component="h1"
+            sx={{
+              fontWeight: 500,
+              color: "#000",
+              textTransform: "uppercase",
+              textAlign: "left",
+              fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
+              mb: { xs: 2, sm: 3, md: 5 },
+            }}
+          >
+            {t("certificates.title")}
+          </Typography>
+       </CustomContainer>
 
         {isLargeScreen ? (
           <Box
@@ -288,6 +289,5 @@ export const Certificates = () => {
           </Carousel>
         )}
       </Box>
-    </CustomContainer>
   );
 };

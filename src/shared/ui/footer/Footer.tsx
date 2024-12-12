@@ -11,15 +11,9 @@ export const Footer = () => {
   return (
     <Box
       sx={{
-        display: "flex",
-        justifyContent: "space-between",
-        flexDirection: { xs: "row", md: "row" },
-        alignItems: { xs: "center", md: "start" },
         py: { xs: 2, sm: 6, md: 8 },
         bgcolor: "#000",
         color: "#fff",
-        width: "100%",
-        gap: { xs: 4, md: 0 },
       }}
     >
       <CustomContainer>
@@ -88,7 +82,7 @@ export const Footer = () => {
                 maxWidth: { xs: "100%", md: "20%" },
                 textTransform: "uppercase",
                 fontSize: { xs: "20px", sm: "22px", md: "24px" },
-                width: { xs: "100%", md: "50vw" },
+                width: "100%",
                 order: { xs: 2, md: 1 },
                 whiteSpace: "nowrap",
               }}
