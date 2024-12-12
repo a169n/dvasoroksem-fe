@@ -9,7 +9,7 @@ export const CustomContainer = ({ children }) => {
           sm: "24px", // Small screens
           md: "40px", // Medium screens
           lg: "60px", // Large screens
-          xl: "300px", // Extra-large screens
+          xl: "350px", // Extra-large screens
         },
       }}
     >
