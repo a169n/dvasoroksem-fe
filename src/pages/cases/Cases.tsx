@@ -19,6 +19,7 @@ import case6 from "@assets/cases/case6.svg";
 import case7 from "@assets/cases/case7.svg";
 import case8 from "@assets/cases/case8.svg";
 import case9 from "@assets/cases/case9.svg";
+import { CustomContainer } from "@shared/ui/container";
 // import case10 from "@assets/cases/case9.svg";
 
 export const Cases = () => {
@@ -129,235 +130,236 @@ export const Cases = () => {
   return (
     <>
       <Header />
-      <Box
-        sx={{
-          px: isMobile ? 2 : isTablet ? 4 : 8,
-          py: isMobile ? 4 : isTablet ? 6 : 8,
-        }}
-      >
+      <CustomContainer>
         <Box
-          mb={isMobile ? 3 : isTablet ? 7 : 12}
           sx={{
-            maxWidth: "100%",
-            marginTop: isMobile ? 6 : 4,
-            display: "flex",
-            gap: isMobile ? "40px" : "30px",
-            alignItems: "center",
-            justifyContent: "space-between",
+            py: isMobile ? 4 : isTablet ? 6 : 8,
           }}
         >
-          <Typography
-            textTransform={"uppercase"}
+          <Box
+            mb={isMobile ? 3 : isTablet ? 7 : 12}
             sx={{
-              fontWeight: 500,
-              color: "#000",
-              textTransform: "uppercase",
-              fontSize: isMobile ? "32px" : isTablet ? "36px" : "70px",
-              mb: isMobile ? 2 : 0,
-              width: isMobile ? "100%" : "auto",
-              textAlign: "left",
-              lineHeight: 1,
-              
+              maxWidth: "100%",
+              marginTop: isMobile ? 6 : 4,
+              display: "flex",
+              gap: isMobile ? "40px" : "30px",
+              alignItems: "center",
+              justifyContent: "space-between",
             }}
           >
-            {t("ourCases.title1")}
-          </Typography>
+            <Typography
+              textTransform={"uppercase"}
+              sx={{
+                fontWeight: 500,
+                color: "#000",
+                textTransform: "uppercase",
+                fontSize: isMobile ? "32px" : isTablet ? "36px" : "70px",
+                mb: isMobile ? 2 : 0,
+                width: isMobile ? "100%" : "auto",
+                textAlign: "left",
+                lineHeight: 1,
+                
+              }}
+            >
+              {t("ourCases.title1")}
+            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                gap: isMobile ? "10px" : "20px",
+                flexWrap: isMobile ? "wrap" : "nowrap",
+                width: isMobile ? "50%" : "auto",
+              }}
+            >
+              {isMobile ? (
+                <MySelect
+                  value={selectedCategory}
+                  onChange={(event) => setSelectedCategory(event.target.value)}
+                  options={categories.map((category) => ({
+                    value: category,
+                    label: category,
+                  }))}
+                  mode="default"
+                  sx={{
+                    width: "130px",
+                    fontSize: "14px",
+                    height: "40px",
+                    backgroundColor: "#fff",
+                  }}
+                />
+              ) : (
+                categories.map((category) => (
+                  <MyButton
+                    key={category}
+                    onClick={() => setSelectedCategory(category)}
+                    sx={{
+                      borderRadius: 0,
+                      textTransform: "none",
+                      fontSize: isTablet ? "16px" : "20px",
+                      py: 0.3,
+                      px: isTablet ? 2 : 4,
+                      backgroundColor:
+                        selectedCategory === category ? "#000" : "#fff",
+                      color: selectedCategory === category ? "#fff" : "#000",
+                      flex: "0 0 auto",
+                    }}
+                  >
+                    {category.toUpperCase()}
+                  </MyButton>
+                ))
+              )}
+            </Box>
+          </Box>
+  
           <Box
             sx={{
-              display: "flex",
-              gap: isMobile ? "10px" : "20px",
-              flexWrap: isMobile ? "wrap" : "nowrap",
-              width: isMobile ? "50%" : "auto",
+              display: "grid",
+              gridTemplateColumns: "repeat(2, 1fr)",
+              gap: isMobile ? "30px" : "50px",
+              mt: isMobile ? 3 : 4,
+              minHeight: 300,
             }}
           >
-            {isMobile ? (
-              <MySelect
-                value={selectedCategory}
-                onChange={(event) => setSelectedCategory(event.target.value)}
-                options={categories.map((category) => ({
-                  value: category,
-                  label: category,
-                }))}
-                mode="default"
-                sx={{
-                  width: "130px",
-                  fontSize: "14px",
-                  height: "40px",
-                  backgroundColor: "#fff",
-                }}
-              />
-            ) : (
-              categories.map((category) => (
-                <MyButton
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
-                  sx={{
-                    borderRadius: 0,
-                    textTransform: "none",
-                    fontSize: isTablet ? "16px" : "20px",
-                    py: 0.3,
-                    px: isTablet ? 2 : 4,
-                    backgroundColor:
-                      selectedCategory === category ? "#000" : "#fff",
-                    color: selectedCategory === category ? "#fff" : "#000",
-                    flex: "0 0 auto",
-                  }}
-                >
-                  {category.toUpperCase()}
-                </MyButton>
-              ))
-            )}
-          </Box>
-        </Box>
-
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
-            gap: isMobile ? "30px" : "50px",
-            mt: isMobile ? 3 : 4,
-            minHeight: 300,
-          }}
-        >
-          {filteredCases.length > 0 ? (
-            filteredCases.map((caseItem, index) => (
-              <Box
-                key={index}
-                sx={{
-                  display: "flex",
-                  flexDirection: isMobile ? "column" : "row",
-                  gap: isMobile ? "20px" : "30px",
-                  width: "100%",
-                }}
-              >
+            {filteredCases.length > 0 ? (
+              filteredCases.map((caseItem, index) => (
                 <Box
-                  onClick={() => navigate(caseItem.path)}
-                  sx={{
-                    position: "relative",
-                    display: "block",
-                    width: "100%",
-                    maxWidth: "270px",
-                    maxHeight: "270px",
-                    overflow: "hidden",
-                    "&:hover img": {
-                      filter: "brightness(0.7)",
-                    },
-                    "&:hover .iconOverlay": {
-                      opacity: 1,
-                    },
-                  }}
-                >
-                  <LazyLoadImage
-                    src={caseItem.imageUrl}
-                    alt={caseItem.title}
-                    effect="blur"
-                    draggable="false"
-                    style={{
-                      width: "100%",
-                      height: "100%",
-                      objectFit: "cover",
-                    }}
-                  />
-                  <ArrowForwardIcon
-                    className="iconOverlay"
-                    sx={{
-                      position: "absolute",
-                      top: "50%",
-                      left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      fontSize: isMobile ? "50px" : "90px",
-                      color: "#fff",
-                      opacity: 0,
-                    }}
-                  />
-                </Box>
-                <Box
-                  width="100%"
-                  height="auto"
-                  maxHeight={isMobile ? "auto" : "270px"}
+                  key={index}
                   sx={{
                     display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
+                    flexDirection: isMobile ? "column" : "row",
+                    gap: isMobile ? "20px" : "30px",
+                    width: "100%",
                   }}
                 >
                   <Box
+                    onClick={() => navigate(caseItem.path)}
+                    sx={{
+                      position: "relative",
+                      display: "block",
+                      width: "100%",
+                      maxWidth: "270px",
+                      maxHeight: "270px",
+                      overflow: "hidden",
+                      "&:hover img": {
+                        filter: "brightness(0.7)",
+                      },
+                      "&:hover .iconOverlay": {
+                        opacity: 1,
+                      },
+                    }}
+                  >
+                    <LazyLoadImage
+                      src={caseItem.imageUrl}
+                      alt={caseItem.title}
+                      effect="blur"
+                      draggable="false"
+                      style={{
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover",
+                      }}
+                    />
+                    <ArrowForwardIcon
+                      className="iconOverlay"
+                      sx={{
+                        position: "absolute",
+                        top: "50%",
+                        left: "50%",
+                        transform: "translate(-50%, -50%)",
+                        fontSize: isMobile ? "50px" : "90px",
+                        color: "#fff",
+                        opacity: 0,
+                      }}
+                    />
+                  </Box>
+                  <Box
+                    width="100%"
+                    height="auto"
+                    maxHeight={isMobile ? "auto" : "270px"}
                     sx={{
                       display: "flex",
                       flexDirection: "column",
-                      gap: "20px",
+                      justifyContent: "space-between",
                     }}
                   >
-                    <Typography
-                      onClick={() => navigate(caseItem.path)}
-                      variant="h4"
-                      component="p"
+                    <Box
                       sx={{
+                        display: "flex",
+                        flexDirection: "column",
+                        gap: "20px",
+                      }}
+                    >
+                      <Typography
+                        onClick={() => navigate(caseItem.path)}
+                        variant="h4"
+                        component="p"
+                        sx={{
+                          color: "#000",
+                          fontWeight: 700,
+                          fontSize: isMobile ? "16px" : "22px",
+                          cursor: "pointer",
+                        }}
+                      >
+                        {caseItem.title}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        component="p"
+                        textAlign={"left"}
+                        sx={{ cursor: "pointer" }}
+                        onClick={() => navigate(caseItem.path)}
+                      >
+                        {caseItem.description}
+                      </Typography>
+                    </Box>
+                    <MyButton
+                      variant="text"
+                      sx={{
+                        display: isMobile ? "none " : "block",
+                        width: "fit-content",
+                        marginTop: isMobile ? 3 : 0,
+                        fontWeight: 400,
+                        borderRadius: 0,
+                        alignItems: "center",
                         color: "#000",
-                        fontWeight: 700,
-                        fontSize: isMobile ? "16px" : "22px",
-                        cursor: "pointer",
+                        fontSize: isMobile ? "14px" : "18px",
+                        textAlign: "center",
+                        textTransform: "none",
+                        transition: "all 0.3s ease",
+                        "&:hover": {
+                          backgroundColor: "#000",
+                          color: "#fff",
+                          borderColor: "#fff",
+                        },
                       }}
-                    >
-                      {caseItem.title}
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      component="p"
-                      textAlign={"left"}
-                      sx={{ cursor: "pointer" }}
                       onClick={() => navigate(caseItem.path)}
                     >
-                      {caseItem.description}
-                    </Typography>
+                      {t("ourCases.buttonText2")}
+                      <ArrowForwardIcon
+                        sx={{
+                          fontSize: isMobile ? "14px" : "18px",
+                          ml: isMobile ? "8px" : "14px",
+                        }}
+                      />
+                    </MyButton>
                   </Box>
-                  <MyButton
-                    variant="text"
-                    sx={{
-                      display: isMobile ? "none " : "block",
-                      width: "fit-content",
-                      marginTop: isMobile ? 3 : 0,
-                      fontWeight: 400,
-                      borderRadius: 0,
-                      alignItems: "center",
-                      color: "#000",
-                      fontSize: isMobile ? "14px" : "18px",
-                      textAlign: "center",
-                      textTransform: "none",
-                      transition: "all 0.3s ease",
-                      "&:hover": {
-                        backgroundColor: "#000",
-                        color: "#fff",
-                        borderColor: "#fff",
-                      },
-                    }}
-                    onClick={() => navigate(caseItem.path)}
-                  >
-                    {t("ourCases.buttonText2")}
-                    <ArrowForwardIcon
-                      sx={{
-                        fontSize: isMobile ? "14px" : "18px",
-                        ml: isMobile ? "8px" : "14px",
-                      }}
-                    />
-                  </MyButton>
                 </Box>
-              </Box>
-            ))
-          ) : (
-            <Typography
-              variant="body1"
-              sx={{
-                color: "#000",
-                fontSize: isMobile ? "14px" : "18px",
-                fontWeight: 300,
-              }}
-            >
-              {t("ourCases.empty")}
-            </Typography>
-          )}
+              ))
+            ) : (
+              <Typography
+                variant="body1"
+                sx={{
+                  color: "#000",
+                  fontSize: isMobile ? "14px" : "18px",
+                  fontWeight: 300,
+                }}
+              >
+                {t("ourCases.empty")}
+              </Typography>
+            )}
+          </Box>
         </Box>
-      </Box>
+      </CustomContainer>
     </>
   );
 };
