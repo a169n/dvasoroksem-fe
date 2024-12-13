@@ -133,13 +133,15 @@ export const Cases = ({ mode = "default" }) => {
             sx={{
               fontWeight: 500,
               color: isCasePage ? "#fff" : "#000",
+              lineHeight: "80px",
+              fontStyle: "normal",
               textTransform: "uppercase",
               fontSize: isMobile
                 ? "28px"
                 : isTablet
                   ? "36px"
                   : isDesktop
-                    ? "48px"
+                    ? "70px"
                     : "70px",
             }}
           >
