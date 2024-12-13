@@ -128,7 +128,7 @@ export const Values = () => {
                 key={index}
                 sx={{
                   width: "374px",
-                  height: "300px  ",
+                  height: "fit-content",
                   border: "1px solid #D9D9D9",
                   borderRadius: "24.75px",
                   overflow: "hidden",
@@ -136,6 +136,10 @@ export const Values = () => {
                   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                   transition: "box-shadow 0.3s ease-in-out",
                   "&:hover": {
+                    "& .content": {
+                      maxHeight: "400px",
+                      opacity: 1,
+                    },
                     boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
                   },
                   padding: "25px 20px",
@@ -181,6 +185,31 @@ export const Values = () => {
                   >
                     {card.title}
                   </Typography>
+                  <Box
+                    className="content"
+                    sx={{
+                      maxHeight: { xs: "none", md: 0 },
+                      opacity: { xs: 1, md: 0 },
+                      overflow: "hidden",
+                      transition:
+                        "max-height 0.4s ease-in-out, opacity 0.7s ease-in-out",
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        px: 2,
+                        mb: 1,
+                        color: "#333",
+                        fontSize: { xs: "14px", sm: "16px", md: "18px" },
+                        fontFamily: "Futura PT, sans-serif",
+                        fontWeight: 400,
+                        textAlign: "center",
+                      }}
+                    >
+                      {card.text}
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
             ))}
@@ -198,7 +227,7 @@ export const Values = () => {
                 key={index}
                 sx={{
                   width: "374px",
-                  height: "300px  ",
+                  height: "fit-content",
 
                   border: "1px solid #D9D9D9",
                   borderRadius: "24.75px",
@@ -207,9 +236,14 @@ export const Values = () => {
                   boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
                   transition: "box-shadow 0.3s ease-in-out",
                   "&:hover": {
+                    "& .content": {
+                      maxHeight: "400px",
+                      opacity: 1,
+                    },
                     boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
-                    padding: "25px 20px",
                   },
+                  padding: "25px 20px",
+
                   marginBottom: "150px",
                 }}
               >
@@ -219,7 +253,6 @@ export const Values = () => {
                     flexDirection: "column",
                     justifyContent: "center",
                     alignItems: "center",
-                    p: 3,
                   }}
                 >
                   <LazyLoadImage
@@ -232,7 +265,6 @@ export const Values = () => {
                       minHeight: "166px",
                       maxHeight: "203px",
                       objectFit: "cover",
-
                       borderRadius: "25px",
                     }}
                     draggable={false}
@@ -256,6 +288,31 @@ export const Values = () => {
                   >
                     {card.title}
                   </Typography>
+                  <Box
+                    className="content"
+                    sx={{
+                      maxHeight: { xs: "none", md: 0 },
+                      opacity: { xs: 1, md: 0 },
+                      overflow: "hidden",
+                      transition:
+                        "max-height 0.4s ease-in-out, opacity 0.7s ease-in-out",
+                    }}
+                  >
+                    <Typography
+                      variant="body2"
+                      sx={{
+                        px: 2,
+                        mb: 1,
+                        color: "#333",
+                        fontSize: { xs: "14px", sm: "16px", md: "18px" },
+                        fontFamily: "Futura PT, sans-serif",
+                        fontWeight: 400,
+                        textAlign: "center",
+                      }}
+                    >
+                      {card.text}
+                    </Typography>
+                  </Box>
                 </Box>
               </Box>
             ))}
