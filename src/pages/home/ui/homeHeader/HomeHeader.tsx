@@ -50,6 +50,7 @@ export const HomeHeader = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
   const { t } = useTranslation();
+  const isXl = useMediaQuery(theme.breakpoints.up("xl"));
 
   const [isMuted, setIsMuted] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
@@ -226,17 +227,29 @@ export const HomeHeader = () => {
             sx={{
               color: "#000",
               display: "flex",
-              flexDirection: { xs: "column", md: "row" },
+              flexDirection: isXl ? "column" : "row",
               alignItems: "center",
-              justifyContent: "center",
-              textAlign: "left",
-              mb: { xs: 4, md: 0 },
-              mt: { xs: 4, md: 8 },
-              py: { xs: 4, md: 8 },
-              px: { xs: 2, sm: 4, md: 8 },
+              justifyContent: isXl ? "center" : "space-between",
+              textAlign: isXl ? "center" : "left",
+              margin: {
+                xs: "20px 0 50px 0",
+                sm: "30px 0 70px 0",
+                md: "40px 0 100px 0",
+                lg: "50px 0 120px 0",
+                xl: "52px 0 118px 0",
+              },
             }}
           >
-            <Box sx={{ width: { xs: "100%", md: "50%" } }}>
+            {/* Agency Text */}
+            <Box
+              sx={{
+                display: {
+                  xs: "none",
+                  sm: "none",
+                  md: "block", 
+                },
+              }}
+            >
               <Typography
                 variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
                 component="h1"
@@ -245,24 +258,40 @@ export const HomeHeader = () => {
                 mb={2}
                 sx={{ textTransform: "uppercase" }}
               >
-                {t("hero.leadingMarketingAgency1")}
+                {isXl
+                  ? t("hero.leadingMarketingAgency")
+                  : t("hero.leadingMarketingAgency1")}
               </Typography>
-              <Typography
-                variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
-                component="h1"
-                fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
-                fontWeight={500}
-                mb={2}
-                sx={{ textTransform: "uppercase" }}
-              >
-                {t("hero.leadingMarketingAgency2")}
-              </Typography>
+              {!isXl && (
+                <Typography
+                  variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
+                  component="h1"
+                  fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
+                  fontWeight={500}
+                  mb={2}
+                  sx={{ textTransform: "uppercase" }}
+                >
+                  {t("hero.leadingMarketingAgency2")}
+                </Typography>
+              )}
             </Box>
-            <Box sx={{ width: { xs: "100%", md: "50%" } }}>
-              <Typography textAlign={"left"} mb={2}>
+
+            {/* Description Text */}
+            <Box
+              sx={{
+                maxWidth: isXl ? "700px" : "500px",
+                fontSize: "22px",
+                fontWeight: 400,
+              }}
+            >
+              <Typography textAlign={{ xs: "left", xl: "center" }} mb={2}>
                 {t("hero.agencyDescription")}
               </Typography>
-              <Typography textAlign={"left"} mb={2}>
+              <Typography
+                maxWidth={"500px"}
+                mx={"auto"}
+                textAlign={{ xs: "left", xl: "center" }}
+              >
                 {t("hero.teamHelpBusinessGrow")}
               </Typography>
             </Box>

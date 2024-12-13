@@ -4,6 +4,7 @@ export const CustomContainer = ({ children }) => {
   return (
     <Box
       sx={{
+        width: "100%",
         paddingX: {
           xs: "16px", // Default for extra-small screens
           sm: "24px", // Small screens
