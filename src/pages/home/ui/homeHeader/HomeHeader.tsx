@@ -56,7 +56,7 @@ export const HomeHeader = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [showreel, setShowreel] = useState<string | null>("");
 
-  const videoRef = useRef();
+  const videoRef = useRef(null);
 
   // Load video asset only once
   useEffect(() => {
