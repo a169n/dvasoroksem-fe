@@ -45,13 +45,13 @@ export const Stories = ({ stories }: StoriesProps) => {
           prevEl: prevRef.current,
           nextEl: nextRef.current,
         }}
-        autoplay={{ delay: 7000 }}
+        autoplay={{ delay: 3000 }}
         loop={true}
         effect="cube"
         centeredSlides
         style={{
           width: isMobile ? "100%" : "350px",
-          height: isMobile ? "300px" : "600px",
+          height: isMobile ? "650px" : "600px",
           objectFit: "cover",
         }}
         onBeforeInit={(swiper) => {

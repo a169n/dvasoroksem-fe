@@ -51,8 +51,8 @@ export const ServiceCard = ({
         alt={`${title} Service image`}
         effect="blur"
         style={{
-          width: imageSize.width,
-          height: imageSize.height,
+          width: isSmallScreen ? "100%" : imageSize.width,
+          height: isSmallScreen ? "auto" : imageSize.height,
           objectFit: "cover",
           objectPosition: objectPosition,
           borderRadius: "24px",
