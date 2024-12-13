@@ -54,11 +54,11 @@ export const MyCard: React.FC<CardProps> = ({
         borderRadius: "24px",
         boxShadow: "none",
         backgroundColor: "#f7f7f7",
-        minHeight: "300px",
+        minHeight: { xl: "221px", lg: "300px" },
         margin: "0 auto",
         overflow: "visible",
         transition: "box-shadow 0.3s ease-in-out",
-        height: !showBox ? { xl: "250px" } : "auto",
+        height: "auto",
       }}
     >
       <Box
@@ -109,9 +109,9 @@ export const MyCard: React.FC<CardProps> = ({
         <Box
           sx={{
             opacity: showBox || isMobile ? 1 : 0,
-            maxHeight: showBox || isMobile ? "250px" : "0px",
+            maxHeight: showBox || isMobile ? "300px" : "0px",
             overflow: "hidden",
-            transition: "opacity 0.3s ease, max-height 0.3s ease",
+            transition: "opacity 0.3s ease, max-height 0.4s ease",
           }}
         >
           <Typography

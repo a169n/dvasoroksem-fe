@@ -131,7 +131,7 @@ export const WhyChooseUs = () => {
         {isLargeScreen ? (
           <Box
             sx={{
-              maxWidth: "1204px",
+              maxWidth: "1050px",
               margin: "0 auto",
               display: "flex",
               flexDirection: "column",
@@ -145,7 +145,6 @@ export const WhyChooseUs = () => {
                 display: "flex",
                 justifyContent: "space-between",
                 flexWrap: "wrap", // Allow wrapping
-                gap: "110px", // Ensure sufficient spacing
                 width: "100%", // Make sure it uses full width available
               }}
             >
@@ -173,8 +172,6 @@ export const WhyChooseUs = () => {
                 display: "flex",
                 justifyContent: "center",
                 flexWrap: "wrap",
-                gap: "40px", // Make sure the gap is consistent
-                mt: "40px",
               }}
             >
               {cardImages.slice(3).map((card, index) => (
