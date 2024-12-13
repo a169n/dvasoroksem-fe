@@ -1,4 +1,4 @@
-import { Card, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Card, useMediaQuery, useTheme } from "@mui/material";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { ServiceContent } from "./ServiceContent";
 
@@ -23,8 +23,8 @@ export const ServiceCard = ({
   imageKey,
   items,
   imageSize,
-  layout,
   objectPosition,
+  isVertical,
 }) => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -32,49 +32,33 @@ export const ServiceCard = ({
   return (
     <Card
       sx={{
-        borderRadius: "25px",
+        display: "flex",
+        flexDirection: isSmallScreen || isVertical ? "column" : "row",
+        margin: 0,
+        padding: "15px",
+        borderRadius: "24px",
         backgroundColor: "#f7f7f7",
         border: "1px solid #ddd",
-        padding: 1,
+        gap: "30px",
+        height: "auto",
         ":hover": {
           boxShadow: 3,
         },
-     }}
+      }}
     >
-      <Grid
-        container
-        spacing={2}
-        flexDirection={
-          isSmallScreen || layout === "vertical" ? "column" : "row"
-        }
-      >
-        <Grid
-          item
-          sx={{
-            display: "flex",
-            justifyContent: "flex-start",
-            alignItems: "center",
-          }}
-        >
-          <LazyLoadImage
-            src={imageMap[imageKey]}
-            alt={`${title} Service image`}
-            effect="blur"
-            style={{
-              width: isSmallScreen ? "100%" : imageSize.width,
-              height: imageSize.height,
-              objectFit: "cover",
-              objectPosition: objectPosition,
-              borderRadius: "24px",
-              maxWidth: "610px",
-            }}
-          />
-        </Grid>
-
-        <Grid item xs>
-          <ServiceContent title={title} items={items} titleColor="#bfbfbf" />
-        </Grid>
-      </Grid>
+      <LazyLoadImage
+        src={imageMap[imageKey]}
+        alt={`${title} Service image`}
+        effect="blur"
+        style={{
+          width: imageSize.width,
+          height: imageSize.height,
+          objectFit: "cover",
+          objectPosition: objectPosition,
+          borderRadius: "24px",
+        }}
+      />
+      <ServiceContent title={title} items={items} />
     </Card>
   );
 };
