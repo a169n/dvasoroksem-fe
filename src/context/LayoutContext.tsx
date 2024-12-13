@@ -1,6 +1,12 @@
-import React, { createContext, useContext, useState, useRef, ReactNode } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useRef,
+  ReactNode,
+} from "react";
 
-type RefsType = Record<string, React.RefObject<HTMLDivElement>>;
+type RefsType = Record<string, React.RefObject<HTMLDivElement | null>>;
 
 interface LayoutContextProps {
   mode: string;
@@ -15,11 +21,11 @@ interface LayoutProviderProps {
 const LayoutContext = createContext<LayoutContextProps | undefined>(undefined);
 
 export const LayoutProvider: React.FC<LayoutProviderProps> = ({ children }) => {
-  const [mode, setMode] = useState<string>('default');
-  const aboutRef = useRef<HTMLDivElement>(null);
-  const casesRef = useRef<HTMLDivElement>(null);
-  const reviewsRef = useRef<HTMLDivElement>(null);
-  const contactsRef = useRef<HTMLDivElement>(null);
+  const [mode, setMode] = useState<string>("default");
+  const aboutRef = useRef<HTMLDivElement | null>(null);
+  const casesRef = useRef<HTMLDivElement | null>(null);
+  const reviewsRef = useRef<HTMLDivElement | null>(null);
+  const contactsRef = useRef<HTMLDivElement | null>(null);
 
   const refs: RefsType = {
     about: aboutRef,
@@ -38,7 +44,7 @@ export const LayoutProvider: React.FC<LayoutProviderProps> = ({ children }) => {
 export const useLayoutContext = () => {
   const context = useContext(LayoutContext);
   if (context === undefined) {
-    throw new Error('useLayoutContext must be used within a LayoutProvider');
+    throw new Error("useLayoutContext must be used within a LayoutProvider");
   }
   return context;
 };
