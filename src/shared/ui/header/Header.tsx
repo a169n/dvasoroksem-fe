@@ -193,11 +193,14 @@ export const Header = () => {
           "transform 0.3s ease-in-out, background-color 0.3s ease-in-out",
         transform: isHeaderVisible ? "translateY(0)" : "translateY(-100%)",
         backgroundColor:
-          isHeaderVisible && !isMobile
-            ? "rgba(255,255,255,0.1)"
-            : isHeaderVisible && isMobile
-              ? "transparent"
-              : "transparent",
+          !["/", "/request", "/cases"].includes(window.location.pathname) &&
+          !isMobile 
+            ? "transparent"
+            : isHeaderVisible && !isMobile 
+              ? "white"
+              : isHeaderVisible && isMobile && ["/", "/request", "/cases"].includes(window.location.pathname)
+                ? "white"
+                : "transparent",
         backdropFilter:
           isHeaderVisible && !isMobile
             ? "blur(8px)"

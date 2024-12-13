@@ -11,6 +11,7 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
     <Select
       disableUnderline
       value={value}
+      IconComponent={() => null}
       onChange={onChange}
       variant="standard"
       sx={{
@@ -20,11 +21,9 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
           !isDefaultMode &&
           !["/", "/request", "/cases"].includes(window.location.pathname)
             ? "transparent"
-            : value
-              ? "black"
-              : "white",
+            : "white",
         color: value ? "white" : "black",
-        border: isDarkMode || isLightMode ? "" : "1px solid black",
+        border: "",
         borderRadius: "4px",
         padding: "4px 0",
         alignSelf: "center",
@@ -41,13 +40,13 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
               ? "transparent"
               : isMobile
                 ? "white"
-                : "black",
+                : "white",
           textAlign: "left",
           borderRadius: "4px",
           color:
             ["/", "/request", "/cases"].includes(window.location.pathname) &&
             !isMobile
-              ? "white"
+              ? "black"
               : ["/", "/request", "/cases"].includes(
                     window.location.pathname
                   ) && isMobile
