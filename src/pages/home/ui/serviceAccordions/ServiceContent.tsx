@@ -1,33 +1,38 @@
 import { Box, Typography } from "@mui/material";
 
-export const ServiceContent = ({ title, items, titleColor }) => (
-  <Box sx={{ backgroundColor: "#f7f7f7", ml: 2 }}>
+export const ServiceContent = ({ title, items }) => (
+  <Box
+    sx={{
+      display: "flex",
+      flexDirection: "column",
+      justifyContent: "center",
+    }}
+  >
     <Typography
-      variant="h5"
-      component="h2"
-      gutterBottom
+      component={"h3"}
       sx={{
-        fontFamily: "Futura PT, sans-serif",
-        fontWeight: 500,
+        color: "#BFBFBF",
         fontSize: "46px",
-        color: titleColor,
-        marginBottom: 2,
+        fontStyle: "normal",
+        fontWeight: 500,
+        lineHeight: "30px",
+        letterSpacing: "0.46px",
         textAlign: "left",
-        textTransform: "uppercase",
+        marginBottom: "20px",
+        alignSelf: "stretch",
       }}
     >
       {title}
     </Typography>
     {items.map((item, index) => (
       <Typography
-        alignItems={"center"}
         key={index}
         sx={{
-          fontSize: { xs: "14px", sm: "16px", md: "18px" },
-          lineHeight: { xs: "16px", sm: "18px", md: "18px" },
-          marginBottom: { xs: 0.5, sm: 0.5, md: 2 },
           textAlign: "left",
-          fontWeight:  { xs: 500, sm: 500, md: 400 },
+          fontSize: "22px",
+          fontStyle: "normal",
+          fontWeight: 400,
+          lineHeight: "150%",
         }}
       >
         {item}
