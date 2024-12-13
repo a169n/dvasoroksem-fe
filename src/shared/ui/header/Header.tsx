@@ -194,11 +194,13 @@ export const Header = () => {
         transform: isHeaderVisible ? "translateY(0)" : "translateY(-100%)",
         backgroundColor:
           !["/", "/request", "/cases"].includes(window.location.pathname) &&
-          !isMobile 
+          !isMobile
             ? "transparent"
-            : isHeaderVisible && !isMobile 
+            : isHeaderVisible && !isMobile
               ? "white"
-              : isHeaderVisible && isMobile && ["/", "/request", "/cases"].includes(window.location.pathname)
+              : isHeaderVisible &&
+                  isMobile &&
+                  ["/", "/request", "/cases"].includes(window.location.pathname)
                 ? "white"
                 : "transparent",
         backdropFilter:
@@ -209,7 +211,15 @@ export const Header = () => {
               : "none",
         boxShadow: isHeaderVisible ? "0 2px 8px rgba(0,0,0,0.1)" : "none",
         zIndex: 100,
-        px: { xs: 0, sm: 0, md: 4, lg: 4, xl: "325px" },
+        px: {
+          xs: 0,
+          sm: 0,
+          md: 4,
+          lg: 4,
+          xl: ["/", "/request", "/cases"].includes(window.location.pathname)
+            ? "325px"
+            : 4,
+        },
       }}
     >
       <Toolbar sx={{ justifyContent: "space-between", alignItems: "center" }}>
