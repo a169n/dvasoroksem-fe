@@ -1,8 +1,12 @@
+import { useMediaQuery, useTheme } from "@mui/material";
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 
 export const CustomArrowSVG = () => {
   const controls = useAnimation();
+
+  const theme = useTheme();
+  const isXlUp = useMediaQuery(theme.breakpoints.up("xl"));
 
   const animateArrow = async () => {
     await controls.start({
@@ -23,13 +27,13 @@ export const CustomArrowSVG = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 250 65"
+      viewBox={isXlUp ? "0 0 250 100" : "0 0 250 65"}
       className="absolute"
       style={{
         bottom: "0",
         right: "8%",
-        transform: "translateY(-50%) rotate(10deg)",
-        width: "550px",
+        transform: "translateY(-40%) rotate(10deg)",
+        width: isXlUp ? "1000px" : "550px",
         height: "90px",
       }}
     >

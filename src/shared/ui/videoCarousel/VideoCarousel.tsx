@@ -26,8 +26,16 @@ const VideoCard = ({ src }: { src: string }) => {
       } else {
         videoRef.current.play();
       }
-      setIsPlaying(!isPlaying);
     }
+  };
+
+  const handlePlay = () => {
+    setIsPlaying(true);
+    setIsLoading(false);
+  };
+
+  const handlePause = () => {
+    setIsPlaying(false);
   };
 
   const handleCanPlay = () => {
@@ -61,6 +69,8 @@ const VideoCard = ({ src }: { src: string }) => {
           cursor: "pointer",
         }}
         onClick={handlePlayPause}
+        onPlay={handlePlay}
+        onPause={handlePause}
         onCanPlay={handleCanPlay}
         onWaiting={handleWaiting}
       />
@@ -96,12 +106,17 @@ const VideoCard = ({ src }: { src: string }) => {
   );
 };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const CustomDot = ({ onClick, ...rest }: any) => {
+export const CustomDot = ({
+  onClick,
+  ...rest
+}: {
+  onClick?: () => void;
+  active?: boolean;
+}) => {
   const { active } = rest;
   return (
     <Button
-      onClick={() => onClick()}
+      onClick={onClick}
       sx={{
         backgroundColor: active ? "white" : "gray",
         borderRadius: "50%",
@@ -145,14 +160,14 @@ export const VideoCarousel: React.FC<VideoCarouselProps> = ({ videos }) => {
       }}
     >
       <Carousel
-        swipeable={true}
-        draggable={true}
+        swipeable
+        draggable
         showDots={isSmallScreen}
         customDot={<CustomDot />}
         responsive={responsive}
-        ssr={true}
-        infinite={true}
-        keyBoardControl={true}
+        ssr
+        infinite
+        keyBoardControl
         customTransition="all 0.5s"
         transitionDuration={500}
         containerClass="carousel-container"

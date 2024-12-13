@@ -22,13 +22,12 @@ import flexibilityIcon from "@assets/icons/values/flexibility.svg";
 import innovativeIcon from "@assets/icons/values/innovative.svg";
 import responsibilityIcon from "@assets/icons/values/responsibility.svg";
 import { CustomContainer } from "@shared/ui/container";
-import { max, min } from "moment";
 
 export const Values = () => {
   const { t } = useTranslation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const isLargeScreen = useMediaQuery(theme.breakpoints.up("xl")); // Added for large screen detection
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("xl"));
 
   const valueCards = [
     {
