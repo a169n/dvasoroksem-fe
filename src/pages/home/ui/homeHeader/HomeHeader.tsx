@@ -202,7 +202,7 @@ export const HomeHeader = () => {
               <Box
                 key={index}
                 mt={isMobile ? 1 : 0}
-                mx={isMobile ? 2 : 4}
+                mx={isMobile ? 2 : 8}
                 sx={{ ...sharedBoxStyles }}
               >
                 <img
