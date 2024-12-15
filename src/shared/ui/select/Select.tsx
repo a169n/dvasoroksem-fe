@@ -11,10 +11,17 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
     <Select
       disableUnderline
       value={value}
-      IconComponent={() => null}
+      IconComponent={
+        isMobile && ["/cases"].includes(window.location.pathname)
+          ? undefined
+          : () => null
+      }
       onChange={onChange}
       variant="standard"
       sx={{
+        ".MuiSvgIcon-root ": {
+          fill: "white !important",
+        },
         width: "fit-content",
         backgroundColor:
           (isDarkMode || isLightMode) &&
@@ -24,6 +31,8 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
             : "white",
         color: value ? "white" : "black",
         border: "",
+        fontWeight: "400",
+        lineHeight: "115%",
         borderRadius: "4px",
         padding: "4px 0",
         alignSelf: "center",
@@ -38,39 +47,54 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
           backgroundColor:
             (isDarkMode || isLightMode) && !isMobile
               ? "transparent"
-              : isMobile
-                ? "white"
+              : isMobile && ["/cases"].includes(window.location.pathname)
+                ? "black"
                 : "white",
           textAlign: "left",
           borderRadius: "4px",
           color:
-            ["/", "/request", "/cases"].includes(window.location.pathname) &&
-            !isMobile
+            ["/", "/request"].includes(window.location.pathname) && !isMobile
               ? "black"
-              : ["/", "/request", "/cases"].includes(
-                    window.location.pathname
-                  ) && isMobile
+              : ["/", "/request"].includes(window.location.pathname) && isMobile
                 ? "black"
                 : isLightMode && !isMobile
                   ? "white"
                   : isDarkMode && !isMobile
                     ? "black"
-                    : isMobile
-                      ? "black"
-                      : "white",
+                    : isMobile && ["/cases"].includes(window.location.pathname)
+                      ? "white"
+                      : isMobile
+                        ? "black"
+                        : "white",
         },
         ...sx,
       }}
       MenuProps={{
         PaperProps: {
           sx: {
-            backgroundColor: isMobile ? "black" : "white",
+            backgroundColor:
+              isMobile && ["/cases"].includes(window.location.pathname)
+                ? "white"
+                : isMobile
+                  ? "black"
+                  : "white",
             "& .MuiMenuItem-root": {
-              color: isMobile ? "white" : "black",
+              color:
+                isMobile && ["/cases"].includes(window.location.pathname)
+                  ? "black"
+                  : isMobile
+                    ? "white"
+                    : "black",
               padding: "8px 16px",
             },
             "& .Mui-selected": {
               display: "none",
+            },
+            "& .MuiMenuItem-root:hover": {
+              backgroundColor:
+                isMobile && ["/cases"].includes(window.location.pathname)
+                  ? "rgba(22, 22, 22, 0.08)"
+                  : "",
             },
           },
         },

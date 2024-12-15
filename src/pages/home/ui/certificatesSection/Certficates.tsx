@@ -1,3 +1,4 @@
+import React from "react";
 import { useRef, useState } from "react";
 import "react-multi-carousel/lib/styles.css";
 import {
@@ -7,7 +8,8 @@ import {
   useTheme,
   Dialog,
   IconButton,
-  CircularProgress, // Import CircularProgress
+  CircularProgress,
+  Slide,
 } from "@mui/material";
 import { Close as CloseIcon } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
@@ -19,12 +21,20 @@ import certificate3 from "@assets/certificate3.svg";
 import certificate4 from "@assets/certificate4.svg";
 import Carousel from "react-multi-carousel";
 import { CustomContainer } from "@shared/ui/container";
+import { TransitionProps } from "@mui/material/transitions";
 
 interface Certificate {
   id: number;
   title: string;
   image: string;
 }
+
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & { children: React.ReactElement },
+  ref: React.Ref<unknown>
+) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export const Certificates = () => {
   const theme = useTheme();
@@ -35,7 +45,7 @@ export const Certificates = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [selectedCertificate, setSelectedCertificate] =
     useState<Certificate | null>(null);
-  const [loading, setLoading] = useState<boolean>(false); // Add loading state
+  const [loading, setLoading] = useState<boolean>(false);
 
   const certificates: Certificate[] = [
     {
@@ -65,7 +75,7 @@ export const Certificates = () => {
   const handleOpenModal = (certificate: Certificate) => {
     setSelectedCertificate(certificate);
     setOpenModal(true);
-    setLoading(true); // Start loading when opening modal
+    setLoading(true);
   };
 
   const handleCloseModal = () => {
@@ -106,48 +116,111 @@ export const Certificates = () => {
               gridTemplateColumns: "repeat(2, 1fr)",
               width: "1000px",
               height: "863px",
-              margin: "0 auto",
+              margin: " 0 auto",
               display: "grid",
               gap: "23px",
             }}
           >
-            {certificates.map((certificate) => (
+            <Box
+              className="div1"
+              sx={{
+                gridRow: "span 2 / span 2",
+                border: "1px solid #D9D9D9",
+                borderRadius: "10px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "21.5px 83.5px",
+                height: "480px",
+                width: "474px",
+              }}
+              onClick={() => handleOpenModal(certificates[0])}
+            >
               <Box
-                key={certificate.id}
-                className={`div${certificate.id}`}
-                sx={{
-                  border: "1px solid #D9D9D9",
-                  borderRadius: "10px",
-                  overflow: "hidden",
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "center",
-                  padding: "24px",
-                  height: "358px",
-                  cursor: "pointer",
-                  "&:first-of-type": {
-                    gridRow: "span 2 / span 2",
-                    padding: "21.5px 83.5px",
-                    height: "480px",
-                  },
-                  "&:nth-of-type(3)": {
-                    gridRow: "span 2 / span 2",
-                    gridColumnStart: 2,
-                    padding: "21px 83.5px",
-                    height: "480px",
-                  },
-                }}
-                onClick={() => handleOpenModal(certificate)}
-              >
-                <Box
-                  component="img"
-                  src={certificate.image}
-                  alt={certificate.title}
-                  draggable={false}
-                  sx={{ width: "100%", height: "100%" }}
-                />
-              </Box>
-            ))}
+                component="img"
+                src={certificates[0].image}
+                alt={certificates[0].title}
+                draggable={false}
+                sx={{ width: "100%", height: "100%" }}
+              />
+            </Box>
+
+            <Box
+              className="div2"
+              sx={{
+                border: "1px solid #D9D9D9",
+                borderRadius: "10px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "24px 36px",
+                height: "358px",
+                width: "504px",
+                marginLeft: "-30px",
+              }}
+              onClick={() => handleOpenModal(certificates[1])}
+            >
+              <Box
+                component="img"
+                src={certificates[1].image}
+                alt={certificates[1].title}
+                draggable={false}
+                sx={{ width: "100%", height: "100%" }}
+              />
+            </Box>
+
+            <Box
+              className="div3"
+              sx={{
+                gridRow: "span 2 / span 2",
+                gridColumnStart: 2,
+                border: "1px solid #D9D9D9",
+                borderRadius: "10px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "21px 83.5px",
+                width: "474px",
+                height: "480px",
+              }}
+              onClick={() => handleOpenModal(certificates[2])}
+            >
+              <Box
+                component="img"
+                src={certificates[2].image}
+                alt={certificates[2].title}
+                draggable={false}
+                sx={{ width: "100%", height: "100%" }}
+              />
+            </Box>
+
+            <Box
+              className="div4"
+              sx={{
+                gridRowStart: 3,
+                border: "1px solid #D9D9D9",
+                borderRadius: "10px",
+                overflow: "hidden",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                height: "358px",
+                width: "504px",
+                padding: "24px 36px",
+              }}
+              onClick={() => handleOpenModal(certificates[3])}
+            >
+              <Box
+                component="img"
+                src={certificates[3].image}
+                alt={certificates[3].title}
+                draggable={false}
+                sx={{ width: "100%", height: "100%" }}
+              />
+            </Box>
           </Box>
         ) : (
           <Carousel
@@ -262,11 +335,12 @@ export const Certificates = () => {
         onClose={handleCloseModal}
         maxWidth="lg"
         fullWidth
+        TransitionComponent={Transition}
         sx={{
           "& .MuiDialog-paper": {
             margin: 0,
             width: "auto",
-            maxHeight: "90vh", // Ensures the dialog content doesn't exceed the screen height
+            maxHeight: "90vh",
           },
         }}
       >
@@ -278,7 +352,7 @@ export const Certificates = () => {
               top: 8,
               right: 8,
               color: "grey",
-              backgroundColor: "transparet",
+              backgroundColor: "transparent",
               border: "1px solid #D9D9D9",
             }}
           >
@@ -296,7 +370,7 @@ export const Certificates = () => {
                     minWidth: "40vh",
                   }}
                 >
-                  <CircularProgress color="secondary" />{" "}
+                  <CircularProgress color="secondary" />
                 </Box>
               )}
               <Box
@@ -304,13 +378,13 @@ export const Certificates = () => {
                 src={selectedCertificate.image}
                 alt={selectedCertificate.title}
                 draggable={false}
-                onLoad={() => setLoading(false)} // Set loading to false when image is loaded
+                onLoad={() => setLoading(false)}
                 sx={{
                   display: loading ? "none" : "block",
                   minWidth: "40vh",
-                  minHeight: { xs: "30vh", lg: "80vh" }, // Ensures the image itself doesn't exceed a reasonable height
-                  objectFit: "contain", // Maintains aspect ratio without clipping
-                  margin: "0 auto", // Center the image
+                  minHeight: { xs: "30vh", lg: "80vh" },
+                  objectFit: "contain",
+                  margin: "0 auto",
                 }}
               />
             </>

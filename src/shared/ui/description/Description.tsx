@@ -4,7 +4,6 @@ export const Description = ({ title, description }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
-    
     <Box
       sx={{
         px: { xs: 2, sm: 4, md: 12 },
@@ -26,7 +25,7 @@ export const Description = ({ title, description }) => {
           textTransform: "uppercase",
           textAlign: "start",
           fontSize: { xs: "24px", sm: "64px", md: "92px" },
-          fontWeight: 400,
+          fontWeight: isMobile ? 400 : 500,
           lineHeight: 1,
           color: "white",
         }}

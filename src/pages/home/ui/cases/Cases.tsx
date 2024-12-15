@@ -138,13 +138,14 @@ export const Cases = ({ mode = "default" }) => {
           variant="h2"
           component="h1"
           sx={{
+            width: "100%",
             fontWeight: 500,
             color: isCasePage ? "#fff" : "#000",
             lineHeight: "80px",
             fontStyle: "normal",
             textTransform: "uppercase",
             fontSize: isMobile
-              ? "28px"
+              ? "24px"
               : isTablet
                 ? "36px"
                 : isDesktop
