@@ -158,7 +158,6 @@ export const Cases = () => {
                 width: isMobile ? "100%" : "auto",
                 textAlign: "left",
                 lineHeight: 1,
-                
               }}
             >
               {t("ourCases.title1")}
@@ -184,7 +183,7 @@ export const Cases = () => {
                     width: "130px",
                     fontSize: "14px",
                     height: "40px",
-                    backgroundColor: "#fff",
+                    backgroundColor: "#000",
                   }}
                 />
               ) : (
@@ -210,7 +209,7 @@ export const Cases = () => {
               )}
             </Box>
           </Box>
-  
+
           <Box
             sx={{
               display: "grid",
