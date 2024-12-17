@@ -222,34 +222,53 @@ export const HomeHeader = () => {
         </Box>
 
         {/* Text Section */}
-        <CustomContainer>
+        <Box
+          sx={{
+            width: 1,
+            color: "#000",
+            display: "flex",
+            flexDirection: isXl ? "column" : "row",
+            alignItems: "center",
+            justifyContent: isXl ? "center" : "space-between",
+            textAlign: isXl ? "center" : "left",
+            margin: {
+              xs: "20px 0 50px 0",
+              sm: "30px 0 70px 0",
+              md: "40px 0 100px 0",
+              lg: "50px 0 120px 0",
+              xl: "52px 0 118px 0",
+            },
+            px: {
+              xs: "18px",
+              sm: "30px",
+              md: "120px",
+              lg: "220px",
+            },
+          }}
+        >
+          {/* Agency Text */}
           <Box
             sx={{
-              color: "#000",
-              display: "flex",
-              flexDirection: isXl ? "column" : "row",
-              alignItems: "center",
-              justifyContent: isXl ? "center" : "space-between",
-              textAlign: isXl ? "center" : "left",
-              margin: {
-                xs: "20px 0 50px 0",
-                sm: "30px 0 70px 0",
-                md: "40px 0 100px 0",
-                lg: "50px 0 120px 0",
-                xl: "52px 0 118px 0",
+              display: {
+                xs: "none",
+                sm: "none",
+                md: "block",
               },
             }}
           >
-            {/* Agency Text */}
-            <Box
-              sx={{
-                display: {
-                  xs: "none",
-                  sm: "none",
-                  md: "block", 
-                },
-              }}
+            <Typography
+              variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
+              component="h1"
+              fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
+              fontWeight={500}
+              mb={2}
+              sx={{ textTransform: "uppercase" }}
             >
+              {isXl
+                ? t("hero.leadingMarketingAgency")
+                : t("hero.leadingMarketingAgency1")}
+            </Typography>
+            {!isXl && (
               <Typography
                 variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
                 component="h1"
@@ -258,45 +277,31 @@ export const HomeHeader = () => {
                 mb={2}
                 sx={{ textTransform: "uppercase" }}
               >
-                {isXl
-                  ? t("hero.leadingMarketingAgency")
-                  : t("hero.leadingMarketingAgency1")}
+                {t("hero.leadingMarketingAgency2")}
               </Typography>
-              {!isXl && (
-                <Typography
-                  variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
-                  component="h1"
-                  fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
-                  fontWeight={500}
-                  mb={2}
-                  sx={{ textTransform: "uppercase" }}
-                >
-                  {t("hero.leadingMarketingAgency2")}
-                </Typography>
-              )}
-            </Box>
-
-            {/* Description Text */}
-            <Box
-              sx={{
-                maxWidth: isXl ? "700px" : "500px",
-                fontSize: "22px",
-                fontWeight: 400,
-              }}
-            >
-              <Typography textAlign={{ xs: "left", xl: "center" }} mb={2}>
-                {t("hero.agencyDescription")}
-              </Typography>
-              <Typography
-                maxWidth={"500px"}
-                mx={"auto"}
-                textAlign={{ xs: "left", xl: "center" }}
-              >
-                {t("hero.teamHelpBusinessGrow")}
-              </Typography>
-            </Box>
+            )}
           </Box>
-        </CustomContainer>
+
+          {/* Description Text */}
+          <Box
+            sx={{
+              maxWidth: isXl ? "700px" : "500px",
+              fontSize: "22px",
+              fontWeight: 400,
+            }}
+          >
+            <Typography textAlign={{ xs: "left", xl: "center" }} mb={2}>
+              {t("hero.agencyDescription")}
+            </Typography>
+            <Typography
+              maxWidth={"500px"}
+              mx={"auto"}
+              textAlign={{ xs: "left", xl: "center" }}
+            >
+              {t("hero.teamHelpBusinessGrow")}
+            </Typography>
+          </Box>
+        </Box>
       </Box>
     </Box>
   );
