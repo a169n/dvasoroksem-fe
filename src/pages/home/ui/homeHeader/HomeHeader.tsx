@@ -24,7 +24,6 @@ import icon5 from "@assets/icons/icon5.svg";
 import icon6 from "@assets/icons/icon6.svg";
 import icon7 from "@assets/icons/icon7.svg";
 import icon8 from "@assets/icons/icon8.svg";
-import { CustomContainer } from "@shared/ui/container";
 
 const loadShowreel = async () => {
   if (!showreelSrc) {
