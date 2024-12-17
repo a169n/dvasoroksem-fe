@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "start": "vite",
-    "build": "set NODE_OPTIONS=--max_old_space_size=4096 && tsc -b && vite build",
-    "lint": "eslint . --fix"
+    "build": "tsc -b && vite build",
+    "lint": "eslint . --fix",
+    "prebuild": "npm cache clean --force"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
