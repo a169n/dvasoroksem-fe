@@ -6,10 +6,12 @@ export const ServiceContent = ({ title, items }) => (
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
+      py: 2,
     }}
   >
     <Typography
       component={"h3"}
+      textTransform={"uppercase"}
       sx={{
         color: "#BFBFBF",
         fontSize: "46px",
@@ -29,7 +31,7 @@ export const ServiceContent = ({ title, items }) => (
         key={index}
         sx={{
           textAlign: "left",
-          fontSize: "22px",
+          fontSize: "19px",
           fontStyle: "normal",
           fontWeight: 400,
           lineHeight: "150%",
