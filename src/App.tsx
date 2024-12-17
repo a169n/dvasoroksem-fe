@@ -14,7 +14,7 @@ import { queryClient } from "@shared/api/queryClient";
 import { router } from "./router";
 import "./i18n";
 import theme from "./theme";
-import { LayoutProvider } from './context/LayoutContext';
+import { LayoutProvider } from "./context/LayoutContext";
 
 export const App: React.FC = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -38,7 +38,7 @@ export const App: React.FC = () => {
       currentX = lerp(currentX, mouseX, 0.1) - 1.5;
       currentY = lerp(currentY, mouseY, 0.1) - 1;
 
-      cursor.style.transform = `translate(${currentX}px, ${currentY}px)`;
+      cursor.style.transform = `translate(${currentX / 0.8}px, ${currentY / 0.8}px)`;
       requestAnimationFrame(updateCursor);
     };
 
@@ -81,7 +81,12 @@ export const App: React.FC = () => {
           <LayoutProvider>
             <Suspense
               fallback={
-                <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+                <Box
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  height="100vh"
+                >
                   <CircularProgress size={40} color="secondary" />
                 </Box>
               }
