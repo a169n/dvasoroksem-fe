@@ -3,11 +3,11 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { ServiceContent } from "./ServiceContent";
 
 // Import images directly
-import SMM_service from "@assets/serviceImages/main_SMM.webp";
-import Marketing_service from "@assets/serviceImages/main_marketing.webp";
-import Production_service2 from "@assets/serviceImages/main_production.webp";
-import Strategies_service from "@assets/serviceImages/main_strategy.webp";
-import IT_service from "@assets/serviceImages/main_IT.webp";
+import SMM_service from "@assets/serviceImages/main_SMM.svg";
+import Marketing_service from "@assets/serviceImages/main_marketing.svg";
+import Production_service2 from "@assets/serviceImages/main_production.svg";
+import Strategies_service from "@assets/serviceImages/main_strategy.svg";
+import IT_service from "@assets/serviceImages/main_IT.svg";
 
 // Mapping for images
 const imageMap = {
