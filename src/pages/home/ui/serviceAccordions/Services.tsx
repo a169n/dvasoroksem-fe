@@ -65,7 +65,7 @@ export const Services = () => {
       objectPosition: "left",
     },
     {
-      title: "Производство",
+      title: "Production",
       imageKey: "Production_service2",
       items: [
         "Съемочная продукция",

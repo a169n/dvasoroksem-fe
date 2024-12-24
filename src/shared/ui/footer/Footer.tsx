@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import footer1 from "@assets/footer1.svg";
 import footer2 from "@assets/footer2.svg";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { ContactLinks } from "./ui";
@@ -59,16 +58,7 @@ export const Footer = () => {
             >
               {t("footer.contacts")}
             </Typography>
-            <Typography
-              sx={{
-                mb: 4,
-                textAlign: "left",
-                color: "#8a8a8a",
-                fontSize: { xs: "16px", sm: "18px", md: "inherit" },
-              }}
-            >
-              {t("footer.ceoDvasoroksem")}
-            </Typography>
+            
           </Box>
 
           <ContactLinks />
@@ -83,47 +73,7 @@ export const Footer = () => {
             justifyContent: "flex-end",
           }}
         >
-          <Typography
-            sx={{
-              textAlign: { xs: "left", md: "right" },
-              alignContent: "end",
-              color: "#fff",
-              maxWidth: { xs: "100%", md: "20%" },
-              textTransform: "uppercase",
-              fontSize: { xs: "20px", sm: "22px", md: "24px" },
-              width: "100%",
-              order: { xs: 2, md: 1 },
-              whiteSpace: "nowrap",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: { xs: "flex-start", md: "flex-end" },
-                width: "100%",
-                position: "relative",
-              }}
-            >
-              <Box
-                sx={{
-                  position: { xs: "absolute", md: "relative" },
-                  top: { xs: "-40px", md: 0 },
-                  right: { xs: "40px", md: 0 },
-                }}
-              >
-                {t("footer.ceoName")}
-              </Box>
-              <ArrowForwardIosIcon
-                sx={{
-                  width: "15px",
-                  height: "15px",
-                  ml: 1,
-                  display: { xs: "none", md: "block" },
-                }}
-              />
-            </Box>
-          </Typography>
+         
 
           <Box
             sx={{
@@ -134,18 +84,7 @@ export const Footer = () => {
               justifyContent: { xs: "flex-start", md: "" },
             }}
           >
-            <Box
-              component="img"
-              src={footer1}
-              alt="First Image"
-              draggable={false}
-              sx={{
-                width: { xs: "300px", md: "auto" },
-                height: { xs: "300px", md: "auto" },
-                maxHeight: { xs: "500px", md: "none" },
-                objectFit: "cover",
-              }}
-            />
+            
             <Box
               component="img"
               src={footer2}
