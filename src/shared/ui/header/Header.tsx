@@ -159,7 +159,7 @@ export const Header = () => {
         ? "transparent"
         : isHeaderVisible && !isMobile
           ? "white"
-          : isHeaderVisible && isMobile && isRootPath
+          : isHeaderVisible && isMobile
             ? "white"
             : "transparent",
     backdropFilter: isHeaderVisible
