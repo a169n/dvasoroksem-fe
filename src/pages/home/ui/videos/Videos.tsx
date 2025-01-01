@@ -21,6 +21,7 @@ import QCSVideoPreview from "@assets/videos/QCSPreview.webp";
 import NovaTravelVideo from "@assets/videos/NovaTravel.MP4";
 import NovaTravelPreview from "@assets/videos/NovaTravelPreview.webp";
 import ASGPreview from "@assets/videos/ASGPreview.webp";
+import { useTranslation } from "react-i18next";
 
 const VideoPlaceholder = () => (
   <Box
@@ -137,26 +138,27 @@ export const Videos = () => {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [activeVideo, setActiveVideo] = useState(null);
+  const { t } = useTranslation();
 
   const videoData = [
     {
       url: BauerVideo,
-      title: "Видеоотзыв от партнера Bauer",
+      title: t("videos.bauerPartnerReview"),
       preview: BauerVideoPreview,
     },
     {
       url: QCSVideo,
-      title: "Видеоотзыв от партнера QCS",
+      title: t("videos.qcsPartnerReview"),
       preview: QCSVideoPreview,
     },
     {
       url: NovaTravelVideo,
-      title: "Видеоотзыв от партнера Nova",
+      title: t("videos.novaPartnerReview"),
       preview: NovaTravelPreview,
     },
     {
       url: QCSVideo,
-      title: "Видеоотзыв от партнера ASG",
+      title: t("videos.asgPartnerReview"),
       preview: ASGPreview,
     },
   ];
