@@ -34,7 +34,10 @@ import QCSStories3 from "@assets/videos/qcs/qcs_stories_3.mov";
 import QCSStories4 from "@assets/videos/qcs/qcs_stories_4.mov";
 import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
 import { useLayoutContext } from "@src/context/LayoutContext";
+import { useTranslation } from "react-i18next";
+
 export const QCS = () => {
+  const { t } = useTranslation();
   const { setMode } = useLayoutContext();
   useEffect(() => {
     setMode("light");
@@ -63,8 +66,8 @@ export const QCS = () => {
         />
       </Box>
       <Description
-        title="лидер в области бортового питания"
-        description="QCS обеспечивает высочайшее качество услуг в авиационной отрасли, ежегодно обслуживая более 2 миллионов пассажиров. Мы занялись SEO-оптимизацией и узнаваемостью бренда, ведём Instagram QCS, где благодаря нашему контенту люди хотят работать в компании."
+        title={t("ourCases.qcs.pageSubtitle")}
+        description={t("ourCases.qcs.pageDescription")}
       />
       <VideoCarousel videos={videos} />
       <DoubleCarousel

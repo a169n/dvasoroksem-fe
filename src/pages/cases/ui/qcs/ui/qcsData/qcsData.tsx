@@ -2,10 +2,12 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import QcsDataImage1 from "@assets/casePages/qcs/qcsDataImage1.png";
 import QcsDataImage2 from "@assets/casePages/qcs/qcsDataImage2.png";
+import { useTranslation } from "react-i18next";
 
 export const QcsData = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { t } = useTranslation();
   return (
     <Box
       sx={{
@@ -36,7 +38,7 @@ export const QcsData = () => {
               lineHeight: " 76.95px",
             }}
           >
-            Активировали
+            {t("ourCases.qcs.data.activateAccount")}
           </Typography>
           <Typography
             sx={{
@@ -46,7 +48,7 @@ export const QcsData = () => {
               marginTop: isMobile ? "" : "10px",
             }}
           >
-            аккаунт
+            {t("ourCases.qcs.data.account")}
           </Typography>
         </Box>
         <Box>
@@ -57,7 +59,7 @@ export const QcsData = () => {
               textAlign: "start",
             }}
           >
-            Подняли сайт в поисковой выдаче Google
+            {t("ourCases.qcs.data.googleResults")}
           </Typography>
           <Typography
             sx={{
@@ -70,7 +72,7 @@ export const QcsData = () => {
               lineHeight: " 76.95px",
             }}
           >
-            с 34-го на 1-е место
+            {t("ourCases.qcs.data.rankChange")}
           </Typography>
           <Typography
             sx={{
@@ -80,7 +82,7 @@ export const QcsData = () => {
               marginTop: isMobile ? "" : "10px",
             }}
           >
-            Растущая вовлеченность
+            {t("ourCases.qcs.data.growingEngagement")}
           </Typography>
         </Box>
         <Box>
@@ -91,7 +93,7 @@ export const QcsData = () => {
               textAlign: "start",
             }}
           >
-            Заполнили карточки в
+            {t("ourCases.qcs.data.fillCards")}
           </Typography>
           <Typography
             sx={{
@@ -104,7 +106,7 @@ export const QcsData = () => {
               lineHeight: " 76.95px",
             }}
           >
-            2GIS, Google и Yandex
+            {t("ourCases.qcs.data.listServices")}
           </Typography>
           <Typography
             sx={{
@@ -114,7 +116,7 @@ export const QcsData = () => {
               marginTop: isMobile ? "" : "10px",
             }}
           >
-            отзывами и фотографиями
+            {t("ourCases.qcs.data.reviewsAndPhotos")}
           </Typography>
         </Box>
       </Box>

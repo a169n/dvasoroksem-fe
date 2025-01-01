@@ -116,9 +116,22 @@
       "title": "Help Others",
       "description": "Don't miss the chance to do good"
     },
+
     "qcs": {
       "title": "QCS",
-      "description": "A leader in the country in the field of onboard catering and catering services"
+      "description": "A leader in the country in the field of onboard catering and catering services",
+      "pageSubtitle": "Leader in Onboard Catering",
+      "pageDescription": "QCS provides the highest quality services in the aviation industry, serving more than 2 million passengers annually. We engaged in SEO optimization and brand recognition, managing QCS's Instagram where, thanks to our content, people want to work at the company.",
+      "data": {
+        "activateAccount": "Activated",
+        "account": "account",
+        "googleResults": "Raised site in Google search results",
+        "rankChange": "from 34th to 1st place",
+        "growingEngagement": "Growing engagement",
+        "fillCards": "Filled cards in",
+        "listServices": "2GIS, Google & Yandex",
+        "reviewsAndPhotos": "with reviews and photos"
+      }
     },
     "bauer": {
       "title": "Bauer",
@@ -157,6 +170,12 @@
     "text1": "⎻ we'll show everyone",
     "text2": "that your business is awesome",
     "buttonText": "I want to apply"
+  },
+  "videos": {
+    "bauerPartnerReview": "Partner Review from Bauer",
+    "qcsPartnerReview": "Partner Review from QCS",
+    "novaPartnerReview": "Partner Review from Nova",
+    "asgPartnerReview": "Partner Review from ASG"
   },
   "certificates": {
     "title": "Certificates",

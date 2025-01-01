@@ -52,11 +52,11 @@
       "chatbots": "Чат-боты",
       "webServices": "Веб-сервисы",
       "webApplications": "Веб-приложения",
-      "seoOptimization": "СЕО-оптимизация"
+      "seoOptimization": "SEO-оптимизация"
     },
     "production": {
-      "title": "Продакшн",
-      "shootingProduction": "Продюсирование съемок",
+      "title": "Production",
+      "shootingProduction": "Съемочная продукция",
       "commercials": "Рекламные ролики, TVC, TLC",
       "imageCommercials": "Имиджевые ролики",
       "photoProduction": "Фотопродакшн"
@@ -118,7 +118,19 @@
     },
     "qcs": {
       "title": "QCS",
-      "description": "Лидер в стране в области бортового питания и кейтеринга"
+      "description": "Лидер в стране в области бортового питания и обслуживания общественного питания",
+      "pageSubtitle": "Лидер в области бортового питания",
+      "pageDescription": "QCS обеспечивает высочайшее качество услуг в авиационной отрасли, ежегодно обслуживая более 2 миллионов пассажиров. Мы занялись SEO-оптимизацией и узнаваемостью бренда, ведём Instagram QCS, где благодаря нашему контенту люди хотят работать в компании.",
+      "data": {
+        "activateAccount": "Активировали",
+        "account": "аккаунт",
+        "googleResults": "Подняли сайт в поисковой выдаче Google",
+        "rankChange": "с 34-го на 1-е место",
+        "growingEngagement": "Растущая вовлеченность",
+        "fillCards": "Заполнили карточки в",
+        "listServices": "2GIS, Google и Yandex",
+        "reviewsAndPhotos": "отзывами и фотографиями"
+      }
     },
     "bauer": {
       "title": "Bauer",
@@ -157,6 +169,12 @@
     "text1": "⎻ покажем всем",
     "text2": "что ваш бизнес классный",
     "buttonText": "Я хочу оставить заявку"
+  },
+  "videos": {
+    "bauerPartnerReview": "Видеоотзыв от партнера Bauer",
+    "qcsPartnerReview": "Видеоотзыв от партнера QCS",
+    "novaPartnerReview": "Видеоотзыв от партнера Nova",
+    "asgPartnerReview": "Видеоотзыв от партнера ASG"
   },
   "certificates": {
     "title": "Сертификаты",

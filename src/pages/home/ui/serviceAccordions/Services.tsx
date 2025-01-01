@@ -1,77 +1,79 @@
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { ServiceCard } from "./ServiceCard";
 import { CustomContainer } from "@shared/ui/container";
+import { useTranslation } from "react-i18next";
 
 export const Services = () => {
   const theme = useTheme();
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("md"));
+  const { t } = useTranslation();
 
   const servicesData = [
     {
-      title: "SMM",
+      title: t("services.smm.title"),
       imageKey: "SMM_service",
       items: [
-        "Ведение социальных сетей",
-        "Таргетированная реклама в Facebook",
-        "Таргетированная реклама в Instagram",
-        "Таргетированная реклама в TikTok",
-        "Цифровизация контента",
+        t("services.smm.socialMediaManagement"),
+        t("services.smm.facebookAds"),
+        t("services.smm.instagramAds"),
+        t("services.smm.tiktokAds"),
+        t("services.smm.contentDigitization"),
       ],
       imageSize: { width: "283px", height: "250px" },
       layout: "default",
       objectPosition: "left",
     },
     {
-      title: "Маркетинг",
+      title: t("services.marketing.title"),
       imageKey: "Marketing_service",
       items: [
-        "Внедрение воронок продаж и CRM систем",
-        "Контекстная реклама в Google, Yandex",
-        "Ведение карт Google, Yandex, 2GIS",
-        "PR-кампании",
-        "Influence-кампании",
-        "Офлайн маркетинг",
-        "AI продажник",
+        t("services.marketing.salesFunnelsAndCrm"),
+        t("services.marketing.contextualAds"),
+        t("services.marketing.googleYandex2gisMaps"),
+        t("services.marketing.prCampaigns"),
+        t("services.marketing.influenceCampaigns"),
+        t("services.marketing.offlineMarketing"),
+        t("services.marketing.aiSalesperson"),
       ],
       imageSize: { width: "100%", height: "224px" },
       layout: "vertical",
       objectPosition: "center",
     },
     {
-      title: "Стратегии",
+      title: t("services.researchAndStrategies.title"),
       imageKey: "Strategies_service",
       items: [
-        "Маркетинговые стратегии",
-        "SMM-стратегии",
-        "Исследования и аудит",
-        "Специальные проекты",
+        t("services.researchAndStrategies.marketingStrategies"),
+        t("services.researchAndStrategies.smmStrategies"),
+        t("services.researchAndStrategies.researchAndAudit"),
+        t("services.researchAndStrategies.specialProjects"),
       ],
       imageSize: { width: "190px", height: "204px" },
       layout: "default",
       objectPosition: "right",
     },
     {
-      title: "IT",
+      title: t("services.it.title"),
       imageKey: "IT_service",
       items: [
-        "Разработка сайтов",
-        "Чат-боты",
-        "Веб-сервисы",
-        "Веб-приложения",
-        "SEO-оптимизация",
+        t("services.it.websiteDevelopment"),
+        t("services.it.chatbots"),
+        t("services.it.webServices"),
+        t("services.it.webApplications"),
+        t("services.it.seoOptimization"),
       ],
       imageSize: { width: "283px", height: "240px" },
       layout: "default",
       objectPosition: "left",
     },
     {
-      title: "Production",
+      title: t("services.production.title"),
       imageKey: "Production_service2",
       items: [
-        "Съемочная продукция",
-        "Рекламные ролики, TVC, TLC",
-        "Имиджевые ролики",
-        "Фотопродакшн",
+        t("services.production.shootingProduction"),
+        t("services.production.commercials"),
+        t("services.production.imageCommercials"),
+        t("services.production.photoProduction"),
       ],
       imageSize: { width: "283px", height: "204px" },
       layout: "default",
