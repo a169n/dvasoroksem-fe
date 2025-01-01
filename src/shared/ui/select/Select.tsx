@@ -1,12 +1,16 @@
 import { Select, MenuItem, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-
 export const MySelect = ({ value, onChange, options, sx, mode }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isDarkMode = mode === "dark";
   const isLightMode = mode === "light";
   const isDefaultMode = mode === "default";
+
+  // Adjust the transform to compensate for the zoom on the page
+  const zoomFactor = 0.8; // Corresponds to `zoom: 0.8` in the CSS
+  const scaleFactor = 1 / zoomFactor; // To counteract the zoom effect
+
   return (
     <Select
       disableUnderline
@@ -72,6 +76,8 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
       MenuProps={{
         PaperProps: {
           sx: {
+            marginTop: isMobile ? "60px" : "8px",
+            marginLeft: isMobile ? "0" : "13.5%",
             backgroundColor:
               isMobile && ["/cases"].includes(window.location.pathname)
                 ? "white"
