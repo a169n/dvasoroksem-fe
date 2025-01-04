@@ -2,9 +2,11 @@ import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import NomadDataImage1 from "@assets/casePages/nomad/nomadDataImage1.png";
 import NomadDataImage2 from "@assets/casePages/nomad/nomadDataImage2.png";
+import { useTranslation } from "react-i18next";
 
 export const NomadData = () => {
   const theme = useTheme();
+  const { t } = useTranslation();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Box
@@ -26,7 +28,7 @@ export const NomadData = () => {
             textAlign: "start",
           }}
         >
-          Создали аккаунт в TikTok, набрали
+          {t("ourCases.nomad.data.description1")}
         </Typography>
         <Typography
           sx={{
@@ -39,7 +41,7 @@ export const NomadData = () => {
             lineHeight: " 76.95px",
           }}
         >
-          16к с нуля
+          {t("ourCases.nomad.data.title1")}
         </Typography>
       </Box>
       <Box
@@ -54,7 +56,7 @@ export const NomadData = () => {
             textAlign: "start",
           }}
         >
-          Нашли подход к сфере и создали
+          {t("ourCases.nomad.data.description2_1")}
         </Typography>
         <Typography
           sx={{
@@ -67,7 +69,7 @@ export const NomadData = () => {
             lineHeight: " 76.95px",
           }}
         >
-          вирусный контент
+          {t("ourCases.nomad.data.title2")}
         </Typography>
         <Typography
           sx={{
@@ -76,10 +78,9 @@ export const NomadData = () => {
             textAlign: "start",
             marginTop: isMobile ? "" : "10px",
             marginBottom: isMobile ? "" : "100px",
-
           }}
         >
-          про автозаправки
+          {t("ourCases.nomad.data.description2_2")}
         </Typography>
       </Box>
       <Box
@@ -108,7 +109,6 @@ export const NomadData = () => {
           draggable: "false",
           top: isMobile ? "180px" : "380px",
           right: isMobile ? "50px" : "720px",
-
         }}
       />
     </Box>

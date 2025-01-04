@@ -207,7 +207,18 @@
     },
     "nomad": {
       "title": "Nomad",
-      "description": "The best start to your journey"
+      "description": "The best start to your journey",
+      "page": {
+        "title": "The best start to your journey",
+        "description": "Launched TikTok for Nomad, a leader in the gas station market in Kazakhstan, gaining 16 thousand followers from scratch. We found an approach to this specific field by creating viral content for drivers that sparked active discussions."
+      },
+      "data": {
+        "title1": "16k",
+        "description1": "Created a TikTok account and gained",
+        "description2_1": "Found an approach to the industry and created",
+        "title2": "Viral content",
+        "description2_2": "about gas stations"
+      }
     }
   },
   "apply": {
