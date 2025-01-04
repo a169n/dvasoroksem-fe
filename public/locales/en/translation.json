@@ -110,7 +110,12 @@
     },
     "soyle": {
       "title": "Soyle",
-      "description": "Kazakh for everyone"
+      "description": "Kazakh for everyone",
+      "youtubeButtonText": "Watch the video on YouTube",
+      "page": {
+        "title": "Kazakh Language for Everyone",
+        "description": "We created a series of videos for the SOYLE Kazakh language online school. Our task was to develop high-quality and engaging content with a well-thought-out script and high production standards. The YouTube lessons are designed for those who want to learn Kazakh, combining education and entertainment."
+      }
     },
     "helpOthers": {
       "title": "Help Others",
