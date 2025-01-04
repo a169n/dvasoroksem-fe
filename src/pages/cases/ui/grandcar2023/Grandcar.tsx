@@ -5,29 +5,32 @@ import { Description } from "@shared/ui/description";
 import { MovieStaff } from "@shared/ui/movie-staff";
 import { Cases } from "@pages/home/ui/cases";
 import { useEffect } from "react";
-import { useLayoutContext } from '@src/context/LayoutContext';
+import { useLayoutContext } from "@src/context/LayoutContext";
+import { useTranslation } from "react-i18next";
+
 export const Grandcar = () => {
   const { setMode } = useLayoutContext();
+  const { t } = useTranslation();
+
   useEffect(() => {
-    setMode('light');
+    setMode("light");
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <>
-      <Header/>
+      <Header />
       <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={Grandcar2023MainImage}
-          alt="grandcar 2023 main image"
+          alt={t("ourCases.grandcar2023.page.title")}
           style={{ width: "100%", height: "auto" }}
         />
       </Box>
       <Description
-        title="grandcar 2023"
-        description="Этот рекламный ролик был снят в детективном стиле, чтобы привлечь внимание клиентов и увлечь их атмосферой. Таким образом, мы хотели убить двух зайцев одним выстрелом: рассказать о преимуществах компании и увеличить глубину просмотра за счет необычной подачи.  Партнер остался доволен, мы надеемся, что вы тоже!"
+        title={t("ourCases.grandcar2023.page.title")}
+        description={t("ourCases.grandcar2023.page.description")}
       />
-
       <iframe
         width="100%"
         height="600px"
@@ -36,8 +39,7 @@ export const Grandcar = () => {
         allowFullScreen
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       ></iframe>
-
-      <MovieStaff link={"https://www.youtube.com/watch?v=7lswm-7f6To"} />
+      <MovieStaff link="https://www.youtube.com/watch?v=7lswm-7f6To" />
       <Cases mode="case-page" />
     </>
   );

@@ -172,7 +172,12 @@
     },
     "grandcar2023": {
       "title": "GrandCar 2022",
-      "description": "Advertising video in a detective style"
+      "description": "Advertising video in a detective style",
+      "youtubeButtonText": "Смотреть видеоролик на YouTube",
+      "page": {
+        "title": "grandcar 2023",
+        "description": "This commercial was shot in a detective style to attract the clients' attention and captivate them with the atmosphere. Thus, we wanted to kill two birds with one stone: to tell about the advantages of the company and to increase the depth of viewing through an unusual presentation.  The partner was satisfied, we hope you are too!"
+      }
     },
     "everest": {
       "title": "Everest",
