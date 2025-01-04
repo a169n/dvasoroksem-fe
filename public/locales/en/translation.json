@@ -155,7 +155,20 @@
     },
     "grandcar2022": {
       "title": "GrandCar 2022",
-      "description": "Image video"
+      "description": "Image video",
+      "youtubeButtonText": "Watch the video on YouTube",
+      "page": {
+        "title": "GrandCar 2022",
+        "description": "A presentation video about a company that buys cars at auctions in the USA and delivers them to clients anywhere in the world. In this video, we aimed to showcase their advantages over competitors and leave a positive impression on clients."
+      },
+      "info": {
+        "producer": "Producer - Galymzhan Aktaev",
+        "director": "Director - Nurbolat Kulumkanov",
+        "dop": "Director of Photography - Tosha Rabatov",
+        "soundOperator": "Sound Operator - Erkebulan Turganov",
+        "solutions": "Location and lighting rental - Light Solutions",
+        "montage": "Editing - Nurbolat Kulumkanov and Galymzhan Aktaev"
+      }
     },
     "grandcar2023": {
       "title": "GrandCar 2022",

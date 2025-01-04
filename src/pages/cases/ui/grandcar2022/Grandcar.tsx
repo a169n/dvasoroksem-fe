@@ -5,29 +5,31 @@ import { Description } from "@shared/ui/description";
 import { MovieStaff } from "@shared/ui/movie-staff";
 import { Cases } from "@pages/home/ui/cases";
 import { useEffect } from "react";
-import { useLayoutContext } from '@src/context/LayoutContext'; 
+import { useLayoutContext } from "@src/context/LayoutContext";
+import { useTranslation } from "react-i18next";
 
 export const Grandcar = () => {
   const { setMode } = useLayoutContext();
+  const { t } = useTranslation();
 
   useEffect(() => {
-    setMode('dark');
+    setMode("dark");
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <>
-      <Header/>
+      <Header />
       <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={Grandcar2022MainImage}
-          alt="grandcar 2022 main image"
+          alt={t("ourCases.grandcar2022.page.title")}
           style={{ width: "100%", height: "auto" }}
         />
       </Box>
       <Description
-        title="grandcar 2022"
-        description="Презентационный ролик о компании, которая покупает автомобили на аукционах в США и доставляет их клиенту в любую точку мира. В этом видео мы постарались раскрыть их преимущества перед конкурентами и оставить приятное впечатление у клиентов."
+        title={t("ourCases.grandcar2022.page.title")}
+        description={t("ourCases.grandcar2022.page.description")}
       />
       <iframe
         width="100%"
@@ -37,7 +39,7 @@ export const Grandcar = () => {
         allowFullScreen
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       ></iframe>
-      <MovieStaff link={"https://www.youtube.com/watch?v=o5gU091WEKs"} />
+      <MovieStaff link="https://www.youtube.com/watch?v=o5gU091WEKs" />
       <Cases mode="case-page" />
     </>
   );
