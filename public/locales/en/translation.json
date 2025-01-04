@@ -106,7 +106,15 @@
     },
     "coffeeBoom": {
       "title": "Coffee BOOM",
-      "description": "A place where friendships are made"
+      "description": "A place where friends are made",
+      "page": {
+        "title": "A place where friends are made",
+        "description": "We launched TikTok for the coffee shop chain Coffee BOOM. Thanks to a well-thought-out and relevant content strategy, we gained 50 thousand followers from scratch."
+      },
+      "data": {
+        "title1": "50k from scratch",
+        "description1": "Created a TikTok account and gained"
+      }
     },
     "soyle": {
       "title": "Soyle",
