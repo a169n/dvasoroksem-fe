@@ -19,18 +19,21 @@ import helpOptherVideo1 from "@assets/videos/helpOthers/pomogy_drugomu_video_1.m
 import helpOptherVideo2 from "@assets/videos/helpOthers/pomogy_drugomu_video_2.mp4";
 import helpOptherVideo3 from "@assets/videos/helpOthers/pomogy_drugomu_video_3.mp4";
 import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
-import { useLayoutContext } from '@src/context/LayoutContext';
+import { useLayoutContext } from "@src/context/LayoutContext";
+import { useTranslation } from "react-i18next";
+
 export const HelpOthers = () => {
   const { setMode } = useLayoutContext();
+  const { t } = useTranslation();
   useEffect(() => {
-    setMode('dark');
+    setMode("dark");
     window.scrollTo(0, 0);
   }, []);
 
   const videos = [helpOptherVideo1, helpOptherVideo2, helpOptherVideo3];
   return (
     <>
-      <Header/>
+      <Header />
       <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={HelpOtherMainImage}
@@ -39,8 +42,8 @@ export const HelpOthers = () => {
         />
       </Box>
       <Description
-        title="не упускайте случая делать добро"
-        description="Помоги Другому — благотворительная организация. Мы с радостью поддерживаем общественный фонд финансово, помогаем вести их страницу в Instagram, наша команда каждые выходные выезжает в приюты и дома престарелых."
+        title={t("ourCases.helpOthers.page.title")}
+        description={t("ourCases.helpOthers.page.description")}
       />
       <VideoCarousel videos={videos} />
       <Box
@@ -75,7 +78,7 @@ export const HelpOthers = () => {
           }
           endIcon={<InstagramIcon />}
         >
-          Смотреть в Instagram
+          {t("ourCases.helpOthers.instagramButtonText")}
         </MyButton>
       </Box>
 

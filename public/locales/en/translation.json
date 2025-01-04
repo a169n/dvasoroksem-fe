@@ -114,9 +114,13 @@
     },
     "helpOthers": {
       "title": "Help Others",
-      "description": "Don't miss the chance to do good"
+      "description": "Don't miss the chance to do good",
+      "instagramButtonText": "View on Instagram",
+      "page": {
+        "title": "Don't miss the chance to do good",
+        "description": "Help Another is a charitable organization. We are happy to support the public fund financially, help manage their Instagram page, and our team visits shelters and nursing homes every weekend."
+      }
     },
-
     "qcs": {
       "title": "QCS",
       "description": "A leader in the field of onboard catering and catering services",
