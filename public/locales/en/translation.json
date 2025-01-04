@@ -5,11 +5,11 @@
   },
   "navigation": {
     "weAreDvaSorokSem": "We are dvasoroksem.",
-    "ourCases": "Our Cases",
-    "aboutUs": "About Us",
-    "contacts": "Contact Us",
+    "ourCases": "Cases",
+    "aboutUs": "About",
+    "contacts": "Contact",
     "reviews": "Reviews",
-    "request": "I want to leave a request",
+    "request": "Leave a request",
     "main": "Main"
   },
   "hero": {
@@ -119,7 +119,7 @@
 
     "qcs": {
       "title": "QCS",
-      "description": "A leader in the country in the field of onboard catering and catering services",
+      "description": "A leader in the field of onboard catering and catering services",
       "pageSubtitle": "Leader in Onboard Catering",
       "pageDescription": "QCS provides the highest quality services in the aviation industry, serving more than 2 million passengers annually. We engaged in SEO optimization and brand recognition, managing QCS's Instagram where, thanks to our content, people want to work at the company.",
       "data": {
@@ -159,7 +159,24 @@
     },
     "everest": {
       "title": "Everest",
-      "description": "Higher with us"
+      "description": "Higher with us",
+      "page": {
+        "title": "Up with us",
+        "description": "We manage the Instagram of Everest, a professional volleyball club in Astana. Our approach to content is aimed at teenagers: we create posts with anime, Challenges and coaches, engaging young people in sports and volleyball. We help the club to inspire a new generation of athletes."
+      },
+      "data": {
+        "title1": "50,000+",
+        "description1": "real followers on Instagram",
+        "title2": "Consistent",
+        "description2": "sales",
+        "title3": "144,000+",
+        "description3": "followers on TikTok",
+        "description4_1": "Constantly appearing",
+        "title4": "In Reels",
+        "description4_2": "on Instagram and TikTok",
+        "title5": "Content",
+        "description5": "Engaging and in demand"
+      }
     },
     "nomad": {
       "title": "Nomad",
@@ -167,8 +184,8 @@
     }
   },
   "apply": {
-    "text1": "⎻ we'll show everyone",
-    "text2": "that your business is awesome",
+    "text1": "⎻ showcasing your",
+    "text2": "awesome business now",
     "buttonText": "I want to apply"
   },
   "videos": {

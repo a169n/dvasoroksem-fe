@@ -3,8 +3,11 @@ import { useTheme } from "@mui/material/styles";
 import everestDataImage1 from "@assets/casePages/everest/everestDataImage1.png";
 import everestDataImage2 from "@assets/casePages/everest/everestDataImage2.png";
 import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+
 export const EverestData = () => {
   const theme = useTheme();
+  const { t } = useTranslation();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,7 +40,7 @@ export const EverestData = () => {
               lineHeight: " 76.95px",
             }}
           >
-            50 000+
+            {t("ourCases.everest.data.title1")}
           </Typography>
           <Typography
             sx={{
@@ -48,7 +51,7 @@ export const EverestData = () => {
               marginBottom: { xs: "40px", sm: "" },
             }}
           >
-            живых подписчиков в Instagram
+            {t("ourCases.everest.data.description1")}
           </Typography>
         </Box>
         <Box>
@@ -61,7 +64,7 @@ export const EverestData = () => {
               lineHeight: " 76.95px",
             }}
           >
-            стабильные
+            {t("ourCases.everest.data.title2")}
           </Typography>
           <Typography
             sx={{
@@ -72,7 +75,7 @@ export const EverestData = () => {
               marginBottom: { xs: "40px", sm: "" },
             }}
           >
-            продажи
+            {t("ourCases.everest.data.description2")}
           </Typography>
         </Box>
         <Box>
@@ -85,7 +88,7 @@ export const EverestData = () => {
               lineHeight: " 76.95px",
             }}
           >
-            144 000+
+            {t("ourCases.everest.data.title3")}
           </Typography>
           <Typography
             sx={{
@@ -96,7 +99,7 @@ export const EverestData = () => {
               marginBottom: { xs: "40px", sm: "" },
             }}
           >
-            подписчиков в TikTok
+            {t("ourCases.everest.data.description3")}
           </Typography>
         </Box>
       </Box>
@@ -130,7 +133,7 @@ export const EverestData = () => {
               textAlign: "start",
             }}
           >
-            Постоянное попадание
+            {t("ourCases.everest.data.description4_1")}
           </Typography>
           <Typography
             sx={{
@@ -141,7 +144,7 @@ export const EverestData = () => {
               lineHeight: " 76.95px",
             }}
           >
-            в реки
+            {t("ourCases.everest.data.title4")}
           </Typography>
           <Typography
             sx={{
@@ -152,7 +155,7 @@ export const EverestData = () => {
               marginBottom: { xs: "40px", sm: "" },
             }}
           >
-            в Instagram и TikTok
+            {t("ourCases.everest.data.description4_2")}
           </Typography>
         </Box>
         <Box>
@@ -165,7 +168,7 @@ export const EverestData = () => {
               lineHeight: " 76.95px",
             }}
           >
-            контент
+            {t("ourCases.everest.data.title5")}
           </Typography>
           <Typography
             sx={{
@@ -176,7 +179,7 @@ export const EverestData = () => {
               marginBottom: { xs: "40px", sm: "" },
             }}
           >
-            Живой и востребованный
+            {t("ourCases.everest.data.description5")}
           </Typography>
         </Box>
         <Box

@@ -158,7 +158,24 @@
     },
     "everest": {
       "title": "Everest",
-      "description": "Выше с нами"
+      "description": "Выше с нами",
+      "page": {
+        "title": "Выше с нами",
+        "description": "Для мирового бренда хоккейной экипировки Bauer в Казахстане мы ведём Instagram, создаём качественный контент, погружённый в хоккейный мир, разрабатываем печатную продукцию, баннеры и многое другое."
+      },
+      "data": {
+        "title1": "50 000+",
+        "description1": "живых подписчиков в Instagram",
+        "title2": "Стабильные",
+        "description2": "продажи",
+        "title3": "144 000+",
+        "description3": "подписчиков в TikTok",
+        "description4_1": "Постоянное попадание",
+        "title4": "В реки",
+        "description4_2": "в Instagram и TikTok",
+        "title5": "Контент",
+        "description5": "Живой и востребованный"
+      }
     },
     "nomad": {
       "title": "Nomad",

@@ -37,11 +37,14 @@ import everestStories1 from "@assets/videos/everest/everest_stories_1.mov";
 import everestStories2 from "@assets/videos/everest/everest_stories_2.mov";
 import everestStories3 from "@assets/videos/everest/everest_stories_3.mov";
 import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
-import { useLayoutContext } from '@src/context/LayoutContext'; 
+import { useLayoutContext } from "@src/context/LayoutContext";
+import { useTranslation } from "react-i18next";
+
 export const Everest = () => {
   const { setMode } = useLayoutContext();
+  const { t } = useTranslation();
   useEffect(() => {
-    setMode('dark');
+    setMode("dark");
     window.scrollTo(0, 0);
   }, []);
 
@@ -56,7 +59,7 @@ export const Everest = () => {
 
   return (
     <>
-      <Header/>
+      <Header />
       <Box sx={{ minHeight: { xs: "200px", md: "600px" } }}>
         <LazyLoadImage
           src={EverestMainImage}
@@ -66,8 +69,8 @@ export const Everest = () => {
         />
       </Box>
       <Description
-        title="выше с нами"
-        description="Ведем Instagram Everest’а — профессиональный волейбольный клуб в Астане. Наш подход к контенту нацелен на подростков: создаём посты с аниме, челленджами и тренерами, вовлекая молодёжь в спорт и волейбол. Помогаем клубу вдохновлять новое поколение спортсменов."
+        title={t("ourCases.everest.page.title")}
+        description={t("ourCases.everest.page.description")}
       />
       <VideoCarousel videos={videos} />
       <DoubleCarousel

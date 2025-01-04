@@ -158,7 +158,24 @@
     },
     "everest": {
       "title": "Everest",
-      "description": "Бізбен биікке"
+      "description": "Бізбен биікке",
+      "page": {
+        "title": "Бізбен биікке",
+        "description": "Bauer хоккей жабдығының әлемдік бренді үшін Қазақстанда біз Instagram жүргіземіз, хоккей әлеміне батырылған сапалы контент жасаймыз, баспа өнімдерін, баннерлерді және тағы басқаларды әзірлейміз."
+      },
+      "data": {
+        "title1": "50 000+",
+        "description1": "тірі жазылушылар Instagram-да",
+        "title2": "Тұрақты",
+        "description2": "сатылымдар",
+        "title3": "144 000+",
+        "description3": "жазылушылар TikTok-та",
+        "description4_1": "Үнемі шығып тұру",
+        "title4": "Reels-ке",
+        "description4_2": "Instagram және TikTok-та",
+        "title5": "Контент",
+        "description5": "Тірі және сұранысқа ие"
+      }
     },
     "nomad": {
       "title": "Nomad",
