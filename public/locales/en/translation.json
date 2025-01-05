@@ -5,11 +5,11 @@
   },
   "navigation": {
     "weAreDvaSorokSem": "We are dvasoroksem.",
-    "ourCases": "Our Cases",
-    "aboutUs": "About Us",
-    "contacts": "Contact Us",
+    "ourCases": "Cases",
+    "aboutUs": "About",
+    "contacts": "Contact",
     "reviews": "Reviews",
-    "request": "I want to leave a request",
+    "request": "Leave a request",
     "main": "Main"
   },
   "hero": {
@@ -106,20 +106,37 @@
     },
     "coffeeBoom": {
       "title": "Coffee BOOM",
-      "description": "A place where friendships are made"
+      "description": "A place where friends are made",
+      "page": {
+        "title": "A place where friends are made",
+        "description": "We launched TikTok for the coffee shop chain Coffee BOOM. Thanks to a well-thought-out and relevant content strategy, we gained 50 thousand followers from scratch."
+      },
+      "data": {
+        "title1": "50k from scratch",
+        "description1": "Created a TikTok account and gained"
+      }
     },
     "soyle": {
       "title": "Soyle",
-      "description": "Kazakh for everyone"
+      "description": "Kazakh for everyone",
+      "youtubeButtonText": "Watch the video on YouTube",
+      "page": {
+        "title": "Kazakh Language for Everyone",
+        "description": "We created a series of videos for the SOYLE Kazakh language online school. Our task was to develop high-quality and engaging content with a well-thought-out script and high production standards. The YouTube lessons are designed for those who want to learn Kazakh, combining education and entertainment."
+      }
     },
     "helpOthers": {
       "title": "Help Others",
-      "description": "Don't miss the chance to do good"
+      "description": "Don't miss the chance to do good",
+      "instagramButtonText": "View on Instagram",
+      "page": {
+        "title": "Don't miss the chance to do good",
+        "description": "Help Another is a charitable organization. We are happy to support the public fund financially, help manage their Instagram page, and our team visits shelters and nursing homes every weekend."
+      }
     },
-
     "qcs": {
       "title": "QCS",
-      "description": "A leader in the country in the field of onboard catering and catering services",
+      "description": "A leader in the field of onboard catering and catering services",
       "pageSubtitle": "Leader in Onboard Catering",
       "pageDescription": "QCS provides the highest quality services in the aviation industry, serving more than 2 million passengers annually. We engaged in SEO optimization and brand recognition, managing QCS's Instagram where, thanks to our content, people want to work at the company.",
       "data": {
@@ -151,24 +168,70 @@
     },
     "grandcar2022": {
       "title": "GrandCar 2022",
-      "description": "Image video"
+      "description": "Image video",
+      "youtubeButtonText": "Watch the video on YouTube",
+      "page": {
+        "title": "GrandCar 2022",
+        "description": "A presentation video about a company that buys cars at auctions in the USA and delivers them to clients anywhere in the world. In this video, we aimed to showcase their advantages over competitors and leave a positive impression on clients."
+      },
+      "info": {
+        "producer": "Producer - Galymzhan Aktaev",
+        "director": "Director - Nurbolat Kulumkanov",
+        "dop": "Director of Photography - Tosha Rabatov",
+        "soundOperator": "Sound Operator - Erkebulan Turganov",
+        "solutions": "Location and lighting rental - Light Solutions",
+        "montage": "Editing - Nurbolat Kulumkanov and Galymzhan Aktaev"
+      }
     },
     "grandcar2023": {
       "title": "GrandCar 2022",
-      "description": "Advertising video in a detective style"
+      "description": "Advertising video in a detective style",
+      "youtubeButtonText": "Смотреть видеоролик на YouTube",
+      "page": {
+        "title": "grandcar 2023",
+        "description": "This commercial was shot in a detective style to attract the clients' attention and captivate them with the atmosphere. Thus, we wanted to kill two birds with one stone: to tell about the advantages of the company and to increase the depth of viewing through an unusual presentation.  The partner was satisfied, we hope you are too!"
+      }
     },
     "everest": {
       "title": "Everest",
-      "description": "Higher with us"
+      "description": "Higher with us",
+      "page": {
+        "title": "Up with us",
+        "description": "We manage the Instagram of Everest, a professional volleyball club in Astana. Our approach to content is aimed at teenagers: we create posts with anime, Challenges and coaches, engaging young people in sports and volleyball. We help the club to inspire a new generation of athletes."
+      },
+      "data": {
+        "title1": "50,000+",
+        "description1": "real followers on Instagram",
+        "title2": "Consistent",
+        "description2": "sales",
+        "title3": "144,000+",
+        "description3": "followers on TikTok",
+        "description4_1": "Constantly appearing",
+        "title4": "In Reels",
+        "description4_2": "on Instagram and TikTok",
+        "title5": "Content",
+        "description5": "Engaging and in demand"
+      }
     },
     "nomad": {
       "title": "Nomad",
-      "description": "The best start to your journey"
+      "description": "The best start to your journey",
+      "page": {
+        "title": "The best start to your journey",
+        "description": "Launched TikTok for Nomad, a leader in the gas station market in Kazakhstan, gaining 16 thousand followers from scratch. We found an approach to this specific field by creating viral content for drivers that sparked active discussions."
+      },
+      "data": {
+        "title1": "16k",
+        "description1": "Created a TikTok account and gained",
+        "description2_1": "Found an approach to the industry and created",
+        "title2": "Viral content",
+        "description2_2": "about gas stations"
+      }
     }
   },
   "apply": {
-    "text1": "⎻ we'll show everyone",
-    "text2": "that your business is awesome",
+    "text1": "⎻ showcasing your",
+    "text2": "awesome business now",
     "buttonText": "I want to apply"
   },
   "videos": {

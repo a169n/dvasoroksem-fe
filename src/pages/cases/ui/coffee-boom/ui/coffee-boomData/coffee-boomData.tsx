@@ -1,8 +1,11 @@
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import coffeeBoomDataImage1 from "@assets/casePages/coffee-boom/coffeboomDataImage1.png";
+import { useTranslation } from "react-i18next";
+
 export const CoffeeBoomData = () => {
   const theme = useTheme();
+  const { t } = useTranslation();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   return (
     <Box
@@ -25,7 +28,7 @@ export const CoffeeBoomData = () => {
             textAlign: "center",
           }}
         >
-          Создали аккаунт в TikTok, набрали
+          {t("ourCases.coffeeBoom.data.description1")}
         </Typography>
         <Typography
           sx={{
@@ -39,7 +42,7 @@ export const CoffeeBoomData = () => {
             marginBottom: isMobile ? "20px" : "50px",
           }}
         >
-          50к с нуля
+          {t("ourCases.coffeeBoom.data.title1")}
         </Typography>
       </Box>
 

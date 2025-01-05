@@ -13,11 +13,14 @@ import nomadTiktok4 from "@assets/videos/nomad/nomad_tiktok_4.mp4";
 import nomadTiktok5 from "@assets/videos/nomad/nomad_tiktok_5.mp4";
 import nomadTiktok6 from "@assets/videos/nomad/nomad_tiktok_6.mp4";
 import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
-import { useLayoutContext } from '@src/context/LayoutContext'; 
+import { useLayoutContext } from "@src/context/LayoutContext";
+import { useTranslation } from "react-i18next";
+
 export const Nomad = () => {
   const { setMode } = useLayoutContext();
+  const { t } = useTranslation();
   useEffect(() => {
-    setMode('light');
+    setMode("light");
     window.scrollTo(0, 0);
   }, []);
 
@@ -32,7 +35,7 @@ export const Nomad = () => {
 
   return (
     <>
-      <Header/>
+      <Header />
       <Box sx={{ minHeight: { xs: "200px", md: "none" } }}>
         <img
           src={NomadMainPage}
@@ -41,8 +44,8 @@ export const Nomad = () => {
         />
       </Box>
       <Description
-        title="лучшее начало твоего пути"
-        description="Запустили TikTok для компании Nomad, лидера на рынке автозаправочных станций в Казахстане, с нуля набрав 16 тысяч подписчиков. Мы нашли подход к этой специфической сфере, создавая вирусный контент для водителей, который активно обсуждался."
+        title={t("ourCases.nomad.page.title")}
+        description={t("ourCases.nomad.page.description")}
       />
       <VideoCarousel videos={videos} />
       <NomadData />

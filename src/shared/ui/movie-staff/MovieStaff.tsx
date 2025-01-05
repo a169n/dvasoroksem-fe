@@ -1,12 +1,14 @@
 import { Box, Typography, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { MyButton } from "../button";
-import DirectorImage from "@assets/director.svg";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import YouTubeIcon from "@mui/icons-material/YouTube";
+import { useTranslation } from "react-i18next";
+
 export const MovieStaff = ({ link }) => {
   const theme = useTheme();
+  const { t } = useTranslation();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Box
       sx={{
@@ -42,7 +44,7 @@ export const MovieStaff = ({ link }) => {
           onClick={() => window.open(link, "_blank")}
           endIcon={<YouTubeIcon />}
         >
-          Смотреть видеоролик на YouTube
+          {t("ourCases.grandcar2022.youtubeButtonText")}
         </MyButton>
       </Box>
       <Box
@@ -52,69 +54,21 @@ export const MovieStaff = ({ link }) => {
           justifyContent: "flex-start",
         }}
       >
-        <Box
-          sx={{
-            display: isMobile ? "" : "flex",
-            width: isMobile ? "100%" : "30%",
-          }}
-        >
-          <Box
-            component="img"
-            src={DirectorImage}
-            alt="Director's Image"
-            sx={{
-              width: isMobile ? "100%" : "70%",
-              height: "auto",
-              maxHeight: { xs: "300px", md: "none" },
-              objectFit: "cover",
-            }}
-          />
-          <Typography
-            sx={{
-              color: "#fff",
-              writingMode: { xs: "horizontal-tb", md: "vertical-rl" },
-              alignContent: "end",
-              textTransform: "uppercase",
-              fontSize: { xs: "16px", sm: "18px" },
-              order: { xs: 3, md: 3 },
-              textAlign: { xs: "left", md: "right" },
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: { xs: "flex-start", md: "flex-start" },
-                marginBottom: { xs: 2, md: 0 },
-              }}
-            >
-              <ArrowForwardIosIcon
-                sx={{
-                  transform: { xs: "rotate(0deg)", md: "rotate(90deg)" },
-                  width: { xs: "15px", md: "3%" },
-                  height: { xs: "15px", md: "3%" },
-                  mr: { xs: 1, md: 0 },
-                }}
-              />
-              директор production-отдела
-            </Box>
-          </Typography>
-        </Box>
         <Box sx={{ width: isMobile ? "100%" : "30%" }}>
           <Typography sx={{ color: "#fff", textAlign: "start" }}>
-            Продюсер - Галымжан Актаев
+            {t("ourCases.grandcar2022.info.producer")}
           </Typography>
           <Typography sx={{ color: "#fff", textAlign: "start" }}>
-            Режиссер - Галымжан Актаев
+            {t("ourCases.grandcar2022.info.director")}
           </Typography>
           <Typography sx={{ color: "#fff", textAlign: "start" }}>
-            Оператор-постановщик - Нурболат Кулумканов
+            {t("ourCases.grandcar2022.info.dop")}
           </Typography>
           <Typography sx={{ color: "#fff", textAlign: "start" }}>
-            Аренда оборудования и освещения - KinoRent
+            {t("ourCases.grandcar2022.info.solutions")}
           </Typography>
           <Typography sx={{ color: "#fff", textAlign: "start" }}>
-            Монтаж - Галымжан Актаев и Нурболат Кулумканов
+            {t("ourCases.grandcar2022.info.montage")}
           </Typography>
         </Box>
       </Box>

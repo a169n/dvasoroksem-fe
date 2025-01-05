@@ -55,7 +55,7 @@ export const Bauer: React.FC = () => {
 
   return (
     <Box sx={{ backgroundColor: "#161616" }}>
-      <Header /> {/* No need to pass mode explicitly here */}
+      <Header />
       <Box sx={{ minHeight: { xs: "200px", md: "800px" } }}>
         <LazyLoadImage
           src={BauerMainImage}

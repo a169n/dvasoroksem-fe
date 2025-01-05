@@ -14,12 +14,15 @@ import coffeboomTikTok4 from "@assets/videos/coffeeBoom/coffeeboom_tiktok_4.mp4"
 import coffeboomTikTok5 from "@assets/videos/coffeeBoom/coffeeboom_tiktok_5.mp4";
 import coffeboomTikTok6 from "@assets/videos/coffeeBoom/coffeeboom_tiktok_6.mp4";
 import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
-import { useLayoutContext } from '@src/context/LayoutContext';
+import { useLayoutContext } from "@src/context/LayoutContext";
 import { Header } from "@shared/ui/header";
+import { useTranslation } from "react-i18next";
+
 export const CoffeeBoom = () => {
   const { setMode } = useLayoutContext();
+  const { t } = useTranslation();
   useEffect(() => {
-    setMode('light');
+    setMode("light");
     window.scrollTo(0, 0);
   }, []);
 
@@ -44,9 +47,8 @@ export const CoffeeBoom = () => {
         />
       </Box>
       <Description
-        title="место, где становятся друзьями"
-        description="Мы запустили TikTok для сети кофеен Coffee BOOM. Благодаря продуманной и актуальной
-        контент-стратегии с нуля набрали 50 тысяч подписчиков."
+        title={t("ourCases.coffeeBoom.page.title")}
+        description={t("ourCases.coffeeBoom.page.description")}
       />
 
       <VideoCarousel videos={videos} />
