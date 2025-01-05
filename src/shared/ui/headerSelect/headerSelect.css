@@ -1,0 +1,61 @@
+.my-select-container {
+  position: relative;
+  width: fit-content; /* Ensure the select box fits the content */
+  font-family: Arial, sans-serif;
+}
+
+.my-select-header {
+  padding: 8px 16px;
+  color: black;
+  cursor: pointer;
+  text-align: center; /* Center align the text */
+  width: fit-content; /* Ensure the header width matches the content */
+  background: none; /* Remove background */
+  display: inline-block; /* Allow for fit-content */
+}
+
+.my-select-options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 4px;
+  padding: 0;
+  width: fit-content; /* Ensure options width matches header */
+  background-color: black;
+  border-radius: 4px;
+  list-style: none;
+  z-index: 1000;
+}
+
+.my-select-option {
+  padding: 8px 16px;
+  color: white;
+  text-align: center; /* Center align the text */
+  cursor: pointer;
+}
+
+.my-select-option:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.my-select-container.dark-mode .my-select-header {
+  color: black;
+}
+
+.my-select-container.dark-mode .my-select-options {
+  background-color: black;
+}
+
+.my-select-container.dark-mode .my-select-option {
+  color: white;
+}
+
+.my-select-container.light-mode .my-select-header {
+  color: black;
+}
+
+@media (max-width: 960px) {
+  .my-select-header {
+    color: white; /* Set the text color to white for mobile mode */
+  }
+}

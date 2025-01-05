@@ -13,6 +13,7 @@ import { useTranslation } from "react-i18next";
 import i18n from "@src/i18n";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLayoutContext } from "@src/context/LayoutContext";
+import { HeaderSelect } from "../headerSelect";
 
 const SCROLL_THROTTLE_LIMIT = 150;
 const NAVIGATION_DELAY = 500;
@@ -211,7 +212,7 @@ export const Header = () => {
           {text}
         </Typography>
       ))}
-      <MySelect
+      <HeaderSelect
         value={language}
         onChange={(e) => handleLanguageChange(e.target.value)}
         options={languageOptions}
