@@ -2,7 +2,9 @@ import { useState, useRef, useEffect } from "react";
 import { useMediaQuery, Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-export const MySelect = ({ value, onChange, options, sx, mode }) => {
+import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
+
+export const CustomSelect = ({ value, onChange, options, sx, mode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(
     options.find((opt) => opt.value === value) || null
@@ -50,6 +52,7 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
     alignSelf: "center",
     cursor: "pointer",
     // fontSize: "16px",
+    border: "1px solid transparent",
     ...sx,
   });
 
@@ -57,10 +60,19 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    padding: !isMobile ? "12px 24px" : "12px 10px",
+    padding:
+      ["/cases"].includes(window.location.pathname) && isMobile
+        ? "6px 10px "
+        : !isMobile
+          ? "12px 24px"
+          : "12px 10px",
     height: "100%",
     backgroundColor:
-      (isDarkMode || isLightMode) && !isMobile ? "transparent" : "white",
+      (isDarkMode || isLightMode) && !isMobile
+        ? "transparent"
+        : isMobile && ["/cases"].includes(window.location.pathname)
+          ? "black"
+          : "white",
     textAlign: "left",
     border: isOpen ? "1px solid black" : "1px solid transparent",
     borderRadius: "4px",
@@ -71,7 +83,11 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
           ? "black"
           : isLightMode && !isMobile
             ? "white"
-            : "black",
+            : isDarkMode && !isMobile
+              ? "black"
+              : isMobile && ["/cases"].includes(window.location.pathname)
+                ? "white"
+                : "black",
     transition: "border 0.3s", // Add transition for border
     "&:hover": {
       border: isLightMode ? "1px solid white" : "1px solid black",
@@ -84,7 +100,12 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
     top: "100%",
     left: 0,
     width: "100%",
-    backgroundColor: isMobile ? "black" : "white",
+    backgroundColor:
+      isMobile && ["/cases"].includes(window.location.pathname)
+        ? "white"
+        : isMobile
+          ? "black"
+          : "white",
     border: "0.5px solid rgba(237, 231, 225, 0.1)",
     borderRadius: "4px",
     marginTop: "4px",
@@ -98,10 +119,18 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
     cursor: "pointer",
     backgroundColor: "transparent",
 
-    color: isMobile ? "white" : "black",
+    color:
+      isMobile && ["/cases"].includes(window.location.pathname)
+        ? "black"
+        : isMobile
+          ? "white"
+          : "black",
     display: isSelected ? "none" : "block",
     "&:hover": {
-      backgroundColor: "rgba(0, 0, 0, 0.04)",
+      backgroundColor:
+        isMobile && ["/cases"].includes(window.location.pathname)
+          ? "rgba(22, 22, 22, 0.08)"
+          : "rgba(0, 0, 0, 0.04)",
     },
   });
 
@@ -109,6 +138,14 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
     <Box ref={selectRef} sx={getSelectStyles()}>
       <Box onClick={() => setIsOpen(!isOpen)} sx={getButtonStyles()}>
         {selectedOption ? selectedOption.label : "Select an option"}
+        {isMobile && window.location.pathname === "/cases" && (
+          <ArrowDropDownIcon
+            style={{
+              transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+              transition: "transform 0.3s",
+            }}
+          />
+        )}
       </Box>
 
       <Box ref={menuRef} sx={getMenuStyles()}>
@@ -126,4 +163,4 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
   );
 };
 
-export default MySelect;
+export default CustomSelect;

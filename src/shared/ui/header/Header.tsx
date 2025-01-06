@@ -7,17 +7,16 @@ import MenuIcon from "@mui/icons-material/Menu";
 import logo from "@assets/icons/logo.svg";
 import logoSmall from "@assets/icons/logo_small.svg";
 import logoSmallWhite from "@assets/icons/logo_small_white.svg";
-import { MySelect } from "@shared/ui/select";
 import { MyButton } from "@shared/ui/button";
 import { useTranslation } from "react-i18next";
 import i18n from "@src/i18n";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useLayoutContext } from "@src/context/LayoutContext";
-import { HeaderSelect } from "../headerSelect";
-
+import { MySelect } from "../select";
 const SCROLL_THROTTLE_LIMIT = 150;
 const NAVIGATION_DELAY = 500;
 
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 const throttle = (func: Function, limit: number) => {
   let inThrottle: boolean;
   let lastPos = window.pageYOffset;
@@ -212,7 +211,7 @@ export const Header = () => {
           {text}
         </Typography>
       ))}
-      <HeaderSelect
+      {/* <HeaderSelect
         value={language}
         onChange={(e) => handleLanguageChange(e.target.value)}
         options={languageOptions}
@@ -222,7 +221,18 @@ export const Header = () => {
           width: isMobile ? "25%" : "fit-content",
         }}
         mode={mode}
-      />
+      /> */}
+      <MySelect
+        value={language}
+        onChange={(e) => handleLanguageChange(e.target.value)}
+        options={languageOptions}
+        sx={{
+          alignSelf: "start",
+          color: isLightMode ? "#000" : "#fff",
+          width: isMobile ? "100vw" : "fit-content",
+        }}
+        mode={mode}
+      /> 
     </Box>
   );
 
