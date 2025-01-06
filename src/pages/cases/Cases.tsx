@@ -6,7 +6,6 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 import { MyButton } from "@shared/ui/button";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { MySelect } from "@shared/ui/select";
 import { Header } from "@shared/ui/header";
 
 // Import case images
@@ -20,6 +19,7 @@ import case7 from "@assets/cases/case7.svg";
 import case8 from "@assets/cases/case8.svg";
 import case9 from "@assets/cases/case9.svg";
 import { CustomContainer } from "@shared/ui/container";
+import { CustomSelect } from "@shared/ui/customSelect";
 // import case10 from "@assets/cases/case9.svg";
 
 export const Cases = () => {
@@ -171,7 +171,7 @@ export const Cases = () => {
               }}
             >
               {isMobile ? (
-                <MySelect
+                <CustomSelect
                   value={selectedCategory}
                   onChange={(event) => setSelectedCategory(event.target.value)}
                   options={categories.map((category) => ({
