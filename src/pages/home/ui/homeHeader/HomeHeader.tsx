@@ -1,5 +1,11 @@
 import React, { useState, useEffect, useRef, Suspense, memo } from "react";
-import { Box, Typography, useMediaQuery, IconButton } from "@mui/material";
+import {
+  Box,
+  Typography,
+  useMediaQuery,
+  IconButton,
+  CircularProgress,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Marquee from "react-marquee-slider";
 import MuteIcon from "@mui/icons-material/VolumeOff";
@@ -43,68 +49,34 @@ const useResponsiveValues = () => {
   };
 };
 
-const VideoLoadingFallback = memo(() => (
-  <Box
-    sx={{
-      position: "absolute",
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      bgcolor: "rgba(0,0,0,0.1)",
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-    }}
-  >
+const MarqueeItem = memo(
+  ({
+    icon,
+    iconSize,
+  }: {
+    icon: { src: string; alt: string };
+    iconSize: { width: string; height: string };
+  }) => (
     <Box
-      sx={{
-        width: "60px",
-        height: "60px",
-        borderRadius: "50%",
-        border: "3px solid #f3f3f3",
-        borderTop: "3px solid #3498db",
-        animation: "spin 1s linear infinite",
-        "@keyframes spin": {
-          "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(360deg)" },
-        },
-      }}
-    />
-  </Box>
-));
-
-type MarqueeItemProps = {
-  icon: {
-    src: string;
-    alt: string;
-  };
-  iconSize: {
-    width: string;
-    height: string;
-  };
-};
-
-const MarqueeItem = memo(({ icon, iconSize }: MarqueeItemProps) => (
-  <Box
-    mt={1}
-    mx={2}
-    sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
-  >
-    <img
-      src={icon.src}
-      alt={icon.alt}
-      draggable="false"
-      loading="lazy"
-      style={{
-        ...iconSize,
-        filter: "brightness(0) invert(1)",
-        pointerEvents: "none",
-        userSelect: "none",
-      }}
-    />
-  </Box>
-));
+      mt={1}
+      mx={2}
+      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+    >
+      <img
+        src={icon.src}
+        alt={icon.alt}
+        draggable="false"
+        loading="lazy"
+        style={{
+          ...iconSize,
+          filter: "brightness(0) invert(1)",
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+      />
+    </Box>
+  )
+);
 
 const HomeHeader = () => {
   const { t } = useTranslation();
@@ -163,25 +135,42 @@ const HomeHeader = () => {
             overflow: "hidden",
           }}
         >
-          <Suspense fallback={<VideoLoadingFallback />}>
-            <ReactPlayer
-              url={videoSrc}
-              playing={isVisible}
-              muted={isMuted}
-              loop
-              width="100%"
-              height="100%"
-              playsinline
-              onReady={() => setIsLoading(false)}
-              style={{
+          {isLoading ? (
+            <Box
+              sx={{
                 position: "absolute",
                 top: 0,
                 left: 0,
-                zIndex: 1,
-                objectFit: "cover",
+                right: 0,
+                bottom: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "rgba(0, 0, 0, 0.3)",
               }}
-            />
-          </Suspense>
+            >
+              <CircularProgress size={60} sx={{ color: "#ffffff" }} />
+            </Box>
+          ) : (
+            <Suspense fallback={null}>
+              <ReactPlayer
+                url={videoSrc}
+                playing={isVisible}
+                muted={isMuted}
+                loop
+                width="100%"
+                height="100%"
+                playsinline
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  zIndex: 1,
+                  objectFit: "cover",
+                }}
+              />
+            </Suspense>
+          )}
 
           <IconButton
             onClick={() => setIsMuted((prev) => !prev)}
