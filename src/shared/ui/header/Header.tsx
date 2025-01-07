@@ -104,14 +104,11 @@ export const Header = () => {
         }
       } else {
         if (!isCurrentlyRoot) {
-          // If we're not on the root path, navigate first
           navigate("/");
-          // Wait for navigation to complete before scrolling
           setTimeout(() => {
             scrollToSection(section);
           }, NAVIGATION_DELAY);
         } else {
-          // If we're already on root path, just scroll
           scrollToSection(section);
         }
       }
@@ -123,13 +120,11 @@ export const Header = () => {
     [location.pathname, navigate, scrollToSection, isMobile]
   );
 
-  // Handle initial navigation if coming with state
   useEffect(() => {
     if (location.state?.scrollToSection && location.pathname === "/") {
       const section = location.state.scrollToSection;
       const timeoutId = setTimeout(() => {
         scrollToSection(section);
-        // Clear the navigation state
         window.history.replaceState({}, document.title);
       }, NAVIGATION_DELAY);
 
@@ -211,17 +206,6 @@ export const Header = () => {
           {text}
         </Typography>
       ))}
-      {/* <HeaderSelect
-        value={language}
-        onChange={(e) => handleLanguageChange(e.target.value)}
-        options={languageOptions}
-        sx={{
-          alignSelf: "start",
-          color: isLightMode ? "#000" : "#fff",
-          width: isMobile ? "25%" : "fit-content",
-        }}
-        mode={mode}
-      /> */}
       <MySelect
         value={language}
         onChange={(e) => handleLanguageChange(e.target.value)}
@@ -229,10 +213,10 @@ export const Header = () => {
         sx={{
           alignSelf: "start",
           color: isLightMode ? "#000" : "#fff",
-          width: isMobile ? "100vw" : "fit-content",
+          width: isMobile ? "100%" : "fit-content",
         }}
         mode={mode}
-      /> 
+      />
     </Box>
   );
 

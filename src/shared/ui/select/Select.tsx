@@ -97,7 +97,7 @@ export const MySelect = ({ value, onChange, options, sx, mode }) => {
     padding: "12px 10px",
     cursor: "pointer",
     backgroundColor: "transparent",
-
+    textAlign: "center",
     color: isMobile ? "white" : "black",
     display: isSelected ? "none" : "block",
     "&:hover": {
