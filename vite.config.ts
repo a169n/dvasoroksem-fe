@@ -8,6 +8,7 @@ import vitePluginEnvCompatible from "vite-plugin-env-compatible";
 dotenv.config();
 
 export default defineConfig({
+  base: "/",
   plugins: [react(), svgr(), vitePluginEnvCompatible()],
   assetsInclude: ["**/*.MP4", "**/*.jpg", "**/*.png", "**/*.gif"],
   server: {

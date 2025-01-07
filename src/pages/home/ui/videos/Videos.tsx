@@ -52,8 +52,8 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
     <Box
       onClick={handlePlayPause}
       sx={{
-        width: "100%", // Ensure full width when playing
-        height: isMobile ? "550px" : isXL ? "760px" : "665px", // Allow flexible height when playing on mobile
+        width: "100%",
+        height: isMobile ? "550px" : isXL ? "760px" : "665px",
         maxHeight: "760px",
         padding: 2,
         borderRadius: "24px",
@@ -76,7 +76,7 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
       <Box
         sx={{
           width: "100%",
-          height: "auto", // Allow auto height on mobile
+          height: "auto",
           position: "relative",
           overflow: "hidden",
           borderRadius: "24px",
