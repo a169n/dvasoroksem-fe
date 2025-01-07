@@ -2,9 +2,13 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
+import dotenv from "dotenv";
+import vitePluginEnvCompatible from "vite-plugin-env-compatible";
+
+dotenv.config();
 
 export default defineConfig({
-  plugins: [react(), svgr()],
+  plugins: [react(), svgr(), vitePluginEnvCompatible()],
   assetsInclude: ["**/*.MP4", "**/*.jpg", "**/*.png", "**/*.gif"],
   server: {
     open: "/",

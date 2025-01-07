@@ -270,6 +270,29 @@
       "text": "— we believe in the importance of contributing to society and strive to leave a positive impact through our work"
     }
   },
+  "request": {
+    "title": "Submit Request",
+    "address": "11B Kalibek Kuanyshbayev Street, Astana, Kazakhstan",
+    "contacts": "Contacts",
+    "name": "Name",
+    "phone": "Phone",
+    "email": "Email",
+    "directions": "Direction",
+    "complex": "Comprehensive Marketing",
+    "instagram": "Instagram",
+    "production": "Production",
+    "creative": "Creative Task",
+    "budget": "Budget",
+    "below1m": "Up to 1M",
+    "from1m": "From 1M",
+    "exclusive": "Exclusive",
+    "buttonText": "Submit Request",
+    "error": "Please fill out all required fields.",
+    "success": "Your request was successfully submitted!",
+    "invalidEmail": "Invalid email format.",
+    "errorLog": "Error sending the request:",
+    "errorSubmit": "Failed to submit the request."
+  },
   "footer": {
     "contacts": "Contacts",
     "ceoDvasoroksem": "CEO Dvasoroksem.",

@@ -15,6 +15,8 @@ import { router } from "./router";
 import "./i18n";
 import theme from "./theme";
 import { LayoutProvider } from "./context/LayoutContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const App: React.FC = () => {
   const isSmallScreen = useMediaQuery(theme.breakpoints.down("sm"));
@@ -93,6 +95,7 @@ export const App: React.FC = () => {
             >
               <RouterProvider router={router} />
             </Suspense>
+            <ToastContainer />
           </LayoutProvider>
         </ThemeProvider>
       </QueryClientProvider>
