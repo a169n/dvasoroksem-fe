@@ -9,15 +9,15 @@ import { useTranslation } from "react-i18next";
 import { Header } from "@shared/ui/header";
 
 // Import case images
-import case1 from "@assets/cases/case1.svg";
-import case2 from "@assets/cases/case2.svg";
-import case3 from "@assets/cases/case3.svg";
-import case4 from "@assets/cases/case4.svg";
-import case5 from "@assets/cases/case5.svg";
-import case6 from "@assets/cases/case6.svg";
-import case7 from "@assets/cases/case7.svg";
-import case8 from "@assets/cases/case8.svg";
-import case9 from "@assets/cases/case9.svg";
+import case1 from "@assets/cases/case1.webp";
+import case2 from "@assets/cases/case2.webp";
+import case3 from "@assets/cases/case3.webp";
+import case4 from "@assets/cases/case4.webp";
+import case5 from "@assets/cases/case5.webp";
+import case6 from "@assets/cases/case6.webp";
+import case7 from "@assets/cases/case7.webp";
+import case8 from "@assets/cases/case8.webp";
+import case9 from "@assets/cases/case9.webp";
 import { CustomContainer } from "@shared/ui/container";
 import { CustomSelect } from "@shared/ui/customSelect";
 // import case10 from "@assets/cases/case9.svg";

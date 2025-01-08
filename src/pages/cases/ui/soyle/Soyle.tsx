@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { Header } from "@shared/ui/header";
-import SoyleMainPage from "@assets/casePages/soyle.svg";
+import SoyleMainPage from "@assets/casePages/soyle.webp";
 import { Description } from "@shared/ui/description";
 import { Cases } from "@pages/home/ui/cases";
 import YouTubeIcon from "@mui/icons-material/YouTube";

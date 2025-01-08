@@ -15,10 +15,10 @@ import { Close as CloseIcon } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 
 // Certificate images
-import certificate1 from "@assets/certificate1.svg";
-import certificate2 from "@assets/certificate2.svg";
-import certificate3 from "@assets/certificate3.svg";
-import certificate4 from "@assets/certificate4.svg";
+import certificate1 from "@assets/certificate1.webp";
+import certificate2 from "@assets/certificate2.webp";
+import certificate3 from "@assets/certificate3.webp";
+import certificate4 from "@assets/certificate4.webp";
 import Carousel from "react-multi-carousel";
 import { CustomContainer } from "@shared/ui/container";
 import { TransitionProps } from "@mui/material/transitions";
@@ -241,7 +241,7 @@ export const Certificates = () => {
               },
               mediumDesktop: {
                 breakpoint: { max: 1280, min: 960 },
-                items: 2,
+                items: 1,
               },
               smallDevices: {
                 breakpoint: { max: 720, min: 0 },
@@ -257,7 +257,7 @@ export const Certificates = () => {
                   flexDirection: "column",
                   justifyContent: "center",
                   alignItems: "center",
-                  width: "90%",
+                  maxWidth: "90%",
                   minHeight: isMobile ? "60vh" : "initial",
                   mx: "auto",
                 }}
@@ -269,6 +269,7 @@ export const Certificates = () => {
                   }
                   onMouseLeave={() => !isMobile && setHoveredCard(null)}
                   sx={{
+                    width: "auto%",
                     cursor: "pointer",
                     padding: { xs: 0.5, sm: 1, md: 2 },
                     border: "1px solid #D9D9D9",
@@ -287,13 +288,17 @@ export const Certificates = () => {
                     draggable={false}
                     sx={{
                       display: "block",
-                      width: "100%",
-                      height: "500px",
+                      width: "auto",
+                      height: "auto",
+                      maxHeight: "480px",
+                      margin: "0 auto",
                     }}
                   />
                   <Box
                     sx={{
-                      width: "100%",
+                      // width: "50%",
+                      margin: "0 auto",
+
                       height:
                         hoveredCard === certificate.id || isMobile ? "auto" : 0,
                       opacity:
@@ -382,6 +387,7 @@ export const Certificates = () => {
                 sx={{
                   display: loading ? "none" : "block",
                   minWidth: "40vh",
+                  height: "80vh",
                   minHeight: { xs: "30vh", lg: "80vh" },
                   objectFit: "contain",
                   margin: "0 auto",
