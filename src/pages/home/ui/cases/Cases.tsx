@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { MyButton } from "@shared/ui/button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
@@ -5,13 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import Case1 from "@assets/cases/case1.svg";
-import Case2 from "@assets/cases/case2.svg";
-import Case3 from "@assets/cases/case3.svg";
-import Case4 from "@assets/cases/case4.svg";
-import Case5 from "@assets/cases/case5.svg";
-import Case7 from "@assets/cases/case7.svg";
-import Case8 from "@assets/cases/case8.svg";
+import Case1 from "@assets/cases/case1.webp";
+import Case2 from "@assets/cases/case2.webp";
+import Case3 from "@assets/cases/case3.webp";
+import Case4 from "@assets/cases/case4.webp";
+import Case5 from "@assets/cases/case5.webp";
+import Case7 from "@assets/cases/case7.webp";
+import Case8 from "@assets/cases/case8.webp";
 import { useRef } from "react";
 
 export const Cases = ({ mode = "default" }) => {

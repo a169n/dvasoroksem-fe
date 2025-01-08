@@ -11,22 +11,23 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useLayoutContext } from "@src/context/LayoutContext"; // Import context
 
 // Import images
-import BauerMainImage from "@assets/casePages/bauer.png";
-import bauer1 from "@assets/casePages/bauer/bauer1.png";
-import bauer2 from "@assets/casePages/bauer/bauer2.png";
-import bauer3 from "@assets/casePages/bauer/bauer3.png";
-import bauer4 from "@assets/casePages/bauer/bauer4.png";
-import bauer5 from "@assets/casePages/bauer/bauer5.png";
-import bauer6 from "@assets/casePages/bauer/bauer6.png";
-import bauerUnder1 from "@assets/casePages/bauer/bauerUnder1.png";
-import bauerUnder2 from "@assets/casePages/bauer/bauerUnder2.png";
-import bauerUnder3 from "@assets/casePages/bauer/bauerUnder3.png";
-import bauerUnder4 from "@assets/casePages/bauer/bauerUnder4.png";
-import bauerUnder5 from "@assets/casePages/bauer/bauerUnder5.png";
-import bauerUnder6 from "@assets/casePages/bauer/bauerUnder6.png";
-import bauerStory1 from "@assets/casePages/bauer/bauerStory1.png";
-import bauerStory2 from "@assets/casePages/bauer/bauerStory2.png";
-import bauerStory3 from "@assets/casePages/bauer/bauerStory3.png";
+import BauerMainImage from "@assets/casePages/bauer.webp";
+import bauer1 from "@assets/casePages/bauer/bauer1.webp";
+import bauer2 from "@assets/casePages/bauer/bauer2.webp";
+import bauer3 from "@assets/casePages/bauer/bauer3.webp";
+import bauer4 from "@assets/casePages/bauer/bauer4.webp";
+import bauer5 from "@assets/casePages/bauer/bauer5.webp";
+import bauer6 from "@assets/casePages/bauer/bauer6.webp";
+import bauerUnder1 from "@assets/casePages/bauer/bauerUnder1.webp";
+import bauerUnder2 from "@assets/casePages/bauer/bauerUnder2.webp";
+import bauerUnder3 from "@assets/casePages/bauer/bauerUnder3.webp";
+import bauerUnder4 from "@assets/casePages/bauer/bauerUnder4.webp";
+import bauerUnder5 from "@assets/casePages/bauer/bauerUnder5.webp";
+import bauerUnder6 from "@assets/casePages/bauer/bauerUnder6.webp";
+import bauerStory1 from "@assets/casePages/bauer/bauerStory1.webp";
+import bauerStory2 from "@assets/casePages/bauer/bauerStory2.webp";
+import bauerStory3 from "@assets/casePages/bauer/bauerStory3.webp";
+import bauerStory4 from "@assets/casePages/bauer/bauerStory4.webp";
 
 import bauerReels1 from "@assets/videos/bauer/bauer_reels_1.mov";
 import bauerReels2 from "@assets/videos/bauer/bauer_reels_2.mp4";
@@ -81,7 +82,7 @@ export const Bauer: React.FC = () => {
           bauerUnder6,
         ]}
       />
-      <Stories stories={[bauerStory1, bauerStory2, bauerStory3]} />
+      <Stories stories={[bauerStory1, bauerStory2, bauerStory3, bauerStory4]} />
       <BauerData />
       <Cases mode="case-page" />
     </Box>

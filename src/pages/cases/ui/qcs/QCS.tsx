@@ -1,26 +1,28 @@
 import { Box } from "@mui/material";
 import { Header } from "@shared/ui/header";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import QCSMainImage from "@assets/casePages/qcs.svg";
+import QCSMainImage from "@assets/casePages/qcs.webp";
 import { Description } from "@shared/ui/description";
 import { Cases } from "@pages/home/ui/cases";
 import DoubleCarousel from "@shared/ui/doubleCarousel/DoubleCarousel";
 import { Stories } from "@shared/ui/stories";
-import qcs1 from "@assets/casePages/qcs/qcs1.png";
-import qcs2 from "@assets/casePages/qcs/qcs2.png";
-import qcs3 from "@assets/casePages/qcs/qcs3.png";
-import qcs4 from "@assets/casePages/qcs/qcs4.png";
-import qcs5 from "@assets/casePages/qcs/qcs5.png";
-import qcs6 from "@assets/casePages/qcs/qcs6.png";
-import qcsUnder1 from "@assets/casePages/qcs/qcsUnder1.png";
-import qcsUnder2 from "@assets/casePages/qcs/qcsUnder2.png";
-import qcsUnder3 from "@assets/casePages/qcs/qcsUnder3.png";
-import qcsUnder4 from "@assets/casePages/qcs/qcsUnder4.png";
-import qcsUnder5 from "@assets/casePages/qcs/qcsUnder5.png";
-import qcsUnder6 from "@assets/casePages/qcs/qcsUnder6.png";
-import qcsStory1 from "@assets/casePages/qcs/qcsStory1.png";
-import qcsStory2 from "@assets/casePages/qcs/qcsStory2.png";
-import qcsStory3 from "@assets/casePages/qcs/qcsStory3.png";
+import qcs1 from "@assets/casePages/qcs/qcs1.webp";
+import qcs2 from "@assets/casePages/qcs/qcs2.webp";
+import qcs3 from "@assets/casePages/qcs/qcs3.webp";
+import qcs4 from "@assets/casePages/qcs/qcs4.webp";
+import qcs5 from "@assets/casePages/qcs/qcs5.webp";
+import qcs6 from "@assets/casePages/qcs/qcs6.webp";
+import qcsUnder1 from "@assets/casePages/qcs/qcsUnder1.webp";
+import qcsUnder2 from "@assets/casePages/qcs/qcsUnder2.webp";
+import qcsUnder3 from "@assets/casePages/qcs/qcsUnder3.webp";
+import qcsUnder4 from "@assets/casePages/qcs/qcsUnder4.webp";
+import qcsUnder5 from "@assets/casePages/qcs/qcsUnder5.webp";
+import qcsUnder6 from "@assets/casePages/qcs/qcsUnder6.webp";
+import qcsStory1 from "@assets/casePages/qcs/qcsStory1.webp";
+import qcsStory2 from "@assets/casePages/qcs/qcsStory2.webp";
+import qcsStory3 from "@assets/casePages/qcs/qcsStory3.webp";
+import qcsStory4 from "@assets/casePages/qcs/qcsStory4.webp";
+
 import QcsData from "./ui/qcsData";
 import { useEffect } from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
@@ -81,7 +83,7 @@ export const QCS = () => {
           qcsUnder6,
         ]}
       />
-      <Stories stories={[qcsStory1, qcsStory2, qcsStory3]} />
+      <Stories stories={[qcsStory1, qcsStory2, qcsStory3, qcsStory4]} />
       <QcsData />
       <Cases mode="case-page" />
     </Box>

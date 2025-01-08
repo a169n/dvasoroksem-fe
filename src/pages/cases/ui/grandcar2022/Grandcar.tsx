@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { Header } from "@shared/ui/header/Header";
-import Grandcar2022MainImage from "@assets/casePages/grandcar2022.svg";
+import Grandcar2022MainImage from "@assets/casePages/grandcar2022.webp";
 import { Description } from "@shared/ui/description";
 import { MovieStaff } from "@shared/ui/movie-staff";
 import { Cases } from "@pages/home/ui/cases";

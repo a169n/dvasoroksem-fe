@@ -30,6 +30,7 @@ export const Request = () => {
   const userId = import.meta.env.VITE_REACT_APP_EMAILJS_USER_ID;
 
   const [selectedBudget, setSelectedBudget] = useState("");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [formData, setFormData] = useState<any>({
     name: "",
     email: "",
@@ -42,6 +43,7 @@ export const Request = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleCheckboxChange = (label: any) => {
     setFormData((prevState) => {
       const directions = prevState.directions.includes(label)

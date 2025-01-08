@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Box } from "@mui/material";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import CoffeeBoomMainImage from "@assets/casePages/coffee-boom.svg";
+import CoffeeBoomMainImage from "@assets/casePages/coffee-boom.webp";
 import { Description } from "@shared/ui/description";
 import { Cases } from "@pages/home/ui/cases";
 import CoffeeBoomData from "./ui/coffee-boomData";
