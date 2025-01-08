@@ -10,19 +10,100 @@ import {
   FormControlLabel,
   Radio,
   RadioGroup,
+  CircularProgress,
 } from "@mui/material";
+import emailjs from "emailjs-com";
 import { Header } from "@shared/ui/header";
 import { MyButton } from "@shared/ui/button";
 import { CustomContainer } from "@shared/ui/container";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useTranslation } from "react-i18next";
 
 export const Request = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+  const { t } = useTranslation();
+
+  const serviceId = import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID;
+  const templateId = import.meta.env.VITE_REACT_APP_EMAILJS_TEMPLATE_ID;
+  const userId = import.meta.env.VITE_REACT_APP_EMAILJS_USER_ID;
 
   const [selectedBudget, setSelectedBudget] = useState("");
+  const [formData, setFormData] = useState<any>({
+    name: "",
+    email: "",
+    phone: "",
+    directions: [],
+  });
+  const [loading, setLoading] = useState(false);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleCheckboxChange = (label: any) => {
+    setFormData((prevState) => {
+      const directions = prevState.directions.includes(label)
+        ? prevState.directions.filter((item) => item !== label)
+        : [...prevState.directions, label];
+      return { ...prevState, directions };
+    });
+  };
 
   const handleRadioChange = (event) => {
     setSelectedBudget(event.target.value);
+  };
+
+  const handleSubmit = () => {
+    if (
+      !formData.email ||
+      !formData.name ||
+      !formData.phone ||
+      formData.directions.length === 0 ||
+      !selectedBudget
+    ) {
+      toast.error(t("request.error"));
+      return;
+    }
+
+    const message = `
+    ${t("request.name")}: ${formData.name}\n
+    ${t("request.email")}: ${formData.email}\n
+    ${t("request.phone")}: ${formData.phone}\n
+    ${t("request.directions")}: ${formData.directions.join(", ")}\n
+    ${t("request.budget")}: ${selectedBudget}\n
+    `;
+
+    setLoading(true);
+
+    emailjs
+      .send(
+        serviceId,
+        templateId,
+        {
+          from_name: formData.name,
+          message: message,
+          reply_to: formData.email,
+        },
+        userId
+      )
+      .then(() => {
+        setLoading(false);
+        toast.success(t("request.success"));
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          directions: [],
+        });
+        setSelectedBudget("");
+      })
+      .catch((error) => {
+        setLoading(false);
+        console.error(t("request.errorLog"), error);
+        toast.error(t("request.errorSubmit"));
+      });
   };
 
   useEffect(() => {
@@ -61,7 +142,6 @@ export const Request = () => {
             flexDirection: isMobile ? "column" : "row",
           }}
         >
-          {/* Left Section */}
           <Box
             sx={{
               display: "flex",
@@ -80,7 +160,7 @@ export const Request = () => {
                 lineHeight: "80px",
               }}
             >
-              Оставить заявку
+              {t("request.title")}
             </Typography>
             <Typography
               component="a"
@@ -99,11 +179,10 @@ export const Request = () => {
                 },
               }}
             >
-              ул. Калибек Куанышбаев, 11Б, Астана, Казахстан
+              {t("request.address")}
             </Typography>
           </Box>
 
-          {/* Right Section */}
           <Box sx={{ width: isMobile ? "100%" : "50%" }}>
             <FormControl
               fullWidth
@@ -115,60 +194,81 @@ export const Request = () => {
               }}
             >
               <Typography sx={{ color: "#fff", mb: 2, textAlign: "start" }}>
-                Контакты
+                {t("request.contacts")}
               </Typography>
 
-              <TextField type="text" placeholder="Имя" sx={textFieldStyles} />
               <TextField
-                type="email"
-                placeholder="E-mail"
+                name="name"
+                type="text"
+                placeholder={`${t("request.name")} *`}
+                value={formData.name}
+                onChange={handleInputChange}
                 sx={textFieldStyles}
               />
               <TextField
+                name="email"
+                type="email"
+                placeholder={`${t("request.email")} *`}
+                value={formData.email}
+                onChange={handleInputChange}
+                sx={textFieldStyles}
+                error={formData.email && !/\S+@\S+\.\S+/.test(formData.email)}
+                helperText={
+                  formData.email && !/\S+@\S+\.\S+/.test(formData.email)
+                    ? t("request.invalidEmail")
+                    : ""
+                }
+              />
+              <TextField
+                name="phone"
                 type="tel"
-                placeholder="Телефон"
+                placeholder={`${t("request.phone")} *`}
+                value={formData.phone}
+                onChange={handleInputChange}
                 sx={textFieldStyles}
               />
 
               <Typography sx={{ color: "#fff", mb: 2, textAlign: "start" }}>
-                Направление
+                {t("request.directions")}
               </Typography>
 
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mb: 2 }}>
-                {[
-                  "Комлпексный маркетинг",
-                  "Instagram",
-                  "Production",
-                  "Креативная задача",
-                ].map((label) => (
-                  <FormControlLabel
-                    key={label}
-                    control={<Checkbox sx={controlLabelStyles} />}
-                    label={
-                      <Typography sx={{ color: "#fff" }}>{label}</Typography>
-                    }
-                  />
-                ))}
+                {["complex", "instagram", "production", "creative"].map(
+                  (key) => (
+                    <FormControlLabel
+                      key={key}
+                      control={
+                        <Checkbox
+                          sx={controlLabelStyles}
+                          onChange={() =>
+                            handleCheckboxChange(t(`request.${key}`))
+                          }
+                        />
+                      }
+                      label={
+                        <Typography sx={{ color: "#fff" }}>
+                          {t(`request.${key}`)}
+                        </Typography>
+                      }
+                    />
+                  )
+                )}
               </Box>
 
               <Typography sx={{ color: "#fff", mb: 2, textAlign: "start" }}>
-                Бюджет
+                {t("request.budget")}
               </Typography>
 
               <RadioGroup value={selectedBudget} onChange={handleRadioChange}>
                 <Box sx={{ display: "flex", gap: 2 }}>
-                  {[
-                    { value: "below1M", label: "до 1 млн" },
-                    { value: "above1M", label: "от 1 млн" },
-                    { value: "exclusive", label: "Эксклюзив" },
-                  ].map((option) => (
+                  {["below1m", "from1m", "exclusive"].map((key) => (
                     <FormControlLabel
-                      key={option.value}
-                      value={option.value}
+                      key={key}
+                      value={t(`request.${key}`)}
                       control={<Radio sx={controlLabelStyles} />}
                       label={
                         <Typography sx={{ color: "#fff" }}>
-                          {option.label}
+                          {t(`request.${key}`)}
                         </Typography>
                       }
                     />
@@ -178,6 +278,8 @@ export const Request = () => {
 
               <MyButton
                 variant="contained"
+                onClick={handleSubmit}
+                disabled={loading}
                 sx={{
                   mt: 3,
                   width: "50%",
@@ -191,7 +293,11 @@ export const Request = () => {
                   },
                 }}
               >
-                Оставить заявку
+                {loading ? (
+                  <CircularProgress size={24} sx={{ color: "#fff" }} />
+                ) : (
+                  t("request.buttonText")
+                )}
               </MyButton>
             </FormControl>
           </Box>

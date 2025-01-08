@@ -1,6 +1,10 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
 import { MyButton } from "@shared/ui/button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import Case1 from "@assets/cases/case1.svg";
 import Case2 from "@assets/cases/case2.svg";
 import Case3 from "@assets/cases/case3.svg";
@@ -8,13 +12,6 @@ import Case4 from "@assets/cases/case4.svg";
 import Case5 from "@assets/cases/case5.svg";
 import Case7 from "@assets/cases/case7.svg";
 import Case8 from "@assets/cases/case8.svg";
-
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
-import Carousel from "react-multi-carousel";
-
-import "react-multi-carousel/lib/styles.css";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import { useRef } from "react";
 
 export const Cases = ({ mode = "default" }) => {
@@ -26,7 +23,7 @@ export const Cases = ({ mode = "default" }) => {
   const navigate = useNavigate();
   const { t } = useTranslation("OurCases");
 
-  const servicesData = [
+  const servicesData: any[] = [
     {
       imageURL: Case1,
       title: t("ourCases.coffeeBoom.title"),
@@ -52,7 +49,8 @@ export const Cases = ({ mode = "default" }) => {
       path: "/cases/qcs",
     },
   ];
-  const servicesDataCarousel1 = [
+
+  const servicesDataCarousel1: any[] = [
     {
       imageURL: Case5,
       title: t("ourCases.bauer.title"),
@@ -72,7 +70,8 @@ export const Cases = ({ mode = "default" }) => {
       path: "/cases/everest",
     },
   ];
-  const servicesDataCarousel2 = [
+
+  const servicesDataCarousel2: any[] = [
     {
       imageURL: Case8,
       title: t("ourCases.nomad.title"),
@@ -98,20 +97,17 @@ export const Cases = ({ mode = "default" }) => {
       path: "/cases/qcs",
     },
   ];
+
   const carouselRef = useRef<Carousel>(null);
 
   const responsive1 = {
-    mobile: {
-      breakpoint: { max: 600, min: 0 },
-      items: 2,
-    },
+    mobile: { breakpoint: { max: 600, min: 0 }, items: 2 },
   };
+
   const responsive2 = {
-    mobile: {
-      breakpoint: { max: 600, min: 0 },
-      items: 1,
-    },
+    mobile: { breakpoint: { max: 600, min: 0 }, items: 1 },
   };
+
   return (
     <Box
       sx={{
@@ -156,9 +152,7 @@ export const Cases = ({ mode = "default" }) => {
           {t(isCasePage ? "ourCases.title2" : "ourCases.title1")}
         </Typography>
         <MyButton
-          onClick={() => {
-            navigate("/cases");
-          }}
+          onClick={() => navigate("/cases")}
           startIcon={<ArrowForwardIcon />}
           sx={{
             borderRadius: 0,
@@ -217,9 +211,7 @@ export const Cases = ({ mode = "default" }) => {
                       position: "relative",
                       width: "100%",
                       cursor: "pointer",
-                      "&:hover .hover-overlay": {
-                        opacity: 1,
-                      },
+                      "&:hover .hover-overlay": { opacity: 1 },
                     }}
                   >
                     <img
@@ -253,22 +245,14 @@ export const Cases = ({ mode = "default" }) => {
                   <Typography
                     color={isCasePage ? "#fff" : "#000"}
                     variant="h4"
-                    sx={{
-                      mt: 1,
-                      fontWeight: 500,
-                      fontSize: "20px",
-                    }}
+                    sx={{ mt: 1, fontWeight: 500, fontSize: "20px" }}
                   >
                     {service.title}
                   </Typography>
                   <Typography
                     color={isCasePage ? "#fff" : "#000"}
                     textAlign="left"
-                    sx={{
-                      mt: 1,
-                      fontSize: "16px",
-                      lineHeight: 1.4,
-                    }}
+                    sx={{ mt: 1, fontSize: "16px", lineHeight: 1.4 }}
                   >
                     {service.description}
                   </Typography>
@@ -310,9 +294,7 @@ export const Cases = ({ mode = "default" }) => {
                       position: "relative",
                       width: "100%",
                       cursor: "pointer",
-                      "&:hover .hover-overlay": {
-                        opacity: 1,
-                      },
+                      "&:hover .hover-overlay": { opacity: 1 },
                     }}
                   >
                     <img
@@ -346,22 +328,14 @@ export const Cases = ({ mode = "default" }) => {
                   <Typography
                     color={isCasePage ? "#fff" : "#000"}
                     variant="h4"
-                    sx={{
-                      mt: 1,
-                      fontWeight: 500,
-                      fontSize: "20px",
-                    }}
+                    sx={{ mt: 1, fontWeight: 500, fontSize: "20px" }}
                   >
                     {service.title}
                   </Typography>
                   <Typography
                     color={isCasePage ? "#fff" : "#000"}
                     textAlign="left"
-                    sx={{
-                      mt: 1,
-                      fontSize: "16px",
-                      lineHeight: 1.4,
-                    }}
+                    sx={{ mt: 1, fontSize: "16px", lineHeight: 1.4 }}
                   >
                     {service.description}
                   </Typography>
@@ -402,9 +376,7 @@ export const Cases = ({ mode = "default" }) => {
                   position: "relative",
                   width: "100%",
                   cursor: "pointer",
-                  "&:hover .hover-overlay": {
-                    opacity: 1,
-                  },
+                  "&:hover .hover-overlay": { opacity: 1 },
                 }}
               >
                 <img
@@ -462,3 +434,5 @@ export const Cases = ({ mode = "default" }) => {
     </Box>
   );
 };
+
+export default Cases;

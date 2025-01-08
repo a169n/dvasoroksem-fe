@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, Suspense } from "react";
+import React, { useState, useEffect, useRef, Suspense, memo } from "react";
 import {
   Box,
   Typography,
@@ -11,145 +11,156 @@ import Marquee from "react-marquee-slider";
 import MuteIcon from "@mui/icons-material/VolumeOff";
 import UnmuteIcon from "@mui/icons-material/VolumeUp";
 import { useTranslation } from "react-i18next";
+import videoSrc from "@assets/videos/main_showreel.mp4";
 
 const ReactPlayer = React.lazy(() => import("react-player/lazy"));
 
-let showreelSrc: string | null = null;
-
-import icon1 from "@assets/icons/icon1.svg";
-import icon2 from "@assets/icons/icon2.svg";
-import icon3 from "@assets/icons/icon3.svg";
-import icon4 from "@assets/icons/icon4.svg";
-import icon5 from "@assets/icons/icon5.svg";
-import icon6 from "@assets/icons/icon6.svg";
-import icon7 from "@assets/icons/icon7.svg";
-import icon8 from "@assets/icons/icon8.svg";
-
-const loadShowreel = async () => {
-  if (!showreelSrc) {
-    const videoModule = await import("@assets/videos/main_showreel.mp4");
-    showreelSrc = videoModule.default;
-  }
-  return showreelSrc;
-};
-
 const ICONS = [
-  { src: icon1, alt: "Icon1" },
-  { src: icon2, alt: "Icon2" },
-  { src: icon3, alt: "Icon3" },
-  { src: icon4, alt: "Icon4" },
-  { src: icon5, alt: "Icon5" },
-  { src: icon6, alt: "Icon6" },
-  { src: icon7, alt: "Icon7" },
-  { src: icon8, alt: "Icon8" },
-];
+  { src: "src/assets/icons/icon1.svg", alt: "Icon1" },
+  { src: "src/assets/icons/icon2.svg", alt: "Icon2" },
+  { src: "src/assets/icons/icon3.svg", alt: "Icon3" },
+  { src: "src/assets/icons/icon4.svg", alt: "Icon4" },
+  { src: "src/assets/icons/icon5.svg", alt: "Icon5" },
+  { src: "src/assets/icons/icon6.svg", alt: "Icon6" },
+  { src: "src/assets/icons/icon7.svg", alt: "Icon7" },
+  { src: "src/assets/icons/icon8.svg", alt: "Icon8" },
+].map((icon) => {
+  const img = new Image();
+  img.src = icon.src;
+  return icon;
+});
 
-export const HomeHeader = () => {
+const useResponsiveValues = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
-  const { t } = useTranslation();
   const isXl = useMediaQuery(theme.breakpoints.up("xl"));
+
+  return {
+    isMobile,
+    isTablet,
+    isXl,
+    aspectRatio: isMobile ? "56.25%" : "calc((9/16) * 67%)",
+    iconDimensions: isMobile
+      ? { width: "70px", height: "20px" }
+      : isTablet
+        ? { width: "120px", height: "35px" }
+        : { width: "160px", height: "50px" },
+  };
+};
+
+const MarqueeItem = memo(
+  ({
+    icon,
+    iconSize,
+  }: {
+    icon: { src: string; alt: string };
+    iconSize: { width: string; height: string };
+  }) => (
+    <Box
+      mt={1}
+      mx={2}
+      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
+    >
+      <img
+        src={icon.src}
+        alt={icon.alt}
+        draggable="false"
+        loading="lazy"
+        style={{
+          ...iconSize,
+          filter: "brightness(0) invert(1)",
+          pointerEvents: "none",
+          userSelect: "none",
+        }}
+      />
+    </Box>
+  )
+);
+
+const HomeHeader = () => {
+  const { t } = useTranslation();
+  const { isMobile, isTablet, isXl, aspectRatio, iconDimensions } =
+    useResponsiveValues();
 
   const [isMuted, setIsMuted] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
-  const [showreel, setShowreel] = useState<string | null>("");
-
+  const [isLoading, setIsLoading] = useState(true);
   const videoRef = useRef(null);
 
-  // Load video asset only once
   useEffect(() => {
-    loadShowreel().then(setShowreel);
+    if (videoSrc) {
+      setIsLoading(true);
+      const video = document.createElement("video");
+      video.src = videoSrc;
+      video.onloadeddata = () => {
+        setIsLoading(false);
+      };
+    }
   }, []);
 
-  // Monitor video visibility with Intersection Observer
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.5 }
+      ([entry]) => setIsVisible(entry.isIntersecting),
+      { threshold: 0.5, rootMargin: "50px" }
     );
 
     if (videoRef.current) {
       observer.observe(videoRef.current);
     }
 
-    return () => {
-      observer.disconnect();
-    };
+    return () => observer.disconnect();
   }, []);
-
-  const getAspectRatio = () => {
-    return isMobile ? "56.25%" : "calc((9/16) * 67%)";
-  };
-
-  const getIconDimensions = () => {
-    if (isMobile) return { width: "70px", height: "20px" };
-    if (isTablet) return { width: "120px", height: "35px" };
-    return { width: "160px", height: "50px" };
-  };
-
-  // Shared styles
-  const sharedBoxStyles = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  };
-
-  const iconSize = getIconDimensions();
 
   return (
     <Box
       mt={isMobile ? 7 : 8}
-      sx={{
-        backgroundColor: "#fff",
-        color: "white",
-        textAlign: "center",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-      }}
+      sx={{ backgroundColor: "#fff", color: "white", textAlign: "center" }}
     >
       <Box
         sx={{
-          ...sharedBoxStyles,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
           flexDirection: "column",
           width: "100%",
         }}
       >
-        {/* Video Section */}
         <Box
           ref={videoRef}
           sx={{
             position: "relative",
             width: "100%",
-            paddingTop: getAspectRatio(),
+            paddingTop: aspectRatio,
             overflow: "hidden",
           }}
         >
-          <Suspense
-            fallback={
-              <CircularProgress
-                color="secondary"
-                size={60}
-                sx={{
-                  position: "absolute",
-                  top: "50%",
-                  left: "50%",
-                  transform: "translate(-50%, -50%)",
-                  zIndex: 10,
-                }}
-              />
-            }
-          >
-            {showreel && (
+          {isLoading ? (
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "rgba(0, 0, 0, 0.3)",
+              }}
+            >
+              <CircularProgress size={60} sx={{ color: "#ffffff" }} />
+            </Box>
+          ) : (
+            <Suspense fallback={null}>
               <ReactPlayer
-                url={showreel}
+                url={videoSrc}
                 playing={isVisible}
                 muted={isMuted}
                 loop
                 width="100%"
                 height="100%"
+                playsinline
                 style={{
                   position: "absolute",
                   top: 0,
@@ -158,10 +169,9 @@ export const HomeHeader = () => {
                   objectFit: "cover",
                 }}
               />
-            )}
-          </Suspense>
+            </Suspense>
+          )}
 
-          {/* Mute/Unmute Button */}
           <IconButton
             onClick={() => setIsMuted((prev) => !prev)}
             sx={{
@@ -170,17 +180,13 @@ export const HomeHeader = () => {
               right: 16,
               backgroundColor: "rgba(0,0,0,0.5)",
               color: "white",
-              zIndex: 3,
-              ":hover": {
-                backgroundColor: "rgba(0,0,0,0.8)",
-              },
+              zIndex: 2,
             }}
           >
             {isMuted ? <MuteIcon /> : <UnmuteIcon />}
           </IconButton>
         </Box>
 
-        {/* Marquee Section */}
         <Box
           sx={{
             backgroundColor: "#d9d9d9",
@@ -198,29 +204,11 @@ export const HomeHeader = () => {
             onFinish={() => {}}
           >
             {ICONS.map((icon, index) => (
-              <Box
-                key={index}
-                mt={isMobile ? 1 : 0}
-                mx={isMobile ? 2 : 8}
-                sx={{ ...sharedBoxStyles }}
-              >
-                <img
-                  src={icon.src}
-                  alt={icon.alt}
-                  draggable="false"
-                  style={{
-                    ...iconSize,
-                    filter: "brightness(0) invert(1)",
-                    pointerEvents: "none",
-                    userSelect: "none",
-                  }}
-                />
-              </Box>
+              <MarqueeItem key={index} icon={icon} iconSize={iconDimensions} />
             ))}
           </Marquee>
         </Box>
 
-        {/* Text Section */}
         <Box
           sx={{
             width: 1,
@@ -229,39 +217,13 @@ export const HomeHeader = () => {
             flexDirection: isXl ? "column" : "row",
             alignItems: "center",
             justifyContent: isXl ? "center" : "space-between",
-            textAlign: isXl ? "center" : "left",
-            margin: {
-              xs: "20px 0 50px 0",
-              sm: "30px 0 70px 0",
-              md: "40px 0 100px 0",
-              lg: "50px 0 120px 0",
-              xl: "52px 0 118px 0",
-            },
-            px: {
-              xs: "18px",
-              sm: "30px",
-              md: "120px",
-              lg: "220px",
-            },
           }}
         >
-          {/* Agency Text */}
-          <Box
-            sx={{
-              display: {
-                xs: "none",
-                sm: "none",
-                md: "block",
-              },
-            }}
-          >
+          <Box sx={{ display: { xs: "none", sm: "none", md: "block" } }}>
             <Typography
               variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
-              component="h1"
               fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
               fontWeight={500}
-              mb={2}
-              sx={{ textTransform: "uppercase" }}
             >
               {isXl
                 ? t("hero.leadingMarketingAgency")
@@ -270,18 +232,14 @@ export const HomeHeader = () => {
             {!isXl && (
               <Typography
                 variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
-                component="h1"
                 fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
                 fontWeight={500}
-                mb={2}
-                sx={{ textTransform: "uppercase" }}
               >
                 {t("hero.leadingMarketingAgency2")}
               </Typography>
             )}
           </Box>
 
-          {/* Description Text */}
           <Box
             sx={{
               maxWidth: isXl ? "700px" : "500px",
@@ -293,8 +251,8 @@ export const HomeHeader = () => {
               {t("hero.agencyDescription")}
             </Typography>
             <Typography
-              maxWidth={"500px"}
-              mx={"auto"}
+              maxWidth="500px"
+              mx="auto"
               textAlign={{ xs: "left", xl: "center" }}
             >
               {t("hero.teamHelpBusinessGrow")}
@@ -305,3 +263,5 @@ export const HomeHeader = () => {
     </Box>
   );
 };
+
+export default memo(HomeHeader);
