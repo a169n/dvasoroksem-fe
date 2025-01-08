@@ -42,9 +42,9 @@ export const Request = () => {
 
   const controlLabelStyles = {
     color: "#fff",
-    "& .MuiCheckbox-root, & .MuiRadio-root": {
+
+    "&.Mui-checked": {
       color: "#fff",
-      "&.Mui-checked": { color: "#fff" },
     },
   };
 
@@ -135,7 +135,12 @@ export const Request = () => {
               </Typography>
 
               <Box sx={{ display: "flex", flexWrap: "wrap", gap: 2, mb: 2 }}>
-                {["Комлпексный маркетинг", "Instagram", "Production", "Креативная задача"].map((label) => (
+                {[
+                  "Комлпексный маркетинг",
+                  "Instagram",
+                  "Production",
+                  "Креативная задача",
+                ].map((label) => (
                   <FormControlLabel
                     key={label}
                     control={<Checkbox sx={controlLabelStyles} />}
