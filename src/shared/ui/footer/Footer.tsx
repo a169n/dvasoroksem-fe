@@ -4,7 +4,7 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { ContactLinks } from "./ui";
 import { useTranslation } from "react-i18next";
 import { useLocation } from "react-router-dom";
-import footer2 from "@assets/footer2.svg";
+import footer2 from "@assets/footer2.webp";
 
 interface MainContainerProps {
   children: ReactNode;
@@ -66,7 +66,7 @@ const ContactSection = memo(({ title }: ContactSectionProps) => {
 const ImageSection = memo(() => {
   const imageStyles = useMemo(
     () => ({
-      width: "100%",
+      width: "275px",
       height: "auto",
       maxHeight: { xs: "200px", md: "none" },
       objectFit: "cover",

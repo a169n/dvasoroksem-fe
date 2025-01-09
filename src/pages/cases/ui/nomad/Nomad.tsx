@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import { Header } from "@shared/ui/header";
-import NomadMainPage from "@assets/casePages/nomad.svg";
+import NomadMainPage from "@assets/casePages/nomad.webp";
 import { Description } from "@shared/ui/description";
 import { Cases } from "@pages/home/ui/cases";
 import NomadData from "./ui/nomadData";
