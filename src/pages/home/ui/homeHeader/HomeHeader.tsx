@@ -15,15 +15,24 @@ import videoSrc from "@assets/videos/main_showreel.mp4";
 
 const ReactPlayer = React.lazy(() => import("react-player/lazy"));
 
+import icon1 from "@assets/icons/icon1.svg";
+import icon2 from "@assets/icons/icon2.svg";
+import icon3 from "@assets/icons/icon3.svg";
+import icon4 from "@assets/icons/icon4.svg";
+import icon5 from "@assets/icons/icon5.svg";
+import icon6 from "@assets/icons/icon6.svg";
+import icon7 from "@assets/icons/icon7.svg";
+import icon8 from "@assets/icons/icon8.svg";
+
 const ICONS = [
-  { src: "src/assets/icons/icon1.svg", alt: "Icon1" },
-  { src: "src/assets/icons/icon2.svg", alt: "Icon2" },
-  { src: "src/assets/icons/icon3.svg", alt: "Icon3" },
-  { src: "src/assets/icons/icon4.svg", alt: "Icon4" },
-  { src: "src/assets/icons/icon5.svg", alt: "Icon5" },
-  { src: "src/assets/icons/icon6.svg", alt: "Icon6" },
-  { src: "src/assets/icons/icon7.svg", alt: "Icon7" },
-  { src: "src/assets/icons/icon8.svg", alt: "Icon8" },
+  { src: icon1, alt: "Icon1" },
+  { src: icon2, alt: "Icon2" },
+  { src: icon3, alt: "Icon3" },
+  { src: icon4, alt: "Icon4" },
+  { src: icon5, alt: "Icon5" },
+  { src: icon6, alt: "Icon6" },
+  { src: icon7, alt: "Icon7" },
+  { src: icon8, alt: "Icon8" },
 ].map((icon) => {
   const img = new Image();
   img.src = icon.src;
