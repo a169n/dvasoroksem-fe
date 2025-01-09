@@ -49,39 +49,9 @@ const useResponsiveValues = () => {
   };
 };
 
-const MarqueeItem = memo(
-  ({
-    icon,
-    iconSize,
-  }: {
-    icon: { src: string; alt: string };
-    iconSize: { width: string; height: string };
-  }) => (
-    <Box
-      mt={1}
-      mx={2}
-      sx={{ display: "flex", alignItems: "center", justifyContent: "center" }}
-    >
-      <img
-        src={icon.src}
-        alt={icon.alt}
-        draggable="false"
-        loading="lazy"
-        style={{
-          ...iconSize,
-          filter: "brightness(0) invert(1)",
-          pointerEvents: "none",
-          userSelect: "none",
-        }}
-      />
-    </Box>
-  )
-);
-
 const HomeHeader = () => {
   const { t } = useTranslation();
-  const { isMobile, isTablet, isXl, aspectRatio, iconDimensions } =
-    useResponsiveValues();
+  const { isMobile, isTablet, isXl, aspectRatio } = useResponsiveValues();
 
   const [isMuted, setIsMuted] = useState(true);
   const [isVisible, setIsVisible] = useState(false);
@@ -98,6 +68,21 @@ const HomeHeader = () => {
       };
     }
   }, []);
+
+  const getIconDimensions = () => {
+    if (isMobile) return { width: "70px", height: "20px" };
+    if (isTablet) return { width: "120px", height: "35px" };
+    return { width: "160px", height: "50px" };
+  };
+
+  // Shared styles
+  const sharedBoxStyles = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  };
+
+  const iconSize = getIconDimensions();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -204,7 +189,24 @@ const HomeHeader = () => {
             onFinish={() => {}}
           >
             {ICONS.map((icon, index) => (
-              <MarqueeItem key={index} icon={icon} iconSize={iconDimensions} />
+              <Box
+                key={index}
+                mt={isMobile ? 1 : 0}
+                mx={isMobile ? 2 : 8}
+                sx={{ ...sharedBoxStyles }}
+              >
+                <img
+                  src={icon.src}
+                  alt={icon.alt}
+                  draggable="false"
+                  style={{
+                    ...iconSize,
+                    filter: "brightness(0) invert(1)",
+                    pointerEvents: "none",
+                    userSelect: "none",
+                  }}
+                />
+              </Box>
             ))}
           </Marquee>
         </Box>
@@ -217,13 +219,38 @@ const HomeHeader = () => {
             flexDirection: isXl ? "column" : "row",
             alignItems: "center",
             justifyContent: isXl ? "center" : "space-between",
+            textAlign: isXl ? "center" : "left",
+            margin: {
+              xs: "20px 0 50px 0",
+              sm: "30px 0 70px 0",
+              md: "40px 0 100px 0",
+              lg: "50px 0 120px 0",
+              xl: "52px 0 118px 0",
+            },
+            px: {
+              xs: "18px",
+              sm: "30px",
+              md: "120px",
+              lg: "220px",
+            },
           }}
         >
-          <Box sx={{ display: { xs: "none", sm: "none", md: "block" } }}>
+          <Box
+            sx={{
+              display: {
+                xs: "none",
+                sm: "none",
+                md: "block",
+              },
+            }}
+          >
             <Typography
               variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
+              component="h1"
               fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
               fontWeight={500}
+              mb={2}
+              sx={{ textTransform: "uppercase" }}
             >
               {isXl
                 ? t("hero.leadingMarketingAgency")
@@ -232,8 +259,11 @@ const HomeHeader = () => {
             {!isXl && (
               <Typography
                 variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
+                component="h1"
                 fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
                 fontWeight={500}
+                mb={2}
+                sx={{ textTransform: "uppercase" }}
               >
                 {t("hero.leadingMarketingAgency2")}
               </Typography>
@@ -251,8 +281,8 @@ const HomeHeader = () => {
               {t("hero.agencyDescription")}
             </Typography>
             <Typography
-              maxWidth="500px"
-              mx="auto"
+              maxWidth={"500px"}
+              mx={"auto"}
               textAlign={{ xs: "left", xl: "center" }}
             >
               {t("hero.teamHelpBusinessGrow")}

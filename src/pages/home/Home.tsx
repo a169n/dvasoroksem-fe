@@ -28,7 +28,7 @@ export const Home = () => {
           });
         }
         window.history.replaceState({}, document.title);
-      }, 100);
+      }, 500);
     }
   }, [refs]);
 
