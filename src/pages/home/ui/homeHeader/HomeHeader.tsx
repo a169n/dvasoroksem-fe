@@ -51,8 +51,7 @@ const useResponsiveValues = () => {
 
 const HomeHeader = () => {
   const { t } = useTranslation();
-  const { isMobile, isTablet, isXl, aspectRatio, iconDimensions } =
-    useResponsiveValues();
+  const { isMobile, isTablet, isXl, aspectRatio } = useResponsiveValues();
 
   const [isMuted, setIsMuted] = useState(true);
   const [isVisible, setIsVisible] = useState(false);

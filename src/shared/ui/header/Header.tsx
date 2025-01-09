@@ -69,14 +69,12 @@ export const Header = () => {
 
   const scrollToSection = useCallback(
     (section: string) => {
-      const headerHeight = 80; // Adjust this value based on your header height
       const targetRef = refs[section];
 
       if (targetRef?.current) {
-        const elementPosition = targetRef.current.offsetTop - headerHeight;
-        window.scrollTo({
-          top: elementPosition,
+        targetRef.current.scrollIntoView({
           behavior: "smooth",
+          block: "start",
         });
       }
     },
