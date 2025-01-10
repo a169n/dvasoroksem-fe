@@ -387,7 +387,7 @@ export const Certificates = () => {
                 sx={{
                   display: loading ? "none" : "block",
                   minWidth: "40vh",
-                  height: "80vh",
+                  height:  { xs: "40%", lg: "80vh" },
                   minHeight: { xs: "30vh", lg: "80vh" },
                   objectFit: "contain",
                   margin: "0 auto",
