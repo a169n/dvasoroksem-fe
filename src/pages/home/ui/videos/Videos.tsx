@@ -185,7 +185,7 @@ export const Videos = () => {
       mb={5}
       sx={{
         position: "relative",
-        px: { xs: 2, sm: 4, md: 8 },
+        px: { xs: 0, sm: 4, md: 8 },
       }}
     >
       {isDesktop ? (
