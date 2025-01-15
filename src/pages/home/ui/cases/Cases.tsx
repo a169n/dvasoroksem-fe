@@ -154,18 +154,23 @@ export const Cases = ({ mode = "default" }) => {
         </Typography>
         <MyButton
           onClick={() => navigate("/cases")}
-          startIcon={<ArrowForwardIcon />}
+          endIcon={<ArrowForwardIcon />}
           sx={{
             borderRadius: 0,
-            border: "none",
+            border: "1px solid black",
             textTransform: "none",
-            fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
+            fontSize: isMobile ? "16px" : isTablet ? "18px" : "24px",
             fontWeight: 400,
             whiteSpace: "nowrap",
-            py: isMobile ? 1 : 0.5,
-            px: isMobile ? 2 : 2,
+            py: isMobile ? 1 : 1,
+            px: isMobile ? 2 : 4,
             backgroundColor: isCasePage ? "#161616" : "#fff",
             color: isCasePage ? "#fff" : "#000",
+            fontFamily: "Futura PT, sans-serif",
+            lineHeight: "28.8px",
+            textAlign: "center",
+            textUnderlinePosition: "from-font",
+            textDecorationSkipInk: "none",
             ":hover": {
               backgroundColor: isCasePage ? "#fff" : "#161616",
               color: isCasePage ? "#000" : "#fff",
