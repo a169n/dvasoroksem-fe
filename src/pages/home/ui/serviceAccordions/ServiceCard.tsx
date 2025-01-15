@@ -36,7 +36,7 @@ export const ServiceCard = ({
         flexDirection: isSmallScreen || isVertical ? "column" : "row",
         margin: 0,
         padding: "15px",
-        borderRadius: "24px",
+        borderRadius: "38px",
         backgroundColor: "#f7f7f7",
         border: "1px solid #ddd",
         gap: "30px",
@@ -55,7 +55,7 @@ export const ServiceCard = ({
           height: isSmallScreen ? "auto" : imageSize.height,
           objectFit: "cover",
           objectPosition: objectPosition,
-          borderRadius: "24px",
+          borderRadius: "38px",
         }}
       />
       <ServiceContent title={title} items={items} />

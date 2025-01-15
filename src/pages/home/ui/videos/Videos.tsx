@@ -171,6 +171,7 @@ export const Videos = () => {
     mobile: {
       breakpoint: { max: 600, min: 0 },
       items: 1,
+      partialVisibilityGutter: 90,
     },
   };
 
@@ -205,8 +206,9 @@ export const Videos = () => {
       ) : (
         <Carousel
           responsive={responsive}
-          infinite={false}
+          infinite={true}
           autoPlay={true}
+          partialVisible={isMobile}
           autoPlaySpeed={7000}
           draggable={true}
           swipeable={true}

@@ -291,6 +291,7 @@ const Values = memo(() => {
       mobile: {
         breakpoint: { max: 600, min: 0 },
         items: 1,
+        partialVisibilityGutter: 90,
       },
     }),
     []
@@ -366,6 +367,7 @@ const Values = memo(() => {
             pauseOnHover
             keyBoardControl
             autoPlay
+            partialVisible={isMobile}
             autoPlaySpeed={7000}
             showDots={false}
             centerMode={!isMobile}
