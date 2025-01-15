@@ -12,6 +12,7 @@ import { MyCard } from "@shared/ui/card";
 import { useNavigate } from "react-router-dom";
 import { CustomContainer } from "@shared/ui/container";
 import { useMemo } from "react";
+import { maxWidth } from "@mui/system";
 
 export const WhyChooseUs = () => {
   const { t } = useTranslation();
@@ -154,27 +155,26 @@ export const WhyChooseUs = () => {
   );
 
   return (
-    <Box sx={containerStyles}>
-      <CustomContainer>
+    <CustomContainer>
+      <Box sx={containerStyles}>
         <Typography variant="h2" component="h1" sx={headingStyles}>
           {t("whyChooseUs.title")}
         </Typography>
-      </CustomContainer>
 
-      {isLargeScreen ? (
+        {isLargeScreen ? (
           <Box
             sx={{
-              maxWidth: "1050px",
               margin: "0 auto",
               display: "flex",
               flexDirection: "column",
               gap: "110px",
               mt: "115px",
+              maxWidth: "1200px"
             }}
           >
             <Box sx={rowStyles}>
               {cardImages.slice(0, 3).map((card, index) => (
-                <Box key={index} sx={{ width: "275px", height: "auto" }}>
+                <Box key={index} sx={{ width: "370px", height: "auto" }}>
                   <MyCard
                     image={card.image}
                     imageMaxWidth={card.maxWidth}
@@ -195,7 +195,7 @@ export const WhyChooseUs = () => {
               {cardImages.slice(3).map((card, index) => (
                 <Box
                   key={index}
-                  sx={{ width: "calc(50% - 40px)", height: "auto" }}
+                  sx={{ width: "calc(50% - 150px)", height: "auto" }}
                 >
                   <MyCard
                     image={card.image}
@@ -214,53 +214,54 @@ export const WhyChooseUs = () => {
               ))}
             </Box>
           </Box>
-      ) : (
-        <Box mt={2} sx={{ overflow: "auto",  }}>
-          <Carousel
-            responsive={responsive}
-            infinite
-            draggable
-            swipeable
-            pauseOnHover
-            partialVisible={isMobile}
-            keyBoardControl
-            additionalTransfrom={0}
-            autoPlay
-            autoPlaySpeed={7000}
-            showDots={false}
-            containerClass="carousel-container"
-            itemClass="carousel-item-padding"
-            removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
-            arrows={false}
-          >
-            {cardImages.map((card, index) => (
-              <Box
-                key={index}
-                sx={{
-                  display: "flex",
-                  justifyContent: "flex-start",
-                  alignItems: "flex-start",
-                  my: 12,
-                }}
-              >
-                <MyCard
-                  image={card.image}
-                  imageMaxWidth={card.maxWidth}
-                  imageMaxHeight={card.maxHeight}
-                  rotateClockwise={card.rotateClockwise}
-                  top={card.top}
-                  marginTop={card.marginTop}
-                  title={card.title}
-                  text={card.text}
-                  buttonText={card.buttonText}
-                  onButtonClick={card.action}
-                  isMobile={isMobile}
-                />
-              </Box>
-            ))}
-          </Carousel>
-        </Box>
-      )}
-    </Box>
+        ) : (
+          <Box mt={2} sx={{ overflow: "auto" }}>
+            <Carousel
+              responsive={responsive}
+              infinite
+              draggable
+              swipeable
+              pauseOnHover
+              partialVisible={isMobile}
+              keyBoardControl
+              additionalTransfrom={0}
+              autoPlay
+              autoPlaySpeed={7000}
+              showDots={false}
+              containerClass="carousel-container"
+              itemClass="carousel-item-padding"
+              removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
+              arrows={false}
+            >
+              {cardImages.map((card, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    display: "flex",
+                    justifyContent: "flex-start",
+                    alignItems: "flex-start",
+                    my: 12,
+                  }}
+                >
+                  <MyCard
+                    image={card.image}
+                    imageMaxWidth={card.maxWidth}
+                    imageMaxHeight={card.maxHeight}
+                    rotateClockwise={card.rotateClockwise}
+                    top={card.top}
+                    marginTop={card.marginTop}
+                    title={card.title}
+                    text={card.text}
+                    buttonText={card.buttonText}
+                    onButtonClick={card.action}
+                    isMobile={isMobile}
+                  />
+                </Box>
+              ))}
+            </Carousel>
+          </Box>
+        )}
+      </Box>
+    </CustomContainer>
   );
 };
