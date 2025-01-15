@@ -224,11 +224,22 @@ export const Header = () => {
         <Box
           sx={{
             cursor: "pointer",
-            width: isMobile ? "100%" : "40%",
+            width: isMobile ? "100%" : "10%",
+            height: "100%",
+            padding: 2,
             display: "flex",
             justifyContent: "flex-start",
           }}
-          onClick={() => navigate("/")}
+          onClick={() => {
+            if (location.pathname === "/") {
+              window.scrollTo({
+                top: 0,
+                behavior: "smooth",
+              });
+            } else {
+              navigate("/");
+            }
+          }}
         >
           <img
             src={isMobile ? logoSmall : logo}

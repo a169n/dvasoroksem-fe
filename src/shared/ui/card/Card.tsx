@@ -49,12 +49,10 @@ export const MyCard: React.FC<CardProps> = ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        width: "100%",
-        maxWidth: "374px",
+        maxWidth: "400px",
         borderRadius: "24px",
         boxShadow: "none",
         backgroundColor: "#f7f7f7",
-        minHeight: { xl: "221px", lg: "300px" },
         margin: "0 auto",
         overflow: "visible",
         transition: "box-shadow 0.3s ease-in-out",
@@ -98,10 +96,15 @@ export const MyCard: React.FC<CardProps> = ({
           component="div"
           gutterBottom
           sx={{
-            fontSize: { sm: "24px", md: "32px", xl: "24px" },
-            textAlign: "start",
-            fontFamily: "Georgia, serif",
-            fontStyle: "italic",
+            fontSize: { sm: "24px", md: "32px", xl: "35px" },
+            fontFamily: "Futura PT, serif",
+            fontWeight: 450,
+            lineHeight: { sm: "28px", md: "35px", xl: "38.5px" },
+            letterSpacing: "-0.04em",
+            textAlign: "center",
+            textTransform: "uppercase",
+            textUnderlinePosition: "from-font",
+            textDecorationSkipInk: "none",
           }}
         >
           {title}

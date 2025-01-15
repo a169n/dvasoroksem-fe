@@ -63,31 +63,42 @@ const ValueCard = memo(
 
     const titleStyles = useMemo(
       () => ({
-        fontFamily: "Georgia, serif",
-        fontStyle: "italic",
+        fontFamily: "Futura PT, serif",
         fontSize: {
-          xs: "18px",
-          sm: "20px",
-          md: "24px",
-          xl: "32px",
+          xs: "24px",
+          sm: "24px",
+          md: "32px",
+          xl: "35px",
         },
-        fontWeight: 400,
+        fontWeight: 450,
+        lineHeight: {
+          xs: "28px",
+          sm: "28px",
+          md: "35px",
+          xl: "38.5px",
+        },
         color: "#000",
+        mt: 1,
+        textTransform: "uppercase",
+        letterSpacing: "-0.04em",
         textAlign: "center",
-        lineHeight: "115%",
+        textUnderlinePosition: "from-font",
+        textDecorationSkipInk: "none",
       }),
       []
     );
 
     const textStyles = useMemo(
       () => ({
-        px: 2,
-        mb: 1,
+        mt: 1,
         color: "#333",
-        fontSize: { xs: "14px", sm: "16px", md: "18px" },
+        fontSize: { xs: "18px", sm: "20px", md: "24px" },
         fontFamily: "Futura PT, sans-serif",
         fontWeight: 400,
+        lineHeight: { xs: "21.6px", sm: "24px", md: "28.8px" },
         textAlign: "center",
+        textUnderlinePosition: "from-font",
+        textDecorationSkipInk: "none",
       }),
       []
     );
