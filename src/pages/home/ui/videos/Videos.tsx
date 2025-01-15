@@ -36,7 +36,7 @@ const VideoPlaceholder = () => (
       alignItems: "center",
       justifyContent: "center",
       backgroundColor: "#f7f7f7",
-      borderRadius: "16px",
+      borderRadius: "24px",
       boxShadow: 2,
     }}
   >
@@ -62,10 +62,10 @@ const VideoCard = ({
     <Box
       onClick={handlePlayPause}
       sx={{
-        width: "100%",
-        height: isMobile ? "550px" : isXL ? "auto" : "auto",
-        maxHeight: "650px",
-        padding: 2,
+        width: isPlaying ? "105%" : "100%",
+        height: "auto",
+        maxHeight: isMobile ? "auto" : "650px",
+        padding: !isPlaying ? 2 : -0,
         borderRadius: "24px",
         backgroundColor: "#f7f7f7",
         boxShadow: 2,
@@ -132,17 +132,19 @@ const VideoCard = ({
           </Suspense>
         )}
       </Box>
-      {(!isPlaying || isMobile) && (
+      {!isPlaying && (
         <Typography
           my={2}
           sx={{
-            fontFamily: "Georgia, serif",
-            fontSize: { xs: "18px", sm: "20px", md: "28px", xl: "32px" },
-            fontStyle: "italic",
+            fontFamily: "Futura PT, serif",
+            fontSize: { xs: "24px", sm: "24px", md: "32px", xl: "35px" },
+            fontWeight: 450,
+            lineHeight: { xs: "28px", sm: "28px", md: "35px", xl: "38.5px" },
+            letterSpacing: "-0.04em",
             textAlign: "center",
-            userSelect: "none",
-            lineHeight: "115%",
-            fontWeight: "400",
+            textUnderlinePosition: "from-font",
+            textDecorationSkipInk: "none",
+            textTransform: "uppercase",
           }}
         >
           {title}
