@@ -229,6 +229,7 @@ export const Certificates = () => {
             autoPlay={!isMobile}
             autoPlaySpeed={7000}
             keyBoardControl
+            partialVisible={isMobile}
             containerClass="carousel-container"
             draggable
             centerMode={!isMobile}
@@ -246,6 +247,7 @@ export const Certificates = () => {
               smallDevices: {
                 breakpoint: { max: 720, min: 0 },
                 items: 1,
+                partialVisibilityGutter: 90,
               },
             }}
           >
@@ -386,9 +388,11 @@ export const Certificates = () => {
                 onLoad={() => setLoading(false)}
                 sx={{
                   display: loading ? "none" : "block",
-                  minWidth: "40vh",
-                  height:  { xs: "40%", lg: "80vh" },
+                  height: { xs: "50%", lg: "80vh" },
+                  minWidth: { xs: "100vw", md: "20vw" },
                   minHeight: { xs: "30vh", lg: "80vh" },
+                  maxHeight: "80vh",
+                  maxWidth: "80vw",
                   objectFit: "contain",
                   margin: "0 auto",
                 }}

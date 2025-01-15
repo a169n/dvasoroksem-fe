@@ -108,6 +108,7 @@ export const WhyChooseUs = () => {
       mobile: {
         breakpoint: { max: 600, min: 0 },
         items: 1,
+        partialVisibilityGutter: 90,
       },
     }),
     []
@@ -153,13 +154,14 @@ export const WhyChooseUs = () => {
   );
 
   return (
-    <CustomContainer>
-      <Box sx={containerStyles}>
+    <Box sx={containerStyles}>
+      <CustomContainer>
         <Typography variant="h2" component="h1" sx={headingStyles}>
           {t("whyChooseUs.title")}
         </Typography>
+      </CustomContainer>
 
-        {isLargeScreen ? (
+      {isLargeScreen ? (
           <Box
             sx={{
               maxWidth: "1050px",
@@ -212,52 +214,53 @@ export const WhyChooseUs = () => {
               ))}
             </Box>
           </Box>
-        ) : (
-          <Box mt={2} sx={{ overflow: "auto" }}>
-            <Carousel
-              responsive={responsive}
-              infinite
-              draggable
-              swipeable
-              pauseOnHover
-              keyBoardControl
-              autoPlay
-              autoPlaySpeed={7000}
-              showDots={false}
-              containerClass="carousel-container"
-              itemClass="carousel-item-padding"
-              removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
-              arrows={false}
-            >
-              {cardImages.map((card, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    my: 12,
-                  }}
-                >
-                  <MyCard
-                    image={card.image}
-                    imageMaxWidth={card.maxWidth}
-                    imageMaxHeight={card.maxHeight}
-                    rotateClockwise={card.rotateClockwise}
-                    top={card.top}
-                    marginTop={card.marginTop}
-                    title={card.title}
-                    text={card.text}
-                    buttonText={card.buttonText}
-                    onButtonClick={card.action}
-                    isMobile={isMobile}
-                  />
-                </Box>
-              ))}
-            </Carousel>
-          </Box>
-        )}
-      </Box>
-    </CustomContainer>
+      ) : (
+        <Box mt={2} sx={{ overflow: "auto",  }}>
+          <Carousel
+            responsive={responsive}
+            infinite
+            draggable
+            swipeable
+            pauseOnHover
+            partialVisible={isMobile}
+            keyBoardControl
+            additionalTransfrom={0}
+            autoPlay
+            autoPlaySpeed={7000}
+            showDots={false}
+            containerClass="carousel-container"
+            itemClass="carousel-item-padding"
+            removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
+            arrows={false}
+          >
+            {cardImages.map((card, index) => (
+              <Box
+                key={index}
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                  my: 12,
+                }}
+              >
+                <MyCard
+                  image={card.image}
+                  imageMaxWidth={card.maxWidth}
+                  imageMaxHeight={card.maxHeight}
+                  rotateClockwise={card.rotateClockwise}
+                  top={card.top}
+                  marginTop={card.marginTop}
+                  title={card.title}
+                  text={card.text}
+                  buttonText={card.buttonText}
+                  onButtonClick={card.action}
+                  isMobile={isMobile}
+                />
+              </Box>
+            ))}
+          </Carousel>
+        </Box>
+      )}
+    </Box>
   );
 };
