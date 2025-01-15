@@ -21,6 +21,7 @@ import flexibilityIcon from "@assets/icons/values/flexibility.svg";
 import innovativeIcon from "@assets/icons/values/innovative.svg";
 import responsibilityIcon from "@assets/icons/values/responsibility.svg";
 import { CustomContainer } from "@shared/ui/container";
+import { textTransform } from "@mui/system";
 
 interface ValueCardProps {
   image: string;
@@ -63,18 +64,27 @@ const ValueCard = memo(
 
     const titleStyles = useMemo(
       () => ({
-        fontFamily: "Georgia, serif",
-        fontStyle: "italic",
+        fontFamily: "Futura PT, serif",
         fontSize: {
-          xs: "18px",
-          sm: "20px",
-          md: "24px",
-          xl: "32px",
+          xs: "24px",
+          sm: "24px",
+          md: "32px",
+          xl: "35px",
         },
-        fontWeight: 400,
+        fontWeight: 450,
+        lineHeight: {
+          xs: "28px",
+          sm: "28px",
+          md: "35px",
+          xl: "38.5px",
+        },
         color: "#000",
+        mt: 1,
+        textTransform: "uppercase",
+        letterSpacing: "-0.04em",
         textAlign: "center",
-        lineHeight: "115%",
+        textUnderlinePosition: "from-font",
+        textDecorationSkipInk: "none",
       }),
       []
     );
