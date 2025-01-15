@@ -6,10 +6,10 @@ import {
   useTheme,
   useMediaQuery,
   Grid,
+  CircularProgress,
 } from "@mui/material";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 const ReactPlayer = lazy(() => import("react-player"));
@@ -21,7 +21,10 @@ import QCSVideoPreview from "@assets/videos/QCSPreview.webp";
 import NovaTravelVideo from "@assets/videos/NovaTravel.MP4";
 import NovaTravelPreview from "@assets/videos/NovaTravelPreview.webp";
 import ASGPreview from "@assets/videos/ASGPreview.webp";
+import ASGVideo from "@assets/videos/ASG.mp4";
+
 import { useTranslation } from "react-i18next";
+import { CustomContainer } from "@shared/ui/container";
 
 const VideoPlaceholder = () => (
   <Box
@@ -41,9 +44,16 @@ const VideoPlaceholder = () => (
   </Box>
 );
 
-const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
+const VideoCard = ({
+  url,
+  title,
+  preview,
+  isPlaying,
+  onPlay,
+  index,
+  isLoaded,
+}) => {
   const handlePlayPause = () => onPlay(isPlaying ? null : index);
-
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const isXL = useMediaQuery(theme.breakpoints.up("xl"));
@@ -53,8 +63,8 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
       onClick={handlePlayPause}
       sx={{
         width: "100%",
-        height: isMobile ? "550px" : isXL ? "760px" : "665px",
-        maxHeight: "760px",
+        height: isMobile ? "550px" : isXL ? "auto" : "auto",
+        maxHeight: "650px",
         padding: 2,
         borderRadius: "24px",
         backgroundColor: "#f7f7f7",
@@ -83,14 +93,23 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
         }}
       >
         {!isPlaying ? (
-          <LazyLoadImage
+          <img
             alt="Video Preview"
-            effect="blur"
             src={preview}
-            width="100%"
             style={{
+              width: "100%",
               objectFit: "cover",
               filter: "brightness(70%)",
+            }}
+          />
+        ) : !isLoaded ? (
+          <CircularProgress
+            size={50}
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
             }}
           />
         ) : (
@@ -118,7 +137,7 @@ const VideoCard = ({ url, title, preview, isPlaying, onPlay, index }) => {
           my={2}
           sx={{
             fontFamily: "Georgia, serif",
-            fontSize: { xs: "20px", sm: "20px", md: "35px", xl: "40px" },
+            fontSize: { xs: "18px", sm: "20px", md: "28px", xl: "32px" },
             fontStyle: "italic",
             textAlign: "center",
             userSelect: "none",
@@ -138,6 +157,7 @@ export const Videos = () => {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [activeVideo, setActiveVideo] = useState(null);
+  const [loadedVideos, setLoadedVideos] = useState<any[]>([]);
   const { t } = useTranslation();
 
   const videoData = [
@@ -157,7 +177,7 @@ export const Videos = () => {
       preview: NovaTravelPreview,
     },
     {
-      url: QCSVideo,
+      url: ASGVideo,
       title: t("videos.asgPartnerReview"),
       preview: ASGPreview,
     },
@@ -177,72 +197,79 @@ export const Videos = () => {
 
   const handleVideoPlay = (index) => {
     setActiveVideo(index);
+    if (!loadedVideos.includes(index)) {
+      setLoadedVideos((prev) => [...prev, index]);
+    }
   };
 
   return (
-    <Box
-      py={6}
-      mb={5}
-      sx={{
-        position: "relative",
-        px: { xs: 0, sm: 4, md: 8 },
-      }}
-    >
-      {isDesktop ? (
-        <Grid container spacing={4}>
-          {videoData.map((video, index) => (
-            <Grid item xs={12} sm={6} md={3} key={index}>
-              <VideoCard
-                url={video.url}
-                title={video.title}
-                preview={video.preview}
-                isPlaying={activeVideo === index}
-                onPlay={handleVideoPlay}
-                index={index}
-              />
-            </Grid>
-          ))}
-        </Grid>
-      ) : (
-        <Carousel
-          responsive={responsive}
-          infinite={true}
-          autoPlay={true}
-          partialVisible={isMobile}
-          autoPlaySpeed={7000}
-          draggable={true}
-          swipeable={true}
-          keyBoardControl={true}
-          showDots={isMobile ? true : false}
-          arrows={false}
-          containerClass="carousel-container"
-          centerMode={!isMobile}
-          itemClass="carousel-item-spacing"
-          sliderClass="carousel-slider-spacing"
-        >
-          {videoData.map((video, index) => (
-            <Box
-              key={index}
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              sx={{
-                p: { xs: 2, sm: 3, md: 4 },
-                mb: isMobile ? 3 : 0,
-              }}
-            >
-              <VideoCard
-                url={video.url}
-                title={video.title}
-                preview={video.preview}
-                isPlaying={activeVideo === index}
-                onPlay={handleVideoPlay}
-                index={index}
-              />
-            </Box>
-          ))}
-        </Carousel>
-      )}
-    </Box>
+    <CustomContainer>
+      <Box
+        py={6}
+        mb={5}
+        sx={{
+          position: "relative",
+          px: { xs: 0, sm: 4, md: 8 },
+        }}
+      >
+        {isDesktop ? (
+          <Grid container spacing={4}>
+            {videoData.map((video, index) => (
+              <Grid item xs={12} sm={6} md={3} key={index}>
+                <VideoCard
+                  url={video.url}
+                  title={video.title}
+                  preview={video.preview}
+                  isPlaying={activeVideo === index}
+                  onPlay={handleVideoPlay}
+                  index={index}
+                  isLoaded={loadedVideos.includes(index)}
+                />
+              </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <Carousel
+            responsive={responsive}
+            infinite={true}
+            autoPlay={true}
+            partialVisible={isMobile}
+            autoPlaySpeed={7000}
+            draggable={true}
+            swipeable={true}
+            keyBoardControl={true}
+            showDots={isMobile ? true : false}
+            arrows={false}
+            containerClass="carousel-container"
+            centerMode={!isMobile}
+            itemClass="carousel-item-spacing"
+            sliderClass="carousel-slider-spacing"
+          >
+            {videoData.map((video, index) => (
+              <Box
+                key={index}
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                sx={{
+                  p: { xs: 2, sm: 3, md: 4 },
+                  mb: isMobile ? 3 : 0,
+                }}
+              >
+                <VideoCard
+                  url={video.url}
+                  title={video.title}
+                  preview={video.preview}
+                  isPlaying={activeVideo === index}
+                  onPlay={handleVideoPlay}
+                  index={index}
+                  isLoaded={loadedVideos.includes(index)}
+                />
+              </Box>
+            ))}
+          </Carousel>
+        )}
+      </Box>
+    </CustomContainer>
   );
 };
