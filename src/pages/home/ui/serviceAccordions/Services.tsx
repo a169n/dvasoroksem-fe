@@ -50,7 +50,7 @@ export const Services = () => {
       ],
       imageSize: { width: "190px", height: "204px" },
       layout: "default",
-      objectPosition: "right",
+      objectPosition: "center",
     },
     {
       title: t("services.it.title"),
