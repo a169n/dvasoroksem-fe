@@ -27,13 +27,13 @@ import QcsData from "./ui/qcsData";
 import { useEffect } from "react";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-import QCSReel1 from "@assets/videos/qcs/qcs_reels_1.mov";
+import QCSReel1 from "@assets/videos/qcs/qcs_reels_1.mp4";
 import QCSReel2 from "@assets/videos/qcs/qcs_reels_2.mp4";
 import QCSReel3 from "@assets/videos/qcs/qcs_reels_3.mp4";
-import QCSStories1 from "@assets/videos/qcs/qcs_stories_1.mov";
-import QCSStories2 from "@assets/videos/qcs/qcs_stories_2.mov";
-import QCSStories3 from "@assets/videos/qcs/qcs_stories_3.mov";
-import QCSStories4 from "@assets/videos/qcs/qcs_stories_4.mov";
+import QCSStories1 from "@assets/videos/qcs/qcs_stories_1.mp4";
+import QCSStories2 from "@assets/videos/qcs/qcs_stories_2.mp4";
+import QCSStories3 from "@assets/videos/qcs/qcs_stories_3.mp4";
+import QCSStories4 from "@assets/videos/qcs/qcs_stories_4.mp4";
 import VideoCarousel from "@shared/ui/videoCarousel/VideoCarousel";
 import { useLayoutContext } from "@src/context/LayoutContext";
 import { useTranslation } from "react-i18next";
