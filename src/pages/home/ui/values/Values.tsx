@@ -318,10 +318,10 @@ const Values = memo(() => {
 
   const titleStyles = useMemo(
     () => ({
-      fontWeight: 500,
+      fontWeight: 450,
       color: "#000",
       textTransform: "uppercase",
-      fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "70px" },
+      fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "75px" },
       mb: { xs: 2, sm: 3, md: 5 },
       textAlign: "left",
     }),

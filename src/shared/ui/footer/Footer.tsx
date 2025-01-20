@@ -42,9 +42,9 @@ const ContactSection = memo(({ title }: ContactSectionProps) => {
 
   const titleStyles = useMemo(
     () => ({
-      fontWeight: 400,
+      fontWeight: 450,
       textTransform: "uppercase",
-      fontSize: { xs: "32px", sm: "36px", md: "42px", lg: "64px" },
+      fontSize: { xs: "32px", sm: "36px", md: "42px", lg: "70px" },
       mb: 2,
       textAlign: "start",
     }),

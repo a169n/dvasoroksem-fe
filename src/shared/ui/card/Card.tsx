@@ -5,6 +5,8 @@ import {
   CardMedia,
   Card as MUICard,
   Typography,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import React, { useState } from "react";
 import { MyButton } from "../button";
@@ -40,6 +42,9 @@ export const MyCard: React.FC<CardProps> = ({
   isMobile,
 }) => {
   const [showBox, setShowBox] = useState(false);
+  const theme = useTheme();
+
+  const isLargeScreen = useMediaQuery(theme.breakpoints.up("xl"));
 
   return (
     <MUICard
@@ -49,7 +54,7 @@ export const MyCard: React.FC<CardProps> = ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        maxWidth: "400px",
+        maxWidth: isLargeScreen ? "500px" : "400px",
         borderRadius: "24px",
         boxShadow: "none",
         backgroundColor: "#f7f7f7",
@@ -57,6 +62,8 @@ export const MyCard: React.FC<CardProps> = ({
         overflow: "visible",
         transition: "box-shadow 0.3s ease-in-out",
         height: "auto",
+        minHeight: isLargeScreen ? "370px" : "auto",
+        maxHeight: isLargeScreen ? "700px" : "auto",
       }}
     >
       <Box
@@ -96,10 +103,14 @@ export const MyCard: React.FC<CardProps> = ({
           component="div"
           gutterBottom
           sx={{
-            fontSize: { sm: "24px", md: "32px", xl: "35px" },
+            fontSize: isLargeScreen
+              ? { sm: "24px", md: "32px", xl: "40px" }
+              : { sm: "24px", md: "32px", xl: "35px" },
             fontFamily: "Futura PT, serif",
             fontWeight: 450,
-            lineHeight: { sm: "28px", md: "35px", xl: "38.5px" },
+            lineHeight: isLargeScreen
+              ? { sm: "28px", md: "35px", xl: "38.5px" }
+              : { sm: "28px", md: "35px", xl: "38.5px" },
             letterSpacing: "-0.04em",
             textAlign: "center",
             textTransform: "uppercase",
@@ -123,7 +134,7 @@ export const MyCard: React.FC<CardProps> = ({
             sx={{
               color: "black",
               marginBottom: "8px",
-              fontSize: isMobile ? "14px" : "18px",
+              fontSize: isMobile ? "14px" : "24px",
               textAlign: "start",
             }}
           >

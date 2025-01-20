@@ -50,8 +50,8 @@ export const Certificates = () => {
   const certificates: Certificate[] = [
     {
       id: 1,
-      title: t("certificates.coffeeBoom"),
-      image: certificate2,
+      title: t("certificates.honoraryDiploma"),
+      image: certificate1,
     },
     {
       id: 2,
@@ -65,8 +65,8 @@ export const Certificates = () => {
     },
     {
       id: 4,
-      title: t("certificates.honoraryDiploma"),
-      image: certificate1,
+      title: t("certificates.coffeeBoom"),
+      image: certificate2,
     },
   ];
 
@@ -97,11 +97,11 @@ export const Certificates = () => {
             variant="h2"
             component="h1"
             sx={{
-              fontWeight: 500,
+              fontWeight: 450,
               color: "#000",
               textTransform: "uppercase",
               textAlign: "left",
-              fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
+              fontSize: { xs: "24px", sm: "28px", md: "32px", lg: "75px" },
               mb: { xs: 2, sm: 3, md: 5 },
             }}
           >
@@ -111,116 +111,89 @@ export const Certificates = () => {
 
         {isLargeScreen ? (
           <Box
-            className="parent"
             sx={{
-              gridTemplateColumns: "repeat(2, 1fr)",
-              width: "1000px",
-              height: "863px",
-              margin: " 0 auto",
-              display: "grid",
-              gap: "23px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              width: "100%",
+              margin: "0 auto",
+              px: { xl: "350px" },
+              gap: "20px",
             }}
           >
-            <Box
-              className="div1"
-              sx={{
-                gridRow: "span 2 / span 2",
-                border: "1px solid #D9D9D9",
-                borderRadius: "10px",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                padding: "21.5px 83.5px",
-                height: "480px",
-                width: "474px",
-              }}
-              onClick={() => handleOpenModal(certificates[0])}
-            >
+            {[0, 2].map((row) => (
               <Box
-                component="img"
-                src={certificates[0].image}
-                alt={certificates[0].title}
-                draggable={false}
-                sx={{ width: "100%", height: "100%" }}
-              />
-            </Box>
-
-            <Box
-              className="div2"
-              sx={{
-                border: "1px solid #D9D9D9",
-                borderRadius: "10px",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                padding: "24px 36px",
-                height: "358px",
-                width: "504px",
-                marginLeft: "-30px",
-              }}
-              onClick={() => handleOpenModal(certificates[1])}
-            >
-              <Box
-                component="img"
-                src={certificates[1].image}
-                alt={certificates[1].title}
-                draggable={false}
-                sx={{ width: "100%", height: "100%" }}
-              />
-            </Box>
-
-            <Box
-              className="div3"
-              sx={{
-                gridRow: "span 2 / span 2",
-                gridColumnStart: 2,
-                border: "1px solid #D9D9D9",
-                borderRadius: "10px",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                padding: "21px 83.5px",
-                width: "474px",
-                height: "480px",
-              }}
-              onClick={() => handleOpenModal(certificates[2])}
-            >
-              <Box
-                component="img"
-                src={certificates[2].image}
-                alt={certificates[2].title}
-                draggable={false}
-                sx={{ width: "100%", height: "100%" }}
-              />
-            </Box>
-
-            <Box
-              className="div4"
-              sx={{
-                gridRowStart: 3,
-                border: "1px solid #D9D9D9",
-                borderRadius: "10px",
-                overflow: "hidden",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                height: "358px",
-                width: "504px",
-                padding: "24px 36px",
-              }}
-              onClick={() => handleOpenModal(certificates[3])}
-            >
-              <Box
-                component="img"
-                src={certificates[3].image}
-                alt={certificates[3].title}
-                draggable={false}
-                sx={{ width: "100%", height: "100%" }}
-              />
-            </Box>
+                key={row}
+                sx={{
+                  display: "flex",
+                  width: row === 0 ? "100%" : "70%",
+                  gap: "20px",
+                  justifyContent: "center",
+                }}
+              >
+                {[certificates[row], certificates[row + 1]].map(
+                  (certificate) => (
+                    <Box
+                      key={certificate.id}
+                      sx={{
+                        border: "1px solid #D9D9D9",
+                        borderRadius: "25px",
+                        overflow: "hidden",
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        padding: "16px",
+                        width: "calc(50% - 10px)",
+                        cursor: "pointer",
+                        "&:hover": {
+                          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
+                        },
+                      }}
+                      onClick={() => handleOpenModal(certificate)}
+                      onMouseEnter={() => setHoveredCard(certificate.id)}
+                      onMouseLeave={() => setHoveredCard(null)}
+                    >
+                      <Box
+                        component="img"
+                        src={certificate.image}
+                        alt={certificate.title}
+                        draggable={false}
+                        sx={{
+                          width: "80%",
+                          height: "auto",
+                          objectFit: "cover",
+                        }}
+                      />
+                      <Box
+                        sx={{
+                          width: "100%",
+                          backgroundColor: "rgba(255, 255, 255, 0.8)",
+                          opacity: hoveredCard === certificate.id ? 1 : 0,
+                          maxHeight:
+                            hoveredCard === certificate.id ? "200px" : 0,
+                          transition: "opacity 0.3s ease, max-height 0.3s ease",
+                          overflow: "hidden",
+                          textAlign: "center",
+                          py: hoveredCard === certificate.id ? 1 : 0,
+                        }}
+                      >
+                        <Typography
+                          sx={{
+                            fontSize: "35px",
+                            fontWeight: 450,
+                            transition: "opacity 0.1s ease",
+                            lineHeight: "38px",
+                          }}
+                        >
+                          {certificate.title}
+                        </Typography>
+                      </Box>
+                    </Box>
+                  )
+                )}
+              </Box>
+            ))}
           </Box>
         ) : (
           <Carousel
@@ -271,7 +244,7 @@ export const Certificates = () => {
                   }
                   onMouseLeave={() => !isMobile && setHoveredCard(null)}
                   sx={{
-                    width: "auto%",
+                    width: "auto",
                     cursor: "pointer",
                     padding: { xs: 0.5, sm: 1, md: 2 },
                     border: "1px solid #D9D9D9",
