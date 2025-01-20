@@ -136,7 +136,7 @@ export const Cases = ({ mode = "default" }) => {
           component="h1"
           sx={{
             width: "100%",
-            fontWeight: 500,
+            fontWeight: 450,
             color: isCasePage ? "#fff" : "#000",
             lineHeight: "80px",
             fontStyle: "normal",
@@ -146,8 +146,8 @@ export const Cases = ({ mode = "default" }) => {
               : isTablet
                 ? "36px"
                 : isDesktop
-                  ? "70px"
-                  : "70px",
+                  ? "75px"
+                  : "75px",
           }}
         >
           {t(isCasePage ? "ourCases.title2" : "ourCases.title1")}
@@ -417,7 +417,7 @@ export const Cases = ({ mode = "default" }) => {
                 sx={{
                   mt: 1,
                   fontWeight: 500,
-                  fontSize: isMobile ? "20px" : isTablet ? "22px" : "24px",
+                  fontSize: isMobile ? "20px" : isTablet ? "22px" : "35px",
                 }}
               >
                 {service.title}
@@ -427,7 +427,7 @@ export const Cases = ({ mode = "default" }) => {
                 textAlign="left"
                 sx={{
                   mt: 1,
-                  fontSize: isMobile ? "16px" : isTablet ? "18px" : "20px",
+                  fontSize: isMobile ? "16px" : isTablet ? "18px" : "22px",
                   lineHeight: 1.4,
                 }}
               >

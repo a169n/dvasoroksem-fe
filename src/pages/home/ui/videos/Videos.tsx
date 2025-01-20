@@ -86,7 +86,7 @@ const VideoCard = ({
       <Box
         sx={{
           width: "100%",
-          height: "auto",
+          height: isPlaying ? "100%" : "50vh",
           position: "relative",
           overflow: "hidden",
           borderRadius: "24px",

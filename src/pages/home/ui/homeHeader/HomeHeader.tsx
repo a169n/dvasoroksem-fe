@@ -23,6 +23,7 @@ import icon5 from "@assets/icons/icon5.svg";
 import icon6 from "@assets/icons/icon6.svg";
 import icon7 from "@assets/icons/icon7.svg";
 import icon8 from "@assets/icons/icon8.svg";
+import { fontSize } from "@mui/system";
 
 const ICONS = [
   { src: icon1, alt: "Icon1" },
@@ -256,8 +257,8 @@ const HomeHeader = () => {
             <Typography
               variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
               component="h1"
-              fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
-              fontWeight={500}
+              fontSize={isMobile ? "36px" : isTablet ? "48px" : "75px"}
+              fontWeight={450}
               mb={2}
               sx={{ textTransform: "uppercase" }}
             >
@@ -269,8 +270,8 @@ const HomeHeader = () => {
               <Typography
                 variant={isMobile ? "h4" : isTablet ? "h3" : "h2"}
                 component="h1"
-                fontSize={isMobile ? "36px" : isTablet ? "48px" : "70px"}
-                fontWeight={500}
+                fontSize={isMobile ? "36px" : isTablet ? "48px" : "75px"}
+                fontWeight={450}
                 mb={2}
                 sx={{ textTransform: "uppercase" }}
               >
@@ -282,15 +283,22 @@ const HomeHeader = () => {
           <Box
             sx={{
               maxWidth: isXl ? "700px" : "500px",
-              fontSize: "22px",
-              fontWeight: 400,
             }}
           >
-            <Typography textAlign={{ xs: "left", xl: "center" }} mb={2}>
+            <Typography
+              textAlign={{ xs: "left", xl: "center" }}
+              fontSize={"24px"}
+              fontWeight={400}
+              lineHeight={"28px"}
+              mb={2}
+            >
               {t("hero.agencyDescription")}
             </Typography>
             <Typography
               maxWidth={"500px"}
+              fontSize={"24px"}
+              fontWeight={400}
+              lineHeight={"28px"}
               mx={"auto"}
               textAlign={{ xs: "left", xl: "center" }}
             >
