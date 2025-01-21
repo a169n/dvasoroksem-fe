@@ -137,22 +137,27 @@ export const Certificates = () => {
                       key={certificate.id}
                       sx={{
                         border: "1px solid #D9D9D9",
-                        borderRadius: "25px",
+                        borderRadius: "24px",
                         overflow: "hidden",
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "center",
                         alignItems: "center",
-                        padding: "16px",
+                        padding: "25px 20px",
                         width: "calc(50% - 10px)",
+                        backgroundColor: "#f7f7f7",
+                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                        transition: "box-shadow 0.3s ease-in-out",
                         cursor: "pointer",
                         "&:hover": {
-                          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.2)",
+                          boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+                          "& .content": {
+                            maxHeight: "200px",
+                            opacity: 1,
+                          },
                         },
                       }}
                       onClick={() => handleOpenModal(certificate)}
-                      onMouseEnter={() => setHoveredCard(certificate.id)}
-                      onMouseLeave={() => setHoveredCard(null)}
                     >
                       <Box
                         component="img"
@@ -166,16 +171,16 @@ export const Certificates = () => {
                         }}
                       />
                       <Box
+                        className="content"
                         sx={{
                           width: "100%",
-                          backgroundColor: "rgba(255, 255, 255, 0.8)",
-                          opacity: hoveredCard === certificate.id ? 1 : 0,
-                          maxHeight:
-                            hoveredCard === certificate.id ? "200px" : 0,
+                          backgroundColor: "#f7f7f7",
+                          opacity: 0,
+                          maxHeight: 0,
                           transition: "opacity 0.3s ease, max-height 0.3s ease",
                           overflow: "hidden",
                           textAlign: "center",
-                          py: hoveredCard === certificate.id ? 1 : 0,
+                          py: 1,
                         }}
                       >
                         <Typography
