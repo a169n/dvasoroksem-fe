@@ -124,13 +124,11 @@ export const WhyChooseUs = () => {
 
   const headingStyles = useMemo(
     () => ({
-      fontWeight: isLargeScreen ? 450 : 500,
+      fontFamily: "Futura PT",
+      fontSize: { xs: "40px", sm: "45px", md: "58px", lg: "60px" },
+      fontWeight: 450,
       color: "#000",
       textTransform: "uppercase",
-      fontSize: isLargeScreen
-        ? { xs: "24px", sm: "28px", md: "75px", lg: "75px" }
-        : { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
-      mb: { xs: 2, sm: 3, md: 5 },
       textAlign: "left",
     }),
     [isLargeScreen]
@@ -193,7 +191,10 @@ export const WhyChooseUs = () => {
             </Box>
             <Box sx={{ ...cardWrapperStyles, display: "flex", gap: "3vw" }}>
               {cardImages.slice(3).map((card, index) => (
-                <Box key={index} sx={{ flex: "1 1 0", maxWidth: "400px", height: "auto" }}>
+                <Box
+                  key={index}
+                  sx={{ flex: "1 1 0", maxWidth: "400px", height: "auto" }}
+                >
                   <MyCard
                     image={card.image}
                     imageMaxWidth={card.maxWidth}

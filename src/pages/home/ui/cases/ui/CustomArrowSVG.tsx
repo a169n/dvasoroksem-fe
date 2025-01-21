@@ -30,11 +30,11 @@ export const CustomArrowSVG = () => {
       viewBox={isXlUp ? "0 0 250 100" : "0 0 250 65"}
       className="absolute"
       style={{
-        bottom: "0",
+        bottom: "35px",
         right: "8%",
-        transform: "translateY(-40%) rotate(10deg)",
-        width: isXlUp ? "1000px" : "550px",
-        height: "90px",
+        transform: "translateY(-40%) rotate(25deg)",
+        width: isXlUp ? "750px" : "550px",
+        height: "120px",
       }}
     >
       <g

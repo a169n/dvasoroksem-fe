@@ -6,7 +6,7 @@ export const ServiceContent = ({ title, items }) => (
       display: "flex",
       flexDirection: "column",
       justifyContent: "center",
-      py: 2,
+      pb: 2,
     }}
   >
     <Typography
@@ -14,12 +14,13 @@ export const ServiceContent = ({ title, items }) => (
       textTransform={"uppercase"}
       sx={{
         color: "#BFBFBF",
-        fontSize: "46px",
-        fontStyle: "normal",
-        fontWeight: 500,
-        lineHeight: "30px",
+        fontFamily: "Futura PT",
+        fontSize: { xs: "30px", sm: "32px", md: "40px", lg: "46px" },
+        fontWeight: 450,
         letterSpacing: "0.46px",
         textAlign: "left",
+        textUnderlinePosition: "from-font",
+        textDecorationSkipInk: "none",
         marginBottom: "20px",
         alignSelf: "stretch",
       }}
@@ -31,10 +32,12 @@ export const ServiceContent = ({ title, items }) => (
         key={index}
         sx={{
           textAlign: "left",
-          fontSize: "19px",
-          fontStyle: "normal",
+          fontFamily: "Futura PT",
+          fontSize: { xs: "18px", sm: "16px", md: "18px", lg: "19px" },
           fontWeight: 400,
-          lineHeight: "150%",
+          lineHeight: { md: "24px", lg: "28px" },
+          textUnderlinePosition: "from-font",
+          textDecorationSkipInk: "none",
         }}
       >
         {item}

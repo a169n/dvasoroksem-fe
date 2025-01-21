@@ -138,16 +138,19 @@ export const Cases = ({ mode = "default" }) => {
             width: "100%",
             fontWeight: 450,
             color: isCasePage ? "#fff" : "#000",
-            lineHeight: "80px",
             fontStyle: "normal",
             textTransform: "uppercase",
-            fontSize: isMobile
-              ? "24px"
-              : isTablet
-                ? "36px"
-                : isDesktop
-                  ? "75px"
-                  : "75px",
+            fontSize: {
+              xs: "40px",
+              sm: "42px",
+              md: "48px",
+              lg: "60px",
+              xl: "75px",
+            },
+            fontFamily: "Futura PT",
+            textAlign: "left",
+            textUnderlinePosition: "from-font",
+            textDecorationSkipInk: "none",
           }}
         >
           {t(isCasePage ? "ourCases.title2" : "ourCases.title1")}
@@ -162,8 +165,8 @@ export const Cases = ({ mode = "default" }) => {
             fontSize: isMobile ? "16px" : isTablet ? "18px" : "24px",
             fontWeight: 400,
             whiteSpace: "nowrap",
-            py: isMobile ? 1 : 1,
-            px: isMobile ? 2 : 4,
+            py: 1,
+            px: 4,
             backgroundColor: isCasePage ? "#161616" : "#fff",
             color: isCasePage ? "#fff" : "#000",
             fontFamily: "Futura PT, sans-serif",
@@ -251,16 +254,19 @@ export const Cases = ({ mode = "default" }) => {
                   <Typography
                     color={isCasePage ? "#fff" : "#000"}
                     variant="h4"
-                    sx={{ mt: 1, fontWeight: 500, fontSize: "20px" }}
+                    sx={{
+                      fontWeight: 450,
+                      fontSize: { xs: "24px", sm: "28px", md: "30px" },
+                      lineHeight: "16.2px",
+                      fontFamily: "Futura PT",
+                      textAlign: "left",
+                      textUnderlinePosition: "from-font",
+                      textDecorationSkipInk: "none",
+                      textTransform: "uppercase",
+                      my: 2,
+                    }}
                   >
                     {service.title}
-                  </Typography>
-                  <Typography
-                    color={isCasePage ? "#fff" : "#000"}
-                    textAlign="left"
-                    sx={{ mt: 1, fontSize: "16px", lineHeight: 1.4 }}
-                  >
-                    {service.description}
                   </Typography>
                 </Box>
               ))}
@@ -334,16 +340,19 @@ export const Cases = ({ mode = "default" }) => {
                   <Typography
                     color={isCasePage ? "#fff" : "#000"}
                     variant="h4"
-                    sx={{ mt: 1, fontWeight: 500, fontSize: "20px" }}
+                    sx={{
+                      fontWeight: 450,
+                      fontSize: { xs: "24px", sm: "28px", md: "30px" },
+                      lineHeight: "16.2px",
+                      fontFamily: "Futura PT",
+                      textAlign: "left",
+                      textUnderlinePosition: "from-font",
+                      textDecorationSkipInk: "none",
+                      textTransform: "uppercase",
+                      mt: 2,
+                    }}
                   >
                     {service.title}
-                  </Typography>
-                  <Typography
-                    color={isCasePage ? "#fff" : "#000"}
-                    textAlign="left"
-                    sx={{ mt: 1, fontSize: "16px", lineHeight: 1.4 }}
-                  >
-                    {service.description}
                   </Typography>
                 </Box>
               ))}
@@ -415,23 +424,18 @@ export const Cases = ({ mode = "default" }) => {
                 color={isCasePage ? "#fff" : "#000"}
                 variant="h4"
                 sx={{
-                  mt: 1,
-                  fontWeight: 500,
-                  fontSize: isMobile ? "20px" : isTablet ? "22px" : "35px",
+                  fontWeight: 450,
+                  fontSize: { xs: "24px", sm: "28px", md: "30px" },
+                  lineHeight: "16.2px",
+                  fontFamily: "Futura PT",
+                  textAlign: "left",
+                  textUnderlinePosition: "from-font",
+                  textDecorationSkipInk: "none",
+                  textTransform: "uppercase",
+                  my: 2,
                 }}
               >
                 {service.title}
-              </Typography>
-              <Typography
-                color={isCasePage ? "#fff" : "#000"}
-                textAlign="left"
-                sx={{
-                  mt: 1,
-                  fontSize: isMobile ? "16px" : isTablet ? "18px" : "22px",
-                  lineHeight: 1.4,
-                }}
-              >
-                {service.description}
               </Typography>
             </Box>
           ))}

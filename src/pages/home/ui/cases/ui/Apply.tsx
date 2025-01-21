@@ -20,8 +20,8 @@ export const Apply = () => {
   return (
     <Box
       sx={{
-        py: { xs: 2, sm: 4, md: 8 },
-        backgroundColor: "#000",
+        py: { xs: 2, sm: 4, md: 12 },
+        backgroundColor: "#232323",
         position: "relative",
         overflow: "hidden",
       }}
@@ -36,12 +36,14 @@ export const Apply = () => {
         >
           <Typography
             color="#fff"
-            fontSize={{ xs: "24px", sm: "28px", md: "32px", lg: "64px" }}
+            fontSize={{ xs: "24px", sm: "36px", md: "48px", lg: "64px" }}
+            fontWeight={450}
+            fontFamily="Futura PT"
             textTransform="uppercase"
             sx={{
-              textAlign: "start",
+              textAlign: "left",
               wordSpacing: "0.3em",
-              marginBottom: 6,
+              marginBottom: isMobile ? 0.5 : 6,
             }}
           >
             {remainingText + " "}
@@ -49,10 +51,12 @@ export const Apply = () => {
           </Typography>
           <Typography
             color="#fff"
-            fontSize={{ xs: "24px", sm: "28px", md: "32px", lg: "64px" }}
+            fontSize={{ xs: "24px", sm: "36px", md: "48px", lg: "64px" }}
+            fontWeight={450}
+            fontFamily="Futura PT"
             textTransform="uppercase"
             sx={{
-              textAlign: "start",
+              textAlign: "left",
               wordSpacing: "0.3em",
             }}
           >
@@ -64,7 +68,7 @@ export const Apply = () => {
           justifyContent={"flex-end"}
           position={"relative"}
           zIndex={20}
-          mt={isMobile ? 4 : 0}
+          mt={isMobile ? 4 : 8}
         >
           <MyButton
             id="apply-button"
@@ -72,10 +76,10 @@ export const Apply = () => {
             sx={{
               borderRadius: 0,
               textTransform: "none",
-              fontSize: isMobile ? "14px" : "20px",
-              padding: "4px 24px",
+              fontSize: isMobile ? "16px" : "24px",
+              padding: isMobile ? "2px 12px" : "4px 24px",
               border: "1px solid #fff",
-              backgroundColor: "#000",
+              backgroundColor: "#232323",
               color: "#fff",
               transition:
                 "background-color 0.3s, border-color 0.3s, color 0.3s",

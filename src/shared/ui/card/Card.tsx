@@ -103,10 +103,9 @@ export const MyCard: React.FC<CardProps> = ({
           component="div"
           gutterBottom
           sx={{
-            fontSize: { sm: "24px", md: "32px", xl: "30px" },
+            fontSize: { xs: "28px", sm: "30px", md: "32px", xl: "34px" },
             fontFamily: "Futura PT, serif",
             fontWeight: 450,
-            lineHeight: { sm: "28px", md: "35px", xl: "38.5px" },
             letterSpacing: "-0.04em",
             textAlign: "center",
             textTransform: "uppercase",
@@ -130,7 +129,7 @@ export const MyCard: React.FC<CardProps> = ({
             sx={{
               color: "black",
               marginBottom: "8px",
-              fontSize: isMobile ? "14px" : "24px",
+              fontSize: isMobile ? "18px" : "24px",
               textAlign: "start",
             }}
           >
@@ -143,9 +142,9 @@ export const MyCard: React.FC<CardProps> = ({
               sx={{
                 borderRadius: 0,
                 textTransform: "none",
-                fontSize: isMobile ? "14px" : "24px",
+                fontSize: isMobile ? "18px" : "24px",
                 fontWeight: 400,
-                mb: 2
+                mb: 2,
               }}
             >
               {buttonText}
