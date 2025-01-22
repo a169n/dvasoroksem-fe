@@ -35,7 +35,7 @@ export const ServiceContent = ({ title, items }) => (
           fontFamily: "Futura PT",
           fontSize: { xs: "18px", sm: "16px", md: "18px", lg: "20px" },
           fontWeight: 400,
-          lineHeight: { md: "24px", lg: "32px" },
+          lineHeight: "32px",
           textUnderlinePosition: "from-font",
           textDecorationSkipInk: "none",
         }}
