@@ -27,8 +27,8 @@ export const WhyChooseUs = () => {
         title: t("whyChooseUs.fourYears.title"),
         text: t("whyChooseUs.fourYears.text"),
         buttonText: t("whyChooseUs.fourYears.buttonText"),
-        maxWidth: isLargeScreen ? "190px" : "148px",
-        maxHeight: isLargeScreen ? "360px" : "260px",
+        maxWidth: isLargeScreen ? "40%" : "148px",
+        maxHeight: isLargeScreen ? "auto" : "260px",
         top: -80,
         marginTop: -6.9,
         link: "/#",
@@ -39,8 +39,8 @@ export const WhyChooseUs = () => {
         title: t("whyChooseUs.eightSpecialists.title"),
         text: t("whyChooseUs.eightSpecialists.text"),
         buttonText: t("whyChooseUs.eightSpecialists.buttonText"),
-        maxWidth: isLargeScreen ? "330px" : "244px",
-        maxHeight: isLargeScreen ? "360px" : "160px",
+        maxWidth: isLargeScreen ? "55%" : "244px",
+        maxHeight: isLargeScreen ? "40%" : "160px",
         top: -20,
         marginTop: 0.3,
         rotateClockwise: -11,
@@ -52,8 +52,8 @@ export const WhyChooseUs = () => {
         title: t("whyChooseUs.millionaireBlogger.title"),
         text: t("whyChooseUs.millionaireBlogger.text"),
         buttonText: t("whyChooseUs.millionaireBlogger.buttonText"),
-        maxWidth: isLargeScreen ? "220px" : "150px",
-        maxHeight: isLargeScreen ? "350px" : "194px",
+        maxWidth: isLargeScreen ? "45%" : "150px",
+        maxHeight: isLargeScreen ? "39%" : "194px",
         top: -50,
         marginTop: -4,
         rotateClockwise: 11,
@@ -66,8 +66,8 @@ export const WhyChooseUs = () => {
         title: t("whyChooseUs.adCampaigns.title"),
         text: t("whyChooseUs.adCampaigns.text"),
         buttonText: t("whyChooseUs.adCampaigns.buttonText"),
-        maxWidth: isLargeScreen ? "300px" : "204px",
-        maxHeight: isLargeScreen ? "250px" : "149px",
+        maxWidth: isLargeScreen ? "50%" : "204px",
+        maxHeight: isLargeScreen ? "28%" : "149px",
         top: -50,
         marginTop: 1.6,
         rotateClockwise: -6,
@@ -79,8 +79,8 @@ export const WhyChooseUs = () => {
         title: t("whyChooseUs.socialResponsibility.title"),
         text: t("whyChooseUs.socialResponsibility.text"),
         buttonText: t("whyChooseUs.socialResponsibility.buttonText"),
-        maxWidth: isLargeScreen ? "250px" : "189px",
-        maxHeight: isLargeScreen ? "250px" : "189px",
+        maxWidth: isLargeScreen ? "45%" : "189px",
+        maxHeight: isLargeScreen ? "25%" : "189px",
         top: -50,
         marginTop: -3.3,
         rotateClockwise: -5,
@@ -124,13 +124,11 @@ export const WhyChooseUs = () => {
 
   const headingStyles = useMemo(
     () => ({
-      fontWeight: isLargeScreen ? 450 : 500,
+      fontFamily: "Futura PT",
+      fontSize: { xs: "40px", sm: "45px", md: "58px", lg: "60px" },
+      fontWeight: 450,
       color: "#000",
       textTransform: "uppercase",
-      fontSize: isLargeScreen
-        ? { xs: "24px", sm: "28px", md: "75px", lg: "75px" }
-        : { xs: "24px", sm: "28px", md: "32px", lg: "64px" },
-      mb: { xs: 2, sm: 3, md: 5 },
       textAlign: "left",
     }),
     [isLargeScreen]
@@ -168,13 +166,13 @@ export const WhyChooseUs = () => {
               margin: "0 auto",
               display: "flex",
               flexDirection: "column",
-              gap: "90px",
-              mt: "115px",
+              gap: "5vw",
+              mt: "6vw",
             }}
           >
-            <Box sx={rowStyles}>
+            <Box sx={{ ...rowStyles, gap: "3vw" }}>
               {cardImages.slice(0, 3).map((card, index) => (
-                <Box key={index} sx={{ width: "500px", height: "auto" }}>
+                <Box key={index} sx={{ flex: "1 1 0", height: "auto" }}>
                   <MyCard
                     image={card.image}
                     imageMaxWidth={card.maxWidth}
@@ -191,9 +189,12 @@ export const WhyChooseUs = () => {
                 </Box>
               ))}
             </Box>
-            <Box sx={{ ...cardWrapperStyles, gap: "90px" }}>
+            <Box sx={{ ...cardWrapperStyles, display: "flex", gap: "3vw" }}>
               {cardImages.slice(3).map((card, index) => (
-                <Box key={index} sx={{ width: "500px", height: "auto" }}>
+                <Box
+                  key={index}
+                  sx={{ flex: "1 1 0", maxWidth: "400px", height: "auto" }}
+                >
                   <MyCard
                     image={card.image}
                     imageMaxWidth={card.maxWidth}

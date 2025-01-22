@@ -287,7 +287,7 @@ const HomeHeader = () => {
           >
             <Typography
               textAlign={{ xs: "left", xl: "center" }}
-              fontSize={"24px"}
+              fontSize={{ xs: "18px", sm: "20px", md: "22px", lg: "24px" }}
               fontWeight={400}
               lineHeight={"28px"}
               mb={2}
@@ -296,7 +296,7 @@ const HomeHeader = () => {
             </Typography>
             <Typography
               maxWidth={"500px"}
-              fontSize={"24px"}
+              fontSize={{ xs: "18px", sm: "20px", md: "22px", lg: "24px" }}
               fontWeight={400}
               lineHeight={"28px"}
               mx={"auto"}

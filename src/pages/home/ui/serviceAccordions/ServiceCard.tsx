@@ -53,8 +53,9 @@ export const ServiceCard = ({
         style={{
           width: isSmallScreen ? "100%" : imageSize.width,
           height: isSmallScreen ? "auto" : imageSize.height,
+          maxHeight: isSmallScreen ? "230px" : "auto",
           objectFit: "cover",
-          objectPosition: objectPosition,
+          objectPosition: isSmallScreen ? "top" : objectPosition,
           borderRadius: "38px",
         }}
       />

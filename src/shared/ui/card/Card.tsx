@@ -62,7 +62,7 @@ export const MyCard: React.FC<CardProps> = ({
         overflow: "visible",
         transition: "box-shadow 0.3s ease-in-out",
         height: "auto",
-        minHeight: isLargeScreen ? "370px" : "auto",
+        minHeight: isLargeScreen ? "300px" : "auto",
         maxHeight: isLargeScreen ? "700px" : "auto",
       }}
     >
@@ -103,14 +103,9 @@ export const MyCard: React.FC<CardProps> = ({
           component="div"
           gutterBottom
           sx={{
-            fontSize: isLargeScreen
-              ? { sm: "24px", md: "32px", xl: "40px" }
-              : { sm: "24px", md: "32px", xl: "35px" },
+            fontSize: { xs: "28px", sm: "30px", md: "32px", xl: "34px" },
             fontFamily: "Futura PT, serif",
             fontWeight: 450,
-            lineHeight: isLargeScreen
-              ? { sm: "28px", md: "35px", xl: "38.5px" }
-              : { sm: "28px", md: "35px", xl: "38.5px" },
             letterSpacing: "-0.04em",
             textAlign: "center",
             textTransform: "uppercase",
@@ -123,7 +118,7 @@ export const MyCard: React.FC<CardProps> = ({
         <Box
           sx={{
             opacity: showBox || isMobile ? 1 : 0,
-            maxHeight: showBox || isMobile ? "300px" : "0px",
+            maxHeight: showBox || isMobile ? "500px" : "0px",
             overflow: "hidden",
             transition: "opacity 0.3s ease, max-height 0.4s ease",
           }}
@@ -134,7 +129,7 @@ export const MyCard: React.FC<CardProps> = ({
             sx={{
               color: "black",
               marginBottom: "8px",
-              fontSize: isMobile ? "14px" : "24px",
+              fontSize: isMobile ? "18px" : "24px",
               textAlign: "start",
             }}
           >
@@ -147,8 +142,9 @@ export const MyCard: React.FC<CardProps> = ({
               sx={{
                 borderRadius: 0,
                 textTransform: "none",
-                fontSize: isMobile ? "14px" : "20px",
+                fontSize: isMobile ? "18px" : "24px",
                 fontWeight: 400,
+                mb: 2,
               }}
             >
               {buttonText}

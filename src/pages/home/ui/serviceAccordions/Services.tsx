@@ -1,4 +1,4 @@
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { ServiceCard } from "./ServiceCard";
 import { CustomContainer } from "@shared/ui/container";
 import { useTranslation } from "react-i18next";
@@ -93,13 +93,30 @@ export const Services = () => {
 
   return (
     <CustomContainer>
+      {isSmallScreen && (
+        <Typography
+          sx={{
+            fontFamily: "Futura PT",
+            fontSize: "40px",
+            fontWeight: 450,
+            lineHeight: "40px",
+            textAlign: "left",
+            textUnderlinePosition: "from-font",
+            textDecorationSkipInk: "none",
+            textTransform: "uppercase",
+            mb: 4,
+          }}
+        >
+          {t("services.title")}
+        </Typography>
+      )}
       <Box
         mx={"auto"}
         sx={{
           display: "flex",
           flexDirection: isSmallScreen ? "column" : "row",
           gap: "16px",
-          marginBottom: "147px",
+          mb: { xs: 4, md: 8, lg: 12 },
           justifyContent: "center",
         }}
       >

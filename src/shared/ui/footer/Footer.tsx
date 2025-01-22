@@ -14,7 +14,7 @@ const MainContainer = memo(({ children }: MainContainerProps) => {
   const containerStyles = useMemo(
     () => ({
       py: { xs: 2, sm: 6, md: 8 },
-      bgcolor: "#000",
+      bgcolor: "#232323",
       color: "#fff",
     }),
     []
@@ -28,6 +28,8 @@ interface ContactSectionProps {
 }
 
 const ContactSection = memo(({ title }: ContactSectionProps) => {
+  const { t } = useTranslation();
+
   const containerStyles = useMemo(
     () => ({
       pr: { md: 4 },
@@ -56,6 +58,19 @@ const ContactSection = memo(({ title }: ContactSectionProps) => {
       <Box mb={{ xs: 4 }}>
         <Typography variant="h2" component="h1" sx={titleStyles}>
           {title}
+        </Typography>
+        <Typography
+          sx={{
+            fontFamily: "Futura PT",
+            fontSize: { xs: "18px", sm: "20px", md: "22px" },
+            fontWeight: 400,
+            textAlign: "left",
+            textUnderlinePosition: "from-font",
+            textDecorationSkipInk: "none",
+            color: "#919191",
+          }}
+        >
+          {t("footer.ceoName")}
         </Typography>
       </Box>
       <ContactLinks />
@@ -158,7 +173,6 @@ export const Footer = memo(() => {
     () => ({
       display: "flex",
       flexDirection: { xs: "column", md: "row" },
-      width: "100%",
       height: "100%",
       justifyContent: "flex-end",
     }),

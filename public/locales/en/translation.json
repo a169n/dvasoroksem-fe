@@ -230,7 +230,7 @@
     }
   },
   "apply": {
-    "text1": "⎻ showcasing your",
+    "text1": "$your",
     "text2": "awesome business now",
     "buttonText": "I want to apply"
   },
@@ -296,7 +296,7 @@
   "footer": {
     "contacts": "Contacts",
     "ceoDvasoroksem": "CEO Dvasoroksem.",
-    "ceoName": "CEO Name",
+    "ceoName": "Zhakimov Merey — CEO of Dvasoroksem",
     "contactsUs": "Contact Us"
   }
 }

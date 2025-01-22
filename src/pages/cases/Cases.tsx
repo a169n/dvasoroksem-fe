@@ -150,26 +150,22 @@ export const Cases = () => {
             <Typography
               textTransform={"uppercase"}
               sx={{
-                fontWeight: 500,
+                fontFamily: "Futura PT",
+                fontSize: isMobile ? "32px" : isTablet ? "36px" : "75px",
+                fontWeight: 450,
+                lineHeight: isMobile ? "normal" : "80px",
+                textAlign: "left",
+                textUnderlinePosition: "from-font",
+                textDecorationSkipInk: "none",
                 color: "#000",
-                textTransform: "uppercase",
-                fontSize: isMobile ? "32px" : isTablet ? "36px" : "70px",
                 mb: isMobile ? 2 : 0,
                 width: isMobile ? "100%" : "auto",
-                textAlign: "left",
-                lineHeight: 1,
+                my: "auto",
               }}
             >
               {t("ourCases.title1")}
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                gap: isMobile ? "10px" : "20px",
-                flexWrap: isMobile ? "wrap" : "nowrap",
-                width: isMobile ? "50%" : "auto",
-              }}
-            >
+            <Box>
               {isMobile ? (
                 <CustomSelect
                   value={selectedCategory}
@@ -196,7 +192,8 @@ export const Cases = () => {
                       textTransform: "none",
                       fontSize: isTablet ? "16px" : "20px",
                       py: 0.3,
-                      px: isTablet ? 2 : 4,
+                      mx: 0.5,
+                      px: isTablet ? 2 : 3,
                       backgroundColor:
                         selectedCategory === category ? "#000" : "#fff",
                       color: selectedCategory === category ? "#fff" : "#000",
@@ -209,7 +206,6 @@ export const Cases = () => {
               )}
             </Box>
           </Box>
-
           <Box
             sx={{
               display: "grid",
@@ -226,7 +222,7 @@ export const Cases = () => {
                   sx={{
                     display: "flex",
                     flexDirection: isMobile ? "column" : "row",
-                    gap: isMobile ? "20px" : "30px",
+                    gap: isMobile ? 0 : "30px",
                     width: "100%",
                   }}
                 >
@@ -285,7 +281,7 @@ export const Cases = () => {
                       sx={{
                         display: "flex",
                         flexDirection: "column",
-                        gap: "20px",
+                        gap: isMobile ? 0 : 4,
                       }}
                     >
                       <Typography
@@ -293,9 +289,15 @@ export const Cases = () => {
                         variant="h4"
                         component="p"
                         sx={{
+                          fontFamily: "Futura PT",
+                          fontSize: isMobile ? "24px" : "36px",
+                          fontWeight: 450,
+                          lineHeight: "35.29px",
+                          letterSpacing: "-0.04em",
+                          textAlign: "left",
+                          textUnderlinePosition: "from-font",
+                          textDecorationSkipInk: "none",
                           color: "#000",
-                          fontWeight: 700,
-                          fontSize: isMobile ? "16px" : "22px",
                           cursor: "pointer",
                         }}
                       >
@@ -305,7 +307,16 @@ export const Cases = () => {
                         variant="body1"
                         component="p"
                         textAlign={"left"}
-                        sx={{ cursor: "pointer" }}
+                        sx={{
+                          fontFamily: "Futura PT",
+                          fontSize: isMobile ? "16px" : "20px",
+                          fontWeight: 300,
+                          lineHeight: "20.93px",
+                          textAlign: "left",
+                          textUnderlinePosition: "from-font",
+                          textDecorationSkipInk: "none",
+                          cursor: "pointer",
+                        }}
                         onClick={() => navigate(caseItem.path)}
                       >
                         {caseItem.description}
@@ -316,12 +327,11 @@ export const Cases = () => {
                       sx={{
                         display: isMobile ? "none " : "block",
                         width: "fit-content",
-                        marginTop: isMobile ? 3 : 0,
                         fontWeight: 400,
                         borderRadius: 0,
                         alignItems: "center",
                         color: "#000",
-                        fontSize: isMobile ? "14px" : "18px",
+                        fontSize: isMobile ? "16px" : "20px",
                         textAlign: "center",
                         textTransform: "none",
                         transition: "all 0.3s ease",

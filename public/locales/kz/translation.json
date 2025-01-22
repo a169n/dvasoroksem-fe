@@ -228,7 +228,7 @@
     }
   },
   "apply": {
-    "text1": "⎻ барлығына көрсетеміз",
+    "text1": "барлығына көрсетеміз",
     "text2": "сіздің бизнесіңіз керемет екенін",
     "buttonText": "Мен өтініш қалдыруды қалаймын"
   },
@@ -293,8 +293,8 @@
   },
   "footer": {
     "contacts": "Байланыстар",
-    "ceoDvasoroksem": "CEO dvaсороксем.",
-    "ceoName": "Жакимов Мерей",
+    "ceoDvasoroksem": "CEO dvasoroksem.",
+    "ceoName": "Жақымов Мерей — dvasoroksem бас директоры",
     "contactsUs": "Бізбен байланысу"
   }
 }

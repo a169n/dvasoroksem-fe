@@ -24,9 +24,9 @@
     "smm": {
       "title": "SMM",
       "socialMediaManagement": "Ведение социальных сетей",
-      "facebookAds": "Таргетированная реклама в Facebook",
-      "instagramAds": "Таргетированная реклама в Instagram",
-      "tiktokAds": "Таргетированная реклама в TikTok",
+      "facebookAds": "Таргет в Facebook",
+      "instagramAds": "Таргет в Instagram",
+      "tiktokAds": "Таргет в TikTok",
       "contentDigitization": "Цифровизация контента"
     },
     "marketing": {
@@ -229,7 +229,7 @@
     }
   },
   "apply": {
-    "text1": "⎻ покажем всем",
+    "text1": "покажем всем",
     "text2": "что ваш бизнес классный",
     "buttonText": "Я хочу оставить заявку"
   },
@@ -295,7 +295,7 @@
   "footer": {
     "contacts": "Контакты",
     "ceoDvasoroksem": "CEO двасороксемь.",
-    "ceoName": "Жакимов Мерей",
+    "ceoName": "Жакимов Мерей — CEO двасороксемь.",
     "contactsUs": "Свяжитесь с нами"
   }
 }

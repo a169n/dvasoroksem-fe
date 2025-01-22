@@ -7,30 +7,25 @@ export const EllipseCirclingText = ({ text, isMobile }) => {
   const [ellipsePosition, setEllipsePosition] = useState({ top: 0, left: 0 });
   const [ellipseSize, setEllipseSize] = useState({ width: 0, height: 0 });
 
-  // Function to animate the paths
   const animatePaths = async () => {
     await controls.start({
       pathLength: 1,
       transition: {
-        duration: 2, // Duration of animation
+        duration: 2,
         ease: "easeInOut",
         repeat: Infinity,
-        repeatType: "reverse", // Reverse the animation on repeat
+        repeatType: "reverse",
       },
     });
   };
 
-  // Update position and size of ellipse based on text dimensions
   useEffect(() => {
     const updateEllipse = () => {
       if (textRef.current) {
-        // Get the bounding rect of the text
         const rect = textRef.current.getBoundingClientRect();
 
-        // Set ellipse size proportional to the text size
-        const size = Math.max(rect.width, rect.height) * 4;
+        const size = Math.max(rect.width, rect.height) * 5.4;
 
-        // Update the position and size of ellipse
         setEllipsePosition({
           top: rect.top + window.scrollY - size / 4 - 150,
           left: rect.left + window.scrollX - size / 4 - 90,
@@ -45,19 +40,16 @@ export const EllipseCirclingText = ({ text, isMobile }) => {
     return () => window.removeEventListener("resize", updateEllipse);
   }, [textRef]);
 
-  // Start animation on component mount
   useEffect(() => {
     animatePaths();
   }, []);
 
   return (
     <div className="relative inline-block">
-      {/* Text centered inside the animation */}
       <span ref={textRef} style={{ zIndex: 1 }}>
         {text}
       </span>
 
-      {/* Custom SVG with animated paths */}
       <motion.svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 400 400"
@@ -66,7 +58,9 @@ export const EllipseCirclingText = ({ text, isMobile }) => {
         height={ellipseSize.height}
         style={{
           top: !isMobile ? ellipsePosition.top - 20 : ellipsePosition.top,
-          left: !isMobile ? ellipsePosition.left - 20 : ellipsePosition.left - 10,
+          left: !isMobile
+            ? ellipsePosition.left - 20
+            : ellipsePosition.left - 10,
         }}
         animate={controls}
       >
