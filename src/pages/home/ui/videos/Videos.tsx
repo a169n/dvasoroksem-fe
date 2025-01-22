@@ -61,9 +61,9 @@ const VideoCard = ({
     <Box
       onClick={handlePlayPause}
       sx={{
-        width: isPlaying ? "105%" : "100%",
+        width: "100%",
         height: "auto",
-        maxHeight: isMobile ? "auto" : "650px",
+        maxHeight: isPlaying ? "auto" : (isMobile ? "145vw" : "650px"),
         padding: !isPlaying ? 2 : -0,
         borderRadius: "24px",
         backgroundColor: "#f7f7f7",
@@ -118,7 +118,8 @@ const VideoCard = ({
               width="100%"
               height="100%"
               playing={isPlaying}
-              controls={isMobile}
+              controls={false}
+              muted={!isPlaying}
               config={{
                 file: {
                   attributes: {
@@ -157,8 +158,9 @@ export const Videos = () => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const [activeVideo, setActiveVideo] = useState(null);
-  const [loadedVideos, setLoadedVideos] = useState<any[]>([]);
+  const [activeVideoDesktop, setActiveVideoDesktop] = useState(null);
+  const [activeVideoMobile, setActiveVideoMobile] = useState(null);
+  const [loadedVideos, setLoadedVideos] = useState<any>([]);
   const { t } = useTranslation();
 
   const videoData = [
@@ -196,8 +198,15 @@ export const Videos = () => {
     },
   };
 
-  const handleVideoPlay = (index) => {
-    setActiveVideo(index);
+  const handleDesktopVideoPlay = (index) => {
+    setActiveVideoDesktop((prevIndex) => (prevIndex !== index ? index : null));
+    if (!loadedVideos.includes(index)) {
+      setLoadedVideos((prev) => [...prev, index]);
+    }
+  };
+
+  const handleMobileVideoPlay = (index) => {
+    setActiveVideoMobile((prevIndex) => (prevIndex !== index ? index : null));
     if (!loadedVideos.includes(index)) {
       setLoadedVideos((prev) => [...prev, index]);
     }
@@ -225,8 +234,8 @@ export const Videos = () => {
                   url={video.url}
                   title={video.title}
                   preview={video.preview}
-                  isPlaying={activeVideo === index}
-                  onPlay={handleVideoPlay}
+                  isPlaying={activeVideoDesktop === index}
+                  onPlay={handleDesktopVideoPlay}
                   index={index}
                   isLoaded={loadedVideos.includes(index)}
                 />
@@ -236,7 +245,7 @@ export const Videos = () => {
         ) : (
           <Carousel
             responsive={responsive}
-            infinite={true}
+            infinite={false}
             autoPlay={true}
             partialVisible={isMobile}
             autoPlaySpeed={7000}
@@ -265,8 +274,8 @@ export const Videos = () => {
                   url={video.url}
                   title={video.title}
                   preview={video.preview}
-                  isPlaying={activeVideo === index}
-                  onPlay={handleVideoPlay}
+                  isPlaying={activeVideoMobile === index}
+                  onPlay={handleMobileVideoPlay}
                   index={index}
                   isLoaded={loadedVideos.includes(index)}
                 />

@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react";
+import { memo, useEffect, useMemo, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { ContactLinks } from "./ui";
@@ -11,13 +11,27 @@ interface MainContainerProps {
 }
 
 const MainContainer = memo(({ children }: MainContainerProps) => {
+  const location = useLocation();
+  const [bgColor, setBgColor] = useState("#232323");
+
+  useEffect(() => {
+    if (
+      location.pathname.startsWith("/request") ||
+      location.pathname.startsWith("/cases")
+    ) {
+      setBgColor("#161616");
+    } else {
+      setBgColor("#232323");
+    }
+  }, [location.pathname]);
+
   const containerStyles = useMemo(
     () => ({
       py: { xs: 2, sm: 6, md: 8 },
-      bgcolor: "#232323",
+      bgcolor: bgColor,
       color: "#fff",
     }),
-    []
+    [bgColor]
   );
 
   return <Box sx={containerStyles}>{children}</Box>;

@@ -55,11 +55,13 @@ const VideoCard = ({ src }: { src: string }) => {
         boxSizing: "border-box",
         position: "relative",
         marginBottom: "25px",
+        minHeight: "546px",
       }}
     >
       <video
         ref={videoRef}
         src={src}
+        preload="metadata"
         width="307px"
         height="546px"
         controls={false}
