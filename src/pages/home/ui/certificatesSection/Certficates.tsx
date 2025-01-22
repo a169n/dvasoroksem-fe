@@ -1,5 +1,4 @@
-import React from "react";
-import { useRef, useState } from "react";
+import React, { useState } from "react";
 import "react-multi-carousel/lib/styles.css";
 import {
   Box,
@@ -14,7 +13,6 @@ import {
 import { Close as CloseIcon } from "@mui/icons-material";
 import { useTranslation } from "react-i18next";
 
-// Certificate images
 import certificate1 from "@assets/certificate1.webp";
 import certificate2 from "@assets/certificate2.webp";
 import certificate3 from "@assets/certificate3.webp";
@@ -23,12 +21,6 @@ import Carousel from "react-multi-carousel";
 import { CustomContainer } from "@shared/ui/container";
 import { TransitionProps } from "@mui/material/transitions";
 
-interface Certificate {
-  id: number;
-  title: string;
-  image: string;
-}
-
 const Transition = React.forwardRef(function Transition(
   props: TransitionProps & { children: React.ReactElement },
   ref: React.Ref<unknown>
@@ -36,41 +28,29 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />;
 });
 
+interface Certificate {
+  title: string;
+  image: string;
+}
+
 export const Certificates = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
   const isLargeScreen = useMediaQuery(theme.breakpoints.up("xl"));
   const { t } = useTranslation();
-  const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-  const [openModal, setOpenModal] = useState<boolean>(false);
+
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [openModal, setOpenModal] = useState(false);
   const [selectedCertificate, setSelectedCertificate] =
     useState<Certificate | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState(false);
 
   const certificates: Certificate[] = [
-    {
-      id: 1,
-      title: t("certificates.honoraryDiploma"),
-      image: certificate1,
-    },
-    {
-      id: 2,
-      title: t("certificates.gratitudeLetter"),
-      image: certificate3,
-    },
-    {
-      id: 3,
-      title: t("certificates.digitalManagement"),
-      image: certificate4,
-    },
-    {
-      id: 4,
-      title: t("certificates.coffeeBoom"),
-      image: certificate2,
-    },
+    { title: t("certificates.honoraryDiploma"), image: certificate1 },
+    { title: t("certificates.gratitudeLetter"), image: certificate3 },
+    { title: t("certificates.digitalManagement"), image: certificate4 },
+    { title: t("certificates.coffeeBoom"), image: certificate2 },
   ];
-
-  const carouselRef = useRef<Carousel>(null);
 
   const handleOpenModal = (certificate: Certificate) => {
     setSelectedCertificate(certificate);
@@ -129,73 +109,75 @@ export const Certificates = () => {
                   width: row === 0 ? "100%" : "70%",
                   gap: "20px",
                   justifyContent: "center",
+                  alignItems: "flex-start",
                 }}
               >
                 {[certificates[row], certificates[row + 1]].map(
-                  (certificate) => (
-                    <Box
-                      key={certificate.id}
-                      sx={{
-                        border: "1px solid #D9D9D9",
-                        borderRadius: "24px",
-                        overflow: "hidden",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        padding: "25px 20px",
-                        width: "calc(50% - 10px)",
-                        backgroundColor: "#f7f7f7",
-                        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                        transition: "box-shadow 0.3s ease-in-out",
-                        cursor: "pointer",
-                        "&:hover": {
-                          boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
-                          "& .content": {
-                            maxHeight: "200px",
-                            opacity: 1,
-                          },
-                        },
-                      }}
-                      onClick={() => handleOpenModal(certificate)}
-                    >
+                  (certificate, currentIndex) => {
+                    const uniqueIndex = row + currentIndex;
+                    return (
                       <Box
-                        component="img"
-                        src={certificate.image}
-                        alt={certificate.title}
-                        draggable={false}
+                        key={uniqueIndex}
                         sx={{
-                          width: "80%",
-                          height: "auto",
-                          objectFit: "cover",
-                        }}
-                      />
-                      <Box
-                        className="content"
-                        sx={{
-                          width: "100%",
-                          backgroundColor: "#f7f7f7",
-                          opacity: 0,
-                          maxHeight: 0,
-                          transition: "opacity 0.3s ease, max-height 0.3s ease",
+                          border: "1px solid #D9D9D9",
+                          borderRadius: "24px",
                           overflow: "hidden",
-                          textAlign: "center",
-                          py: 1,
+                          display: "flex",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          width: "calc(50% - 10px)",
+                          backgroundColor: "#f7f7f7",
+                          boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+                          transition: "box-shadow 0.3s ease-in-out",
+                          cursor: "pointer",
+                          "&:hover": {
+                            boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
+                          },
                         }}
+                        onClick={() => handleOpenModal(certificate)}
                       >
-                        <Typography
+                        <Box
+                          component="img"
+                          src={certificate.image}
+                          alt={certificate.title}
+                          draggable={false}
                           sx={{
-                            fontSize: "35px",
-                            fontWeight: 450,
-                            transition: "opacity 0.1s ease",
-                            lineHeight: "38px",
+                            width: "80%",
+                            height: "auto",
+                            objectFit: "cover",
+                          }}
+                          onMouseEnter={() => setHoveredIndex(uniqueIndex)}
+                          onMouseLeave={() => setHoveredIndex(null)}
+                        />
+                        <Box
+                          className="content"
+                          sx={{
+                            width: "100%",
+                            backgroundColor: "#f7f7f7",
+                            opacity: hoveredIndex === uniqueIndex ? 1 : 0,
+                            maxHeight:
+                              hoveredIndex === uniqueIndex ? "200px" : 0,
+                            transition:
+                              "opacity 0.3s ease, max-height 0.3s ease",
+                            overflow: "hidden",
+                            textAlign: "center",
+                            py: 1,
                           }}
                         >
-                          {certificate.title}
-                        </Typography>
+                          <Typography
+                            sx={{
+                              fontSize: "35px",
+                              fontWeight: 450,
+                              lineHeight: "38px",
+                            }}
+                          >
+                            {certificate.title}
+                          </Typography>
+                        </Box>
                       </Box>
-                    </Box>
-                  )
+                    );
+                  }
                 )}
               </Box>
             ))}
@@ -203,7 +185,7 @@ export const Certificates = () => {
         ) : (
           <Carousel
             infinite
-            ref={carouselRef}
+            // ref={carouselRef}
             autoPlay={!isMobile}
             autoPlaySpeed={7000}
             keyBoardControl
@@ -229,9 +211,9 @@ export const Certificates = () => {
               },
             }}
           >
-            {certificates.map((certificate) => (
+            {certificates.map((certificate, index) => (
               <Box
-                key={certificate.id}
+                key={index}
                 sx={{
                   display: "flex",
                   flexDirection: "column",
@@ -244,10 +226,8 @@ export const Certificates = () => {
               >
                 <Box
                   onClick={() => handleOpenModal(certificate)}
-                  onMouseEnter={() =>
-                    !isMobile && setHoveredCard(certificate.id)
-                  }
-                  onMouseLeave={() => !isMobile && setHoveredCard(null)}
+                  onMouseEnter={() => setHoveredIndex(index)}
+                  onMouseLeave={() => setHoveredIndex(null)}
                   sx={{
                     width: "auto",
                     cursor: "pointer",
@@ -276,18 +256,14 @@ export const Certificates = () => {
                   />
                   <Box
                     sx={{
-                      // width: "50%",
                       margin: "0 auto",
-
-                      height:
-                        hoveredCard === certificate.id || isMobile ? "auto" : 0,
-                      opacity:
-                        hoveredCard === certificate.id || isMobile ? 1 : 0,
+                      height: hoveredIndex === index || isMobile ? "auto" : 0,
+                      opacity: hoveredIndex === index || isMobile ? 1 : 0,
                       overflow: "hidden",
                       transition: "all 0.3s ease",
                       textAlign: "center",
                       py:
-                        hoveredCard === certificate.id || isMobile
+                        hoveredIndex === index || isMobile
                           ? { xs: 0.5, sm: 1, md: 2 }
                           : 0,
                     }}
@@ -298,10 +274,7 @@ export const Certificates = () => {
                         fontFamily: "Georgia, serif",
                         fontStyle: "italic",
                         fontWeight: 400,
-                        transition: "opacity 0.3s ease",
                         textAlign: "center",
-                        opacity:
-                          hoveredCard === certificate.id || isMobile ? 1 : 0,
                       }}
                     >
                       {certificate.title}
