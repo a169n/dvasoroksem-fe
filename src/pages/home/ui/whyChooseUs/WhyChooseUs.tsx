@@ -239,6 +239,8 @@ export const WhyChooseUs = () => {
                     justifyContent: "flex-start",
                     alignItems: "flex-start",
                     my: 12,
+                    mr: isMobile ? 4 : "0",
+                    px: isMobile ? "0" : 4,
                   }}
                 >
                   <MyCard

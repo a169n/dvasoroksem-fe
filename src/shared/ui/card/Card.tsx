@@ -54,7 +54,7 @@ export const MyCard: React.FC<CardProps> = ({
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
-        maxWidth: isLargeScreen ? "500px" : "400px",
+        maxWidth: isLargeScreen ? "500px" : "auto",
         borderRadius: "24px",
         boxShadow: "none",
         backgroundColor: "#f7f7f7",
@@ -62,8 +62,8 @@ export const MyCard: React.FC<CardProps> = ({
         overflow: "visible",
         transition: "box-shadow 0.3s ease-in-out",
         height: "auto",
-        minHeight: isLargeScreen ? "300px" : "auto",
-        maxHeight: isLargeScreen ? "700px" : "auto",
+        minHeight: isLargeScreen ? "300px" : isMobile ? "500px" : "330px",
+        maxHeight: isLargeScreen ? "700px" : isMobile ? "500px" : "auto",
       }}
     >
       <Box

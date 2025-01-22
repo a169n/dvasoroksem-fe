@@ -135,6 +135,8 @@ export const Certificates = () => {
                   (certificate) => (
                     <Box
                       key={certificate.id}
+                      onMouseEnter={() => setHoveredCard(certificate.id)}
+                      onMouseLeave={() => setHoveredCard(null)}
                       sx={{
                         border: "1px solid #D9D9D9",
                         borderRadius: "24px",
@@ -147,8 +149,13 @@ export const Certificates = () => {
                         width: "calc(50% - 10px)",
                         backgroundColor: "#f7f7f7",
                         boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-                        transition: "box-shadow 0.3s ease-in-out",
+                        transition:
+                          "box-shadow 0.3s ease-in-out, height 0.3s ease-in-out",
                         cursor: "pointer",
+                        height:
+                          hoveredCard === certificate.id
+                            ? "100%"
+                            : "fit-content", // Only hovered card changes
                         "&:hover": {
                           boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
                           "& .content": {
@@ -175,8 +182,9 @@ export const Certificates = () => {
                         sx={{
                           width: "100%",
                           backgroundColor: "#f7f7f7",
-                          opacity: 0,
-                          maxHeight: 0,
+                          opacity: hoveredCard === certificate.id ? 1 : 0,
+                          maxHeight:
+                            hoveredCard === certificate.id ? "200px" : 0,
                           transition: "opacity 0.3s ease, max-height 0.3s ease",
                           overflow: "hidden",
                           textAlign: "center",
