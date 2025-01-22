@@ -96,7 +96,7 @@ const HomeHeader = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.5, rootMargin: "50px" }
+      { threshold: 0.1, rootMargin: "50px" }
     );
 
     if (videoRef.current) {
