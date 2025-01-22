@@ -15,7 +15,7 @@ export const ServiceContent = ({ title, items }) => (
       sx={{
         color: "#BFBFBF",
         fontFamily: "Futura PT",
-        fontSize: { xs: "30px", sm: "32px", md: "40px", lg: "46px" },
+        fontSize: { xs: "30px", sm: "32px", md: "40px", lg: "45px" },
         fontWeight: 450,
         letterSpacing: "0.46px",
         textAlign: "left",
@@ -33,9 +33,9 @@ export const ServiceContent = ({ title, items }) => (
         sx={{
           textAlign: "left",
           fontFamily: "Futura PT",
-          fontSize: { xs: "18px", sm: "16px", md: "18px", lg: "19px" },
+          fontSize: { xs: "18px", sm: "16px", md: "18px", lg: "20px" },
           fontWeight: 400,
-          lineHeight: { md: "24px", lg: "28px" },
+          lineHeight: { md: "24px", lg: "32px" },
           textUnderlinePosition: "from-font",
           textDecorationSkipInk: "none",
         }}

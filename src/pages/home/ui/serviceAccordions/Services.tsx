@@ -116,7 +116,7 @@ export const Services = () => {
           display: "flex",
           flexDirection: isSmallScreen ? "column" : "row",
           gap: "16px",
-          marginBottom: "147px",
+          mb: { xs: 4, md: 8, lg: 12 },
           justifyContent: "center",
         }}
       >

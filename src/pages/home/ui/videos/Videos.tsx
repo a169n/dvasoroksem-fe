@@ -86,7 +86,7 @@ const VideoCard = ({
       <Box
         sx={{
           width: "100%",
-          height: isPlaying ? "100%" : "50vh",
+          height: isPlaying ? "100%" : "auto",
           position: "relative",
           overflow: "hidden",
           borderRadius: "24px",
@@ -117,9 +117,9 @@ const VideoCard = ({
             <ReactPlayer
               url={url}
               width="100%"
-              height="auto"
+              height="100%"
               playing={isPlaying}
-              controls={false}
+              controls={isMobile}
               config={{
                 file: {
                   attributes: {
@@ -164,14 +164,14 @@ export const Videos = () => {
 
   const videoData = [
     {
-      url: BauerVideo,
-      title: t("videos.bauerPartnerReview"),
-      preview: BauerVideoPreview,
-    },
-    {
       url: QCSVideo,
       title: t("videos.qcsPartnerReview"),
       preview: QCSVideoPreview,
+    },
+    {
+      url: BauerVideo,
+      title: t("videos.bauerPartnerReview"),
+      preview: BauerVideoPreview,
     },
     {
       url: NovaTravelVideo,
@@ -215,9 +215,13 @@ export const Videos = () => {
         }}
       >
         {isDesktop ? (
-          <Grid container spacing={4}>
+          <Grid
+            container
+            spacing={4}
+            sx={{ justifyContent: "center", alignItems: "center" }}
+          >
             {videoData.map((video, index) => (
-              <Grid item xs={12} sm={6} md={3} key={index}>
+              <Grid item xs={12} sm={6} md={4} key={index}>
                 <VideoCard
                   url={video.url}
                   title={video.title}
