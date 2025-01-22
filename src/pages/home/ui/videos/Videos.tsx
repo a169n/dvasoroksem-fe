@@ -52,6 +52,7 @@ const VideoCard = ({
   onPlay,
   index,
   isLoaded,
+  isLoading,
 }) => {
   const handlePlayPause = () => onPlay(isPlaying ? null : index);
   const theme = useTheme();
@@ -63,7 +64,7 @@ const VideoCard = ({
       sx={{
         width: "100%",
         height: "auto",
-        maxHeight: isPlaying ? "auto" : (isMobile ? "145vw" : "650px"),
+        maxHeight: isPlaying ? "auto" : isMobile ? "145vw" : "650px",
         padding: !isPlaying ? 2 : -0,
         borderRadius: "24px",
         backgroundColor: "#f7f7f7",
@@ -91,27 +92,36 @@ const VideoCard = ({
           borderRadius: "24px",
         }}
       >
-        {!isPlaying ? (
-          <img
-            alt="Video Preview"
-            src={preview}
-            style={{
-              width: "100%",
-              objectFit: "cover",
-              filter: "brightness(70%)",
-            }}
-          />
-        ) : !isLoaded ? (
-          <CircularProgress
-            size={50}
+        <img
+          alt="Video Preview"
+          src={preview}
+          style={{
+            width: "100%",
+            objectFit: "cover",
+            filter: "brightness(70%)",
+            position: "relative",
+            zIndex: 1,
+          }}
+        />
+        {isLoading && (
+          <Box
             sx={{
               position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              backgroundColor: "rgba(0, 0, 0, 0.3)",
+              zIndex: 2,
             }}
-          />
-        ) : (
+          >
+            <CircularProgress size={60} sx={{ color: "#ffffff" }} />
+          </Box>
+        )}
+        {isPlaying && isLoaded && (
           <Suspense fallback={<VideoPlaceholder />}>
             <ReactPlayer
               url={url}
@@ -128,11 +138,18 @@ const VideoCard = ({
                   },
                 },
               }}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                zIndex: 3,
+                objectFit: "cover",
+              }}
             />
           </Suspense>
         )}
       </Box>
-      {!isPlaying && (
+      {!isPlaying && !isLoading && (
         <Typography
           my={2}
           sx={{
@@ -160,7 +177,8 @@ export const Videos = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const [activeVideoDesktop, setActiveVideoDesktop] = useState(null);
   const [activeVideoMobile, setActiveVideoMobile] = useState(null);
-  const [loadedVideos, setLoadedVideos] = useState<any>([]);
+  const [loadedVideos, setLoadedVideos] = useState<number[]>([]);
+  const [loadingVideoIndex, setLoadingVideoIndex] = useState(null);
   const { t } = useTranslation();
 
   const videoData = [
@@ -206,9 +224,19 @@ export const Videos = () => {
   };
 
   const handleMobileVideoPlay = (index) => {
-    setActiveVideoMobile((prevIndex) => (prevIndex !== index ? index : null));
-    if (!loadedVideos.includes(index)) {
-      setLoadedVideos((prev) => [...prev, index]);
+    if (activeVideoMobile !== index) {
+      setLoadingVideoIndex(index);
+      setActiveVideoMobile(index);
+
+      // Simulate loading delay
+      setTimeout(() => {
+        setLoadingVideoIndex(null);
+        if (!loadedVideos.includes(index)) {
+          setLoadedVideos((prev) => [...prev, index]);
+        }
+      }, 1000);
+    } else {
+      setActiveVideoMobile(null);
     }
   };
 
@@ -238,6 +266,7 @@ export const Videos = () => {
                   onPlay={handleDesktopVideoPlay}
                   index={index}
                   isLoaded={loadedVideos.includes(index)}
+                  isLoading={false}
                 />
               </Grid>
             ))}
@@ -278,6 +307,7 @@ export const Videos = () => {
                   onPlay={handleMobileVideoPlay}
                   index={index}
                   isLoaded={loadedVideos.includes(index)}
+                  isLoading={loadingVideoIndex === index}
                 />
               </Box>
             ))}
