@@ -56,7 +56,6 @@ const VideoCard = ({
   const handlePlayPause = () => onPlay(isPlaying ? null : index);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-  const isXL = useMediaQuery(theme.breakpoints.up("xl"));
 
   return (
     <Box
