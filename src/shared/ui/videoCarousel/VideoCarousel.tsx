@@ -69,10 +69,13 @@ const VideoCard = ({ src }: { src: string }) => {
         width="307px"
         height="546px"
         controls={false}
+        poster=""
         style={{
-          borderRadius: "8px",
           objectFit: "cover",
           cursor: "pointer",
+          border: "2px solid #ccc",
+          borderRadius: "8px",
+          overflow: "hidden",
         }}
         onClick={handlePlayPause}
         onPlay={handlePlay}
@@ -83,16 +86,27 @@ const VideoCard = ({ src }: { src: string }) => {
       />
 
       {isLoading && (
-        <CircularProgress
+        <Box
           sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
             position: "absolute",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            color: "white",
-            zIndex: 1,
+            width: "307px",
+            height: "auto",
+            bgcolor: "rgba(0, 0, 0, 0.5)",
+            borderRadius: "inherit",
           }}
-        />
+        >
+          <CircularProgress
+            sx={{
+              zIndex: 1,
+            }}
+          />
+        </Box>
       )}
 
       {!isPlaying && !isLoading && (
