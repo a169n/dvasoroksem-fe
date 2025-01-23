@@ -256,7 +256,7 @@ export const Cases = ({ mode = "default" }) => {
                     sx={{
                       fontWeight: 450,
                       fontSize: { xs: "24px", sm: "28px", md: "30px" },
-                      lineHeight: "16.2px",
+                      lineHeight: "25px",
                       fontFamily: "Futura PT",
                       textAlign: "left",
                       textUnderlinePosition: "from-font",
@@ -342,7 +342,7 @@ export const Cases = ({ mode = "default" }) => {
                     sx={{
                       fontWeight: 450,
                       fontSize: { xs: "24px", sm: "28px", md: "30px" },
-                      lineHeight: "16.2px",
+                      lineHeight: "25px",
                       fontFamily: "Futura PT",
                       textAlign: "left",
                       textUnderlinePosition: "from-font",
