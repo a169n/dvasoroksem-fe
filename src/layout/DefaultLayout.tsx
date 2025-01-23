@@ -4,10 +4,12 @@ import { Outlet } from "react-router-dom";
 
 export function DefaultLayout() {
   return (
-    <Container maxWidth={false} disableGutters>
-      <Outlet />
-      <Footer />
-    </Container>
+    <div style={{ maxWidth: "2500px", margin: "0 auto" }}>
+      <Container maxWidth={false} disableGutters>
+        <Outlet />
+        <Footer />
+      </Container>
+    </div>
   );
 }
 
