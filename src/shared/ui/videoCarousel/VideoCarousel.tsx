@@ -46,6 +46,10 @@ const VideoCard = ({ src }: { src: string }) => {
     setIsLoading(true);
   };
 
+  const handleLoadedMetadata = () => {
+    setIsLoading(false);
+  };
+
   return (
     <div
       style={{
@@ -75,6 +79,7 @@ const VideoCard = ({ src }: { src: string }) => {
         onPause={handlePause}
         onCanPlay={handleCanPlay}
         onWaiting={handleWaiting}
+        onLoadedMetadata={handleLoadedMetadata}
       />
 
       {isLoading && (
