@@ -24,7 +24,6 @@ import ASGPreview from "@assets/videos/ASGPreview.webp";
 import ASGVideo from "@assets/videos/ASG.mp4";
 
 import { useTranslation } from "react-i18next";
-import { CustomContainer } from "@shared/ui/container";
 
 const VideoPlaceholder = () => (
   <Box
