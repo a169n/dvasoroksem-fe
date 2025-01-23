@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef, Suspense, memo } from "react";
+import React, { useState, Suspense, memo } from "react";
 import {
   Box,
   Typography,
-  useMediaQuery,
   IconButton,
   CircularProgress,
+  useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import Marquee from "react-marquee-slider";
@@ -33,11 +33,7 @@ const ICONS = [
   { src: icon6, alt: "Icon6" },
   { src: icon7, alt: "Icon7" },
   { src: icon8, alt: "Icon8" },
-].map((icon) => {
-  const img = new Image();
-  img.src = icon.src;
-  return icon;
-});
+];
 
 const useResponsiveValues = () => {
   const theme = useTheme();
@@ -63,54 +59,13 @@ const HomeHeader = () => {
   const { isMobile, isTablet, isXl, aspectRatio } = useResponsiveValues();
 
   const [isMuted, setIsMuted] = useState(true);
-  const [isVisible, setIsVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
-  const videoRef = useRef(null);
 
-  useEffect(() => {
-    const video = document.createElement("video");
-    video.src = videoSrc;
-    const checkVideoReady = () => {
-      if (video.readyState >= 3) {
-        setIsLoading(false);
-      } else {
-        setTimeout(checkVideoReady, 100);
-      }
-    };
-    checkVideoReady();
-
-    return () => {
-      video.src = "";
-    };
-  }, []);
-
-  const getIconDimensions = () => {
-    if (isMobile) return { width: "70px", height: "20px" };
-    if (isTablet) return { width: "120px", height: "35px" };
-    return { width: "160px", height: "50px" };
+  const handleLoadedData = () => {
+    setIsLoading(false);
   };
 
-  // Shared styles
-  const sharedBoxStyles = {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  };
-
-  const iconSize = getIconDimensions();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold: 0.1, rootMargin: "50px" }
-    );
-
-    if (videoRef.current) {
-      observer.observe(videoRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+  const iconSize = useResponsiveValues().iconDimensions;
 
   return (
     <Box
@@ -127,7 +82,6 @@ const HomeHeader = () => {
         }}
       >
         <Box
-          ref={videoRef}
           sx={{
             position: "relative",
             width: "100%",
@@ -135,7 +89,7 @@ const HomeHeader = () => {
             overflow: "hidden",
           }}
         >
-          {isLoading ? (
+          {isLoading && (
             <Box
               sx={{
                 position: "absolute",
@@ -147,30 +101,34 @@ const HomeHeader = () => {
                 alignItems: "center",
                 justifyContent: "center",
                 backgroundColor: "rgba(0, 0, 0, 0.3)",
+                zIndex: 1,
               }}
             >
               <CircularProgress size={60} sx={{ color: "#ffffff" }} />
             </Box>
-          ) : (
-            <Suspense fallback={null}>
-              <ReactPlayer
-                url={videoSrc}
-                playing={isVisible}
-                muted={isMuted}
-                loop
-                width="100%"
-                height="100%"
-                playsinline
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  zIndex: 1,
-                  objectFit: "cover",
-                }}
-              />
-            </Suspense>
           )}
+
+          <Suspense
+            fallback={<CircularProgress size={60} sx={{ color: "#ffffff" }} />}
+          >
+            <ReactPlayer
+              url={videoSrc}
+              playing
+              muted={isMuted}
+              loop
+              width="100%"
+              height="100%"
+              playsinline
+              onReady={handleLoadedData}
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                zIndex: 0,
+                objectFit: "cover",
+              }}
+            />
+          </Suspense>
 
           <IconButton
             onClick={() => setIsMuted((prev) => !prev)}
@@ -198,8 +156,8 @@ const HomeHeader = () => {
           <Marquee
             velocity={isMobile ? 10 : 20}
             direction="rtl"
-            resetAfterTries={100}
             scatterRandomly={false}
+            resetAfterTries={100}
             onInit={() => {}}
             onFinish={() => {}}
           >
@@ -208,7 +166,11 @@ const HomeHeader = () => {
                 key={index}
                 mt={isMobile ? 1 : 0}
                 mx={isMobile ? 2 : 8}
-                sx={{ ...sharedBoxStyles }}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
               >
                 <img
                   src={icon.src}
