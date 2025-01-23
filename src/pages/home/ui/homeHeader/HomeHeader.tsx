@@ -68,14 +68,20 @@ const HomeHeader = () => {
   const videoRef = useRef(null);
 
   useEffect(() => {
-    if (videoSrc) {
-      setIsLoading(true);
-      const video = document.createElement("video");
-      video.src = videoSrc;
-      video.onloadeddata = () => {
+    const video = document.createElement("video");
+    video.src = videoSrc;
+    const checkVideoReady = () => {
+      if (video.readyState >= 3) {
         setIsLoading(false);
-      };
-    }
+      } else {
+        setTimeout(checkVideoReady, 100);
+      }
+    };
+    checkVideoReady();
+
+    return () => {
+      video.src = "";
+    };
   }, []);
 
   const getIconDimensions = () => {
