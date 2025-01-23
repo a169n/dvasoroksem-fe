@@ -51,6 +51,7 @@ export const MyCard: React.FC<CardProps> = ({
       onMouseEnter={() => setShowBox(true)}
       onMouseLeave={() => setShowBox(false)}
       sx={{
+        mx: "auto",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -62,8 +63,8 @@ export const MyCard: React.FC<CardProps> = ({
         overflow: "visible",
         transition: "box-shadow 0.3s ease-in-out",
         height: "auto",
-        minHeight: isLargeScreen ? "300px" : isMobile ? "500px" : "330px",
-        maxHeight: isLargeScreen ? "700px" : isMobile ? "500px" : "auto",
+        minHeight: isLargeScreen ? "300px" : isMobile ? "auto" : "330px",
+        maxHeight: isLargeScreen ? "700px" : isMobile ? "auto" : "auto",
       }}
     >
       <Box
@@ -103,7 +104,7 @@ export const MyCard: React.FC<CardProps> = ({
           component="div"
           gutterBottom
           sx={{
-            fontSize: { xs: "28px", sm: "30px", md: "32px", xl: "34px" },
+            fontSize: { xs: "24px", sm: "30px", md: "32px", xl: "34px" },
             fontFamily: "Futura PT, serif",
             fontWeight: 450,
             letterSpacing: "-0.04em",
@@ -129,7 +130,7 @@ export const MyCard: React.FC<CardProps> = ({
             sx={{
               color: "black",
               marginBottom: "8px",
-              fontSize: isMobile ? "18px" : "24px",
+              fontSize: isMobile ? "16px" : "24px",
               textAlign: "start",
             }}
           >
@@ -142,7 +143,7 @@ export const MyCard: React.FC<CardProps> = ({
               sx={{
                 borderRadius: 0,
                 textTransform: "none",
-                fontSize: isMobile ? "18px" : "24px",
+                fontSize: isMobile ? "16px" : "24px",
                 fontWeight: 400,
                 mb: 2,
               }}

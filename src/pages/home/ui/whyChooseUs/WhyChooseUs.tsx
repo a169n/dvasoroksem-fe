@@ -28,9 +28,9 @@ export const WhyChooseUs = () => {
         title: t("whyChooseUs.fourYears.title"),
         text: t("whyChooseUs.fourYears.text"),
         buttonText: t("whyChooseUs.fourYears.buttonText"),
-        maxWidth: isLargeScreen ? "40%" : "148px",
-        maxHeight: isLargeScreen ? "auto" : "260px",
-        top: -80,
+        maxWidth: isLargeScreen ? "40%" : isMobile ? "80px" : "148px",
+        maxHeight: isLargeScreen ? "auto" : isMobile ? "200px" : "260px",
+        top: isMobile ? -50 : -80,
         marginTop: -6.9,
         link: "/#",
         action: () => window.scrollTo({ top: 0, behavior: "smooth" }),
@@ -40,8 +40,8 @@ export const WhyChooseUs = () => {
         title: t("whyChooseUs.eightSpecialists.title"),
         text: t("whyChooseUs.eightSpecialists.text"),
         buttonText: t("whyChooseUs.eightSpecialists.buttonText"),
-        maxWidth: isLargeScreen ? "55%" : "244px",
-        maxHeight: isLargeScreen ? "40%" : "160px",
+        maxWidth: isLargeScreen ? "55%" : isMobile ? "120px" : "244px",
+        maxHeight: isLargeScreen ? "40%" : isMobile ? "120px" : "160px",
         top: -20,
         marginTop: 0.3,
         rotateClockwise: -11,
@@ -53,8 +53,8 @@ export const WhyChooseUs = () => {
         title: t("whyChooseUs.millionaireBlogger.title"),
         text: t("whyChooseUs.millionaireBlogger.text"),
         buttonText: t("whyChooseUs.millionaireBlogger.buttonText"),
-        maxWidth: isLargeScreen ? "45%" : "150px",
-        maxHeight: isLargeScreen ? "39%" : "194px",
+        maxWidth: isLargeScreen ? "45%" : isMobile ? "100px" : "150px",
+        maxHeight: isLargeScreen ? "39%" : isMobile ? "150px" : "194px",
         top: -50,
         marginTop: -4,
         rotateClockwise: 11,
@@ -67,9 +67,9 @@ export const WhyChooseUs = () => {
         title: t("whyChooseUs.adCampaigns.title"),
         text: t("whyChooseUs.adCampaigns.text"),
         buttonText: t("whyChooseUs.adCampaigns.buttonText"),
-        maxWidth: isLargeScreen ? "50%" : "204px",
-        maxHeight: isLargeScreen ? "28%" : "149px",
-        top: -50,
+        maxWidth: isLargeScreen ? "50%" : isMobile ? "120px" : "204px",
+        maxHeight: isLargeScreen ? "28%" : isMobile ? "100px" : "149px",
+        top: isMobile ? -1 : -50,
         marginTop: 1.6,
         rotateClockwise: -6,
         link: "/qcs",
@@ -80,8 +80,8 @@ export const WhyChooseUs = () => {
         title: t("whyChooseUs.socialResponsibility.title"),
         text: t("whyChooseUs.socialResponsibility.text"),
         buttonText: t("whyChooseUs.socialResponsibility.buttonText"),
-        maxWidth: isLargeScreen ? "45%" : "189px",
-        maxHeight: isLargeScreen ? "25%" : "189px",
+        maxWidth: isLargeScreen ? "45%" : isMobile ? "120px" : "189px",
+        maxHeight: isLargeScreen ? "25%" : isMobile ? "140px" : "189px",
         top: -50,
         marginTop: -3.3,
         rotateClockwise: -5,
@@ -89,7 +89,7 @@ export const WhyChooseUs = () => {
         action: () => navigate("/cases/help-others"),
       },
     ],
-    [t, isLargeScreen, navigate]
+    [t, isLargeScreen, isMobile, navigate]
   );
 
   const responsive = useMemo(
@@ -156,12 +156,14 @@ export const WhyChooseUs = () => {
   );
 
   return (
-    <CustomContainer>
-      <Box sx={containerStyles}>
+    <Box sx={containerStyles}>
+      <CustomContainer>
         <Typography variant="h2" component="h1" sx={headingStyles}>
           {t("whyChooseUs.title")}
         </Typography>
+      </CustomContainer>
 
+      <div style={{ maxWidth: "1440px", margin: "0 auto" }}>
         {isLargeScreen ? (
           <Box
             sx={{
@@ -228,8 +230,6 @@ export const WhyChooseUs = () => {
               autoPlay
               autoPlaySpeed={7000}
               showDots={false}
-              containerClass="carousel-container"
-              itemClass="carousel-item-padding"
               removeArrowOnDeviceType={["tablet", "mobile", "desktop"]}
               arrows={false}
             >
@@ -238,11 +238,11 @@ export const WhyChooseUs = () => {
                   key={index}
                   sx={{
                     display: "flex",
-                    justifyContent: "flex-start",
-                    alignItems: "flex-start",
+                    justifyContent: "center", 
+                    alignItems: "center",
                     my: 12,
-                    mr: isMobile ? 4 : 0,
-                    px: isMobile ? 0 : 4,
+                    mx: "auto",
+                    width: "95%",
                   }}
                 >
                   <MyCard
@@ -263,7 +263,7 @@ export const WhyChooseUs = () => {
             </Carousel>
           </Box>
         )}
-      </Box>
-    </CustomContainer>
+      </div>
+    </Box>
   );
 };

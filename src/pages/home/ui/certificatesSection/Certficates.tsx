@@ -155,7 +155,7 @@ export const Certificates = () => {
                         height:
                           hoveredCard === certificate.id
                             ? "100%"
-                            : "fit-content", // Only hovered card changes
+                            : "fit-content",
                         "&:hover": {
                           boxShadow: "0 8px 16px rgba(0, 0, 0, 0.2)",
                           "& .content": {
