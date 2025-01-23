@@ -65,7 +65,7 @@ const VideoCard = ({
         width: "100%",
         height: "auto",
         maxHeight: isPlaying ? "auto" : isMobile ? "145vw" : "650px",
-        padding: !isPlaying ? 2 : -0,
+        padding: !isPlaying ? 2 : 0,
         borderRadius: "24px",
         backgroundColor: "#f7f7f7",
         boxShadow: 2,
@@ -241,79 +241,79 @@ export const Videos = () => {
   };
 
   return (
-    <CustomContainer>
-      <Box
-        py={6}
-        mb={5}
-        sx={{
-          position: "relative",
-          px: { xs: 0, sm: 4, md: 8 },
-        }}
-      >
-        {isDesktop ? (
-          <Grid
-            container
-            spacing={4}
-            sx={{ justifyContent: "center", alignItems: "center" }}
-          >
-            {videoData.map((video, index) => (
-              <Grid item xs={12} sm={6} md={4} key={index}>
-                <VideoCard
-                  url={video.url}
-                  title={video.title}
-                  preview={video.preview}
-                  isPlaying={activeVideoDesktop === index}
-                  onPlay={handleDesktopVideoPlay}
-                  index={index}
-                  isLoaded={loadedVideos.includes(index)}
-                  isLoading={false}
-                />
-              </Grid>
-            ))}
-          </Grid>
-        ) : (
-          <Carousel
-            responsive={responsive}
-            infinite={false}
-            autoPlay={true}
-            partialVisible={isMobile}
-            autoPlaySpeed={7000}
-            draggable={true}
-            swipeable={true}
-            keyBoardControl={true}
-            showDots={isMobile ? true : false}
-            arrows={false}
-            containerClass="carousel-container"
-            centerMode={!isMobile}
-            itemClass="carousel-item-spacing"
-            sliderClass="carousel-slider-spacing"
-          >
-            {videoData.map((video, index) => (
-              <Box
-                key={index}
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                sx={{
-                  p: { xs: 2, sm: 3, md: 4 },
-                  mb: isMobile ? 3 : 0,
-                }}
-              >
-                <VideoCard
-                  url={video.url}
-                  title={video.title}
-                  preview={video.preview}
-                  isPlaying={activeVideoMobile === index}
-                  onPlay={handleMobileVideoPlay}
-                  index={index}
-                  isLoaded={loadedVideos.includes(index)}
-                  isLoading={loadingVideoIndex === index}
-                />
-              </Box>
-            ))}
-          </Carousel>
-        )}
-      </Box>
-    </CustomContainer>
+    <Box
+      py={6}
+      mb={5}
+      sx={{
+        position: "relative",
+        px: { xs: 0, sm: 4, md: 8 },
+        maxWidth: "1440px",
+        mx: "auto",
+      }}
+    >
+      {isDesktop ? (
+        <Grid
+          container
+          spacing={4}
+          sx={{ justifyContent: "center", alignItems: "center" }}
+        >
+          {videoData.map((video, index) => (
+            <Grid item xs={12} sm={6} md={4} key={index}>
+              <VideoCard
+                url={video.url}
+                title={video.title}
+                preview={video.preview}
+                isPlaying={activeVideoDesktop === index}
+                onPlay={handleDesktopVideoPlay}
+                index={index}
+                isLoaded={loadedVideos.includes(index)}
+                isLoading={false}
+              />
+            </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <Carousel
+          responsive={responsive}
+          infinite={false}
+          autoPlay={true}
+          partialVisible={isMobile}
+          autoPlaySpeed={7000}
+          draggable={true}
+          swipeable={true}
+          keyBoardControl={true}
+          showDots={isMobile ? true : false}
+          arrows={false}
+          containerClass="carousel-container"
+          centerMode={!isMobile}
+          itemClass="carousel-item-spacing"
+          sliderClass="carousel-slider-spacing"
+        >
+          {videoData.map((video, index) => (
+            <Box
+              key={index}
+              display="flex"
+              justifyContent="center"
+              alignItems="center"
+              sx={{
+                p: { xs: 2, sm: 3, md: 4 },
+                mb: isMobile ? 3 : 0,
+              }}
+            >
+              <VideoCard
+                url={video.url}
+                title={video.title}
+                preview={video.preview}
+                isPlaying={activeVideoMobile === index}
+                onPlay={handleMobileVideoPlay}
+                index={index}
+                isLoaded={loadedVideos.includes(index)}
+                isLoading={loadingVideoIndex === index}
+              />
+            </Box>
+          ))}
+        </Carousel>
+      )}
+    </Box>
   );
 };

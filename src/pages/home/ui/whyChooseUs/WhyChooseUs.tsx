@@ -12,6 +12,7 @@ import { MyCard } from "@shared/ui/card";
 import { useNavigate } from "react-router-dom";
 import { CustomContainer } from "@shared/ui/container";
 import { useMemo } from "react";
+import zIndex from "@mui/material/styles/zIndex";
 
 export const WhyChooseUs = () => {
   const { t } = useTranslation();
@@ -116,6 +117,7 @@ export const WhyChooseUs = () => {
 
   const containerStyles = useMemo(
     () => ({
+      zIndex: 3,
       minHeight: "600px",
       userSelect: "none",
     }),
@@ -239,8 +241,8 @@ export const WhyChooseUs = () => {
                     justifyContent: "flex-start",
                     alignItems: "flex-start",
                     my: 12,
-                    mr: isMobile ? 4 : "0",
-                    px: isMobile ? "0" : 4,
+                    mr: isMobile ? 4 : 0,
+                    px: isMobile ? 0 : 4,
                   }}
                 >
                   <MyCard
