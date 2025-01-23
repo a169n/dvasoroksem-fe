@@ -12,7 +12,6 @@ import { MyCard } from "@shared/ui/card";
 import { useNavigate } from "react-router-dom";
 import { CustomContainer } from "@shared/ui/container";
 import { useMemo } from "react";
-import zIndex from "@mui/material/styles/zIndex";
 
 export const WhyChooseUs = () => {
   const { t } = useTranslation();
