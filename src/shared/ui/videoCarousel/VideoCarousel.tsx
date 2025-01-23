@@ -102,8 +102,13 @@ const VideoCard = ({ src }: { src: string }) => {
           }}
         >
           <CircularProgress
+            color="inherit"
+            size={60}
             sx={{
               zIndex: 1,
+              margin: 0,
+              padding: 0,
+              backgroundColor: "transparent",
             }}
           />
         </Box>

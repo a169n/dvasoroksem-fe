@@ -43,7 +43,7 @@ export const Apply = () => {
             sx={{
               textAlign: "left",
               wordSpacing: "0.3em",
-              marginBottom: isMobile ? 0.5 : 6,
+              marginBottom: isMobile ? 3 : 6,
             }}
           >
             {remainingText + " "}

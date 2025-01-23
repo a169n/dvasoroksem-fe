@@ -185,7 +185,7 @@ export const Cases = ({ mode = "default" }) => {
 
       {isMobile ? (
         <>
-          <Box>
+          <Box my={isMobile ? 6 : 0}>
             <Carousel
               responsive={responsive1}
               infinite
