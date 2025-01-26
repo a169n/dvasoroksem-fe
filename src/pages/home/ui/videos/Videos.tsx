@@ -257,7 +257,7 @@ export const Videos = () => {
           sx={{ justifyContent: "center", alignItems: "center" }}
         >
           {videoData.map((video, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
+            <Grid item xs={12} sm={6} md={3} key={index}>
               <VideoCard
                 url={video.url}
                 title={video.title}
